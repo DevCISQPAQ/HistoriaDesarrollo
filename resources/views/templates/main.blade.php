@@ -61,7 +61,7 @@
                 
                 <!-- Secciones del formulario -->
                 <div class="grid grid-cols-5 gap-2 mt-4 text-center text-xs font-medium text-gray-600">
-                    @yield('progress-sections'), 
+                    @yield('progress-sections')
                 
                 </div>
             </div>

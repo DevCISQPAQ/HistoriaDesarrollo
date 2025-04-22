@@ -1,6 +1,6 @@
 @extends('templates.main')
 @section('progress-title', 'Datos del alumno')
-@section('progress-percentage', '10') <!-- Porcentaje completado -->
+@section('progress-percentage', '5') <!-- Porcentaje completado -->
 {{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
     
