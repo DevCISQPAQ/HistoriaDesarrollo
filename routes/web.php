@@ -28,6 +28,7 @@ Route::get('/nivel-educativo', [HistoriaController::class, 'index'])->name('hist
    // ... continúa según tus secciones
    Route::post('/preescolar/seccion1', [BDController::class, 'guardarSeccion1'])->name('preescolar.seccion1.guardar');
    Route::post('/preescolar/seccion2', [BDController::class, 'guardarSeccion2'])->name('preescolar.seccion2.guardar');
+   Route::post('/preescolar/seccion3', [BDController::class, 'guardarSeccion3'])->name('preescolar.seccion3.guardar');
 
    // Formulario Primaria/Secundaria
 Route::get('/primaria-secundaria', [HistoriaController::class, 'showPrimariaSecundaria'])->name('historia.primaria-secundaria');

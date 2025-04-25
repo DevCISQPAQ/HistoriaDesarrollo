@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('empresa_padre');
             $table->string('puesto_padre');
             $table->string('correo_padre');
-            $table->string('redessoc_padre');
+            $table->string('redessoc_padre')->nullable();
             $table->string('padre_lateralidad');
             $table->string('nombre_madre');
             $table->integer('edad_madre');
             $table->string('empresa_madre');
             $table->string('puesto_madre');
             $table->string('correo_madre');
-            $table->string('redessoc_madre');
+            $table->string('redessoc_madre')->nullable();
             $table->string('madre_lateralidad');
             $table->string('estado_civil');
             $table->string('nombre_conyuge')->nullable();

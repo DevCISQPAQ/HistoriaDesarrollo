@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historia_desarrollos', function (Blueprint $table) {
+        Schema::create('seccion3s', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('estudiante_id')->constrained('estudiantes')->nullable()->onDelete('cascade');
-            $table->integer('seccion2_id')->nullable();
-            $table->integer('seccion3_id')->nullable();
+            $table->foreignId('hermano_id')->constrained('hermanos')->nullable()->onDelete('cascade');
+            $table->string('idioma_casa');
+            $table->string('personas_casa');
+            $table->string('quienes_casa')->nullable();
+            $table->string('siadopcion');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,7 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::dropIfExists('historia_desarrollos');
+        Schema::dropIfExists('seccion3s');
     }
 };

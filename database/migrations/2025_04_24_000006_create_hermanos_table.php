@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historia_desarrollos', function (Blueprint $table) {
+        Schema::create('hermanos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('estudiante_id')->constrained('estudiantes')->nullable()->onDelete('cascade');
-            $table->integer('seccion2_id')->nullable();
-            $table->integer('seccion3_id')->nullable();
+            $table->string('nombre_hermano', 150); 
+            $table->string('edad_hermano');
+            $table->string('escolar_ocupacion');
+            $table->string('escuela_hermano');
+            $table->string('salud_hermano');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,7 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::dropIfExists('historia_desarrollos');
+        Schema::dropIfExists('hermanos');
     }
 };

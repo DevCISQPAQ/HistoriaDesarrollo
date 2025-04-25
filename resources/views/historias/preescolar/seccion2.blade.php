@@ -5,7 +5,7 @@
 @section('content')
 
 <?php
-$id_estudiante = session('historia_id')
+$id_estudiante = session('estudiante_id')
 ?>
 
 
@@ -253,7 +253,7 @@ $id_estudiante = session('historia_id')
                             <div class="py-4">
                                 <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relacion o parentesco que tenga con el niño(a):</label>
                                 <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta" required></textarea>
+                                    id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
                             </div>
                         </div>
 
@@ -340,12 +340,6 @@ $id_estudiante = session('historia_id')
                 Regresar
             </button>
 
-            <!-- <a href="{{ route('preescolar.seccion1') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-                Anterior
-            </a> -->
 
             <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar
@@ -354,19 +348,10 @@ $id_estudiante = session('historia_id')
                 </svg>
             </button>
 
-            <!-- <a href="{{ route('preescolar.seccion3') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar Test
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </a> -->
-
         </div>
     </form>
 </div>
 
 <!-- AlpineJS para la funcionalidad condicional -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script>
-</script>
 @endsection
