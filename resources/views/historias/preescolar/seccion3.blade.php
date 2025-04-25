@@ -117,16 +117,30 @@ $id_estudiante = session('estudiante_id')
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="idioma_casa" name=" idioma_casa" placeholder="Ingles, Español, etc." required>
                 </div>
-                <div>
+
+                <div x-data="{viveconotro: ''}">
                     <label for="personas_casa" class="block text-sm font-medium text-gray-700">Ademas de padres e hijos, Viven otras personas en casa? <span class="text-red-500">*</span></label>
-                    <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="personas_casa" name="personas_casa" placeholder="Si/No" required>
+                    <div class="flex space-x-4">
+                        
+                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="personas_casa" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                x-model="viveconotro">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="personas_casa" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                x-model="viveconotro">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div id="Si" x-show="viveconotro == $el.id" x-transition>
+                        <label for="quienes_casa" class="block text-sm font-medium text-gray-700">Quienes?</label>
+                        <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="quienes_casa" name="quienes_casa" placeholder="Abuenos, Tios, Primos, etc.">
+                    </div>
+
                 </div>
-                <div>
-                    <label for="quienes_casa" class="block text-sm font-medium text-gray-700">Quienes?</label>
-                    <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="quienes_casa" name="quienes_casa" placeholder="Abuenos, Tios, Primos, etc.">
-                </div>
+
             </div>
         </div>
 

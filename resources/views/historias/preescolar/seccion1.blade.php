@@ -93,9 +93,9 @@
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition">
                     <option value="">Seleccione un grado</option>
                     <option value="Maternal">Maternal</option>
-                    <option value="Kinder 1">Kinder 1</option>
-                    <option value="Kinder 2">Kinder 2</option>
-                    <option value="Kinder 3">Kinder 3</option>
+                    <option value="Kinder 1">Bambolino 1</option>
+                    <option value="Kinder 2">Bambolino 2</option>
+                    <option value="Kinder 3">Bambolino 3</option>
                     <option value="Preprimaria">Preprimaria</option>
                 </select>
             </div>

@@ -25,7 +25,7 @@
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="total-embarazo" name="total-embarazo" placeholder="Cantidad" required>
                 </div>
-            
+
             </div>
             <div>
                 <label for="experi-embarazo" class="block text-sm font-medium text-gray-700 pt-3">En general, Como fue el embarazo?<span class="text-red-500">*</span></label>
@@ -63,20 +63,34 @@
 
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
                 <div>
-                    <label for="lloro" class="block text-sm font-medium text-gray-700 pt-3">Lloro enseguida? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="lloro" name="lloro" placeholder="Si/No" required>
+                    <label for="lloro" class="block text-sm font-medium text-gray-700 pt-3 pb-2">Lloro enseguida? <span class="text-red-500">*</span></label>
+                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="lloro" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="lloro" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">No</span>
+                    </label>
                 </div>
+
+                <div>
+                    <label for="incubadora" class="block text-sm font-medium text-gray-700 pt-3 pb-2">Fue necesario colocarlo(a) en incubadora o hacer algun tratamiento inmediato al nacimiento? <span class="text-red-500">*</span></label>
+                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="incubadora" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="incubadora" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">No</span>
+                    </label>
+                </div>
+
             </div>
             <div>
-                <label for="incubadora" class="block text-sm font-medium text-gray-700 pt-3">Fue necesario colocarlo(a) en incubadora o hacer algun tratamiento inmediato al nacimiento? <span class="text-red-500">*</span></label>
-                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="incubadora" name="incubadora" placeholder="Si/No" required>
-            </div>
-            <div>
-                <label for="apgar" class="block text-sm font-medium text-gray-700 pt-3">Recuerda la cilifacion (APGAR) que tuvo su hijo al nacer? <span class="text-red-500">*</span></label>
+                <label for="apgar" class="block text-sm font-medium text-gray-700 pt-4">Recuerda la cilifacion (APGAR) que tuvo su hijo al nacer? <span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="apgar" name="apgar" required>
             </div>
