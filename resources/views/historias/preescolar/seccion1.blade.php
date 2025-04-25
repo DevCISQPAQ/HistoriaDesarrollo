@@ -15,7 +15,7 @@
     </div>
     
     <!-- Formulario -->
-    {{-- <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6"> --}}
+    <!-- {{-- <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6"> --}} -->
         <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6">
         @csrf
         

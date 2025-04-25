@@ -3,58 +3,66 @@
 @section('progress-percentage', '10') <!-- Porcentaje completado -->
 {{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
-<div class="p-6">
+
+<?php
+$id_estudiante = session('historia_id')
+?>
+
+
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+
     <!-- Encabezado de sección -->
-    <div class="border-b border-gray-200 pb-4 mb-6">
+    <div class="bg-[#667c87] px-6 py-4">
         <div class="flex items-center">
-            <span class="bg-[#5D7E8D] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
-            <h2 class="text-xl font-bold text-[#1f355e]">Estructura Familiar</h2>
+            <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
+            <h2 class="text-xl font-bold text-white">Estructura Familiar</h2>
         </div>
-        <p class="text-gray-600 ml-11 mt-1">Complete la información sobre la familia del estudiante</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante}}</p>
     </div>
 
-    <form action="#" method="POST">
+    <form action="{{ route('preescolar.seccion2.guardar') }}" method="POST" class="p-6">
+    <!-- <form action="#" method="POST"> -->
         @csrf
 
         <!-- Datos del Padre (manteniendo tus campos originales) -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6">
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos del Padre</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <label for="nombre_padre" class="block text-sm font-medium text-gray-700">Nombre del Padre:</label>
+                    <label for="nombre_padre" class="block text-sm font-medium text-gray-700">Nombre del Padre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nombre_padre" name="nombre_padre" required>
+                        id="nombre_padre" name="nombre_padre" placeholder="Nombre(s) y apellidos" required>
                 </div>
 
                 <div>
-                    <label for="edad_padre" class="block text-sm font-medium text-gray-700">Edad:</label>
+                    <label for="edad_padre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="edad_padre" name="edad_padre" required placeholder="Edad en años">
                 </div>
 
                 <div>
-                    <label for="empresa_padre" class="block text-sm font-medium text-gray-700">Nombre de la empresa:</label>
+                    <label for="empresa_padre" class="block text-sm font-medium text-gray-700">Nombre de la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="empresa_padre" name="empresa_padre" required placeholder="Empresa, negocio, etc.">
                 </div>
 
                 <div>
-                    <label for="puesto_madre" class="block text-sm font-medium text-gray-700">Puesto la empresa:</label>
+                    <label for="puesto_padre" class="block text-sm font-medium text-gray-700">Puesto la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="puesto_padre" name="puesto_padre" required placeholder="Jefe, Socio, Administrador, etc.">
                 </div>
 
                 <div>
-                    <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electronico personal:</label>
+                    <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="correo_padre" name="correo_padre" required placeholder="correo@correo.com">
                 </div>
 
                 <div>
-                    <label for="redessoc_padre" class="block text-sm font-medium text-gray-700">Redes sociales:</label>
+                    <label for="redessoc_padre" class="block text-sm font-medium text-gray-700">Redes sociales</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="redessoc_padre" name="redessoc_padre" placeholder="Facebook, Instagram">
                 </div>
 
                 <!-- Manteniendo todos los campos originales del padre -->
@@ -62,14 +70,14 @@
 
                 <!-- Diestro/Zurdo -->
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Marcar si el padre es:</label>
+                    <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4 mt-2">
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_diestro" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                             <span class="ml-2">Diestro</span>
                         </label>
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_zurdo" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="padre_lateralidad[]" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                             <span class="ml-2">Zurdo</span>
                         </label>
                     </div>
@@ -78,59 +86,59 @@
         </div>
 
         <!-- Datos de la Madre (manteniendo tus campos originales) -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6">
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de la Madre</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="nombre_madre" class="block text-sm font-medium text-gray-700">Nombre de la Madre:</label>
+                    <label for="nombre_madre" class="block text-sm font-medium text-gray-700">Nombre de la Madre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nombre_madre" name="nombre_madre" required>
+                        id="nombre_madre" name="nombre_madre" placeholder="Nombre(s) y apellidos" required>
                 </div>
 
                 <!-- Manteniendo todos los campos originales de la madre -->
                 <!-- ... otros campos de la madre ... -->
 
                 <div>
-                    <label for="edad_madre" class="block text-sm font-medium text-gray-700">Edad:</label>
+                    <label for="edad_madre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_madre" name="edad_madre" required>
+                        id="edad_madre" name="edad_madre" placeholder="Edad en años" required>
                 </div>
 
                 <div>
-                    <label for="empresa_madre" class="block text-sm font-medium text-gray-700">Nombre de la empresa:</label>
+                    <label for="empresa_madre" class="block text-sm font-medium text-gray-700">Nombre de la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="empresa_madre" name="empresa_madre" placeholder="Empresa, negocio, etc" required>
                 </div>
 
                 <div>
-                    <label for="puesto_madre" class="block text-sm font-medium text-gray-700">Puesto la empresa:</label>
+                    <label for="puesto_madre" class="block text-sm font-medium text-gray-700">Puesto la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="puesto_madre" name="puesto_madre" placeholder="Jefa, Socia, Administradora, etc." required>
                 </div>
 
                 <div>
-                    <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electronico personal:</label>
+                    <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="correo_madre" name="correo_madre" placeholder="Correo@correo.com" required>
                 </div>
 
                 <div>
-                    <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales:</label>
+                    <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required>
+                        id="redessoc_madre" name="redessoc_madre" placeholder="Facebook, Instagram">
                 </div>
 
                 <!-- Diestra/Zurda -->
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Marcar si la madre es:</label>
+                    <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4 mt-2">
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="madre_diestra" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                             <span class="ml-2">Diestra</span>
                         </label>
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="madre_zurda" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="madre_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                             <span class="ml-2">Zurda</span>
                         </label>
                     </div>
@@ -139,13 +147,13 @@
         </div>
 
         <!-- Estado civil de los padres -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6">
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Estado Civil</h3>
 
             <div class="space-y-6">
                 <!-- Estado civil (checkboxes como en tu original) -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Estado civil actual de los padres:</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Estado civil actual de los padres <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="space-y-2">
                             <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
@@ -188,59 +196,64 @@
                             </label>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
-                            <div>
-                                <label for="nombre_madre" class="block text-sm font-medium text-gray-700">Nombre de la Madre:</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="nombre_madre" name="nombre_madre" required>
-                            </div>
-
-                            <!-- Manteniendo todos los campos originales de la madre -->
-                            <!-- ... otros campos de la madre ... -->
-
-                            <div>
-                                <label for="edad_madre" class="block text-sm font-medium text-gray-700">Edad:</label>
-                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="edad_madre" name="edad_madre" required>
-                            </div>
-
-                            <div>
-                                <label for="empresa_madre" class="block text-sm font-medium text-gray-700">Nombre de la empresa:</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="edad_padre" name="edad_padre" required>
-                            </div>
-
-                            <div>
-                                <label for="puesto_madre" class="block text-sm font-medium text-gray-700">Puesto la empresa:</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="edad_padre" name="edad_padre" required>
-                            </div>
-
-                            <div>
-                                <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electronico personal:</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="edad_padre" name="edad_padre" required>
-                            </div>
-
-                            <div>
-                                <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales:</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="edad_padre" name="edad_padre" required>
-                            </div>
-
-                            <!-- Diestra/Zurda -->
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-medium text-gray-700">Marcar si la madre es:</label>
-                                <div class="flex space-x-4 mt-2">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" name="madre_diestra" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                                        <span class="ml-2">Diestra</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" name="madre_zurda" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                                        <span class="ml-2">Zurda</span>
-                                    </label>
+                        <div class="pt-4" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
+                            <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente <span class="text-red-500">*</span></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+                                <div>
+                                    <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Conyuge</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos">
                                 </div>
+
+                                <div>
+                                    <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
+                                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años">
+                                </div>
+
+                                <div>
+                                    <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc.">
+                                </div>
+
+                                <div>
+                                    <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc.">
+                                </div>
+
+                                <div>
+                                    <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com">
+                                </div>
+
+                                <div>
+                                    <label for="redessoc_conyuge" class="block text-sm font-medium text-gray-700">Redes sociales</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="redessoc_conyuge" name="redessoc_conyuge" placeholder="Facebook, Instagram">
+                                </div>
+
+                                <!-- Diestra/Zurda -->
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700">Marcar si el(la) conyuge es</label>
+                                    <div class="flex space-x-4 mt-2">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                                            <span class="ml-2">Diestro(a)</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" name="conyuge_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                                            <span class="ml-2">Zurdo(a)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4">
+                                <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relacion o parentesco que tenga con el niño(a):</label>
+                                <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta" required></textarea>
                             </div>
                         </div>
 
@@ -250,19 +263,19 @@
                 <div>
                     <label for="anos_casados" class="block text-sm font-medium text-gray-700 pt-4">¿Cuántos años llevan de casados?</label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="anos_casados" name="anos_casados">
+                        id="anos_casados" name="anos_casados" placeholder="Años">
                 </div>
 
                 <!-- Número de hijos -->
                 <div>
-                    <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos:</label>
+                    <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="numero_hijos" name="numero_hijos" required>
+                        id="numero_hijos" name="numero_hijos" required placeholder="Cantidad">
                 </div>
 
                 <!-- Separación conyugal (con funcionalidad condicional) -->
                 <div x-data="{haySeparacion: ''}">
-                    <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Ha habido separación conyugal?</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Ha habido separación conyugal? <span class="text-red-500">*</span></label>
 
                     <div class="flex space-x-4">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
@@ -294,8 +307,8 @@
                 </div>
             </div>
         </div>
-        <!-- En caso de adopcion-->
-        <div class="mb-8 border border-gray-200 rounded-lg p-4">
+        <!-- Religion-->
+        <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Religion</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
@@ -303,11 +316,11 @@
                     <label class="block text-sm font-medium text-gray-700">En la educacion de su hijo(a) Toman ustedes en cuentan el punto de vista religioso?:<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="siadopcion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
+                            <input type="radio" name="religion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                             <span class="ml-2">Si</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="siadopcion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                            <input type="radio" name="religion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                             <span class="ml-2">No</span>
                         </label>
 
@@ -318,27 +331,35 @@
         </div>
 
         <!-- Botones de navegación -->
-        <div class="flex justify-between mt-8">
-            <a href="{{ route('preescolar.seccion1') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+        <div class="flex justify-between mt-8 m-4">
+
+            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Regresar
+            </button>
+
+            <!-- <a href="{{ route('preescolar.seccion1') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Anterior
-            </a>
+            </a> -->
 
-            <!-- <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
+            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-            </button> -->
+            </button>
 
-            <a href="{{ route('preescolar.seccion3') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
+            <!-- <a href="{{ route('preescolar.seccion3') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar Test
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-            </a>
+            </a> -->
 
         </div>
     </form>

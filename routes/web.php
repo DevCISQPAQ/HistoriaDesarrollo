@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HistoriaController;
+use App\Http\Controllers\BDController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,8 +26,8 @@ Route::get('/nivel-educativo', [HistoriaController::class, 'index'])->name('hist
    Route::get('/preescolar/seccion14', [HistoriaController::class, 'showPreescolarSeccion14'])->name('preescolar.seccion14');
    
    // ... continúa según tus secciones
-   Route::post('/preescolar/seccion1', [HistoriaController::class, 'guardarSeccion1'])->name('preescolar.seccion1.guardar');
-   Route::post('/preescolar/seccion2', [HistoriaController::class, 'guardarSeccion2'])->name('preescolar.seccion2.guardar');
+   Route::post('/preescolar/seccion1', [BDController::class, 'guardarSeccion1'])->name('preescolar.seccion1.guardar');
+   Route::post('/preescolar/seccion2', [BDController::class, 'guardarSeccion2'])->name('preescolar.seccion2.guardar');
 
    // Formulario Primaria/Secundaria
 Route::get('/primaria-secundaria', [HistoriaController::class, 'showPrimariaSecundaria'])->name('historia.primaria-secundaria');

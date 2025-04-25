@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('respuestas_historia_desarrollo', function (Blueprint $table) {
+        Schema::create('historia_desarrollos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('historia_desarrollo_id')->constrained('historia_desarrollo')->onDelete('cascade');
-            $table->string('seccion', 50);
-            $table->text('pregunta');
-            $table->text('respuesta')->nullable();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->nullable()->onDelete('cascade');
+            $table->integer('seccion2_id')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -26,6 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('respuestas_historia_desarrollo');
+
+        Schema::dropIfExists('historia_desarrollos');
     }
 };

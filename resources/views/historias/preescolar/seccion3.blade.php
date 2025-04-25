@@ -3,22 +3,23 @@
 @section('progress-percentage', '15') <!-- Porcentaje completado -->
 {{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
-<div class="p-6">
+
+<div class=" bg-white rounded-xl shadow-lg overflow-hidden">
     <!-- Encabezado de sección -->
-    <div class="border-b border-gray-200 pb-4 mb-6">
-        <div class="flex items-center">
-            <span class="bg-[#5D7E8D] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
-            <h2 class="text-xl font-bold text-[#1f355e]">Hermanos</h2>
+    <div class="bg-[#ff7843] px-6 py-4">
+        <div class="flex items-center" >
+            <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
+            <h2 class="text-xl font-bold text-white">Hermanos</h2>
         </div>
-        <p class="text-gray-600 ml-11 mt-1">Complete la información sobre la familia del estudiante</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }}</p>
     </div>
 
     <form action="#" method="POST">
         @csrf
 
         <!-- Datos del hermano -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de los Hermanos</h3>
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4 relative overflow-x-auto">
+            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de los Hermanos <span class="text-red-500">*</span></h3>
 
             <table class="w-full text-sm text-left rtl:text-right text-gray-700 ">
                 <thead class=" text-xs text-white uppercase bg-gray-50 bg-primary">
@@ -101,32 +102,31 @@
             </table>
         </div>
 
-        <!-- Datos-->
-        <div class="mb-8 border border-gray-200 rounded-lg p-4">
+        <!-- Idioma-->
+        <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Idioma hablado en casa</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="idioma-casa" class="block text-sm font-medium text-gray-700">Que idioma se habla en casa:</label>
+                    <label for="idioma-casa" class="block text-sm font-medium text-gray-700">Que idioma se habla en casa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="idioma-casa"" name=" idioma-casa"" required>
+                        id="idioma-casa"" name=" idioma-casa" placeholder="Ingles, Español, etc." required>
                 </div>
                 <div>
-                    <label for="personas-casa" class="block text-sm font-medium text-gray-700">Ademas de padres e hijos, Viven otras personas en casa?</label>
+                    <label for="personas-casa" class="block text-sm font-medium text-gray-700">Ademas de padres e hijos, Viven otras personas en casa? <span class="text-red-500">*</span></label>
                     <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="personas-casa" name="personas-casa" required>
+                        id="personas-casa" name="personas-casa" placeholder="Si/No" required>
                 </div>
                 <div>
                     <label for="quienes-casa" class="block text-sm font-medium text-gray-700">Quienes?</label>
                     <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="quienes-casa" name="quienes-casa" required>
+                        id="quienes-casa" name="quienes-casa"  placeholder="Abuenos, Tios, Primos, etc." required>
                 </div>
             </div>
         </div>
 
-
         <!-- En caso de adopcion-->
-        <div class="mb-8 border border-gray-200 rounded-lg p-4">
+        <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">En caso de Adopcion</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
@@ -148,64 +148,8 @@
             </div>
         </div>
 
-        <!-- Si vive con tutor-->
-        <div class="mb-8 border border-gray-200 rounded-lg p-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Persona con la que vive</h3>
-            <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                <div>
-                    <label for="nombre-situtor" class="block text-sm font-medium text-gray-700">Nombre:</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nombre-situtor" name="nombre-situtor" required>
-                </div>
-                <div>
-                    <label for="edad-situtor" class="block text-sm font-medium text-gray-700">Edad:</label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad-situtor" name="edad-situtor" required>
-                </div>
-                <div>
-                    <label for="escolaridad-situtor" class="block text-sm font-medium text-gray-700">Escolaridad:</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="escolaridad-situtor" name="escolaridad-situtor" required>
-                </div>
-                <div>
-                    <label for="ocupacion-situtor" class="block text-sm font-medium text-gray-700">Ocupacion:</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion-situtor" name="ocupacion-situtor" required>
-                </div>
-                <div>
-                    <label for="parentesco-situtor" class="block text-sm font-medium text-gray-700">Parentesco con el niño(a):</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="parentesco-situtor" name="parentesco-situtor" required>
-                </div>
-                <div>
-                    <label for="tel-ofi-situtor" class="block text-sm font-medium text-gray-700">Telefono de oficina:</label>
-                    <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="tel-ofi-situtor" name="tel-ofi-situtor" required>
-                </div>
-                <div>
-                    <label for="tel-casa-situtor" class="block text-sm font-medium text-gray-700">Telefono de casa:</label>
-                    <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="tel-casa-situtor" name="tel-casa-situtor" required>
-                </div>
-                <div>
-                    <label for="tel-cell-situtor" class="block text-sm font-medium text-gray-700">Telefono de celular:</label>
-                    <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="tel-cell-situtor" name="tel-cell-situtor" required>
-                </div>
-            </div>
-
-            <div class="py-2">
-                <label for="noviveconpadres-situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relacion o parentesco que tenga con el niño(a):</label>
-                <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="noviveconpadres-situtor" name="noviveconpadres-situtor" placeholder="Escribe aqui la respuesta" required></textarea>
-            </div>
-
-        </div>
-
         <!-- Botones de navegación -->
-        <div class="flex justify-between mt-8 gap-2">
+        <div class="flex justify-between mt-8 gap-2 m-4">
             <a href="{{ route('preescolar.seccion2') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
