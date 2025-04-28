@@ -29,6 +29,17 @@ Route::get('/nivel-educativo', [HistoriaController::class, 'index'])->name('hist
    Route::post('/preescolar/seccion1', [BDController::class, 'guardarSeccion1'])->name('preescolar.seccion1.guardar');
    Route::post('/preescolar/seccion2', [BDController::class, 'guardarSeccion2'])->name('preescolar.seccion2.guardar');
    Route::post('/preescolar/seccion3', [BDController::class, 'guardarSeccion3'])->name('preescolar.seccion3.guardar');
-
-   // Formulario Primaria/Secundaria
+   Route::post('/preescolar/seccion4', [BDController::class, 'guardarSeccion4'])->name('preescolar.seccion4.guardar');
+   Route::post('/preescolar/seccion5', [BDController::class, 'guardarSeccion5'])->name('preescolar.seccion5.guardar');
+   Route::post('/preescolar/seccion6', [BDController::class, 'guardarSeccion6'])->name('preescolar.seccion6.guardar');
+   Route::post('/preescolar/seccion7', [BDController::class, 'guardarSeccion7'])->name('preescolar.seccion7.guardar');
+   Route::post('/preescolar/seccion8', [BDController::class, 'guardarSeccion8'])->name('preescolar.seccion8.guardar');
+   Route::post('/preescolar/seccion9', [BDController::class, 'guardarSeccion9'])->name('preescolar.seccion9.guardar');
+   Route::post('/preescolar/seccion10', [BDController::class, 'guardarSeccion10'])->name('preescolar.seccion10.guardar');
+   Route::post('/preescolar/seccion11', [BDController::class, 'guardarSeccion11'])->name('preescolar.seccion11.guardar');
+   Route::post('/preescolar/seccion12', [BDController::class, 'guardarSeccion12'])->name('preescolar.seccion12.guardar');
+   
+   Route::post('/nivel-educativo', [BDController::class, 'buscar'])->name('historia.nivel-educativo.buscar');
+   
+   // Formulario Primaria/Secundari1
 Route::get('/primaria-secundaria', [HistoriaController::class, 'showPrimariaSecundaria'])->name('historia.primaria-secundaria');

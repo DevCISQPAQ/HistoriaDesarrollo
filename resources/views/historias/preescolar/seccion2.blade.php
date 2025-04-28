@@ -5,7 +5,8 @@
 @section('content')
 
 <?php
-$id_estudiante = session('estudiante_id')
+$id_estudiante = session('estudiante_id');
+$nombre_estudiante = session('nombre_estudiante')
 ?>
 
 
@@ -17,7 +18,7 @@ $id_estudiante = session('estudiante_id')
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
             <h2 class="text-xl font-bold text-white">Estructura Familiar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }} , {{$nombre_estudiante}}</p>
     </div>
 
     <form action="{{ route('preescolar.seccion2.guardar') }}" method="POST" class="p-6">
@@ -196,7 +197,7 @@ $id_estudiante = session('estudiante_id')
                             </label>
                         </div>
 
-                        <div class="pt-4" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
+                        <div class="pt-4 bg-[#8caab945] rounded-xl shadow-lg overflow-hidden p-4 mt-2" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
                             <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente <span class="text-red-500">*</span></p>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
                                 <div>
@@ -275,9 +276,9 @@ $id_estudiante = session('estudiante_id')
 
                 <!-- Separación conyugal (con funcionalidad condicional) -->
                 <div x-data="{haySeparacion: ''}">
-                    <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Ha habido separación conyugal? <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2 pt-2">¿Ha habido separación conyugal? <span class="text-red-500">*</span></label>
 
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-4 ">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="separacion_conyugal" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                 x-model="haySeparacion">
@@ -292,7 +293,7 @@ $id_estudiante = session('estudiante_id')
 
                     <!-- Motivos separación (condicional) -->
                     <div id="Si" x-show="haySeparacion == $el.id" x-transition>
-                        <label for="moti_separa" class="block text-sm font-medium text-gray-700">¿Cuáles fueron los motivos de la separación?</label>
+                        <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
                         <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="moti_separa" name="moti_separa" rows="3"></textarea>
                     </div>

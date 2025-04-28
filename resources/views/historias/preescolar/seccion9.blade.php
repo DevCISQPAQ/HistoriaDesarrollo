@@ -3,6 +3,13 @@
 @section('progress-percentage', '65') <!-- Porcentaje completado -->
 {{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
+
+<?php
+$id_estudiante = session('estudiante_id');
+$nombre_estudiante = session('nombre_estudiante')
+?>
+
+
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
     <!-- Encabezado de sección -->
     <div class="bg-[#667c87] px-6 py-4">
@@ -10,16 +17,16 @@
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">9</span>
             <h2 class="text-xl font-bold text-white">Sueño</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_estudiante }} , {{$nombre_estudiante}}</p>
     </div>
 
-    <form action="#" method="POST">
+    <form action="{{ route('preescolar.seccion9.guardar') }}" method="POST" class="p-6">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Sueño del hijo(a)</h3>
             <!--Describre lenguaje -->
-            <label class="inline-flex items-center"> Marque las caracteristicas que presenta el sueño del menor</label>
+            <label class="inline-flex items-center"> Marque las caracteristicas que presenta el sueño del menor <span class="text-red-500">*</span></label>
             <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
                 <div class="space-y-2">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
@@ -104,70 +111,63 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-6">
                 <div>
-                    <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">A que hora se acuesta por la noche?</label>
+                    <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">A que hora se acuesta por la noche? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
                 <div>
-                    <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">A que hora se despierta?</label>
+                    <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">A que hora se despierta? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
                 <div>
-                    <label for="dusiesta" class="block text-sm font-medium text-gray-700 pt-3">Duerme siesta?</label>
+                    <label for="dusiesta" class="block text-sm font-medium text-gray-700 pt-3">Duerme siesta? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="dusiesta" name="dusiesta" required>
                 </div>
                 <div>
                     <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">Cuentas horas?</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="horasiesta" name="horasiesta" required>
+                        id="horasiesta" name="horasiesta">
                 </div>
                 <div>
-                    <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">Comparte habitacion?</label>
+                    <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">Comparte habitacion? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="cohabitacion" name="cohabitacion" required>
                 </div>
                 <div>
                     <label for="conquien" class="block text-sm font-medium text-gray-700 pt-3">Con quien?</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="conquien" name="conquien" required>
+                        id="conquien" name="conquien">
                 </div>
                 <div>
-                    <label for="cocama" class="block text-sm font-medium text-gray-700 pt-3">Comparte la cama?</label>
+                    <label for="cocama" class="block text-sm font-medium text-gray-700 pt-3">Comparte la cama? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="cocama" name="cocama" required>
                 </div>
                 <div>
-                    <label for="edad-dupapa" class="block text-sm font-medium text-gray-700 pt-3">Hasta que edad durmio con los papas?</label>
+                    <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">Hasta que edad durmio con los papas? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad-dupapa" name="edad-dupapa" required>
+                        id="edad_dupapa" name="edad_dupapa" required>
                 </div>
             </div>
         </div>
 
         <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 gap-2 m-4">
-            <a href="{{ route('preescolar.seccion8') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
-                Anterior
-            </a>
-
-            <!-- <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
+                Regresar
+            </button>
+            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-            </button> -->
+            </button>
 
-            <a href="{{ route('preescolar.seccion10') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar Test
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </a>
 
         </div>
     </form>
@@ -175,6 +175,4 @@
 
 <!-- AlpineJS para la funcionalidad condicional -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script>
-</script>
 @endsection

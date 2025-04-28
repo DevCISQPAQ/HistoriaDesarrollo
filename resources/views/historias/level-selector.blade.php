@@ -69,6 +69,55 @@
                 </div>
             </div>
         </div>
+
+        <!-- Tarjeta buscar estudiante -->
+        <!-- <div class="max-w-3xl mx-auto pt-10">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-fade-in">
+
+                <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
+                    <h2 class="text-xl md:text-2xl font-bold text-center">Buscar alunmo</h2>
+                    <p class="text-center text-[#ffffff] mt-1">Si usted ya habia empezado a llenar el formulario busque asu hijo por su nombre</p>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar Estudiantes</h1>
+
+                    {{-- Formulario de búsqueda --}}
+                    <form action="{{ route('historia.nivel-educativo.buscar') }}" method="POST">
+                        @csrf
+                        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 pt-3">
+                            <div>
+                                <label for="nombre_completo" class="block text-sm font-medium text-gray-700">Nombre completo:</label>
+                                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition type=" text" name="nombre_completo" id="nombre_completo" value="{{ request('nombre_completo') }}">
+                            </div>
+                        </div>
+                        <div>
+                            <button class="w-full px-6 py-2 mt-6 items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Buscar</button>
+                        </div>
+                    </form>
+
+                    @isset($estudiantes)
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold p-3">Resultados:</h3>
+
+                        @if ($estudiantes->isEmpty())
+                        <p class="text-gray-500 p-2">No se encontraron estudiantes.</p>
+                        @else
+                        <ul class="mt-2 space-y-2 p-2 ">
+                            @foreach ($estudiantes as $estudiante)
+                            <li class="bg-gray-100 p-3 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-2">
+                                <p class="pt-2">{{ $estudiante->nombre_completo }}</p>
+                                <button class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Continuar</button>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                    @endisset
+                </div>
+            </div>
+        </div> -->
+
     </main>
 
     <!-- Pie de página -->

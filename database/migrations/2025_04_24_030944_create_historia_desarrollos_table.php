@@ -16,6 +16,15 @@ return new class extends Migration
             $table->foreignId('estudiante_id')->constrained('estudiantes')->nullable()->onDelete('cascade');
             $table->integer('seccion2_id')->nullable();
             $table->integer('seccion3_id')->nullable();
+            $table->integer('seccion4_id')->nullable();
+            $table->integer('seccion5_id')->nullable();
+            $table->integer('seccion6_id')->nullable();
+            $table->integer('seccion7_id')->nullable();
+            $table->integer('seccion8_id')->nullable();
+            $table->integer('seccion9_id')->nullable();
+            $table->integer('seccion10_id')->nullable();
+            $table->integer('seccion11_id')->nullable();
+            $table->integer('seccion12_id')->nullable();
             $table->timestamps();
         });
 

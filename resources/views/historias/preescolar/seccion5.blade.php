@@ -3,6 +3,13 @@
 @section('progress-percentage', '35') <!-- Porcentaje completado -->
 {{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
+
+
+<?php
+$id_estudiante = session('estudiante_id');
+$nombre_estudiante = session('nombre_estudiante')
+?>
+
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
     <!-- Encabezado de sección -->
     <div class="bg-[#667c87] px-6 py-4">
@@ -10,10 +17,10 @@
             <span class="bg-white text-[#5D7E8D]  rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">5</span>
             <h2 class="text-xl font-bold text-white">Historia Pre y Postnatal</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }} , {{$nombre_estudiante}}</p>
     </div>
 
-    <form action="#" method="POST">
+    <form action="{{ route('preescolar.seccion5.guardar') }}" method="POST" class="p-6">
         @csrf
 
         <!-- Datos -->
@@ -21,25 +28,25 @@
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Experiencia del embarazo</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="total-embarazo" class="block text-sm font-medium text-gray-700 pt-3">Mencione el numero total de embarazos<span class="text-red-500">*</span></label>
+                    <label for="total_embarazo" class="block text-sm font-medium text-gray-700 pt-3">Mencione el numero total de embarazos<span class="text-red-500">*</span></label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="total-embarazo" name="total-embarazo" placeholder="Cantidad" required>
+                        id="total_embarazo" name="total_embarazo" placeholder="Cantidad" required>
                 </div>
 
             </div>
             <div>
-                <label for="experi-embarazo" class="block text-sm font-medium text-gray-700 pt-3">En general, Como fue el embarazo?<span class="text-red-500">*</span></label>
+                <label for="experi_embarazo" class="block text-sm font-medium text-gray-700 pt-3">En general, Como fue el embarazo?<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="experi-embarazo" name="experi-embarazo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="experi_embarazo" name="experi_embarazo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Complicaciones en el embarazo</h3>
             <div>
-                <label for="mencione-embaenfe" class="block text-sm font-medium text-gray-700 pt-3">Mencione si la madre tuvo alguna enfermedad durante el embarazo o complicacion, favor de especificarla en caso de ser afirmativo. <br> Enfermedad, duracion, tratamiento. <span class="text-red-500">*</span> </label>
+                <label for="mencione_embaenfe" class="block text-sm font-medium text-gray-700 pt-3">Mencione si la madre tuvo alguna enfermedad durante el embarazo o complicacion, favor de especificarla en caso de ser afirmativo. <br> Enfermedad, duracion, tratamiento. <span class="text-red-500">*</span> </label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="mencione-embaenfe" name="mencione-embaenfe" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="mencione_embaenfe" name="mencione_embaenfe" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
         </div>
         <!-- .... -->
@@ -47,13 +54,13 @@
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Informacion del parto</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="tiempo-gestacion" class="block text-sm font-medium text-gray-700">Tiempo de gestacion <span class="text-red-500">*</span></label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="tiempo-gestacion" name="tiempo-gestacion" placeholder="Horas, minutos" required>
+                    <label for="tiempo_gestacion" class="block text-sm font-medium text-gray-700">Tiempo de gestacion <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="tiempo_gestacion" name="tiempo_gestacion" placeholder="Horas, minutos" required>
                 </div>
                 <div>
-                    <label for="tipo-parto" class="block text-sm font-medium text-gray-700">Especifique si el trabajo de parto fue: <span class="text-red-500">*</span></label>
-                    <select id="tipo-parto" name="tipo-parto" required
+                    <label for="tipo_parto" class="block text-sm font-medium text-gray-700">Especifique si el trabajo de parto fue: <span class="text-red-500">*</span></label>
+                    <select id="tipo_parto" name="tipo_parto" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition">
                         <option selected="true" disabled="disabled">Seleccione una opcion</option>
                         <option value="Normal">Natural</option>
@@ -99,27 +106,19 @@
 
         <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 gap-2 m-4">
-            <a href="{{ route('preescolar.seccion4') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
-                Anterior
-            </a>
+                Regresar
+            </button>
 
-            <!-- <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
+            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-            </button> -->
-
-            <a href="{{ route('preescolar.seccion6') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar Test
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </a>
-
+            </button>
         </div>
     </form>
 </div>

@@ -8,6 +8,15 @@ use App\Models\Hermano;
 use App\Models\HistoriaDesarrollo;
 use App\Models\Seccion2;
 use App\Models\Seccion3;
+use App\Models\Seccion4;
+use App\Models\Seccion5;
+use App\Models\Seccion6;
+use App\Models\Seccion7;
+use App\Models\Seccion8;
+use App\Models\Seccion9;
+use App\Models\Seccion10;
+use App\Models\Seccion11;
+use App\Models\Seccion12;
 
 class BDController extends Controller
 {
@@ -47,13 +56,16 @@ class BDController extends Controller
         ]);
 
         // 3. Guardar en sesión el ID para siguientes secciones
-        session(['estudiante_id' => $historia->id]);
+        session([
+            'estudiante_id' => $estudiante->id,
+            'nombre_estudiante' => $estudiante->nombre_completo
+        ]);
 
         // 4. Redirigir a sección 2
         return redirect()->route('preescolar.seccion2');
     }
 
-//////////////
+    //////////////
 
     public function guardarSeccion2(Request $request)
     {
@@ -128,7 +140,7 @@ class BDController extends Controller
             'seccion2_id' => $seccion2->id
         ]);
 
-         // 3. Guardar en sesión el ID para siguientes secciones
+        // 3. Guardar en sesión el ID para siguientes secciones
         //  session(['historia_id' => $historia->id]);
 
         // 4. Redirigir a sección 2
@@ -136,8 +148,9 @@ class BDController extends Controller
     }
 
 
-    //////////
-    public function guardarSeccion3(Request $request){
+    //////////aqui hay json
+    public function guardarSeccion3(Request $request)
+    {
         $hermano =  Hermano::create([
 
             'nombre_hermano' => json_encode((array) $request->nombre_hermano),
@@ -153,7 +166,7 @@ class BDController extends Controller
 
             'hermano_id' => $hermano->id,
             'idioma_casa' => $request->idioma_casa,
-            'personas_casa' =>$request->personas_casa,
+            'personas_casa' => $request->personas_casa,
             'quienes_casa' => $request->quienes_casa,
             'siadopcion' => $request->siadopcion,
 
@@ -164,15 +177,216 @@ class BDController extends Controller
             'seccion3_id' => $seccion3->id
         ]);
 
-         // 3. Guardar en sesión el ID para siguientes secciones
+        // 3. Guardar en sesión el ID para siguientes secciones
         //  session(['historia_id' => $historia->id]);
 
         // 4. Redirigir a sección 2
         return redirect()->route('preescolar.seccion4');
+    }
 
+    ///
+
+    public function guardarSeccion4(Request $request)
+    {
+
+        $seccion4 = Seccion4::create([
+            'califica_adaptacion' => $request->califica_adaptacion,
+            'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
+            'relacion_familia_madre' => $request->relacion_familia_madre,
+            'relacion_familia_padre' => $request->relacion_familia_padre,
+            'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
+            'diferencia_estilos' => $request->diferencia_estilos,
+            'responde_desobede' => $request->responde_desobede,
+            'sanciones_casa' => $request->sanciones_casa,
+            'sanciones_conductas' => $request->sanciones_conductas,
+            'docil_desafiante' => $request->docil_desafiante,
+            'evento_traumatico' => $request->evento_traumatico,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion4_id' => $seccion4->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion5');
+    }
+
+    public function guardarSeccion5(Request $request)
+    {
+
+        $seccion5 = Seccion5::create([
+            'total_embarazo' => $request->total_embarazo,
+            'experi_embarazo' => $request->experi_embarazo,
+            'mencione_embaenfe' => $request->mencione_embaenfe,
+            'tiempo_gestacion' => $request->tiempo_gestacion,
+            'tipo_parto' => $request->tipo_parto,
+            'lloro' => $request->lloro,
+            'incubadora' => $request->incubadora,
+            'apgar' => $request->apgar,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion5_id' => $seccion5->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion6');
+    }
+
+    public function guardarSeccion6(Request $request)
+    {
+
+        $seccion6 = Seccion6::create([
+            'desa_visual' => $request->desa_visual,
+            'desa_auditivo' => $request->desa_auditivo,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion6_id' => $seccion6->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion7');
+    }
+
+    public function guardarSeccion7(Request $request)
+    {
+
+        $seccion7 = Seccion7::create([
+            'desarrollo_motor' => $request->desarrollo_motor,
+            'edad_gate' => $request->edad_gate,
+            'edad_cami' => $request->edad_cami,
+            'dies_zurdhijo' => json_encode((array) $request->dies_zurdhijo),
+            'prac_deporte' => $request->prac_deporte,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion7_id' => $seccion7->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion8');
+    }
+
+    public function guardarSeccion8(Request $request)
+    {
+
+        $seccion8 = Seccion8::create([
+            'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
+            'prim_palabra' => $request->prim_palabra,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion8_id' => $seccion8->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion9');
+    }
+
+    public function guardarSeccion9(Request $request)
+    {
+
+        $seccion9 = Seccion9::create([
+            'suenonino' => json_encode((array)  $request->suenonino),
+            'horadecama' => $request->horadecama,
+            'horadespierta' => $request->horadespierta,
+            'dusiesta' => $request->dusiesta,
+            'horasiesta' => $request->horasiesta,
+            'cohabitacion' => $request->cohabitacion,
+            'conquien' => $request->conquien,
+            'cocama' => $request->cocama,
+            'edad_dupapa' => $request->edad_dupapa,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion9_id' => $seccion9->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion10');
+    }
+
+    public function guardarSeccion10(Request $request)
+    {
+
+        $seccion10 = Seccion10::create([
+            'saludnino' => json_encode((array) $request->saludnino),
+            'otrosprob' => $request->otrosprob,
+            'enfeotrastor' => $request->enfeotrastor,
+            'tipoterapia' => $request->tipoterapia,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion10_id' => $seccion10->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion11');
+    }
+
+    public function guardarSeccion11(Request $request)
+    {
+
+        $seccion11 = Seccion11::create([
+            'caracterhijo' => $request->caracterhijo,
+            'oportunihijo' => $request->oportunihijo,
+            'adapthijo' => $request->adapthijo,
+            'juegacnhijo' => $request->juegacnhijo,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion11_id' => $seccion11->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion12');
     }
 
 
+    public function guardarSeccion12(Request $request)
+    {
 
-    ///
+        $seccion12 = Seccion12::create([
+            'reaccprimer' => $request->reaccprimer,
+            'dificumateria' => $request->dificumateria,
+            'ha_repetido' => $request->ha_repetido,
+            'cual_escuela' => $request->cual_escuela,
+            'porque_escuela' => $request->porque_escuela,
+            'puedeperiodolarg' => $request->puedeperiodolarg,
+            'conductaambito' => $request->conductaambito,
+            'hay_dific' => $request->hay_dific,
+            'cual_letra' => $request->cual_letra,
+            'maneingles' => $request->maneingles,
+            'cali_desemp' => $request->cali_desemp,
+            'porq_desemp' => $request->porq_desemp,
+            'motivoscamb' => $request->motivoscamb,
+            'datoextr' => $request->datoextr,
+            'razoning' => $request->razoning,
+        ]);
+
+        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+            'seccion12_id' => $seccion12->id
+        ]);
+
+
+        return redirect()->route('preescolar.seccion13');
+    }
+
+
+    public function buscar(Request $request)
+    {
+
+        // $estudiante = Estudiante::where([
+        //     ['nombre_completo', '=', $request->nombre_completo],
+        //     //['nombre_completo', '=', $request->nombre_completo],
+        // ])->first();
+
+        $estudiantes = Estudiante::where(
+            'nombre_completo', $request->nombre_completo
+            )->get();
+
+        return view('historias.level-selector', compact('estudiantes'));
+
+    }
 }

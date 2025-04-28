@@ -5,7 +5,8 @@
 @section('content')
 
 <?php
-$id_estudiante = session('estudiante_id')
+$id_estudiante = session('estudiante_id');
+$nombre_estudiante = session('nombre_estudiante')
 ?>
 
 
@@ -16,7 +17,7 @@ $id_estudiante = session('estudiante_id')
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
             <h2 class="text-xl font-bold text-white">Hermanos</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }} , {{$nombre_estudiante}} </p>
     </div>
 
     <form action="{{ route('preescolar.seccion3.guardar') }}" method="POST" class="p-6">

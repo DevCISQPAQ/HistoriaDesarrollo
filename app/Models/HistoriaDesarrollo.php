@@ -10,19 +10,82 @@ class HistoriaDesarrollo extends Model
     /** @use HasFactory<\Database\Factories\HistoriaDesarrolloFactory> */
     use HasFactory;
 
-    protected $fillable = ['estudiante_id','seccion2_id','seccion3_id'];
+    protected $fillable = [
+        'estudiante_id',
+        'seccion2_id',
+        'seccion3_id',
+        'seccion4_id',
+        'seccion5_id',
+        'seccion6_id',
+        'seccion7_id',
+        'seccion8_id',
+        'seccion9_id',
+        'seccion10_id',
+        'seccion11_id',
+        'seccion12_id',
 
- 
-    public function estudiante() {
+    ];
+
+
+    public function estudiante()
+    {
         return $this->hasMany(Estudiante::class);
     }
 
-    public function seccion2() {
+    public function seccion2()
+    {
         return $this->hasMany(Seccion2::class);
     }
 
-    public function seccion3() {
+    public function seccion3()
+    {
         return $this->hasMany(Seccion3::class);
     }
+
+    public function seccion4()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion5()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion6()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion7()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion8()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion9()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion10()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion11()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
+    public function seccion12()
+    {
+        return $this->hasMany(Seccion3::class);
+    }
+
 
 }
