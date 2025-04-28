@@ -314,7 +314,7 @@ $nombre_estudiante = session('nombre_estudiante')
 
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <div class="space-y-1">
-                    <label class="block text-sm font-medium text-gray-700">En la educacion de su hijo(a) Toman ustedes en cuentan el punto de vista religioso?:<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700">En la educación de su hijo(a) ¿Toman ustedes en cuenta el punto de vista religioso?:<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="religion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">

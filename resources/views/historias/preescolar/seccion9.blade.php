@@ -112,12 +112,12 @@ $nombre_estudiante = session('nombre_estudiante')
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-6">
                 <div>
                     <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">A que hora se acuesta por la noche? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
                 <div>
                     <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">A que hora se despierta? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
                 <div>
@@ -128,7 +128,7 @@ $nombre_estudiante = session('nombre_estudiante')
                 <div>
                     <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">Cuentas horas?</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="horasiesta" name="horasiesta">
+                        id="horasiesta" name="horasiesta" placeholder="Horas">
                 </div>
                 <div>
                     <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">Comparte habitacion? <span class="text-red-500">*</span></label>
@@ -148,7 +148,7 @@ $nombre_estudiante = session('nombre_estudiante')
                 <div>
                     <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">Hasta que edad durmio con los papas? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_dupapa" name="edad_dupapa" required>
+                        id="edad_dupapa" name="edad_dupapa" placeholder="Años" required>
                 </div>
             </div>
         </div>

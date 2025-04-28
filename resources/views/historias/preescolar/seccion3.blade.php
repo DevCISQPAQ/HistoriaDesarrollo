@@ -114,13 +114,13 @@ $nombre_estudiante = session('nombre_estudiante')
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="idioma_casa" class="block text-sm font-medium text-gray-700">Que idioma se habla en casa <span class="text-red-500">*</span></label>
+                    <label for="idioma_casa" class="block text-sm font-medium text-gray-700">¿Qué idioma se habla en casa?<span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="idioma_casa" name=" idioma_casa" placeholder="Ingles, Español, etc." required>
                 </div>
 
                 <div x-data="{viveconotro: ''}">
-                    <label for="personas_casa" class="block text-sm font-medium text-gray-700">Ademas de padres e hijos, Viven otras personas en casa? <span class="text-red-500">*</span></label>
+                    <label for="personas_casa" class="block text-sm font-medium text-gray-700">Además de padres e hijos, ¿Viven otras personas en casa? <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4">
                         
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
@@ -135,7 +135,7 @@ $nombre_estudiante = session('nombre_estudiante')
                         </label>
                     </div>
                     <div id="Si" x-show="viveconotro == $el.id" x-transition>
-                        <label for="quienes_casa" class="block text-sm font-medium text-gray-700">Quienes?</label>
+                        <label for="quienes_casa" class="block text-sm font-medium text-gray-700">¿Quiénes?</label>
                         <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="quienes_casa" name="quienes_casa" placeholder="Abuenos, Tios, Primos, etc.">
                     </div>
@@ -147,15 +147,15 @@ $nombre_estudiante = session('nombre_estudiante')
 
         <!-- En caso de adopcion-->
         <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">En caso de Adopcion</h3>
+            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">En caso de Adopción</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <div class="space-y-1">
-                    <label class="block text-sm font-medium text-gray-700">El niño es adoptado<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700">¿El niño es adoptado?<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="siadopcion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
-                            <span class="ml-2">Si</span>
+                            <span class="ml-2">Sí</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="siadopcion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">

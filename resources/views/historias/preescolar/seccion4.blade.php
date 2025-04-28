@@ -15,7 +15,7 @@ $nombre_estudiante = session('nombre_estudiante')
     <div class="bg-[#1f355e] px-6 py-4">
         <div class="flex items-center">
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">4</span>
-            <h2 class="text-xl font-bold text-white">Dinamica Familiar</h2>
+            <h2 class="text-xl font-bold text-white">Dinámica Familiar</h2>
         </div>
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }} , {{$nombre_estudiante}} </p>
     </div>
@@ -25,9 +25,9 @@ $nombre_estudiante = session('nombre_estudiante')
 
         <!-- Adaptacion -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Adaptacion</h3>
+            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Adaptación</h3>
             <div> <!-- radiobutton -->
-                <label class="block text-sm font-medium text-gray-700 py-2">Como calificaria la adaptacion general de su hijo(a) en la casa? <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 py-2">¿Cómo calificaría la adaptación general de su hijo(a) en la casa? <span class="text-red-500">*</span></label>
                 <div class="md:flex-1">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <span class="mr-2">Inadecuada</span>
@@ -47,7 +47,7 @@ $nombre_estudiante = session('nombre_estudiante')
                     </label>
                 </div>
                 <div>
-                    <label for="califica-adaptacion-porq" class="block text-sm font-medium text-gray-700 pt-3">Por que? <span class="text-red-500">*</span></label>
+                    <label for="califica-adaptacion-porq" class="block text-sm font-medium text-gray-700 pt-3">Por qué? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="califica-adaptacion-porq" name="califica_adaptacion_porq" required>
                 </div>
