@@ -1,6 +1,9 @@
 @extends('templates.main')
 
 @section('content')
+
+
+
 <div class="min-h-screen flex flex-col">
 
     <!-- Contenido principal -->
@@ -19,7 +22,7 @@
                 <div class="p-6 md:p-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Opción Preescolar -->
-                        <a href="{{ route('preescolar.seccion1') }}"
+                        <!-- <a href="{{ route('preescolar.seccion1') }}"
                             class="group border-2 border-blue-100 rounded-xl p-6 text-center hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-blue-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-blue-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,11 +36,34 @@
                                     Bombolino a Kinder 3
                                 </span>
                             </div>
-                        </a>
+                        </a> -->
+
+                        <form method="get" action="{{ route('preescolar.seccion1') }}">
+                            <button type="submit"
+                                class="w-full group border-2 border-blue-100 rounded-xl p-6 text-center hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md" name="estado" value="activo">
+
+                                <div class="bg-blue-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-blue-200 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+                                    </svg>
+                                </div>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-primary">Preescolar</h3>
+                                <p class="text-gray-600">---</p>
+
+                                <div class="mt-4">
+                                    <span
+                                        class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium group-hover:bg-blue-200">
+                                        Bombolino a Kinder 3
+                                    </span>
+                                </div>
+                            </button>
+                        </form>
 
                         <!-- Opción Primaria/Secundaria -->
                         <!-- <a href="{{ route('historia.primaria-secundaria') }}" -->
-                         <a href="{{ route('preescolar.seccion1') }}"
+                        <!-- <a href="{{ route('preescolar.seccion1') }}"
                             class="group border-2 border-green-100 rounded-xl p-6 text-center hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-green-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-green-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,7 +77,30 @@
                                     1° Primaria a 3° Secundaria
                                 </span>
                             </div>
-                        </a>
+                        </a> -->
+                        <form method="GET" action="{{ route('preescolar.seccion1') }}">
+                            <button type="submit"
+                                class="w-full group border-2 border-green-100 rounded-xl p-6 text-center hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+
+                                <div class="bg-green-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-green-200 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                </div>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-green-700">Primaria/Secundaria</h3>
+                                <p class="text-gray-600">---</p>
+
+                                <div class="mt-4">
+                                    <span
+                                        class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium group-hover:bg-green-200">
+                                        1° Primaria a 3° Secundaria
+                                    </span>
+                                </div>
+                            </button>
+                        </form>
+
                     </div>
 
                     <!-- Información adicional -->
@@ -110,7 +159,7 @@
                             <li class="bg-gray-100 p-3 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <p class="pt-2">{{ $estudiante->nombre_completo }}</p>
                                 <a href="{{ route('preescolar.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
-                                Continuar
+                                    Continuar
                                 </a>
                                 <!-- <form action="{{ url($vista) }}" method="GET">
                                     <button type="submit" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Continuar</button>

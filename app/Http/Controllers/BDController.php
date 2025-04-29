@@ -435,4 +435,12 @@ class BDController extends Controller
             return view('historias.level-selector', compact('estudiantes'));
         }
     }
+
+    public function guardarydireccionaropcion (Request $request){
+
+
+        session(['estado_div' =>$request->estado]);
+
+        return redirect()->route('preescolar.seccion1');
+    }
 }

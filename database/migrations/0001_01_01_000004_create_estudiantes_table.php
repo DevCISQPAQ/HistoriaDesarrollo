@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->string('lugar_nacimiento');
             $table->enum('genero', ['masculino', 'femenino']);
-            $table->integer('edad');
+            $table->string('edad');
             $table->string('grado_escolar');
             $table->string('direccion');
             $table->string('cp', 5);

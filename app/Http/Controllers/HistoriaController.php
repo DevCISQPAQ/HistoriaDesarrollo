@@ -14,8 +14,13 @@ class HistoriaController extends Controller
     {
         return view('historias.level-selector');
     }
-    public function showPreescolarSeccion1()
-    {
+    public function showPreescolarSeccion1(Request $request){
+
+
+        session(['estado_div' =>$request->estado]);
+
+    //     return redirect()->route('preescolar.seccion1');
+    // // {
         return view('historias.preescolar.seccion1');
     }
 
