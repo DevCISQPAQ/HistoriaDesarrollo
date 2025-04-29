@@ -376,17 +376,63 @@ class BDController extends Controller
 
     public function buscar(Request $request)
     {
-
-        // $estudiante = Estudiante::where([
-        //     ['nombre_completo', '=', $request->nombre_completo],
-        //     //['nombre_completo', '=', $request->nombre_completo],
-        // ])->first();
-
         $estudiantes = Estudiante::where(
-            'nombre_completo', $request->nombre_completo
-            )->get();
+            'nombre_completo',
+            $request->nombre_completo,
+        )->get();
+        $estudiante = $estudiantes->first();
+        if ($estudiante) {
 
-        return view('historias.level-selector', compact('estudiantes'));
+            $historias = HistoriaDesarrollo::find($estudiante->id);
 
+
+            if ($historias) {
+                // Obtener todos los atributos del estudiante
+                $attributes = $historias->getAttributes();
+
+                // Recorrer los atributos del estudiante
+                unset($attributes['created_at']);
+                unset($attributes['updated_at']);
+
+                // Inicializar el contador de campos llenos
+                $campoLlenoCount = 0;
+                $ultimoCampo = null;
+
+                // Recorrer los atributos del estudiante
+                foreach ($attributes as $campo => $valor) {
+                    // Verificar si el campo no es nulo ni vacío
+                    if (!is_null($valor) && $valor !== '') {
+                        // Incrementar el contador de campos llenos
+                        $campoLlenoCount++;
+
+                        // Guardar el nombre del campo si está lleno
+                        $ultimoCampo = $campo;
+                    }
+                }
+
+                // Determinar el nombre de la vista basado en el total de campos llenos
+                $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
+
+
+                session([
+                    'estudiante_id' => $estudiante->id,
+                    'nombre_estudiante' => $estudiante->nombre_completo
+                ]);
+
+                // Redirigir a la vista intermedia y pasar el nombre de la vista
+                return view('historias.level-selector', [
+                    'vista' => $vista,
+                    'estudiantes' => $estudiantes
+
+                ]);
+            } else {
+                // Si el estudiante no existe, cargamos una vista por defecto
+                return view('historias.level-selector', [
+                    'vista' => 'seccion1' // Por ejemplo, si no se encuentra el estudiante
+                ]);
+            }
+        } else {
+            return view('historias.level-selector', compact('estudiantes'));
+        }
     }
 }

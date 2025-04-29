@@ -36,7 +36,8 @@
                         </a>
 
                         <!-- Opción Primaria/Secundaria -->
-                        <a href="{{ route('historia.primaria-secundaria') }}"
+                        <!-- <a href="{{ route('historia.primaria-secundaria') }}" -->
+                         <a href="{{ route('preescolar.seccion1') }}"
                             class="group border-2 border-green-100 rounded-xl p-6 text-center hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-green-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-green-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,8 +71,9 @@
             </div>
         </div>
 
+
         <!-- Tarjeta buscar estudiante -->
-        <!-- <div class="max-w-3xl mx-auto pt-10">
+        <div class="max-w-3xl mx-auto pt-10">
             <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-fade-in">
 
                 <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
@@ -107,7 +109,12 @@
                             @foreach ($estudiantes as $estudiante)
                             <li class="bg-gray-100 p-3 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <p class="pt-2">{{ $estudiante->nombre_completo }}</p>
-                                <button class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Continuar</button>
+                                <a href="{{ route('preescolar.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
+                                Continuar
+                                </a>
+                                <!-- <form action="{{ url($vista) }}" method="GET">
+                                    <button type="submit" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Continuar</button>
+                                </form> -->
                             </li>
                             @endforeach
                         </ul>
@@ -116,16 +123,16 @@
                     @endisset
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </main>
 
     <!-- Pie de página -->
-    <footer class="bg-secondary text-white text-center py-4 mt-8">
+    <!-- <footer class="bg-secondary text-white text-center py-4 mt-8">
         <div class="container mx-auto px-4">
             <p>&copy; 2025 Historia de Desarrollo. Todos los derechos reservados.</p>
             <p class="text-sm mt-2 opacity-80">Colegio Cumbres - Sistema de Admisiones</p>
         </div>
-    </footer>
+    </footer> -->
 </div>
 @endsection
