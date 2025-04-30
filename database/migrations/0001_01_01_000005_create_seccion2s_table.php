@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('edad_padre');
             $table->string('empresa_padre');
             $table->string('puesto_padre');
+            $table->string('ocupacion_padre');
             $table->string('correo_padre');
             $table->string('redessoc_padre')->nullable();
             $table->string('padre_lateralidad');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->integer('edad_madre');
             $table->string('empresa_madre');
             $table->string('puesto_madre');
+            $table->string('ocupacion_madre');
             $table->string('correo_madre');
             $table->string('redessoc_madre')->nullable();
             $table->string('madre_lateralidad');
@@ -32,13 +34,13 @@ return new class extends Migration
             $table->integer('edad_conyuge')->nullable();
             $table->string('empresa_conyuge')->nullable();
             $table->string('puesto_conyuge')->nullable();
+            $table->string('ocupacion_conyuge')->nullable();
             $table->string('correo_conyuge')->nullable();
             $table->string('redessoc_conyuge')->nullable();
             $table->string('conyuge_lateralidad')->nullable();
             $table->string('noviveconpadres_situtor')->nullable();
             $table->integer('anos_casados');
             $table->integer('numero_hijos');
-            $table->string('separacion_conyugal')->nullable();
             $table->string('moti_separa')->nullable();
             $table->string('vive_con')->nullable();
             $table->string('religion');

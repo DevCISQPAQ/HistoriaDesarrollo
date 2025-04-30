@@ -70,6 +70,7 @@ class BDController extends Controller
             'edad_padre' => 'required|integer',
             'empresa_padre' => 'required|string',
             'puesto_padre' => 'required|string',
+            'ocupacion_padre' => 'required|string',
             'correo_padre' => 'required|string',
             'redessoc_padre' => 'nullable|array',
             'padre_lateralidad' => 'required|array',
@@ -77,6 +78,7 @@ class BDController extends Controller
             'edad_madre' => 'required|integer',
             'empresa_madre' => 'required|string',
             'puesto_madre' => 'required|string',
+            'ocupacion_madre' => 'required|string',
             'correo_madre' => 'required|string',
             'redessoc_madre' => 'nullable|array',
             'madre_lateralidad' => 'required|array',
@@ -85,13 +87,13 @@ class BDController extends Controller
             'edad_conyuge' => 'nullable|integer',
             'empresa_conyuge' => 'nullable|string',
             'puesto_conyuge' => 'nullable|string',
+            'ocupacion_conyuge' => 'nullable|string',
             'correo_conyuge' => 'nullable|string',
             'redessoc_conyuge' => 'nullable|array',
             'conyuge_lateralidad' => 'nullable|array',
             'noviveconpadres_situtor' => 'nullable|string',
             'anos_casados' => 'required|integer',
             'numero_hijos' => 'required|integer',
-            'separacion_conyugal' => 'nullable|string',
             'moti_separa' => 'nullable|string',
             'vive_con' => 'nullable|string',
             'religion' => 'required|string',
@@ -104,6 +106,7 @@ class BDController extends Controller
             'edad_padre' => $request->edad_padre,
             'empresa_padre' => $request->empresa_padre,
             'puesto_padre' => $request->puesto_padre,
+            'ocupacion_padre' => $request->ocupacion_padre,
             'correo_padre' => $request->correo_padre,
             'redessoc_padre' => json_encode((array) $request->redessoc_padre),
             'padre_lateralidad' => json_encode((array) $request->padre_lateralidad),
@@ -111,6 +114,7 @@ class BDController extends Controller
             'edad_madre' => $request->edad_madre,
             'empresa_madre' => $request->empresa_madre,
             'puesto_madre' => $request->puesto_madre,
+            'ocupacion_madre' => $request->ocupacion_madre,
             'correo_madre' => $request->correo_madre,
             'redessoc_madre' => json_encode((array) $request->redessoc_madre),
             'madre_lateralidad' => json_encode((array) $request->madre_lateralidad),
@@ -125,7 +129,6 @@ class BDController extends Controller
             'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
             'anos_casados' => $request->anos_casados,
             'numero_hijos' => $request->numero_hijos,
-            'separacion_conyugal' => $request->separacion_conyugal,
             'moti_separa' => $request->moti_separa,
             'vive_con' => $request->vive_con,
             'religion' => $request->religion,
@@ -163,6 +166,9 @@ class BDController extends Controller
             'personas_casa' => $request->personas_casa,
             'quienes_casa' => $request->quienes_casa,
             'siadopcion' => $request->siadopcion,
+            'padre_edadadopt' => $request->padre_edadadopt,
+            'madre_edadadopt' => $request->madre_edadadopt,
+            'hijo_edadadopt' => $request->hijo_edadadopt,
 
         ]);
 
@@ -430,4 +436,6 @@ class BDController extends Controller
             return view('historias.level-selector', compact('estudiantes'));
         }
     }
+
+
 }

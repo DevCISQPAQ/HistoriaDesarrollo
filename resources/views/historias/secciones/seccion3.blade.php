@@ -122,7 +122,7 @@ $nombre = session('nombre');
                 <div x-data="{viveconotro: ''}">
                     <label for="personas_casa" class="block text-sm font-medium text-gray-700">Además de padres e hijos, ¿Viven otras personas en casa? <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4">
-                        
+
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="personas_casa" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                 x-model="viveconotro">
@@ -137,7 +137,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="viveconotro == $el.id" x-transition>
                         <label for="quienes_casa" class="block text-sm font-medium text-gray-700">¿Quiénes?</label>
                         <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="quienes_casa" name="quienes_casa" placeholder="Abuenos, Tios, Primos, etc.">
+                            id="quienes_casa" name="quienes_casa" placeholder="">
                     </div>
 
                 </div>
@@ -150,42 +150,61 @@ $nombre = session('nombre');
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">En caso de Adopción</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-                <div class="space-y-1">
+                <div class="space-y-1" x-data="{isadoptado: ''}">
                     <label class="block text-sm font-medium text-gray-700">¿El niño es adoptado?<span class="text-red-500">*</span></label>
-                    <div class="grid grid-cols-3 gap-2">
+                    <div class="grid grid-cols-2 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="siadopcion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
+                            <input type="radio" name="siadopcion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
+                                x-model="isadoptado">
                             <span class="ml-2">Sí</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="siadopcion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                            <input type="radio" name="siadopcion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="isadoptado">
                             <span class="ml-2">No</span>
                         </label>
 
+                        <div id="Si" x-show="isadoptado == $el.id" x-transition>
+                            <label class="block font-medium text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label for="" class="text-sm ">
+                                    Padre:
+                                    <input type="number" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="padre_edadadopt" name="padre_edadadopt" placeholder="Años">
+                                </label>
+                                <label for="" class="text-sm ">
+                                    Madre:
+                                    <input type="number" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="madre_edadadopt" name="madre_edadadopt" placeholder="Años">
+                                </label>
+                                <label for="" class="text-sm ">
+                                    Edad del niño al momento de la adopción:
+                                    <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses">
+                                </label>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
         </div>
 
         <!-- Botones de navegación -->
-        <div class="flex justify-between mt-8 m-4">
-            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+        <div class="flex justify-between mt-8 m-4 gap-2">
+            <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>
 
-            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar
+            <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
+                Guardar y <br> Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </button>
-
-
-
         </div>
     </form>
 </div>

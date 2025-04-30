@@ -12,6 +12,9 @@ class Seccion3 extends Model
         'personas_casa',
         'quienes_casa',
         'siadopcion',
+        'padre_edadadopt',
+        'madre_edadadopt',
+        'hijo_edadadopt',
     ];
 
 

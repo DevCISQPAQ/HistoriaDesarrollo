@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('personas_casa');
             $table->string('quienes_casa')->nullable();
             $table->string('siadopcion');
+            $table->integer('padre_edadadopt')->nullable();
+            $table->integer('madre_edadadopt')->nullable();
+            $table->string('hijo_edadadopt')->nullable();
             $table->timestamps();
         });
     }
