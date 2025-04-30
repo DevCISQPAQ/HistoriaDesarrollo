@@ -5,8 +5,8 @@
 @section('content')
 
 <?php
-$id_estudiante = session('estudiante_id');
-$nombre_estudiante = session('nombre_estudiante')
+$id_alumno = session('id_alumno');
+$nombre = session('nombre');
 ?>
 
 <div class=" bg-white rounded-xl shadow-lg overflow-hidden">
@@ -16,7 +16,7 @@ $nombre_estudiante = session('nombre_estudiante')
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">6</span>
             <h2 class="text-xl font-bold text-white">Desarrollo Visual y Desarrollo Auditivo</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_estudiante }} , {{$nombre_estudiante}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
     <form action="{{ route('preescolar.seccion6.guardar') }}" method="POST" class="p-6">

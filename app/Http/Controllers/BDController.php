@@ -23,18 +23,18 @@ class BDController extends Controller
     //Metodo para guardar
     public function guardarSeccion1(Request $request)
     {
-        $request->validate([
-            'nombre_completo' => 'required|string|max:100',
-            'fecha_nacimiento' => 'required|date',
-            'lugar_nacimiento' => 'required|string',
-            'sexo' => 'required|in:masculino,femenino',
-            'edad' => 'required|integer|between:3,6',
-            'grado_escolar' => 'required|string',
-            'direccion' => 'required|string',
-            'cp' => 'required|digits:5',
-            'telefono' => 'required|string',
-            'escuela_procedencia' => 'nullable|string',
-        ]);
+        // $request->validate([
+        //     'nombre_completo' => 'required|string|max:100',
+        //     'fecha_nacimiento' => 'required|date',
+        //     'lugar_nacimiento' => 'required|string',
+        //     'sexo' => 'required|in:masculino,femenino',
+        //     'edad' => 'required|integer|between:3,6',
+        //     'grado_escolar' => 'required|string',
+        //     'direccion' => 'required|string',
+        //     'cp' => 'required|digits:5',
+        //     'telefono' => 'required|string',
+        //     'escuela_procedencia' => 'nullable|string',
+        // ]);
 
         $estudiante = Estudiante::create([
             'nombre_completo' => $request->nombre_completo,
@@ -56,16 +56,12 @@ class BDController extends Controller
         ]);
 
         // 3. Guardar en sesión el ID para siguientes secciones
-        session([
-            'estudiante_id' => $estudiante->id,
-            'nombre_estudiante' => $estudiante->nombre_completo
-        ]);
+        session()->put(['id_alumno' => $estudiante->id]);
+        session()->put(['nombre' => $estudiante->nombre_completo]);
 
         // 4. Redirigir a sección 2
         return redirect()->route('preescolar.seccion2');
     }
-
-    //////////////
 
     public function guardarSeccion2(Request $request)
     {
@@ -136,7 +132,7 @@ class BDController extends Controller
 
         ]);
 
-        $historia = HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        $historia = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion2_id' => $seccion2->id
         ]);
 
@@ -147,8 +143,6 @@ class BDController extends Controller
         return redirect()->route('preescolar.seccion3');
     }
 
-
-    //////////aqui hay json
     public function guardarSeccion3(Request $request)
     {
         $hermano =  Hermano::create([
@@ -173,7 +167,7 @@ class BDController extends Controller
         ]);
 
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion3_id' => $seccion3->id
         ]);
 
@@ -183,8 +177,6 @@ class BDController extends Controller
         // 4. Redirigir a sección 2
         return redirect()->route('preescolar.seccion4');
     }
-
-    ///
 
     public function guardarSeccion4(Request $request)
     {
@@ -203,7 +195,7 @@ class BDController extends Controller
             'evento_traumatico' => $request->evento_traumatico,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion4_id' => $seccion4->id
         ]);
 
@@ -225,7 +217,7 @@ class BDController extends Controller
             'apgar' => $request->apgar,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion5_id' => $seccion5->id
         ]);
 
@@ -241,7 +233,7 @@ class BDController extends Controller
             'desa_auditivo' => $request->desa_auditivo,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion6_id' => $seccion6->id
         ]);
 
@@ -260,7 +252,7 @@ class BDController extends Controller
             'prac_deporte' => $request->prac_deporte,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion7_id' => $seccion7->id
         ]);
 
@@ -276,7 +268,7 @@ class BDController extends Controller
             'prim_palabra' => $request->prim_palabra,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion8_id' => $seccion8->id
         ]);
 
@@ -299,7 +291,7 @@ class BDController extends Controller
             'edad_dupapa' => $request->edad_dupapa,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion9_id' => $seccion9->id
         ]);
 
@@ -317,7 +309,7 @@ class BDController extends Controller
             'tipoterapia' => $request->tipoterapia,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion10_id' => $seccion10->id
         ]);
 
@@ -335,14 +327,13 @@ class BDController extends Controller
             'juegacnhijo' => $request->juegacnhijo,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion11_id' => $seccion11->id
         ]);
 
 
         return redirect()->route('preescolar.seccion12');
     }
-
 
     public function guardarSeccion12(Request $request)
     {
@@ -365,7 +356,7 @@ class BDController extends Controller
             'razoning' => $request->razoning,
         ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('estudiante_id'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion12_id' => $seccion12->id
         ]);
 
@@ -373,7 +364,7 @@ class BDController extends Controller
         return redirect()->route('preescolar.seccion13');
     }
 
-
+//
     public function buscar(Request $request)
     {
         $estudiantes = Estudiante::where(
@@ -414,10 +405,14 @@ class BDController extends Controller
                 $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
 
 
-                session([
-                    'estudiante_id' => $estudiante->id,
-                    'nombre_estudiante' => $estudiante->nombre_completo
-                ]);
+                // session([
+                //     'estudiante_id' => $estudiante->id,
+                //     'nombre_estudiante' => $estudiante->nombre_completo
+                // ]);
+
+                session()->put(['id_alumno' => $estudiante->id]);
+                session()->put(['nombre' => $estudiante->nombre_completo]);
+
 
                 // Redirigir a la vista intermedia y pasar el nombre de la vista
                 return view('historias.level-selector', [
@@ -434,13 +429,5 @@ class BDController extends Controller
         } else {
             return view('historias.level-selector', compact('estudiantes'));
         }
-    }
-
-    public function guardarydireccionaropcion (Request $request){
-
-
-        session(['estado_div' =>$request->estado]);
-
-        return redirect()->route('preescolar.seccion1');
     }
 }

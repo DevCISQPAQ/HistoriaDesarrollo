@@ -5,8 +5,8 @@
 @section('content')
 
 <?php
-$id_estudiante = session('estudiante_id');
-$nombre_estudiante = session('nombre_estudiante')
+$id_alumno = session('id_alumno');
+$nombre = session('nombre');
 ?>
 
 
@@ -17,7 +17,7 @@ $nombre_estudiante = session('nombre_estudiante')
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">13</span>
             <h2 class="text-xl font-bold text-white">Fin de formulario</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Gracias por terminar el formulario para el alumno {{$id_estudiante }} , {{$nombre_estudiante}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Gracias por terminar el formulario para el alumno {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
     <form action="#" method="POST">
@@ -65,7 +65,7 @@ $nombre_estudiante = session('nombre_estudiante')
             </button> -->
 
             <a href="{{ route('historia.nivel-educativo') }}" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Salir
+                Guardar y Enviar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>

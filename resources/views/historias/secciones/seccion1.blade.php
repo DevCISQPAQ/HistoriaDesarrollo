@@ -5,7 +5,7 @@
 @section('content')
 
 <?php
-$tipo = session('estado_div');
+$grado = session('grado');
 ?>
 
 
@@ -99,14 +99,15 @@ $tipo = session('estado_div');
                 <select id="grado_escolar" name="grado_escolar" required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition">
 
-                    @if($tipo === 'activo')
-                    <option value="">Seleccione un grado</option>
+                    @if($grado === 'preescolar')
+                    <option selected="true" disabled="disabled" >Seleccione un grado</option>
                     <option value="Bambolino 2">Bambolino 2</option>
                     <option value="Bambolino 3">Bambolino 3</option>
                     <option value="Kinder 1">Kinder 1</option>
                     <option value="Kinder 2">Kinder 2</option>
                     <option value="Kinder 3">Kinder 3</option>
-                    @else
+                    @elseif($grado === 'primaria_secundaria')
+                    <option selected="true" disabled="disabled" >Seleccione un grado</option>
                     <option value="Primero de Primaria<">Primero de Primaria</option>
                     <option value="Segundo de Primaria">Segundo de Primaria</option>
                     <option value="Tercero de Primaria">Tercero de Primaria</option>
@@ -161,6 +162,7 @@ $tipo = session('estado_div');
                 </svg>
                 Regresar
             </button>
+            <input type="hidden" name="seccion" value="seccion2">
             <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
                 Guardar y Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">

@@ -5,8 +5,8 @@
 @section('content')
 
 <?php
-$id_estudiante = session('estudiante_id');
-$nombre_estudiante = session('nombre_estudiante')
+$id_alumno = session('id_alumno');
+$nombre = session('nombre');
 ?>
 
 
@@ -17,7 +17,7 @@ $nombre_estudiante = session('nombre_estudiante')
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">4</span>
             <h2 class="text-xl font-bold text-white">Dinámica Familiar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_estudiante }} , {{$nombre_estudiante}} </p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno}} , {{$nombre}} </p>
     </div>
 
     <form action="{{ route('preescolar.seccion4.guardar') }}" method="POST" class="p-6">
@@ -161,6 +161,4 @@ $nombre_estudiante = session('nombre_estudiante')
 
 <!-- AlpineJS para la funcionalidad condicional -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script>
-</script>
 @endsection
