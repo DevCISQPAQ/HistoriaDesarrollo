@@ -44,6 +44,7 @@ return new class extends Migration
             $table->string('moti_separa')->nullable();
             $table->string('vive_con')->nullable();
             $table->string('religion');
+            $table->string('valores_familia');
             $table->timestamps();
         });
     }

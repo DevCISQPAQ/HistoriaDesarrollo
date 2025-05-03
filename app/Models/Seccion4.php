@@ -13,10 +13,9 @@ class Seccion4 extends Model
         'relacion_familia_madre',
         'relacion_familia_padre',
         'relacion_familia_hermanos',
-        'diferencia_estilos',
-        'responde_desobede',
+        // 'responde_desobede',
         'sanciones_casa',
-        'sanciones_conductas',
+        // 'sanciones_conductas',
         'docil_desafiante',
         'evento_traumatico',
 

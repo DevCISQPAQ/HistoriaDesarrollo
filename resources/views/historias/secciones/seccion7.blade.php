@@ -79,9 +79,9 @@ $nombre = session('nombre');
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Coordinacion del hijo(a)</h3>
           
             <div>
-                <label for="prac_deporte" class="block text-sm font-medium text-gray-700 pt-3">Que tipo de actividad le interesa asu hijo?<span class="text-red-500">*</span></label>
+                <label for="prac_deporte" class="block text-sm font-medium text-gray-700 pt-3">Que tipo de deporte le interesa asu hijo de manera especial?<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="prac_deporte" name="prac_deporte" placeholder="Hobbies, Lecturas, Deportes, etc." required>
+                    id="prac_deporte" name="prac_deporte" placeholder="" required>
             </div>
         </div>
 

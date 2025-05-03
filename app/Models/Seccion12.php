@@ -20,7 +20,6 @@ class Seccion12 extends Model
         'cali_desemp',
         'porq_desemp',
         'motivoscamb',
-        'datoextr',
         'razoning',
         
     ];

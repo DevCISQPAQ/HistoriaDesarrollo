@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seccion11 extends Model
 {
     protected $fillable = [
-        'caracterhijo',
+        'personalidadhijo',
         'oportunihijo',
         'adapthijo',
         'juegacnhijo',

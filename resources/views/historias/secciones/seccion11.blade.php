@@ -27,13 +27,13 @@ $nombre = session('nombre');
             <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Caracteristicas del hijo(a)</h3>
 
             <div>
-                <label for="caracterhijo" class="block text-sm font-medium text-gray-700 pt-3">Describa el caracter de su hijo(a) <span class="text-red-500">*</span></label>
+                <label for="personalidadhijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la personalidad de su hijo(a) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="caracterhijo" name="caracterhijo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="personalidadhijo" name="personalidadhijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
 
             <div>
-                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">Escriba que area de oportunidad considera importante para la personalidad de su hijo <span class="text-red-500">*</span></label>
+                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">Que areas de oportunidad o atencion considera importante para la personalidad de su hijo <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="oportunihijo" name="oportunihijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

@@ -41,7 +41,8 @@ class Seccion2 extends Model
         'numero_hijos',
         'moti_separa',
         'vive_con',
-        'religion'
+        'religion',
+        'valores_familia'
     ];
 
 

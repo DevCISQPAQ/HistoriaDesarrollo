@@ -97,6 +97,7 @@ class BDController extends Controller
             'moti_separa' => 'nullable|string',
             'vive_con' => 'nullable|string',
             'religion' => 'required|string',
+            'valores_familia' => 'required|string',
 
         ]);
 
@@ -132,6 +133,7 @@ class BDController extends Controller
             'moti_separa' => $request->moti_separa,
             'vive_con' => $request->vive_con,
             'religion' => $request->religion,
+            'valores_familia' => $request->valores_familia,
 
         ]);
 
@@ -193,10 +195,9 @@ class BDController extends Controller
             'relacion_familia_madre' => $request->relacion_familia_madre,
             'relacion_familia_padre' => $request->relacion_familia_padre,
             'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
-            'diferencia_estilos' => $request->diferencia_estilos,
-            'responde_desobede' => $request->responde_desobede,
+            // 'responde_desobede' => $request->responde_desobede,
             'sanciones_casa' => $request->sanciones_casa,
-            'sanciones_conductas' => $request->sanciones_conductas,
+            // 'sanciones_conductas' => $request->sanciones_conductas,
             'docil_desafiante' => $request->docil_desafiante,
             'evento_traumatico' => $request->evento_traumatico,
         ]);
@@ -327,7 +328,7 @@ class BDController extends Controller
     {
 
         $seccion11 = Seccion11::create([
-            'caracterhijo' => $request->caracterhijo,
+            'personalidadhijo' => $request->personalidadhijo,
             'oportunihijo' => $request->oportunihijo,
             'adapthijo' => $request->adapthijo,
             'juegacnhijo' => $request->juegacnhijo,
@@ -358,7 +359,6 @@ class BDController extends Controller
             'cali_desemp' => $request->cali_desemp,
             'porq_desemp' => $request->porq_desemp,
             'motivoscamb' => $request->motivoscamb,
-            'datoextr' => $request->datoextr,
             'razoning' => $request->razoning,
         ]);
 

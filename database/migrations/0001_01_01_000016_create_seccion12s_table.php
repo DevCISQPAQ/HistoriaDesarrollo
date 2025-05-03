@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('cali_desemp');
             $table->string('porq_desemp');
             $table->string('motivoscamb');
-            $table->string('datoextr')->nullable();
             $table->string('razoning');
             $table->timestamps();
         });

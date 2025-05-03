@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion11s', function (Blueprint $table) {
             $table->id();
-            $table->string('caracterhijo');
+            $table->string('personalidadhijo');
             $table->string('oportunihijo');
             $table->string('adapthijo');
             $table->string('juegacnhijo');

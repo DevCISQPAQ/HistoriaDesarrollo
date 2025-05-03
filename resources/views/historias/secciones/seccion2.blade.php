@@ -398,10 +398,14 @@ $nombre = session('nombre');
                             <input type="radio" name="religion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                             <span class="ml-2">No</span>
                         </label>
+                    </div>
 
+                    <div>
+                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2 ">Cuales son los valores familiares?</label>
+                        <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="valores_familia" name="valores_familia" required placeholder=""> </textarea>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -410,7 +414,7 @@ $nombre = session('nombre');
 
             <button type="button" onclick="history.back()" class=" flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>

@@ -71,22 +71,9 @@ $nombre = session('nombre');
                         id="relacion_familia_padre" name="relacion_familia_padre" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
                 <div>
-                    <label for="relacion_familia_hermanos" class="block text-sm font-medium text-gray-700 pt-3">Hermanos <span class="text-red-500">*</span></label>
+                    <label for="relacion_familia_hermanos" class="block text-sm font-medium text-gray-700 pt-3">Hermanos/si tiene se agrega <span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="relacion_familia_hermanos" name="relacion_familia_hermanos" placeholder="Escribe aqui la respuesta" required></textarea>
-                </div>
-            </div>
-        </div>
-
-        <!-- Describa criterio.... -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Criterios en la relacion familiar</h3> -->
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="diferencia_estilos" class="block text-sm font-medium text-gray-700 pt-3">Al presentarse alguna diferencia referente a los estilos de diciplina entre ellos, Como se maneja tal desacuerdo? <span class="text-red-500">*</span></label>
-                    <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="diferencia_estilos" name="diferencia_estilos" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
             </div>
         </div>
@@ -96,22 +83,22 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Conductas del hijo(a)</h3> -->
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
+                <!-- <div>
                     <label for="responde_desobede" class="block text-sm font-medium text-gray-700 pt-3">Como responden, usted y su conyuge, cuando su hijo(a) desobedece a sus indicaciones?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="responde_desobede" name="responde_desobede" placeholder="Escribe aqui la respuesta" required></textarea>
-                </div>
+                </div> -->
                 <div>
                     <label for="sanciones_casa" class="block text-sm font-medium text-gray-700 pt-3">Cuales son las sanciones que comunmente se manejan en casa y como responde su hijo(a) ante ellas?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="sanciones_casa" name="sanciones_casa" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
             </div>
-            <div>
+            <!-- <div>
                 <label for="sanciones_conductas" class="block text-sm font-medium text-gray-700 pt-3">Las conductas que se sancionas son<span class="text-red-500">*</span></label>
                 <textarea rows="1" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="sanciones_conductas" name="sanciones_conductas" placeholder="Escribe aqui la respuesta" required></textarea>
-            </div>
+            </div> -->
         </div>
 
         <!-- Datos-->
@@ -120,7 +107,7 @@ $nombre = session('nombre');
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="docil_desafiante" class="block text-sm font-medium text-gray-700 pt-3">Considera que su hijo(a) es docil a las normas que se le marcan o suele ser desafiante al respecto?<span class="text-red-500">*</span></label>
+                    <label for="docil_desafiante" class="block text-sm font-medium text-gray-700 pt-3">Considera que su hijo(a) es docil con las normas o desafiante al respecto?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="docil_desafiante" name="docil_desafiante" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>

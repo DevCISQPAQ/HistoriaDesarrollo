@@ -153,11 +153,6 @@ $nombre = session('nombre');
                     id="motivoscamb" name="motivoscamb" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
             <div>
-                <label for="datoextr" class="block text-sm font-medium text-gray-700 pt-3">Si desea agregar algun dato importante que no ha sido comentado, puede anotarlo en los siguientes renglones:</label>
-                <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="datoextr" name="datoextr" placeholder="Escribe aqui la respuesta"></textarea>
-            </div>
-            <div>
                 <label for="razoning" class="block text-sm font-medium text-gray-700 pt-3">Mencione las razones por las que desea que su hijo(a) ingrese a este colegio: <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="razoning" name="razoning" placeholder="Escribe aqui la respuesta" required></textarea>

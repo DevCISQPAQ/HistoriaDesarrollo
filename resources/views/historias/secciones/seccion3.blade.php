@@ -164,7 +164,7 @@ $nombre = session('nombre');
                         </label>
 
                         <div id="Si" x-show="isadoptado == $el.id" x-transition>
-                            <label class="block font-medium text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
+                            <label class="block font-medium text-sm text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
                             <div class="grid grid-cols-2 gap-2">
                                 <label for="" class="text-sm ">
                                     Padre:
