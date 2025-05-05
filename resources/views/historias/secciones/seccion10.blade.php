@@ -21,13 +21,13 @@ $nombre = session('nombre');
 
     <form action="{{ route('preescolar.seccion10.guardar') }}" method="POST" class="p-6">
         @csrf
-
+        <!-- Salud -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-2 pt-4">
+            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
+            <!-- check box -->
+            <div>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
-                <div class="space-y-2">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
                         <input type="checkbox" name="saludnino[]" value="Respiratorios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Respiratorios</span>
@@ -44,8 +44,7 @@ $nombre = session('nombre');
                         <input type="checkbox" name="saludnino[]" value="Tics" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Tics</span>
                     </label>
-                </div>
-                <div class="space-y-2">
+
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
                         <input type="checkbox" name="saludnino[]" value="De la piel" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">De la piel</span>
@@ -62,8 +61,7 @@ $nombre = session('nombre');
                         <input type="checkbox" name="saludnino[]" value="Epilepcias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Epilepcias</span>
                     </label>
-                </div>
-                <div class="space-y-2">
+
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
                         <input type="checkbox" name="saludnino[]" value="Cirugias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Cirugias</span>
@@ -80,8 +78,7 @@ $nombre = session('nombre');
                         <input type="checkbox" name="saludnino[]" value="Urinarios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Urinarios</span>
                     </label>
-                </div>
-                <div class="space-y-2">
+
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
                         <input type="checkbox" name="saludnino[]" value="Falta de atencion" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Falta de atencion</span>
@@ -100,27 +97,26 @@ $nombre = session('nombre');
                     </label>
                 </div>
             </div>
-
+            <!-- otros -->
             <div>
                 <label for="otrosprob" class="block text-sm font-medium text-gray-700 pt-3">Otros</label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="otrosprob" name="otrosprob">
             </div>
-
+            <!-- padece -->
             <div>
                 <label for="enfeotrastor" class="block text-sm font-medium text-gray-700 pt-3">Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atencion medica especializada? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="enfeotrastor" name="enfeotrastor" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
-
+            <!-- recibe -->
             <div>
                 <label for="tipoterapia" class="block text-sm font-medium text-gray-700 pt-3">Recibe, o ha recibido, algun tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuando <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="tipoterapia" name="tipoterapia" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
-
         </div>
-
+        <!-- Acuerdo -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
             <div class="space-y-2">
@@ -138,25 +134,21 @@ $nombre = session('nombre');
             </div>
         </div>
 
-
         <!-- Botones de navegación -->
-        <div class="flex justify-between mt-8 gap-2 m-4">
-            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+        <div class="flex justify-between mt-8 m-4 gap-2">
+            <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>
 
-            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar
+            <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
+                Guardar y <br> Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </button>
-
-
-
         </div>
     </form>
 </div>

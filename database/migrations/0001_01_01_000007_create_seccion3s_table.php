@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion3s', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hermano_id')->constrained('hermanos')->nullable()->onDelete('cascade');
+            // $table->foreignId('hermano_id')->constrained('hermanos')->nullable()->onDelete('cascade');
             $table->string('idioma_casa');
             $table->string('personas_casa');
             $table->string('quienes_casa')->nullable();

@@ -42,7 +42,8 @@ class Seccion2 extends Model
         'moti_separa',
         'vive_con',
         'religion',
-        'valores_familia'
+        'valores_familia',
+        'hermano_id'
     ];
 
 
@@ -50,5 +51,10 @@ class Seccion2 extends Model
     public function historiadesarrollo()
     {
         return $this->belongsTo(HistoriaDesarrollo::class);
+    }
+
+    public function hermano()
+    {
+        return $this->hasMany(Hermano::class);
     }
 }

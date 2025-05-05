@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seccion3 extends Model
 {
     protected $fillable = [
-        'hermano_id',
+        // 'hermano_id',
         'idioma_casa',
         'personas_casa',
         'quienes_casa',
@@ -24,8 +24,8 @@ class Seccion3 extends Model
         return $this->belongsTo(HistoriaDesarrollo::class);
     }
 
-    public function hermano()
-    {
-        return $this->hasMany(Hermano::class);
-    }
+    // public function hermano()
+    // {
+    //     return $this->hasMany(Hermano::class);
+    // }
 }

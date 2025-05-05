@@ -24,10 +24,10 @@ $nombre = session('nombre');
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Lenguaje del niño(a)</h3>
+            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Lenguaje del niño(a)</h3> -->
             <!--Describre lenguaje -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 pb-3">Como describiria el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 pb-2">Como describiria el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
                 <div class="md:flex-1">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <span class="mr-2">Despues de lo esperado para la edad</span>
@@ -51,23 +51,21 @@ $nombre = session('nombre');
             </div>
         </div>
 
-
         <!-- Botones de navegación -->
-        <div class="flex justify-between mt-8 gap-2 m-4">
-            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+        <div class="flex justify-between mt-8 m-4 gap-2">
+            <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>
 
-            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar
+            <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
+                Guardar y <br> Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </button>
-
         </div>
     </form>
 </div>

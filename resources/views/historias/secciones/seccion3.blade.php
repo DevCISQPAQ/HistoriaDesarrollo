@@ -15,7 +15,7 @@ $nombre = session('nombre');
     <div class="bg-[#ff7843] px-6 py-4">
         <div class="flex items-center">
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
-            <h2 class="text-xl font-bold text-white">Hermanos</h2>
+            <h2 class="text-xl font-bold text-white">Idioma y Adopcion</h2>
         </div>
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}} </p>
     </div>
@@ -24,7 +24,7 @@ $nombre = session('nombre');
         @csrf
 
         <!-- Datos del hermano -->
-        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4 relative overflow-x-auto">
+        <!-- <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4 relative overflow-x-auto">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de los Hermanos <span class="text-red-500">*</span></h3>
 
             <table class="w-full text-sm text-left rtl:text-right text-gray-700 ">
@@ -106,7 +106,7 @@ $nombre = session('nombre');
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
         <!-- Idioma-->
         <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">

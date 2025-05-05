@@ -373,10 +373,48 @@ $nombre = session('nombre');
                     </div>
                 </div>
                 <!-- Número de hijos -->
-                <div>
+                <div x-data="{ cantidad: 0 }">
                     <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="numero_hijos" name="numero_hijos" required placeholder="Cantidad">
+                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
+                    <template x-if="cantidad > 1">
+                        <div class="mt-3 overflow-x-auto">
+                            <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
+                            <table class="min-w-full text-sm text-left text-gray-700">
+                                <thead class="text-xs text-white uppercase bg-primary bg-[#667c87]">
+                                    <tr>
+                                        <th class="border border-gray-300 px-3 py-2">Nombre</th>
+                                        <th class="border border-gray-300 px-3 py-2">Edad</th>
+                                        <th class="border border-gray-300 px-3 py-2">Año escolar u <br> ocupación</th>
+                                        <th class="border border-gray-300 px-3 py-2">Escuela</th>
+                                        <th class="border border-gray-300 px-3 py-2">Salud</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template x-for="i in (cantidad -1)" :key="i">
+                                        <tr>
+                                            <td class="border border-gray-300 px-2 py-1">
+                                                <input type="text" name="nombre_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                            </td>
+                                            <td class="border border-gray-300 px-2 py-1">
+                                                <input type="number" name="edad_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                            </td>
+                                            <td class="border border-gray-300 px-2 py-1">
+                                                <input type="text" name="escolar_ocupacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                            </td>
+                                            <td class="border border-gray-300 px-2 py-1">
+                                                <input type="text" name="escuela_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                            </td>
+                                            <td class="border border-gray-300 px-2 py-1">
+                                                <input type="text" name="salud_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+
                 </div>
 
             </div>

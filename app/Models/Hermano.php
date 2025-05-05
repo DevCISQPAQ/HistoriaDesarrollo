@@ -14,8 +14,8 @@ class Hermano extends Model
         'salud_hermano'
     ];
 
-    public function seccion3()
+    public function seccion2()
     {
-        return $this->belongsTo(Seccion3::class);
+        return $this->belongsTo(Seccion2::class);
     }
 }

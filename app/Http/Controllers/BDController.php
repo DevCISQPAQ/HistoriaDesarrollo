@@ -65,41 +65,52 @@ class BDController extends Controller
 
     public function guardarSeccion2(Request $request)
     {
-        $request->validate([
-            'nombre_padre' => 'required|string',
-            'edad_padre' => 'required|integer',
-            'empresa_padre' => 'required|string',
-            'puesto_padre' => 'required|string',
-            'ocupacion_padre' => 'required|string',
-            'correo_padre' => 'required|string',
-            'redessoc_padre' => 'nullable|array',
-            'padre_lateralidad' => 'required|array',
-            'nombre_madre' => 'required|string',
-            'edad_madre' => 'required|integer',
-            'empresa_madre' => 'required|string',
-            'puesto_madre' => 'required|string',
-            'ocupacion_madre' => 'required|string',
-            'correo_madre' => 'required|string',
-            'redessoc_madre' => 'nullable|array',
-            'madre_lateralidad' => 'required|array',
-            'estado_civil' => 'required|array',
-            'nombre_conyuge' => 'nullable|string',
-            'edad_conyuge' => 'nullable|integer',
-            'empresa_conyuge' => 'nullable|string',
-            'puesto_conyuge' => 'nullable|string',
-            'ocupacion_conyuge' => 'nullable|string',
-            'correo_conyuge' => 'nullable|string',
-            'redessoc_conyuge' => 'nullable|array',
-            'conyuge_lateralidad' => 'nullable|array',
-            'noviveconpadres_situtor' => 'nullable|string',
-            'anos_casados' => 'required|integer',
-            'numero_hijos' => 'required|integer',
-            'moti_separa' => 'nullable|string',
-            'vive_con' => 'nullable|string',
-            'religion' => 'required|string',
-            'valores_familia' => 'required|string',
+        // $request->validate([
+        //     'nombre_padre' => 'required|string',
+        //     'edad_padre' => 'required|integer',
+        //     'empresa_padre' => 'required|string',
+        //     'puesto_padre' => 'required|string',
+        //     'ocupacion_padre' => 'required|string',
+        //     'correo_padre' => 'required|string',
+        //     'redessoc_padre' => 'nullable|array',
+        //     'padre_lateralidad' => 'required|array',
+        //     'nombre_madre' => 'required|string',
+        //     'edad_madre' => 'required|integer',
+        //     'empresa_madre' => 'required|string',
+        //     'puesto_madre' => 'required|string',
+        //     'ocupacion_madre' => 'required|string',
+        //     'correo_madre' => 'required|string',
+        //     'redessoc_madre' => 'nullable|array',
+        //     'madre_lateralidad' => 'required|array',
+        //     'estado_civil' => 'required|array',
+        //     'nombre_conyuge' => 'nullable|string',
+        //     'edad_conyuge' => 'nullable|integer',
+        //     'empresa_conyuge' => 'nullable|string',
+        //     'puesto_conyuge' => 'nullable|string',
+        //     'ocupacion_conyuge' => 'nullable|string',
+        //     'correo_conyuge' => 'nullable|string',
+        //     'redessoc_conyuge' => 'nullable|array',
+        //     'conyuge_lateralidad' => 'nullable|array',
+        //     'noviveconpadres_situtor' => 'nullable|string',
+        //     'anos_casados' => 'required|integer',
+        //     'numero_hijos' => 'required|integer',
+        //     'moti_separa' => 'nullable|string',
+        //     'vive_con' => 'nullable|string',
+        //     'religion' => 'required|string',
+        //     'valores_familia' => 'required|string',
+
+        // ]);
+
+        $hermano =  Hermano::create([
+
+            'nombre_hermano' => json_encode((array) $request->nombre_hermano),
+            'edad_hermano' => json_encode((array) $request->edad_hermano),
+            'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
+            'escuela_hermano' => json_encode((array) $request->escuela_hermano),
+            'salud_hermano' => json_encode((array) $request->salud_hermano),
 
         ]);
+
 
         $seccion2 =  Seccion2::create([
 
@@ -134,6 +145,7 @@ class BDController extends Controller
             'vive_con' => $request->vive_con,
             'religion' => $request->religion,
             'valores_familia' => $request->valores_familia,
+            'hermano_id' => $hermano->id,
 
         ]);
 
@@ -150,20 +162,20 @@ class BDController extends Controller
 
     public function guardarSeccion3(Request $request)
     {
-        $hermano =  Hermano::create([
+        // $hermano =  Hermano::create([
 
-            'nombre_hermano' => json_encode((array) $request->nombre_hermano),
-            'edad_hermano' => json_encode((array) $request->edad_hermano),
-            'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
-            'escuela_hermano' => json_encode((array) $request->escuela_hermano),
-            'salud_hermano' => json_encode((array) $request->salud_hermano),
+        //     'nombre_hermano' => json_encode((array) $request->nombre_hermano),
+        //     'edad_hermano' => json_encode((array) $request->edad_hermano),
+        //     'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
+        //     'escuela_hermano' => json_encode((array) $request->escuela_hermano),
+        //     'salud_hermano' => json_encode((array) $request->salud_hermano),
 
-        ]);
+        // ]);
 
 
         $seccion3 =  Seccion3::create([
 
-            'hermano_id' => $hermano->id,
+            // 'hermano_id' => $hermano->id,
             'idioma_casa' => $request->idioma_casa,
             'personas_casa' => $request->personas_casa,
             'quienes_casa' => $request->quienes_casa,

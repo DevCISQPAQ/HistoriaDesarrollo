@@ -45,6 +45,7 @@ return new class extends Migration
             $table->string('vive_con')->nullable();
             $table->string('religion');
             $table->string('valores_familia');
+            $table->foreignId('hermano_id')->constrained('hermanos')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }
