@@ -25,7 +25,7 @@ $nombre = session('nombre');
         <!-- Datos -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Desarrollo motor del hijo(a)</h3> -->
-            <label class="block text-sm font-medium text-gray-700 pb-3">Como describiria el desarrollo motor del niño(a)? <span class="text-red-500">*</span></label>
+            <label class="block text-sm font-medium text-gray-700 pb-3">¿Cómo describiria el desarrollo motor del niño(a)? <span class="text-red-500">*</span></label>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
@@ -61,7 +61,7 @@ $nombre = session('nombre');
 
             <!-- Diestro/Zurdo -->
             <div class="md:col-span-2 pt-4">
-                <label class="block text-sm font-medium text-gray-700">Es diestro(a) o zurdo(a)?<span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700">¿Es diestro(a) o zurdo(a)?<span class="text-red-500">*</span></label>
                 <div class="flex space-x-4 mt-2">
                     <label class="inline-flex items-center">
                         <input type="checkbox" name="dies_zurdhijo[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -79,7 +79,7 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Coordinacion del hijo(a)</h3> -->
           
             <div>
-                <label for="prac_deporte" class="block text-sm font-medium text-gray-700">Que tipo de deporte le interesa a su hijo de manera especial?<span class="text-red-500">*</span></label>
+                <label for="prac_deporte" class="block text-sm font-medium text-gray-700">¿Qué tipo de deporte le interesa a su hijo de manera especial?<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="prac_deporte" name="prac_deporte" placeholder="" required>
             </div>

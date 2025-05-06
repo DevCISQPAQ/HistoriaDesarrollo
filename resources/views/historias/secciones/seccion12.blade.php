@@ -26,13 +26,13 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Experiencia escolar</h3> -->
             <div>
-                <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">Como reacciono en su primer ingreso a la escuela? <span class="text-red-500">*</span></label>
+                <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">¿Como reaccionó en su primer ingreso a la escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="reaccprimer" name="reaccprimer" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
 
             <div>
-                <label for="dificumateria" class="block text-sm font-medium text-gray-700 pt-3">Ha tenido alguna dificultad para aprender alguna materia? <span class="text-red-500">*</span></label>
+                <label for="dificumateria" class="block text-sm font-medium text-gray-700 pt-3">¿Ha tenido alguna dificultad para aprender alguna materia? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="dificumateria" name="dificumateria" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
@@ -67,20 +67,20 @@ $nombre = session('nombre');
 
                 <!-- -->
                 <div class="pt-2" id="Si" x-show="harepetido == $el.id" x-transition>
-                    <label for="porque_escuela" class="block text-sm font-medium text-gray-700">Por que motivo?</label>
+                    <label for="porque_escuela" class="block text-sm font-medium text-gray-700">¿Por qué motivo?</label>
                     <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="porque_escuela" name="porque_escuela" rows="3"></textarea>
                 </div>
             </div>
 
             <div>
-                <label for="puedeperiodolarg" class="block text-sm font-medium text-gray-700 pt-3">Puede concentrarse por periodos largos? <span class="text-red-500">*</span></label>
+                <label for="puedeperiodolarg" class="block text-sm font-medium text-gray-700 pt-3">¿Puede concentrarse por periodos largos? <span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="puedeperiodolarg" name="puedeperiodolarg" required>
             </div>
 
             <div>
-                <label for="conductaambito" class="block text-sm font-medium text-gray-700 pt-3">Como ha sido la conducta general a su hijo(a) en el ambito escolar? <span class="text-red-500">*</span></label>
+                <label for="conductaambito" class="block text-sm font-medium text-gray-700 pt-3">¿Como ha sido la conducta general a su hijo(a) en el ámbito escolar? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="conductaambito" name="conductaambito" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
@@ -91,16 +91,29 @@ $nombre = session('nombre');
             @if(session('grado')==='primaria_secundaria')
             <div class="pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
-                    <label for="nivel_lectura" class="block text-sm font-medium text-gray-700 pt-3">Cual es su nivel de lectura? <span class="text-red-500">*</span></label>
+                    <label for="nivel_lectura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de lectura? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="nivel_lectura" name="nivel_lectura">
                 </div>
 
                 <div>
-                    <label for="nivel_escritura" class="block text-sm font-medium text-gray-700 pt-3">Cual es su nivel de escritura? <span class="text-red-500">*</span></label>
+                    <label for="nivel_escritura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de escritura? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="nivel_escritura" name="nivel_escritura">
                 </div>
+<!--  -->
+                <div>
+                    <label for="dificultad_tarea" class="block text-sm font-medium text-gray-700 pt-3">¿Tiene dificultad para hacer tarea? <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="dificultad_tarea" name="dificultad_tarea">
+                </div>
+
+                <div>
+                    <label for="relacion_maestro" class="block text-sm font-medium text-gray-700 pt-3">¿Cómo es la relación con maestros y compañeros? <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="relacion_maestro" name="relacion_maestro">
+                </div>
+<!--  -->
             </div>
             @endif
             <!-- opciones de si dificultad -->
@@ -129,13 +142,13 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-3">Maneja el idioma Ingles? <span class="text-red-500">*</span></label>
+                <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-3">¿Maneja el idioma Inglés? <span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="maneingles" name="maneingles" required>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Como calificaria el desempeño academico general de su hijo(a)? <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Cómo calificaría el desempeño académico general de su hijo(a)? <span class="text-red-500">*</span></label>
                 <div class="flex space-x-4 pb-4">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
@@ -153,7 +166,7 @@ $nombre = session('nombre');
 
                 <!-- Motivos  -->
                 <div>
-                    <label for="porq_desemp" class="block text-sm font-medium text-gray-700">¿Por que?</label>
+                    <label for="porq_desemp" class="block text-sm font-medium text-gray-700">¿Por qué?</label>
                     <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="porq_desemp" name="porq_desemp"></textarea>
                 </div>
@@ -162,7 +175,7 @@ $nombre = session('nombre');
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <div>
-                <label for="motivoscamb" class="block text-sm font-medium text-gray-700 pt-3">Cuales son los principales motivos que los orientaron a buscar un cambio de escuela? <span class="text-red-500">*</span></label>
+                <label for="motivoscamb" class="block text-sm font-medium text-gray-700 pt-3">¿Cuales son los principales motivos que los orientaron a buscar un cambio de escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="motivoscamb" name="motivoscamb" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

@@ -25,7 +25,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Desarrollo Visual</h3> -->
             <div>
-                <label for="desa_visual" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algun problema visual<span class="text-red-500">*</span></label>
+                <label for="desa_visual" class="block text-sm font-medium text-gray-700">¿Describa si ha experimentado algún problema visual<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="desa_visual" name="desa_visual" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
@@ -35,7 +35,7 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Desarrollo Auditivo</h3> -->
 
             <div>
-                <label for="desa_auditivo" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algun problema de oido (operaciones, infecciones, drenajes, etc.)<span class="text-red-500">*</span></label>
+                <label for="desa_auditivo" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algún problema de oido (operaciones, infecciones, drenajes, etc.)<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="desa_auditivo" name="desa_auditivo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

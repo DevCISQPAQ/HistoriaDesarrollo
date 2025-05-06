@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('dificumateria');
             $table->string('nivel_lectura')->nullable();
             $table->string('nivel_escritura')->nullable();
+            $table->string('dificultad_tarea')->nullable();
+            $table->string('relacion_maestro')->nullable();
             $table->string('ha_repetido');
             $table->string('cual_escuela')->nullable();
             $table->string('porque_escuela')->nullable();

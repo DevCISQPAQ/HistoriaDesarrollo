@@ -26,7 +26,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Sueño del hijo(a)</h3> -->
             <!--Describre lenguaje -->
-            <label class="inline-flex items-center"> Marque las caracteristicas que presenta el sueño del menor <span class="text-red-500">*</span></label>
+            <label class="inline-flex items-center"> Marque las características que presenta el sueño del menor <span class="text-red-500">*</span></label>
             <!-- Check box options -->
             <div class=" grid grid-cols-1 md:grid-cols-3 gap-2 pt-2">
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
@@ -60,11 +60,11 @@ $nombre = session('nombre');
                 </label>
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full">
                     <input type="checkbox" name="suenonino[]" value="Se hace pipi" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                    <span class="ml-2">Se hace pipi</span>
+                    <span class="ml-2">Se hace pipí</span>
                 </label>
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
                     <input type="checkbox" name="suenonino[]" value="Se hace popo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                    <span class="ml-2">Se hace popo</span>
+                    <span class="ml-2">Se hace popó</span>
                 </label>
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
                     <input type="checkbox" name="suenonino[]" value="Despierta gritando" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -103,12 +103,12 @@ $nombre = session('nombre');
             <!-- Hora siesta -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-6">
                 <div>
-                    <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">A que hora se acuesta por la noche? <span class="text-red-500">*</span></label>
+                    <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se acuesta por la noche? <span class="text-red-500">*</span></label>
                     <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
                 <div>
-                    <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">A que hora se despierta? <span class="text-red-500">*</span></label>
+                    <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se despierta? <span class="text-red-500">*</span></label>
                     <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
@@ -116,7 +116,7 @@ $nombre = session('nombre');
             <!-- si duerme con -->
             <div>
                 <div class="space-y-1" x-data="{sidusiesta: ''}">
-                    <label for="dusiesta" class="block text-sm font-medium text-gray-700 pt-3">Duerme siesta? <span class="text-red-500">*</span></label>
+                    <label for="dusiesta" class="block text-sm font-medium text-gray-700 pt-3">¿Duerme siesta? <span class="text-red-500">*</span></label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="dusiesta" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
                             x-model="sidusiesta">
@@ -128,13 +128,13 @@ $nombre = session('nombre');
                     </label>
 
                     <div id="Si" x-show="sidusiesta == $el.id" x-transition>
-                        <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">Cuentas horas?</label>
+                        <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">¿Cuántas horas?</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="horasiesta" name="horasiesta" placeholder="Horas">
                     </div>
                 </div>
                 <div class="space-y-1" x-data="{sicohabitacion: ''}">
-                    <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">Comparte habitacion? <span class="text-red-500">*</span></label>
+                    <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">¿Comparte su habitación? <span class="text-red-500">*</span></label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="cohabitacion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
                             x-model="sicohabitacion">
@@ -145,13 +145,13 @@ $nombre = session('nombre');
                         <span class="ml-2">No</span>
                     </label>
                     <div id="Si" x-show="sicohabitacion == $el.id" x-transition>
-                        <label for="conquien" class="block text-sm font-medium text-gray-700 pt-3">Con quien?</label>
+                        <label for="conquien" class="block text-sm font-medium text-gray-700 pt-3">¿Con quien?</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="conquien" name="conquien">
                     </div>
                 </div>
                 <div>
-                    <label for="cocama" class="block text-sm font-medium text-gray-700 pt-3">Comparte la cama? <span class="text-red-500">*</span></label>
+                    <label for="cocama" class="block text-sm font-medium text-gray-700 pt-3">¿Comparte la cama? <span class="text-red-500">*</span></label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="cocama" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Sí</span>
@@ -162,7 +162,7 @@ $nombre = session('nombre');
                     </label>
                 </div>
                 <div>
-                    <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">Hasta que edad durmio con los papas? <span class="text-red-500">*</span></label>
+                    <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">¿Hasta qué edad durmió con los papás? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="edad_dupapa" name="edad_dupapa" placeholder="Años" required>
                 </div>

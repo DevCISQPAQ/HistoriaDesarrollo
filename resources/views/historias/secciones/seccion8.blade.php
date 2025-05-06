@@ -45,7 +45,7 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="prim_palabra" class="block text-sm font-medium text-gray-700 pt-3">A que edad dijo sus primeras palabras?<span class="text-red-500">*</span></label>
+                <label for="prim_palabra" class="block text-sm font-medium text-gray-700 pt-3">¿A que edad dijo sus primeras palabras?<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="prim_palabra" name="prim_palabra" required>
             </div>

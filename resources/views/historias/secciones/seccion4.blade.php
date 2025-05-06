@@ -47,7 +47,7 @@ $nombre = session('nombre');
                     </label>
                 </div>
                 <div>
-                    <label for="califica-adaptacion-porq" class="block text-sm font-medium text-gray-700 pt-3">Por qué? <span class="text-red-500">*</span></label>
+                    <label for="califica-adaptacion-porq" class="block text-sm font-medium text-gray-700 pt-3">¿Por qué? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="califica-adaptacion-porq" name="califica_adaptacion_porq" required>
                 </div>
@@ -57,7 +57,7 @@ $nombre = session('nombre');
         <!-- Describa la relacion.... -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Relacion de su hijo(a) con los demas</h3> -->
-            <label for="relacion_familia" class="block text-sm font-medium text-gray-700">Describa la relacion de su hijo con cada mienbro de la familia</label>
+            <label for="relacion_familia" class="block text-sm font-medium text-gray-700">Describa la relación de su hijo(a) con cada mienbro de la familia</label>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -91,7 +91,7 @@ $nombre = session('nombre');
                         id="responde_desobede" name="responde_desobede" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div> -->
                 <div>
-                    <label for="sanciones_casa" class="block text-sm font-medium text-gray-700 pt-3">Cuales son las sanciones que comunmente se manejan en casa y como responde su hijo(a) ante ellas?<span class="text-red-500">*</span></label>
+                    <label for="sanciones_casa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles son las sanciones que comunmente se manejan en casa y como responde su hijo(a) ante ellas?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="sanciones_casa" name="sanciones_casa" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
@@ -109,12 +109,12 @@ $nombre = session('nombre');
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="docil_desafiante" class="block text-sm font-medium text-gray-700 pt-3">Considera que su hijo(a) es docil con las normas o desafiante al respecto?<span class="text-red-500">*</span></label>
+                    <label for="docil_desafiante" class="block text-sm font-medium text-gray-700 pt-3">¿Considera que su hijo(a) es dócil con las normas o desafiante al respecto?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="docil_desafiante" name="docil_desafiante" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
                 <div>
-                    <label for="evento_traumatico" class="block text-sm font-medium text-gray-700 pt-3">Ha habido algun evento traumatico o significativo en la familia durante el desarrollo de su hijo(a)? Describa<span class="text-red-500">*</span></label>
+                    <label for="evento_traumatico" class="block text-sm font-medium text-gray-700 pt-3">¿Ha habido algún evento traumático o significativo en la familia durante el desarrollo de su hijo(a)? Describa<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="evento_traumatico" name="evento_traumatico" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>

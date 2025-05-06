@@ -263,7 +263,7 @@ $nombre = session('nombre');
                             <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente <span class="text-red-500">*</span></p>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-1">
                                 <div>
-                                    <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Conyuge</label>
+                                    <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
                                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                         id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos">
                                 </div>
@@ -331,7 +331,7 @@ $nombre = session('nombre');
 
                                 <!-- Diestra/Zurda -->
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700">Marcar si el(la) conyuge es</label>
+                                    <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es</label>
                                     <div class="flex space-x-4 mt-2">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -345,7 +345,7 @@ $nombre = session('nombre');
                                 </div>
                             </div>
                             <div class="py-4">
-                                <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relacion o parentesco que tenga con el niño(a):</label>
+                                <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relación o parentesco que tenga con el niño(a):</label>
                                 <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                     id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
                             </div>
@@ -439,7 +439,7 @@ $nombre = session('nombre');
                     </div>
 
                     <div>
-                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2 ">Cuales son los valores familiares?</label>
+                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2 ">¿Cuáles son los valores familiares?</label>
                         <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="valores_familia" name="valores_familia" required placeholder=""> </textarea>
                     </div>

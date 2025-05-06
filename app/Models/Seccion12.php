@@ -11,6 +11,8 @@ class Seccion12 extends Model
         'dificumateria',
         'nivel_lectura',
         'nivel_escritura',
+        'dificultad_tarea',
+        'relacion_maestro',
         'ha_repetido',
         'cual_escuela',
         'porque_escuela',

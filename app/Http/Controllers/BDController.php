@@ -110,7 +110,7 @@ class BDController extends Controller
                 'salud_hermano' => json_encode((array) $request->salud_hermano),
 
             ]);
-        }else{
+        } else {
             $hermano = new Hermano(); // Crea un modelo vacío
             $hermano->id = null;
         }
@@ -155,7 +155,7 @@ class BDController extends Controller
         session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
 
-         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion2_id' => $seccion2->id
         ]);
 
@@ -365,6 +365,8 @@ class BDController extends Controller
             'dificumateria' => $request->dificumateria,
             'nivel_lectura' => $request->nivel_lectura,
             'nivel_escritura' => $request->nivel_escritura,
+            'dificultad_tarea' => $request->dificultad_tarea,
+            'relacion_maestro' => $request->relacion_maestro,
             'ha_repetido' => $request->ha_repetido,
             'cual_escuela' => $request->cual_escuela,
             'porque_escuela' => $request->porque_escuela,
@@ -400,10 +402,9 @@ class BDController extends Controller
     //
     public function buscar(Request $request)
     {
-        $estudiantes = Estudiante::where(
-            'nombre_completo',
-            $request->nombre_completo,
-        )->get();
+        $estudiantes = Estudiante::where('nombre_completo', $request->nombre_completo)
+            // ->where('fecha_nacimiento', $request->fecha_nacimiento)
+            ->get();
         $estudiante = $estudiantes->first();
         if ($estudiante) {
 
@@ -456,7 +457,6 @@ class BDController extends Controller
                     'campoLlenoCount' => $campoLlenoCount
 
                 ]);
-
             } else {
                 // Si el estudiante no existe, cargamos una vista por defecto
                 return view('historias.level-selector', [

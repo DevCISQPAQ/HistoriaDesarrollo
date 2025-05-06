@@ -145,10 +145,10 @@ $grado = session('grado');
 
             <!-- Escuela de procedencia -->
             <div class="space-y-1 md:col-span-2">
-                <label for="escuela_procedencia" class="block text-sm font-medium text-gray-700">Escuela de procedencia</label>
+                <label for="escuela_procedencia" class="block text-sm font-medium text-gray-700">Escuela de procedencia <span class="text-red-500">*</span></label>
                 <input type="text" id="escuela_procedencia" name="escuela_procedencia"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    placeholder="(Opcional si es primer ingreso)">
+                    placeholder="">
             </div>
         </div>
 

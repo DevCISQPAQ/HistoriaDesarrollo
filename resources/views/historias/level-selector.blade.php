@@ -89,10 +89,14 @@
                     {{-- Formulario de búsqueda --}}
                     <form action="{{ route('historia.nivel-educativo.buscar') }}" method="POST">
                         @csrf
-                        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 pt-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
                             <div>
                                 <label for="nombre_completo" class="block text-sm font-medium text-gray-700">Nombre completo:</label>
-                                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition type=" text" name="nombre_completo" id="nombre_completo" value="{{ request('nombre_completo') }}">
+                                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" type="text" name="nombre_completo" id="nombre_completo" value="{{ request('nombre_completo') }}">
+                            </div>
+                            <div>
+                                <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimineto:</label>
+                                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ request('fecha_nacimiento') }}">
                             </div>
                         </div>
                         <div>

@@ -105,13 +105,13 @@ $nombre = session('nombre');
             </div>
             <!-- padece -->
             <div>
-                <label for="enfeotrastor" class="block text-sm font-medium text-gray-700 pt-3">Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atencion medica especializada? <span class="text-red-500">*</span></label>
+                <label for="enfeotrastor" class="block text-sm font-medium text-gray-700 pt-3">¿Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atencion medica especializada? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="enfeotrastor" name="enfeotrastor" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
             <!-- recibe -->
             <div>
-                <label for="tipoterapia" class="block text-sm font-medium text-gray-700 pt-3">Recibe, o ha recibido, algun tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuando <span class="text-red-500">*</span></label>
+                <label for="tipoterapia" class="block text-sm font-medium text-gray-700 pt-3">¿Recibe, o ha recibido, algun tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuándo <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="tipoterapia" name="tipoterapia" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

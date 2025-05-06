@@ -33,19 +33,19 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">Que areas de oportunidad o atencion considera importante para la personalidad de su hijo <span class="text-red-500">*</span></label>
+                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">¿Qué áreas de oportunidad o atención considera importante para la personalidad de su hijo(a) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="oportunihijo" name="oportunihijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
 
             <div>
-                <label for="adapthijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la adaptacion social de su hijo(a) con otros niños y adultos (sociales, independientes, sencibles al trato con los demas, etc.) <span class="text-red-500">*</span></label>
+                <label for="adapthijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la adaptación social de su hijo(a) con otros niños y adultos (sociales, independientes, sencibles al trato con los demás, etc.) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="adapthijo" name="adapthijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
 
             <div>
-                <label for="juegacnhijo" class="block text-sm font-medium text-gray-700 pt-3">Juega contento(a) con otros niños o prefiere parmanecer solo(a)? <span class="text-red-500">*</span></label>
+                <label for="juegacnhijo" class="block text-sm font-medium text-gray-700 pt-3">¿Juega contento(a) con otros niños o prefiere parmanecer solo(a)? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="juegacnhijo" name="juegacnhijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
