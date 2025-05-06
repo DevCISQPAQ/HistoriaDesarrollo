@@ -20,7 +20,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Gracias por terminar el formulario para el alumno {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('historia.nivel-educativo') }}" method="POST">
+    <form action="{{ route('preescolar.seccion13.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
@@ -40,7 +40,7 @@ $nombre = session('nombre');
                 <label class="block text-sm font-medium text-gray-700">Accepto los terminos de conformidad del proceso de admision<span class="text-red-500">*</span></label>
                 <div class="flex space-x-4 mt-2">
                     <label class="inline-flex items-center">
-                        <input type="checkbox" name="acceptoterminos" value="Accepto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" required>
+                        <input type="checkbox" name="acepto_terminos" value="Accepto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" required>
                         <span class="ml-2">Accepto</span>
                     </label>
                 </div>

@@ -9,6 +9,8 @@ class Seccion12 extends Model
     protected $fillable = [
         'reaccprimer',
         'dificumateria',
+        'nivel_lectura',
+        'nivel_escritura',
         'ha_repetido',
         'cual_escuela',
         'porque_escuela',
@@ -21,6 +23,7 @@ class Seccion12 extends Model
         'porq_desemp',
         'motivoscamb',
         'razoning',
+        'acepto_terminos',
         
     ];
 

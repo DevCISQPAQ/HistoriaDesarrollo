@@ -23,7 +23,7 @@ Route::get('/preescolar/seccion10', [HistoriaController::class, 'showPreescolarS
 Route::get('/preescolar/seccion11', [HistoriaController::class, 'showPreescolarSeccion11'])->name('preescolar.seccion11');
 Route::get('/preescolar/seccion12', [HistoriaController::class, 'showPreescolarSeccion12'])->name('preescolar.seccion12');
 Route::get('/preescolar/seccion13', [HistoriaController::class, 'showPreescolarSeccion13'])->name('preescolar.seccion13');
-Route::get('/preescolar/seccion14', [HistoriaController::class, 'showPreescolarSeccion14'])->name('preescolar.seccion14');
+// Route::get('/preescolar/seccion14', [HistoriaController::class, 'showPreescolarSeccion14'])->name('preescolar.seccion14');//no entiendo porque se necesita este
 
 // ... continúa según tus secciones
 Route::post('/preescolar/seccion1', [BDController::class, 'guardarSeccion1'])->name('preescolar.seccion1.guardar');
@@ -38,6 +38,7 @@ Route::post('/preescolar/seccion9', [BDController::class, 'guardarSeccion9'])->n
 Route::post('/preescolar/seccion10', [BDController::class, 'guardarSeccion10'])->name('preescolar.seccion10.guardar');
 Route::post('/preescolar/seccion11', [BDController::class, 'guardarSeccion11'])->name('preescolar.seccion11.guardar');
 Route::post('/preescolar/seccion12', [BDController::class, 'guardarSeccion12'])->name('preescolar.seccion12.guardar');
+Route::post('/preescolar/seccion13', [BDController::class, 'guardarSeccion13'])->name('preescolar.seccion13.guardar');
 
 
 Route::post('/nivel-educativo', [BDController::class, 'buscar'])->name('historia.nivel-educativo.buscar');

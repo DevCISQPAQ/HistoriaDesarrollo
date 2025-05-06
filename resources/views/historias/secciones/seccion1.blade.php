@@ -65,7 +65,7 @@ $grado = session('grado');
             <!-- Sexo -->
             <div class="space-y-1">
                 <label class="block text-sm font-medium text-gray-700">Sexo <span class="text-red-500">*</span></label>
-                <div class="grid grid-cols-3 gap-2">
+                <div class="grid grid-cols-2 gap-2">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="sexo" value="masculino" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Masculino</span>
@@ -94,20 +94,18 @@ $grado = session('grado');
             <!-- Grado escolar -->
             <div class="space-y-1">
                 <label for="grado_escolar" class="block text-sm font-medium text-gray-700">Grado escolar <span class="text-red-500">*</span></label>
-
-
                 <select id="grado_escolar" name="grado_escolar" required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition">
 
                     @if($grado === 'preescolar')
-                    <option selected="true" disabled="disabled" >Seleccione un grado</option>
+                    <option selected="true" disabled="disabled">Seleccione un grado</option>
                     <option value="Bambolino 2">Bambolino 2</option>
                     <option value="Bambolino 3">Bambolino 3</option>
                     <option value="Kinder 1">Kinder 1</option>
                     <option value="Kinder 2">Kinder 2</option>
                     <option value="Kinder 3">Kinder 3</option>
                     @elseif($grado === 'primaria_secundaria')
-                    <option selected="true" disabled="disabled" >Seleccione un grado</option>
+                    <option selected="true" disabled="disabled">Seleccione un grado</option>
                     <option value="Primero de Primaria<">Primero de Primaria</option>
                     <option value="Segundo de Primaria">Segundo de Primaria</option>
                     <option value="Tercero de Primaria">Tercero de Primaria</option>
@@ -155,16 +153,16 @@ $grado = session('grado');
         </div>
 
         <!-- Botones de acción -->
-        <div class="mt-8 flex justify-between">
-            <button type="button" onclick="history.back()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+        <div class="flex justify-between mt-8 m-4 gap-2">
+            <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>
-            <input type="hidden" name="seccion" value="seccion2">
-            <button type="submit" class="px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex items-center shadow-md">
-                Guardar y Continuar
+
+            <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
+                Guardar y <br> Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>

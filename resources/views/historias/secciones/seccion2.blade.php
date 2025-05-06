@@ -21,7 +21,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion2.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('preescolar.seccion2.guardar') }}" method="POST" class="p-1">
         <!-- <form action="#" method="POST"> -->
         @csrf
 
@@ -211,27 +211,27 @@ $nombre = session('nombre');
                 <!-- Estado civil (checkboxes como en tu original) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Estado civil actual de los padres <span class="text-red-500">*</span></label>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="space-y-2" x-data="{casadosigl: false, civil: false }">
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="checkbox" name="estado_civil[]" value="Casados Iglesia" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="casadosigl">
-                                <span class="ml-2">Casados Iglesia</span>
-                            </label>
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="checkbox" name="estado_civil[]" value="Civil" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="civil">
-                                <span class="ml-2">Civil</span>
-                            </label>
-                            <!-- Años de casados -->
-                            <div id="Casados Iglesia" x-show="casadosigl || civil" x-transition>
-                                <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
-                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="anos_casados" name="anos_casados" placeholder="Años">
-                            </div>
+
+                    <div class="space-y-2" x-data="{casadosigl: false, civil: false }">
+                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                            <input type="checkbox" name="estado_civil[]" value="Casados Iglesia" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="casadosigl">
+                            <span class="ml-2">Casados Iglesia</span>
+                        </label>
+                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                            <input type="checkbox" name="estado_civil[]" value="Civil" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="civil">
+                            <span class="ml-2">Civil</span>
+                        </label>
+                        <!-- Años de casados -->
+                        <div id="Casados Iglesia" x-show="casadosigl || civil" x-transition>
+                            <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
+                            <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                id="anos_casados" name="anos_casados" placeholder="Años">
                         </div>
                     </div>
 
+                   
                     <div x-data="{estcivil: ''}">
-                        <div class="flex space-x-4 pt-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                             <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                                 <input type="radio" name="estado_civil[]" value="Divorciados" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                     x-model="estcivil">
@@ -373,10 +373,10 @@ $nombre = session('nombre');
                     </div>
                 </div>
                 <!-- Número de hijos -->
-                <div x-data="{ cantidad: 0 }">
+                <div x-data="{ cantidad: 1 }">
                     <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
+                    <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos"  required placeholder="Cantidad">
                     <template x-if="cantidad > 1">
                         <div class="mt-3 overflow-x-auto">
                             <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>

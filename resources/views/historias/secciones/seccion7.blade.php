@@ -19,7 +19,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion7.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('preescolar.seccion7.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <!-- Datos -->
@@ -27,18 +27,18 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Desarrollo motor del hijo(a)</h3> -->
             <label class="block text-sm font-medium text-gray-700 pb-3">Como describiria el desarrollo motor del niño(a)? <span class="text-red-500">*</span></label>
 
-            <div class="md:flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                    <span class="mr-2">Despues de lo esperado para la edad</span>
                     <input type="radio" name="desarrollo_motor" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <span class="ml-2">Despues de lo esperado para la edad</span>
                 </label>
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                    <span class="mr-2">Esperado para la edad</span>
                     <input type="radio" name="desarrollo_motor" value="Esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <span class="ml-2">Esperado para la edad</span>
                 </label>
                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                    <span class="mr-2">Antes de lo esperado</span>
                     <input type="radio" name="desarrollo_motor" value="Antes de lo esperado" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <span class="ml-2">Antes de lo esperado</span>
                 </label>
             </div>
         </div>
@@ -79,7 +79,7 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Coordinacion del hijo(a)</h3> -->
           
             <div>
-                <label for="prac_deporte" class="block text-sm font-medium text-gray-700">Que tipo de deporte le interesa asu hijo de manera especial?<span class="text-red-500">*</span></label>
+                <label for="prac_deporte" class="block text-sm font-medium text-gray-700">Que tipo de deporte le interesa a su hijo de manera especial?<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="prac_deporte" name="prac_deporte" placeholder="" required>
             </div>

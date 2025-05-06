@@ -20,7 +20,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno}} , {{$nombre}} </p>
     </div>
 
-    <form action="{{ route('preescolar.seccion4.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('preescolar.seccion4.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <!-- Adaptacion -->
@@ -28,22 +28,22 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Adaptación</h3> -->
             <div> <!-- radiobutton -->
                 <label class="block text-sm font-medium text-gray-700 py-2">¿Cómo calificaría la adaptación general de su hijo(a) en la casa? <span class="text-red-500">*</span></label>
-                <div class="md:flex-1">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Inadecuada</span>
                         <input type="radio" name="califica_adaptacion" value="Inadecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Inadecuada</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Regular</span>
                         <input type="radio" name="califica_adaptacion" value="Regular" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Regular</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Adecuada</span>
                         <input type="radio" name="califica_adaptacion" value="Adecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Adecuada</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Excelente</span>
                         <input type="radio" name="califica_adaptacion" value="Excelente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Excelente</span>
                     </label>
                 </div>
                 <div>
@@ -70,11 +70,13 @@ $nombre = session('nombre');
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="relacion_familia_padre" name="relacion_familia_padre" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
+                @if (session('numero_hijos')>1)
                 <div>
-                    <label for="relacion_familia_hermanos" class="block text-sm font-medium text-gray-700 pt-3">Hermanos/si tiene se agrega <span class="text-red-500">*</span></label>
+                    <label for="relacion_familia_hermanos" class="block text-sm font-medium text-gray-700 pt-3">Hermanos <span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="relacion_familia_hermanos" name="relacion_familia_hermanos" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -82,7 +84,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Conductas del hijo(a)</h3> -->
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <!-- <div>
                     <label for="responde_desobede" class="block text-sm font-medium text-gray-700 pt-3">Como responden, usted y su conyuge, cuando su hijo(a) desobedece a sus indicaciones?<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
@@ -90,7 +92,7 @@ $nombre = session('nombre');
                 </div> -->
                 <div>
                     <label for="sanciones_casa" class="block text-sm font-medium text-gray-700 pt-3">Cuales son las sanciones que comunmente se manejan en casa y como responde su hijo(a) ante ellas?<span class="text-red-500">*</span></label>
-                    <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <textarea rows="2" class=" w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="sanciones_casa" name="sanciones_casa" placeholder="Escribe aqui la respuesta" required></textarea>
                 </div>
             </div>

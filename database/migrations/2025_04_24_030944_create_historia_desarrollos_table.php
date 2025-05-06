@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('seccion10_id')->nullable();
             $table->integer('seccion11_id')->nullable();
             $table->integer('seccion12_id')->nullable();
+            $table->string('acepto_terminos')->nullable();
             $table->timestamps();
         });
 

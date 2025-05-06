@@ -17,6 +17,7 @@ class HistoriaController extends Controller
             'id_alumno' => null,
             'nombre' => null,
             'grado' => null,
+            'numero_hijos' => null,
 
         ]);
 

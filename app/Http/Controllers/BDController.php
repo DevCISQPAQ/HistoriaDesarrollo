@@ -100,17 +100,20 @@ class BDController extends Controller
         //     'valores_familia' => 'required|string',
 
         // ]);
+        if (($request->numero_hijos) > 1) {
+            $hermano =  Hermano::create([
 
-        $hermano =  Hermano::create([
+                'nombre_hermano' => json_encode((array) $request->nombre_hermano),
+                'edad_hermano' => json_encode((array) $request->edad_hermano),
+                'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
+                'escuela_hermano' => json_encode((array) $request->escuela_hermano),
+                'salud_hermano' => json_encode((array) $request->salud_hermano),
 
-            'nombre_hermano' => json_encode((array) $request->nombre_hermano),
-            'edad_hermano' => json_encode((array) $request->edad_hermano),
-            'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
-            'escuela_hermano' => json_encode((array) $request->escuela_hermano),
-            'salud_hermano' => json_encode((array) $request->salud_hermano),
-
-        ]);
-
+            ]);
+        }else{
+            $hermano = new Hermano(); // Crea un modelo vacío
+            $hermano->id = null;
+        }
 
         $seccion2 =  Seccion2::create([
 
@@ -149,14 +152,14 @@ class BDController extends Controller
 
         ]);
 
-        $historia = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+        session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+
+
+         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion2_id' => $seccion2->id
         ]);
 
-        // 3. Guardar en sesión el ID para siguientes secciones
-        //  session(['historia_id' => $historia->id]);
 
-        // 4. Redirigir a sección 2
         return redirect()->route('preescolar.seccion3');
     }
 
@@ -360,6 +363,8 @@ class BDController extends Controller
         $seccion12 = Seccion12::create([
             'reaccprimer' => $request->reaccprimer,
             'dificumateria' => $request->dificumateria,
+            'nivel_lectura' => $request->nivel_lectura,
+            'nivel_escritura' => $request->nivel_escritura,
             'ha_repetido' => $request->ha_repetido,
             'cual_escuela' => $request->cual_escuela,
             'porque_escuela' => $request->porque_escuela,
@@ -382,7 +387,17 @@ class BDController extends Controller
         return redirect()->route('preescolar.seccion13');
     }
 
-//
+    public function guardarSeccion13(Request $request)
+    {
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+            'acepto_terminos' => $request->acepto_terminos
+        ]);
+
+        return redirect()->route('historia.nivel-educativo');
+    }
+
+
+    //
     public function buscar(Request $request)
     {
         $estudiantes = Estudiante::where(
@@ -393,6 +408,7 @@ class BDController extends Controller
         if ($estudiante) {
 
             $historias = HistoriaDesarrollo::find($estudiante->id);
+            $seccion2 = Seccion2::find($historias->seccion2_id);
 
 
             if ($historias) {
@@ -430,14 +446,17 @@ class BDController extends Controller
 
                 session()->put(['id_alumno' => $estudiante->id]);
                 session()->put(['nombre' => $estudiante->nombre_completo]);
+                session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
 
                 // Redirigir a la vista intermedia y pasar el nombre de la vista
                 return view('historias.level-selector', [
                     'vista' => $vista,
-                    'estudiantes' => $estudiantes
+                    'estudiantes' => $estudiantes,
+                    'campoLlenoCount' => $campoLlenoCount
 
                 ]);
+
             } else {
                 // Si el estudiante no existe, cargamos una vista por defecto
                 return view('historias.level-selector', [
@@ -448,6 +467,4 @@ class BDController extends Controller
             return view('historias.level-selector', compact('estudiantes'));
         }
     }
-
-
 }

@@ -20,7 +20,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion8.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('preescolar.seccion8.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
@@ -28,18 +28,18 @@ $nombre = session('nombre');
             <!--Describre lenguaje -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 pb-2">Como describiria el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
-                <div class="md:flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Despues de lo esperado para la edad</span>
                         <input type="radio" name="desarrollo_lenguaje" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Despues de lo esperado para la edad</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Esperado para la edad</span>
                         <input type="radio" name="desarrollo_lenguaje" value="Esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Esperado para la edad</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                        <span class="mr-2">Antes de lo esperado</span>
                         <input type="radio" name="desarrollo_lenguaje" value="Antes de lo esperado" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">Antes de lo esperado</span>
                     </label>
                 </div>
             </div>

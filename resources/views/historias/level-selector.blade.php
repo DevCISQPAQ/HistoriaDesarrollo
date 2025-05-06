@@ -111,12 +111,13 @@
                             @foreach ($estudiantes as $estudiante)
                             <li class="bg-gray-100 p-3 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <p class="pt-2">{{ $estudiante->nombre_completo }}</p>
-                                <a href="{{ route('preescolar.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
+                                @if($campoLlenoCount < 14)
+                                    <a href="{{ route('preescolar.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
                                     Continuar
-                                </a>
-                                <!-- <form action="{{ url($vista) }}" method="GET">
-                                    <button type="submit" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">Continuar</button>
-                                </form> -->
+                                    </a>
+                                    @else
+                                    <p class="text-gray-500 p-2">Los campos ya han sido llenados.</p>
+                                    @endif
                             </li>
                             @endforeach
                         </ul>

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('reaccprimer');
             $table->string('dificumateria');
+            $table->string('nivel_lectura')->nullable();
+            $table->string('nivel_escritura')->nullable();
             $table->string('ha_repetido');
             $table->string('cual_escuela')->nullable();
             $table->string('porque_escuela')->nullable();

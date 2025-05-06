@@ -20,7 +20,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion12.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('preescolar.seccion12.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
@@ -87,6 +87,22 @@ $nombre = session('nombre');
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
+
+            @if(session('grado')==='primaria_secundaria')
+            <div class="pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div>
+                    <label for="nivel_lectura" class="block text-sm font-medium text-gray-700 pt-3">Cual es su nivel de lectura? <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="nivel_lectura" name="nivel_lectura">
+                </div>
+
+                <div>
+                    <label for="nivel_escritura" class="block text-sm font-medium text-gray-700 pt-3">Cual es su nivel de escritura? <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="nivel_escritura" name="nivel_escritura">
+                </div>
+            </div>
+            @endif
             <!-- opciones de si dificultad -->
             <div x-data="{haydificultad: ''}">
                 <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha presentado dificultad en la pronunciacion de alguna letra? <span class="text-red-500">*</span></label>
@@ -181,4 +197,3 @@ $nombre = session('nombre');
 <script>
 </script>
 @endsection
-
