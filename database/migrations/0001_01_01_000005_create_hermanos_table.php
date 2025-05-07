@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('hermanos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_hermano', 150); 
-            $table->string('edad_hermano');
-            $table->string('escolar_ocupacion');
-            $table->string('escuela_hermano');
-            $table->string('salud_hermano');
+            $table->text('nombre_hermano', 150); 
+            $table->text('edad_hermano');
+            $table->text('escolar_ocupacion');
+            $table->text('escuela_hermano');
+            $table->text('salud_hermano');
             $table->timestamps();
         });
     }

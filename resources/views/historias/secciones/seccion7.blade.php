@@ -49,13 +49,13 @@ $nombre = session('nombre');
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
                 <div>
                     <label for="edad_gate" class="block text-sm font-medium text-gray-700 pt-3">Gatear: <span class="text-red-500">*</span></label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_gate" name="edad_gate" required>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="edad_gate" name="edad_gate" placeholder="años/meses" required>
                 </div>
                 <div>
                     <label for="edad_cami" class="block text-sm font-medium text-gray-700 pt-3">Caminar: <span class="text-red-500">*</span></label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_cami" name="edad_cami" required>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="edad_cami" name="edad_cami" placeholder="años/meses" required>
                 </div>
             </div>
 

@@ -227,145 +227,147 @@ $nombre = session('nombre');
                             <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                 id="anos_casados" name="anos_casados" placeholder="Años">
                         </div>
-                    </div>
 
-                   
-                    <div x-data="{estcivil: ''}">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="estado_civil[]" value="Divorciados" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                                    x-model="estcivil">
-                                <span class="ml-2">Divorciados</span>
-                            </label>
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="estado_civil[]" value="Viudo(a)" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                                    x-model="estcivil">
-                                <span class="ml-2">Viudo(a)</span>
-                            </label>
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="estado_civil[]" value="Unión Libre" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                                    x-model="estcivil">
-                                <span class="ml-2">Unión Libre</span>
-                            </label>
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="estado_civil[]" value="Madre soltera" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                                    x-model="estcivil">
-                                <span class="ml-2">Madre soltera</span>
-                            </label>
-                            <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                                <input type="radio" name="estado_civil[]" value="Vuelto a casar" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                                    x-model="estcivil">
-                                <span class="ml-2">Vuelto a casar</span>
-                            </label>
-                        </div>
 
-                        <div class="pt-4 bg-[#8caab945] rounded-xl shadow-lg overflow-hidden p-4 mt-2" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
-                            <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente <span class="text-red-500">*</span></p>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-1">
-                                <div>
-                                    <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos">
-                                </div>
 
-                                <div>
-                                    <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
-                                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años">
-                                </div>
+                        <div x-data="{estcivil: ''}" x-show="!casadosigl && !civil" x-transition>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
+                                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="estado_civil[]" value="Divorciados" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                        x-model="estcivil">
+                                    <span class="ml-2">Divorciados</span>
+                                </label>
+                                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="estado_civil[]" value="Viudo(a)" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                        x-model="estcivil">
+                                    <span class="ml-2">Viudo(a)</span>
+                                </label>
+                                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="estado_civil[]" value="Unión Libre" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                        x-model="estcivil">
+                                    <span class="ml-2">Unión Libre</span>
+                                </label>
+                                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="estado_civil[]" value="Madre soltera" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                        x-model="estcivil">
+                                    <span class="ml-2">Madre soltera</span>
+                                </label>
+                                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="estado_civil[]" value="Vuelto a casar" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
+                                        x-model="estcivil">
+                                    <span class="ml-2">Vuelto a casar</span>
+                                </label>
+                            </div>
 
-                                <div>
-                                    <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc.">
-                                </div>
+                            <div class="pt-4 bg-[#8caab945] rounded-xl shadow-lg overflow-hidden p-4 mt-2" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
+                                <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre de origen), con quien vive el nino(a) actualmente <span class="text-red-500">*</span></p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-1">
+                                    <div>
+                                        <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
+                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos">
+                                    </div>
 
-                                <div>
-                                    <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc.">
-                                </div>
+                                    <div>
+                                        <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
+                                        <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años">
+                                    </div>
 
-                                <div>
-                                    <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="">
-                                </div>
+                                    <div>
+                                        <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
+                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc.">
+                                    </div>
 
-                                <div>
-                                    <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com">
-                                </div>
+                                    <div>
+                                        <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
+                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc.">
+                                    </div>
 
-                                <div>
-                                    <label for="redessoc_conyuge" class="block text-sm font-medium text-gray-700">Redes sociales</label>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
-                                        <div class="flex">
-                                            <div class="flex-none pt-2">
-                                                <span class="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#1877f2]">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                                        <path
-                                                            d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-                                                    </svg>
-                                                </span>
+                                    <div>
+                                        <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación</label>
+                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="">
+                                    </div>
+
+                                    <div>
+                                        <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
+                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                            id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com">
+                                    </div>
+
+                                    <div>
+                                        <label for="redessoc_conyuge" class="block text-sm font-medium text-gray-700">Redes sociales</label>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+                                            <div class="flex">
+                                                <div class="flex-none pt-2">
+                                                    <span class="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#1877f2]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                                            <path
+                                                                d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Facebook">
                                             </div>
-                                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                                id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Facebook">
+
+                                            <div class="flex">
+                                                <div class="flex-none pt-2">
+                                                    <span class="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#c13584]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                            <path
+                                                                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Instagram">
+                                            </div>
                                         </div>
+                                    </div>
 
-                                        <div class="flex">
-                                            <div class="flex-none pt-2">
-                                                <span class="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#c13584]">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                                        <path
-                                                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                                id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Instagram">
+                                    <!-- Diestra/Zurda -->
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es</label>
+                                        <div class="flex space-x-4 mt-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                                                <span class="ml-2">Diestro(a)</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" name="conyuge_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                                                <span class="ml-2">Zurdo(a)</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Diestra/Zurda -->
-                                <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es</label>
-                                    <div class="flex space-x-4 mt-2">
-                                        <label class="inline-flex items-center">
-                                            <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                                            <span class="ml-2">Diestro(a)</span>
-                                        </label>
-                                        <label class="inline-flex items-center">
-                                            <input type="checkbox" name="conyuge_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                                            <span class="ml-2">Zurdo(a)</span>
-                                        </label>
-                                    </div>
+                                <div class="py-4">
+                                    <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relación o parentesco que tenga con el niño(a):</label>
+                                    <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
                                 </div>
                             </div>
-                            <div class="py-4">
-                                <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relación o parentesco que tenga con el niño(a):</label>
-                                <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
-                            </div>
-                        </div>
 
 
 
-                        <div id="Divorciados" x-show="estcivil == $el.id">
-                            <!-- Motivos separación (condicional) -->
-                            <div x-transition>
-                                <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
-                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="moti_separa" name="moti_separa" rows="3"></textarea>
-                            </div>
+                            <div id="Divorciados" x-show="estcivil == $el.id">
+                                <!-- Motivos separación (condicional) -->
+                                <div x-transition>
+                                    <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
+                                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="moti_separa" name="moti_separa" rows="3"></textarea>
+                                </div>
 
-                            <!-- Vive con (condicional) -->
-                            <div x-transition>
-                                <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="vive_con" name="vive_con">
+                                <!-- Vive con (condicional) -->
+                                <div x-transition>
+                                    <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        id="vive_con" name="vive_con">
+                                </div>
+
                             </div>
 
                         </div>
@@ -376,7 +378,7 @@ $nombre = session('nombre');
                 <div x-data="{ cantidad: 1 }">
                     <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
                     <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos"  required placeholder="Cantidad">
+                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
                     <template x-if="cantidad > 1">
                         <div class="mt-3 overflow-x-auto">
                             <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('seccion7s', function (Blueprint $table) {
             $table->id();
             $table->string('desarrollo_motor');
-            $table->integer('edad_gate');
-            $table->integer('edad_cami');
+            $table->string('edad_gate');
+            $table->string('edad_cami');
             $table->string('dies_zurdhijo');
             $table->string('prac_deporte');
             $table->timestamps();

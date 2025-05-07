@@ -403,7 +403,7 @@ class BDController extends Controller
     public function buscar(Request $request)
     {
         $estudiantes = Estudiante::where('nombre_completo', $request->nombre_completo)
-            // ->where('fecha_nacimiento', $request->fecha_nacimiento)
+             ->where('fecha_nacimiento', $request->fecha_nacimiento)
             ->get();
         $estudiante = $estudiantes->first();
         if ($estudiante) {
@@ -439,15 +439,16 @@ class BDController extends Controller
                 // Determinar el nombre de la vista basado en el total de campos llenos
                 $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
 
-
-                // session([
-                //     'estudiante_id' => $estudiante->id,
-                //     'nombre_estudiante' => $estudiante->nombre_completo
-                // ]);
+                
 
                 session()->put(['id_alumno' => $estudiante->id]);
                 session()->put(['nombre' => $estudiante->nombre_completo]);
                 session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+
+                if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
+                   
+                    session()->put(['grado' => 'primaria_secundaria']);
+                }
 
 
                 // Redirigir a la vista intermedia y pasar el nombre de la vista
