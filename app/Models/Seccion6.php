@@ -8,13 +8,14 @@ class Seccion6 extends Model
 {
 
     protected $fillable = [
+        'estudiante_id',
         'desa_visual',
         'desa_auditivo',
     ];
 
     //
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
 }

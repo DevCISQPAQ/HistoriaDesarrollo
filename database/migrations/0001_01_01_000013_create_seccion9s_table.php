@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion9s', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
             $table->text('suenonino');
             $table->string('horadecama');
             $table->string('horadespierta');

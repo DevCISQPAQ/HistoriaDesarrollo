@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion2s', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
             $table->string('nombre_padre', 150); 
             $table->integer('edad_padre');
             $table->string('empresa_padre');

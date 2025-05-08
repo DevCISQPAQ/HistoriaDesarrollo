@@ -26,19 +26,19 @@ Route::get('/historia_desarrollo/seccion13', [HistoriaController::class, 'showSe
 // Route::get('/preescolar/seccion14', [HistoriaController::class, 'showPreescolarSeccion14'])->name('preescolar.seccion14');//no entiendo porque se necesita este
 
 // ... continúa según tus secciones
-Route::post('/preescolar/seccion1', [BDController::class, 'guardarSeccion1'])->name('seccion1.guardar');
-Route::post('/preescolar/seccion2', [BDController::class, 'guardarSeccion2'])->name('seccion2.guardar');
-Route::post('/preescolar/seccion3', [BDController::class, 'guardarSeccion3'])->name('seccion3.guardar');
-Route::post('/preescolar/seccion4', [BDController::class, 'guardarSeccion4'])->name('seccion4.guardar');
-Route::post('/preescolar/seccion5', [BDController::class, 'guardarSeccion5'])->name('seccion5.guardar');
-Route::post('/preescolar/seccion6', [BDController::class, 'guardarSeccion6'])->name('seccion6.guardar');
-Route::post('/preescolar/seccion7', [BDController::class, 'guardarSeccion7'])->name('seccion7.guardar');
-Route::post('/preescolar/seccion8', [BDController::class, 'guardarSeccion8'])->name('seccion8.guardar');
-Route::post('/preescolar/seccion9', [BDController::class, 'guardarSeccion9'])->name('seccion9.guardar');
-Route::post('/preescolar/seccion10', [BDController::class, 'guardarSeccion10'])->name('seccion10.guardar');
-Route::post('/preescolar/seccion11', [BDController::class, 'guardarSeccion11'])->name('seccion11.guardar');
-Route::post('/preescolar/seccion12', [BDController::class, 'guardarSeccion12'])->name('seccion12.guardar');
-Route::post('/preescolar/seccion13', [BDController::class, 'guardarSeccion13'])->name('seccion13.guardar');
+Route::post('/historia_desarrollo/seccion1', [BDController::class, 'guardarSeccion1'])->name('seccion1.guardar');
+Route::post('/historia_desarrollo/seccion2', [BDController::class, 'guardarSeccion2'])->name('seccion2.guardar');
+Route::post('/historia_desarrollo/seccion3', [BDController::class, 'guardarSeccion3'])->name('seccion3.guardar');
+Route::post('/historia_desarrollo/seccion4', [BDController::class, 'guardarSeccion4'])->name('seccion4.guardar');
+Route::post('/historia_desarrollo/seccion5', [BDController::class, 'guardarSeccion5'])->name('seccion5.guardar');
+Route::post('/historia_desarrollo/seccion6', [BDController::class, 'guardarSeccion6'])->name('seccion6.guardar');
+Route::post('/historia_desarrollo/seccion7', [BDController::class, 'guardarSeccion7'])->name('seccion7.guardar');
+Route::post('/historia_desarrollo/seccion8', [BDController::class, 'guardarSeccion8'])->name('seccion8.guardar');
+Route::post('/historia_desarrollo/seccion9', [BDController::class, 'guardarSeccion9'])->name('seccion9.guardar');
+Route::post('/historia_desarrollo/seccion10', [BDController::class, 'guardarSeccion10'])->name('seccion10.guardar');
+Route::post('/historia_desarrollo/seccion11', [BDController::class, 'guardarSeccion11'])->name('seccion11.guardar');
+Route::post('/historia_desarrollo/seccion12', [BDController::class, 'guardarSeccion12'])->name('seccion12.guardar');
+Route::post('/historia_desarrollo/seccion13', [BDController::class, 'guardarSeccion13'])->name('seccion13.guardar');
 
 
 Route::post('/nivel-educativo', [BDController::class, 'buscar'])->name('historia.nivel-educativo.buscar');

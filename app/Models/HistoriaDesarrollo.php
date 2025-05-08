@@ -29,62 +29,62 @@ class HistoriaDesarrollo extends Model
 
     public function estudiante()
     {
-        return $this->hasMany(Estudiante::class);
+        return$this->belongsTo(Estudiante::class);
     }
 
     public function seccion2()
     {
-        return $this->hasMany(Seccion2::class);
+        return $this->belongsTo(Seccion2::class);
     }
 
     public function seccion3()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion3::class);
     }
 
     public function seccion4()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion4::class);
     }
 
     public function seccion5()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion5::class);
     }
 
     public function seccion6()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion6::class);
     }
 
     public function seccion7()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion7::class);
     }
 
     public function seccion8()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion8::class);
     }
 
     public function seccion9()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion9::class);
     }
 
     public function seccion10()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion10::class);
     }
 
     public function seccion11()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion11::class);
     }
 
     public function seccion12()
     {
-        return $this->hasMany(Seccion3::class);
+        return $this->belongsTo(Seccion12::class);
     }
 
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seccion12 extends Model
 {
     protected $fillable = [
+        'estudiante_id',
         'reaccprimer',
         'dificumateria',
         'nivel_lectura',
@@ -30,8 +31,8 @@ class Seccion12 extends Model
     ];
 
     //
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
 }

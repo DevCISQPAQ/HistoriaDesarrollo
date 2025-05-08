@@ -8,6 +8,7 @@ class Seccion3 extends Model
 {
     protected $fillable = [
         // 'hermano_id',
+        'estudiante_id',
         'idioma_casa',
         'personas_casa',
         'quienes_casa',
@@ -19,11 +20,10 @@ class Seccion3 extends Model
 
 
 
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
-
     // public function hermano()
     // {
     //     return $this->hasMany(Hermano::class);

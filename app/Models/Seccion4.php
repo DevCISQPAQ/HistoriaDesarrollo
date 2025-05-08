@@ -8,6 +8,7 @@ class Seccion4 extends Model
 {
 
     protected $fillable = [
+        'estudiante_id',
         'califica_adaptacion',
         'califica_adaptacion_porq',
         'relacion_familia_madre',
@@ -22,8 +23,8 @@ class Seccion4 extends Model
     ];
     //
 
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
 }

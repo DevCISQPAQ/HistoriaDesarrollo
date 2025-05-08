@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion6s', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
             $table->string('desa_visual');
             $table->string('desa_auditivo');
             $table->timestamps();

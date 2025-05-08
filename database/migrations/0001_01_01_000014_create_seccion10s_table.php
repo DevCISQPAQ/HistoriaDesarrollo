@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seccion10s', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
             $table->text('saludnino');
             $table->string('otrosprob')->nullable();
             $table->string('enfeotrastor');

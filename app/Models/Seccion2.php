@@ -11,6 +11,7 @@ class Seccion2 extends Model
     use HasFactory;
 
     protected $fillable = [
+        'estudiante_id',
         'nombre_padre',
         'edad_padre',
         'empresa_padre',
@@ -48,9 +49,9 @@ class Seccion2 extends Model
 
 
 
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
 
     public function hermano()

@@ -117,6 +117,7 @@ class BDController extends Controller
 
         $seccion2 =  Seccion2::create([
 
+            'estudiante_id' =>session('id_alumno'),
             'nombre_padre' => $request->nombre_padre,
             'edad_padre' => $request->edad_padre,
             'empresa_padre' => $request->empresa_padre,
@@ -155,9 +156,14 @@ class BDController extends Controller
         session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion2_id' => $seccion2->id
-        ]);
+        // $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
+        //     'seccion2_id' => $seccion2->id
+        // ]);
+
+        $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
+        $formulario->seccion2_id = $seccion2->id;
+        $formulario->save();
+
 
 
         return redirect()->route('historia.seccion3');
@@ -403,7 +409,7 @@ class BDController extends Controller
     public function buscar(Request $request)
     {
         $estudiantes = Estudiante::where('nombre_completo', $request->nombre_completo)
-             ->where('fecha_nacimiento', $request->fecha_nacimiento)
+            ->where('fecha_nacimiento', $request->fecha_nacimiento)
             ->get();
         $estudiante = $estudiantes->first();
         if ($estudiante) {
@@ -439,7 +445,7 @@ class BDController extends Controller
                 // Determinar el nombre de la vista basado en el total de campos llenos
                 $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
 
-                
+
 
                 session()->put(['id_alumno' => $estudiante->id]);
                 session()->put(['nombre' => $estudiante->nombre_completo]);
@@ -452,7 +458,7 @@ class BDController extends Controller
                 // session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
                 if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
-                   
+
                     session()->put(['grado' => 'primaria_secundaria']);
                 }
 

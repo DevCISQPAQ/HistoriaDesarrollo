@@ -8,13 +8,14 @@ class Seccion8 extends Model
 {
     
     protected $fillable = [
+        'estudiante_id',
         'desarrollo_lenguaje',
         'prim_palabra',
     ];
 
     //
-    public function historiadesarrollo()
+    public function estudiante()
     {
-        return $this->belongsTo(HistoriaDesarrollo::class);
+        return$this->belongsTo(Estudiante::class);
     }
 }

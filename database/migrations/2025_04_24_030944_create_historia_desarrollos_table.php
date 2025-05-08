@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('historia_desarrollos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('estudiante_id')->constrained('estudiantes')->nullable()->onDelete('cascade');
-            $table->integer('seccion2_id')->nullable();
-            $table->integer('seccion3_id')->nullable();
-            $table->integer('seccion4_id')->nullable();
-            $table->integer('seccion5_id')->nullable();
-            $table->integer('seccion6_id')->nullable();
-            $table->integer('seccion7_id')->nullable();
-            $table->integer('seccion8_id')->nullable();
-            $table->integer('seccion9_id')->nullable();
-            $table->integer('seccion10_id')->nullable();
-            $table->integer('seccion11_id')->nullable();
-            $table->integer('seccion12_id')->nullable();
+            $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
+            $table->integer('seccion2_id')->nullable()->constrained('seccion2s')->onDelete('set null');
+            $table->integer('seccion3_id')->nullable()->constrained('seccion3s')->onDelete('set null');
+            $table->integer('seccion4_id')->nullable()->constrained('seccion4s')->onDelete('set null');
+            $table->integer('seccion5_id')->nullable()->constrained('seccion5s')->onDelete('set null');
+            $table->integer('seccion6_id')->nullable()->constrained('seccion6s')->onDelete('set null');
+            $table->integer('seccion7_id')->nullable()->constrained('seccion7s')->onDelete('set null');
+            $table->integer('seccion8_id')->nullable()->constrained('seccion8s')->onDelete('set null');
+            $table->integer('seccion9_id')->nullable()->constrained('seccion9s')->onDelete('set null');
+            $table->integer('seccion10_id')->nullable()->constrained('seccion10s')->onDelete('set null');
+            $table->integer('seccion11_id')->nullable()->constrained('seccion11s')->onDelete('set null');
+            $table->integer('seccion12_id')->nullable()->constrained('seccion12s')->onDelete('set null');
             $table->string('acepto_terminos')->nullable();
             $table->timestamps();
         });
