@@ -19,7 +19,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion7.guardar') }}" method="POST" class="p-1">
+    <form action="{{ route('seccion7.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <!-- Datos -->

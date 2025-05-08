@@ -39,7 +39,7 @@
                         </a>
 
                         <!-- Opción Primaria/Secundaria -->
-                        <a href="{{ route('primaria.seccion1') }}"
+                        <a href="{{ route('primaria_secundaria.seccion1') }}"
                             class="group border-2 border-green-100 rounded-xl p-6 text-center hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-green-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-green-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,7 +116,7 @@
                             <li class="bg-gray-100 p-3 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <p class="pt-2">{{ $estudiante->nombre_completo }}</p>
                                 @if($campoLlenoCount < 14)
-                                    <a href="{{ route('preescolar.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
+                                    <a href="{{ route('historia.'.$vista) }}" class="px-6 py-2  items-center justify-center bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition flex shadow-md" type="submit">
                                     Continuar
                                     </a>
                                     @else

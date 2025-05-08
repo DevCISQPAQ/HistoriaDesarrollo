@@ -21,7 +21,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion2.guardar') }}" method="POST" class="p-1">
+    <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
         <!-- <form action="#" method="POST"> -->
         @csrf
 
@@ -57,7 +57,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="ocupacion_padre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_padre" name="ocupacion_padre" placeholder="">
+                        id="ocupacion_padre" name="ocupacion_padre" required placeholder="">
                 </div>
 
                 <div>
@@ -146,7 +146,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="ocupacion_madre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_madre" name="ocupacion_madre" placeholder="">
+                        id="ocupacion_madre" name="ocupacion_madre" required placeholder="">
                 </div>
 
                 <div>

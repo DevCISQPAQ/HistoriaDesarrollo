@@ -21,7 +21,7 @@ $grado = session('grado');
 
     <!-- Formulario -->
     <!-- {{-- <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6"> --}} -->
-    <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6">
+    <form action="{{ route('seccion1.guardar') }}" method="POST" class="p-6">
         @csrf
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

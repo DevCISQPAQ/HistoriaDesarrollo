@@ -60,7 +60,7 @@ class BDController extends Controller
         session()->put(['nombre' => $estudiante->nombre_completo]);
 
         // 4. Redirigir a sección 2
-        return redirect()->route('preescolar.seccion2');
+        return redirect()->route('historia.seccion2');
     }
 
     public function guardarSeccion2(Request $request)
@@ -160,7 +160,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion3');
+        return redirect()->route('historia.seccion3');
     }
 
     public function guardarSeccion3(Request $request)
@@ -198,7 +198,7 @@ class BDController extends Controller
         //  session(['historia_id' => $historia->id]);
 
         // 4. Redirigir a sección 2
-        return redirect()->route('preescolar.seccion4');
+        return redirect()->route('historia.seccion4');
     }
 
     public function guardarSeccion4(Request $request)
@@ -222,7 +222,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion5');
+        return redirect()->route('historia.seccion5');
     }
 
     public function guardarSeccion5(Request $request)
@@ -244,7 +244,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion6');
+        return redirect()->route('historia.seccion6');
     }
 
     public function guardarSeccion6(Request $request)
@@ -260,7 +260,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion7');
+        return redirect()->route('historia.seccion7');
     }
 
     public function guardarSeccion7(Request $request)
@@ -279,7 +279,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion8');
+        return redirect()->route('historia.seccion8');
     }
 
     public function guardarSeccion8(Request $request)
@@ -295,7 +295,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion9');
+        return redirect()->route('historia.seccion9');
     }
 
     public function guardarSeccion9(Request $request)
@@ -318,7 +318,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion10');
+        return redirect()->route('historia.seccion10');
     }
 
     public function guardarSeccion10(Request $request)
@@ -336,7 +336,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion11');
+        return redirect()->route('historia.seccion11');
     }
 
     public function guardarSeccion11(Request $request)
@@ -354,7 +354,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion12');
+        return redirect()->route('historia.seccion12');
     }
 
     public function guardarSeccion12(Request $request)
@@ -386,7 +386,7 @@ class BDController extends Controller
         ]);
 
 
-        return redirect()->route('preescolar.seccion13');
+        return redirect()->route('historia.seccion13');
     }
 
     public function guardarSeccion13(Request $request)
@@ -443,7 +443,13 @@ class BDController extends Controller
 
                 session()->put(['id_alumno' => $estudiante->id]);
                 session()->put(['nombre' => $estudiante->nombre_completo]);
-                session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+
+                if ($seccion2) {
+                    session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+                } else {
+                    session()->put(['numero_hijos' => null]); // o algún valor por defecto
+                }
+                // session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
                 if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
                    

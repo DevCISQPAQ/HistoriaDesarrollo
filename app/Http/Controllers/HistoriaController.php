@@ -36,69 +36,69 @@ class HistoriaController extends Controller
         return view('historias.secciones.seccion1');
     }
 
-    public function showPreescolarSeccion2()
+    public function showSeccion2()
     {
         return view('historias.secciones.seccion2');
     }
 
-    public function showPreescolarSeccion3()
+    public function showSeccion3()
     {
         return view('historias.secciones.seccion3');
     }
 
-    public function showPreescolarSeccion4()
+    public function showSeccion4()
     {
         return view('historias.secciones.seccion4');
     }
 
-    public function showPreescolarSeccion5()
+    public function showSeccion5()
     {
         return view('historias.secciones.seccion5');
     }
 
-    public function showPreescolarSeccion6()
+    public function showSeccion6()
     {
         return view('historias.secciones.seccion6');
     }
 
-    public function showPreescolarSeccion7()
+    public function showSeccion7()
     {
         return view('historias.secciones.seccion7');
     }
 
-    public function showPreescolarSeccion8()
+    public function showSeccion8()
     {
         return view('historias.secciones.seccion8');
     }
 
-    public function showPreescolarSeccion9()
+    public function showSeccion9()
     {
         return view('historias.secciones.seccion9');
     }
 
-    public function showPreescolarSeccion10()
+    public function showSeccion10()
     {
         return view('historias.secciones.seccion10');
     }
 
-    public function showPreescolarSeccion11()
+    public function showSeccion11()
     {
         return view('historias.secciones.seccion11');
     }
 
-    public function showPreescolarSeccion12()
+    public function showSeccion12()
     {
         return view('historias.secciones.seccion12');
     }
 
-    public function showPreescolarSeccion13()
+    public function showSeccion13()
     {
         return view('historias.secciones.seccion13');
     }
 
 
     ////
-    public function showPrimariaSecundaria()
+    public function showPrimariaSecundariaSeccion1()
     {
         session([
             'id_alumno' => '',

@@ -20,7 +20,7 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Gracias por terminar el formulario para el alumno {{$id_alumno }} , {{$nombre}}</p>
     </div>
 
-    <form action="{{ route('preescolar.seccion13.guardar') }}" method="POST" class="p-1">
+    <form action="{{ route('seccion13.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
