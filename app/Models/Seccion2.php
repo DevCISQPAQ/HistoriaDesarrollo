@@ -56,6 +56,6 @@ class Seccion2 extends Model
 
     public function hermano()
     {
-        return $this->hasMany(Hermano::class);
+        return $this->hasOne(Hermano::class);
     }
 }

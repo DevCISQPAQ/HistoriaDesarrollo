@@ -102,7 +102,7 @@ class BDController extends Controller
         // ]);
         if (($request->numero_hijos) > 1) {
             $hermano =  Hermano::create([
-
+                'estudiante_id' =>session('id_alumno'),
                 'nombre_hermano' => json_encode((array) $request->nombre_hermano),
                 'edad_hermano' => json_encode((array) $request->edad_hermano),
                 'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
@@ -183,7 +183,7 @@ class BDController extends Controller
 
 
         $seccion3 =  Seccion3::create([
-
+            'estudiante_id' =>session('id_alumno'),
             // 'hermano_id' => $hermano->id,
             'idioma_casa' => $request->idioma_casa,
             'personas_casa' => $request->personas_casa,
@@ -211,6 +211,7 @@ class BDController extends Controller
     {
 
         $seccion4 = Seccion4::create([
+            'estudiante_id' =>session('id_alumno'),
             'califica_adaptacion' => $request->califica_adaptacion,
             'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
             'relacion_familia_madre' => $request->relacion_familia_madre,
@@ -235,6 +236,7 @@ class BDController extends Controller
     {
 
         $seccion5 = Seccion5::create([
+            'estudiante_id' =>session('id_alumno'),
             'total_embarazo' => $request->total_embarazo,
             'experi_embarazo' => $request->experi_embarazo,
             'mencione_embaenfe' => $request->mencione_embaenfe,
@@ -257,6 +259,7 @@ class BDController extends Controller
     {
 
         $seccion6 = Seccion6::create([
+            'estudiante_id' =>session('id_alumno'),
             'desa_visual' => $request->desa_visual,
             'desa_auditivo' => $request->desa_auditivo,
         ]);
@@ -273,6 +276,7 @@ class BDController extends Controller
     {
 
         $seccion7 = Seccion7::create([
+            'estudiante_id' =>session('id_alumno'),
             'desarrollo_motor' => $request->desarrollo_motor,
             'edad_gate' => $request->edad_gate,
             'edad_cami' => $request->edad_cami,
@@ -292,6 +296,7 @@ class BDController extends Controller
     {
 
         $seccion8 = Seccion8::create([
+            'estudiante_id' =>session('id_alumno'),
             'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
             'prim_palabra' => $request->prim_palabra,
         ]);
@@ -308,6 +313,7 @@ class BDController extends Controller
     {
 
         $seccion9 = Seccion9::create([
+            'estudiante_id' =>session('id_alumno'),
             'suenonino' => json_encode((array)  $request->suenonino),
             'horadecama' => $request->horadecama,
             'horadespierta' => $request->horadespierta,
@@ -331,6 +337,7 @@ class BDController extends Controller
     {
 
         $seccion10 = Seccion10::create([
+            'estudiante_id' =>session('id_alumno'),
             'saludnino' => json_encode((array) $request->saludnino),
             'otrosprob' => $request->otrosprob,
             'enfeotrastor' => $request->enfeotrastor,
@@ -349,6 +356,7 @@ class BDController extends Controller
     {
 
         $seccion11 = Seccion11::create([
+            'estudiante_id' =>session('id_alumno'),
             'personalidadhijo' => $request->personalidadhijo,
             'oportunihijo' => $request->oportunihijo,
             'adapthijo' => $request->adapthijo,
@@ -367,6 +375,7 @@ class BDController extends Controller
     {
 
         $seccion12 = Seccion12::create([
+            'estudiante_id' =>session('id_alumno'),
             'reaccprimer' => $request->reaccprimer,
             'dificumateria' => $request->dificumateria,
             'nivel_lectura' => $request->nivel_lectura,

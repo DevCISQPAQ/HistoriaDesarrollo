@@ -25,11 +25,11 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
             <!-- check box -->
-            <div>
+            <div required>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
-                        <input type="checkbox" name="saludnino[]" value="Respiratorios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <input type="checkbox" name="saludnino[]" value="Respiratorios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" >
                         <span class="ml-2">Respiratorios</span>
                     </label>
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
