@@ -3,6 +3,9 @@
 use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\BDController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
    return view('welcome');
@@ -45,3 +48,20 @@ Route::post('/nivel-educativo', [BDController::class, 'buscar'])->name('historia
 
 // Formulario Primaria/Secundari1
 Route::get('/primaria_secundaria/seccion1', [HistoriaController::class, 'showPrimariaSecundariaSeccion1'])->name('primaria_secundaria.seccion1');
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/usuarios', [AdminController::class, 'listarUsuarios'])->name('admin.usuarios');
+    Route::get('/usuarios/crear', [AdminController::class, 'crearUsuario'])->name('admin.usuarios.crear');
+    Route::post('/usuarios', [AdminController::class, 'guardarUsuario'])->name('admin.usuarios.guardar');
+    Route::get('/usuarios/{id}/editar', [AdminController::class, 'editarUsuario'])->name('admin.usuarios.editar');
+    Route::put('/usuarios/{id}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
+    Route::delete('/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
+});
