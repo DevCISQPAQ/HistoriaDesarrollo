@@ -5,6 +5,7 @@ use App\Http\Controllers\BDController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -65,3 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/usuarios/{id}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
     Route::delete('/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
 });
+
+Route::get('/admin/estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
+Route::delete('/admin/estudiantes/{id}', [EstudianteController::class, 'destroy'])->name('estudiantes.destroy');
+Route::get('/admin/estudiantes/{id}/pdf', [EstudianteController::class, 'verPDF'])->name('estudiantes.pdf');

@@ -6,21 +6,60 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Estudiante;
+use App\Models\HistoriaDesarrollo;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        if (!Auth::check() || !Auth::user()->is_admin) {
+        // if (!Auth::check() || !Auth::user()->is_admin) {
+        //     abort(403, 'Acceso no autorizado');
+        // }
+
+        if (!Auth::check()) {
             abort(403, 'Acceso no autorizado');
         }
 
-        $usuarios = User::count();
-        $activosHoy = User::whereDate('updated_at', now()->toDateString())->count();
+
+        $terminados = HistoriaDesarrollo::whereNotNull('seccion2_id')
+            ->whereNotNull('seccion3_id')
+            ->whereNotNull('seccion4_id')
+            ->whereNotNull('seccion5_id')
+            ->whereNotNull('seccion6_id')
+            ->whereNotNull('seccion7_id')
+            ->whereNotNull('seccion8_id')
+            ->whereNotNull('seccion9_id')
+            ->whereNotNull('seccion10_id')
+            ->whereNotNull('seccion11_id')
+            ->whereNotNull('seccion12_id')
+            ->whereNotNull('acepto_terminos')
+            ->count();
+
+        $no_terminados = HistoriaDesarrollo::where(function ($query) {
+            $query->whereNull('seccion2_id')
+                ->orWhereNull('seccion3_id')
+                ->orWhereNull('seccion4_id')
+                ->orWhereNull('seccion5_id')
+                ->orWhereNull('seccion6_id')
+                ->orWhereNull('seccion7_id')
+                ->orWhereNull('seccion8_id')
+                ->orWhereNull('seccion9_id')
+                ->orWhereNull('seccion10_id')
+                ->orWhereNull('seccion11_id')
+                ->orWhereNull('seccion12_id')
+                ->orWhereNull('acepto_terminos');
+        })->count();
+
+        $totales_formularios = HistoriaDesarrollo::count();
+
+
+
+        $usuarios = Estudiante::count();
+        $activosHoy = Estudiante::whereDate('updated_at', now()->toDateString())->count();
         $pendientes = 8; // Aquí podrías usar algún modelo real
 
-        return view('admin.dashboard', compact('usuarios', 'activosHoy', 'pendientes'));
+        return view('admin.dashboard', compact('terminados', 'no_terminados', 'totales_formularios'));
     }
 
 

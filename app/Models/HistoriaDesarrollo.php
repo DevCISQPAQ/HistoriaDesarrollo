@@ -23,6 +23,7 @@ class HistoriaDesarrollo extends Model
         'seccion10_id',
         'seccion11_id',
         'seccion12_id',
+        'acepto_terminos',
 
     ];
 

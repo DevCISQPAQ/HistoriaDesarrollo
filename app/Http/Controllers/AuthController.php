@@ -18,12 +18,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->is_admin) {
+            // if (Auth::user()->is_admin) {
                 return redirect('/admin/dashboard');
-            } else {
-                Auth::logout();
-                return redirect('/login')->withErrors(['no_admin' => 'Acceso solo para administradores.']);
-            }
+            // } else {
+                // Auth::logout();
+                // return redirect('/login')->withErrors(['no_admin' => 'Acceso solo para administradores.']);
+            // }
         }
 
         return redirect('/login')->withErrors(['login_error' => 'Credenciales inválidas.']);
@@ -37,7 +37,11 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        if (!Auth::check() || !Auth::user()->is_admin) {
+        // if (!Auth::check() || !Auth::user()->is_admin) {
+        //     abort(403, 'Acceso no autorizado');
+        // }
+
+         if (!Auth::check()) {
             abort(403, 'Acceso no autorizado');
         }
 

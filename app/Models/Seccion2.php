@@ -47,6 +47,11 @@ class Seccion2 extends Model
         'hermano_id'
     ];
 
+     protected $casts = [
+        'redessoc_padre' => 'array',
+        'padre_lateralidad' => 'array',
+    ];
+
 
 
     public function estudiante()

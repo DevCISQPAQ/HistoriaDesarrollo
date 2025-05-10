@@ -1,0 +1,79 @@
+ body {
+     font-family: DejaVu Sans, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f9fafb;
+     color: #333;
+ }
+
+ .container {
+     max-width: 700px;
+     margin: 0;
+     background: #fff;
+     padding: .3rem;
+     border: 1px solid #e5e7eb;
+     border-radius: 8px;
+ }
+
+ .header {
+     background-color: #263c57;
+     color: white;
+     padding: .5rem;
+     text-align: center;
+     border-radius: 6px 6px 0 0;
+     margin-top: 2rem;
+ }
+
+ .title {
+     font-size: .8rem;
+     margin: 0;
+     text-transform: uppercase;
+ }
+
+ .info-table {
+     width: 100%;
+     border-collapse: collapse;
+     margin: 0;
+     font-family: Arial, sans-serif;
+     font-size: .7rem;
+ }
+
+
+
+ .info-table td.label {
+     padding: 10px;
+     font-weight: bold;
+     border: 1px solid #ddd;
+     width: 25%;
+ }
+
+ .info-table td.value {
+     padding: 10px;
+     border: 1px solid #ddd;
+     width: 25%;
+ }
+
+ .footer {
+     margin-top: 30px;
+     font-size: 12px;
+     text-align: center;
+     color: #999;
+ }
+
+ .bannerpdf p {
+     display: flex;
+     justify-content:
+         space-between;
+     align-items: center;
+     text-align: right;
+     font-size: .9rem;
+ }
+
+ .header1 {
+     background-color: #54667a;
+     color: white;
+     padding: .5rem;
+     text-align: center;
+     border-radius: 6px 6px 0 0;
+     margin-top: 2rem;
+ }
