@@ -32,54 +32,52 @@
             <table class="info-table">
                 <tr>
                     <td class="label">Nombre:</td>
-                    <td class="value">{{ $estudiante->nombre_completo }}</td>
+                    <td class="value">{{ $estudiante->nombre_completo ?? '—'}}</td>
                     <td class="label">Edad:</td>
-                    <td class="value">{{ $estudiante->edad }} Años</td>
+                    <td class="value">{{ $estudiante->edad ?? '—'}} Años</td>
 
                     <!-- <td class="label">Fecha de creación:</td>
                 <td class="value">{{ $estudiante->created_at->format('d/m/Y H:i') }}</td> -->
                 </tr>
                 <tr>
                     <td class="label">Sexo:</td>
-                    <td class="value">{{ $estudiante->genero }}</td>
+                    <td class="value">{{ $estudiante->genero ?? '—'}}</td>
                     <td class="label">Fecha de nacimiento:</td>
                     <td class="value">{{ $estudiante->fecha_nacimiento ? \Carbon\Carbon::parse($estudiante->fecha_nacimiento)->format('d/m/Y') : '—' }}</td>
                 </tr>
                 <tr>
                     <td class="label">Lugar de nacimiento:</td>
-                    <td class="value">{{ $estudiante->lugar_nacimiento }}</td>
+                    <td class="value">{{ $estudiante->lugar_nacimiento ?? '—'}}</td>
                     <td class="label">Grado escolar:</td>
-                    <td class="value">{{ $estudiante->grado_escolar}}</td>
+                    <td class="value">{{ $estudiante->grado_escolar ?? '—'}}</td>
                 </tr>
                 <tr>
                     <td class="label">Dirección:</td>
-                    <td class="value">{{ $estudiante->direccion}}</td>
+                    <td class="value">{{ $estudiante->direccion ?? '—'}}</td>
                     <td class="label">C.P.:</td>
-                    <td class="value">{{ $estudiante->cp }}</td>
+                    <td class="value">{{ $estudiante->cp ?? '—'}}</td>
                 </tr>
                 <tr>
                     <td class="label">Teléfono:</td>
-                    <td class="value">{{ $estudiante->telefono}}</td>
+                    <td class="value">{{ $estudiante->telefono ?? '—'}}</td>
                     <td class="label">Escuela de procedencia:</td>
-                    <td class="value">{{ $estudiante->escuela_procedencia}}</td>
+                    <td class="value">{{ $estudiante->escuela_procedencia ?? '—'}}</td>
                 </tr>
             </table>
         </div>
 
         <!-- estructura familiar -->
         <div>
-            <div class="header1">
+            <div class="header" style="background-color: #54667a;">
                 <h1 class="title">Estructura familiar</h1>
             </div>
+            <!-- padre -->
             <table class="info-table">
                 <tr>
                     <td class="label">Nombre del padre:</td>
                     <td class="value">{{ $estudiante->seccion2->nombre_padre ?? '—'}}</td>
                     <td class="label">Edad:</td>
                     <td class="value">{{ $estudiante->seccion2->edad_padre ?? '—'}} Años</td>
-
-                    <!-- <td class="label">Fecha de creación:</td>
-                <td class="value">{{ $estudiante->created_at->format('d/m/Y H:i') }}</td> -->
                 </tr>
                 <tr>
                     <td class="label">Nombre de la empresa:</td>
@@ -96,13 +94,508 @@
                 <tr>
                     <td class="label">Redes Sociales:</td>
                     <td class="value">Facebook: {{ $estudiante->seccion2->redessoc_padre[0] ?? '—' }}</td>
-                      <td class="value">Instagram: {{ $estudiante->seccion2->redessoc_padre[1] ?? '—' }}</td>
+                    <td class="value">Instagram: {{ $estudiante->seccion2->redessoc_padre[1] ?? '—' }}</td>
                     <td class="value" colspan="1"></td>
                 </tr>
                 <tr>
                     <td class="label">Lateridad:</td>
-                    <td class="value">  {{ implode(', ', $estudiante->seccion2->padre_lateralidad ?? []) }}</td>
+                    <td class="value"> {{ implode(', ', $estudiante->seccion2->padre_lateralidad ?? []) }}</td>
                     <td class="value" colspan="2"></td>
+                </tr>
+            </table>
+            <!-- madre -->
+            <table class="info-table" style="padding-top: 1rem;">
+                <tr>
+                    <td class="label">Nombre de la madre:</td>
+                    <td class="value">{{ $estudiante->seccion2->nombre_madre ?? '—'}}</td>
+                    <td class="label">Edad:</td>
+                    <td class="value">{{ $estudiante->seccion2->edad_madre ?? '—'}} Años</td>
+                </tr>
+                <tr>
+                    <td class="label">Nombre de la empresa:</td>
+                    <td class="value">{{ $estudiante->seccion2->empresa_madre ?? '—' }}</td>
+                    <td class="label">Puesto en la empresa:</td>
+                    <td class="value">{{ $estudiante->seccion2->puesto_madre ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Ocupación:</td>
+                    <td class="value">{{ $estudiante->seccion2->ocupacion_madre ?? '—' }}</td>
+                    <td class="label">Correo electrónico personal:</td>
+                    <td class="value">{{ $estudiante->seccion2->correo_madre ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Redes Sociales:</td>
+                    <td class="value">Facebook: {{ $estudiante->seccion2->redessoc_madre[0] ?? '—' }}</td>
+                    <td class="value">Instagram: {{ $estudiante->seccion2->redessoc_madre[1] ?? '—' }}</td>
+                    <td class="value" colspan="1"></td>
+                </tr>
+                <tr>
+                    <td class="label">Lateridad:</td>
+                    <td class="value"> {{ implode(', ', $estudiante->seccion2->madre_lateralidad ?? []) }}</td>
+                    <td class="value" colspan="2"></td>
+                </tr>
+            </table>
+            <!-- estado civil  -->
+            <table class="info-table" style="padding-top: 1rem;">
+                <tr>
+                    <td class="label" colspan="2">Estado civil actual de los padres:</td>
+                    <td class="value" colspan="1">{{ implode(', ', $estudiante->seccion2->estado_civil ?? []) }}</td>
+                    <td class="value"></td>
+
+                    @php
+                    $estadoCivil = optional($estudiante->seccion2)->estado_civil;
+                    @endphp
+
+                    @if(is_array($estadoCivil) && in_array('Vuelto a casar', $estadoCivil))
+                <tr>
+                    <td class="value" colspan="4"></td>
+                </tr>
+                <tr>
+                    <td class="label">Nombre del cónyuge:</td>
+                    <td class="value">{{ $estudiante->seccion2->nombre_conyuge ?? '—'}}</td>
+                    <td class="label">Edad:</td>
+                    <td class="value">{{ $estudiante->seccion2->edad_conyuge ?? '—'}} Años</td>
+                </tr>
+                <tr>
+                    <td class="label">Nombre de la empresa:</td>
+                    <td class="value">{{ $estudiante->seccion2->empresa_conyuge ?? '—' }}</td>
+                    <td class="label">Puesto en la empresa:</td>
+                    <td class="value">{{ $estudiante->seccion2->puesto_conyuge ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Ocupación:</td>
+                    <td class="value">{{ $estudiante->seccion2->ocupacion_conyuge ?? '—' }}</td>
+                    <td class="label">Correo electrónico personal:</td>
+                    <td class="value">{{ $estudiante->seccion2->correo_conyuge ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Redes Sociales:</td>
+                    <td class="value">Facebook: {{ $estudiante->seccion2->redessoc_conyuge[0] ?? '—' }}</td>
+                    <td class="value">Instagram: {{ $estudiante->seccion2->redessoc_conyuge[1] ?? '—' }}</td>
+                    <td class="value" colspan="1"></td>
+                </tr>
+                <tr>
+                    <td class="label">Lateridad:</td>
+                    <td class="value"> {{ implode(', ', $estudiante->seccion2->conyuge_lateralidad ?? []) }}</td>
+                    <td class="value" colspan="2"></td>
+                </tr>
+                @elseif(is_array($estadoCivil) && in_array('Divorciados', $estadoCivil))
+                <tr>
+                    <td class="label">¿Cuáles fueron los motivos de la separación?:</td>
+                    <td class="value" colspan="3"> {{$estudiante->seccion2->moti_separa ?? '-' }}</td>
+                    <!-- <td class="value" colspan="2"></td> -->
+                </tr>
+                @elseif(is_array($estadoCivil) && (in_array('Civil', $estadoCivil) || in_array('Casados Iglesia', $estadoCivil)))
+                <tr>
+                    <td class="label" colspan="2">¿Cuántos años llevan de casados?:</td>
+                    <td class="value" colspan="2"> {{$estudiante->seccion2->anos_casados ?? '-' }}</td>
+
+                </tr>
+                @else
+                <tr>
+                    <td class="value" colspan="4"></td>
+                </tr>
+                @endif
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">Número de hijos:</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion2->numero_hijos ?? '—' }}</td>
+
+                </tr>
+            </table>
+            <br>
+            <!-- hermanos  -->
+            @if(optional($estudiante->seccion2)->numero_hijos > 1)
+            <table class="tablehermano">
+                <h1 class="title">Hermanos</h1>
+                <thead>
+                    <tr class="trhermano">
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Año escolar u <br> ocupación</th>
+                        <th>Escuela</th>
+                        <th>Salud</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for($i = 0; $i < $estudiante->seccion2->numero_hijos - 1; $i++)
+                        <tr>
+                            <td>{{ $estudiante->hermano->nombre_hermano[$i] ?? '—' }}</td>
+                            <td>{{ $estudiante->hermano->edad_hermano[$i] ?? '—' }}</td>
+                            <td>{{ $estudiante->hermano->escolar_ocupacion[$i] ?? '—' }}</td>
+                            <td>{{ $estudiante->hermano->escuela_hermano[$i] ?? '—' }}</td>
+                            <td>{{ $estudiante->hermano->salud_hermano[$i] ?? '—' }}</td>
+                        </tr>
+                        @endfor
+                </tbody>
+            </table>
+            @endif
+            <!-- riligion/valores  -->
+            <table class="info-table" style="padding-top: 1rem;">
+                <tr>
+                    <td class="label" colspan="3">En la educación de su hijo(a) ¿Toman ustedes en cuenta el punto de vista religioso?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="3">{{ $estudiante->seccion2->religion ?? '—' }}</td>
+                    <!-- <td class="value" colspan="2"></td> -->
+                </tr>
+                <tr>
+                    <td class="label" colspan="3">¿Cuáles son los valores familiares?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="3">{{ $estudiante->seccion2->valores_familia ?? '—' }}</td>
+                    <!-- <td class="value" colspan="2"></td> -->
+                </tr>
+            </table>
+        </div>
+
+        <!-- idioma/adopcion  -->
+        <div>
+            <div class="header" style="background-color: #ff7843;">
+                <h1 class="title">Idioma y Adopción</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">¿Qué idioma se habla en casa?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion3->idioma_casa ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Además de padres e hijos, ¿Viven otras personas en casa?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion3->personas_casa ?? '—'}}</td>
+                </tr>
+               @if(optional($estudiante->seccion3)->personas_casa === 'Sí')
+                <tr>
+                    <td class="label" colspan="4">¿Quiénes?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{$estudiante->seccion3->quienes_casa ?? '—' }}</td>
+                </tr>
+                @endif
+                <tr>
+                    <td class="label" colspan="4">¿El niño es adoptado?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{$estudiante->seccion3->siadopcion ?? '—' }}</td>
+                </tr>
+                @if(optional($estudiante->seccion3)->siadopcion === 'Sí')
+                <tr>
+                    <td class="label" colspan="4">Edad de los padres al momento de la adopción</td>
+                </tr>
+                <tr>
+                    <td class="label">Edad del padre:</td>
+                    <td class="value">{{$estudiante->seccion3->padre_edadadopt ?? '—' }} años</td>
+                    <td class="label">Edad de la madre:</td>
+                    <td class="value">{{$estudiante->seccion3->madre_edadadopt ?? '—' }} años</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">Edad del niño al momento de la adopción:</td>
+                    <td class="value" colspan="2">{{$estudiante->seccion3->hijo_edadadopt ?? '—' }} años</td>
+                </tr>
+                @endif
+
+            </table>
+        </div>
+
+        <!-- dinamica/familiar  -->
+        <div>
+            <div class="header" style="background-color: #263c57;">
+                <h1 class="title">Dinámica Familiar</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">¿Cómo calificaría la adaptación general de su hijo(a) en la casa?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion4->califica_adaptacion ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">¿Por qué?</td>
+                    <td class="value" colspan="3">{{ $estudiante->seccion4->califica_adaptacion_porq ?? '—'}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="4">Describa la relación de su hijo(a) con cada mienbro de la familia</td>
+                </tr>
+                <tr>
+                    <td class="label">Madre</td>
+                    <td class="value" colspan="3">{{ $estudiante->seccion4->relacion_familia_madre ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Padre</td>
+                    <td class="value" colspan="3">{{ $estudiante->seccion4->relacion_familia_padre ?? '—'}}</td>
+                </tr>
+
+                @if(optional($estudiante->seccion4)->relacion_familia_hermanos !== null)
+                <tr>
+                    <td class="label">Hermanos</td>
+                    <td class="value" colspan="3">{{ $estudiante->seccion4->relacion_familia_hermanos ?? '—'}}</td>
+                </tr>
+                @endif
+
+                <tr>
+                    <td class="label" colspan="4">¿Cuáles son las sanciones que comúnmente se manejan en casa y como responde su hijo(a) ante ellas?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion4->sanciones_casa ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Considera que su hijo(a) es dócil con las normas o desafiante al respecto?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion4->docil_desafiante ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Ha habido algún evento traumático o significativo en la familia durante el desarrollo de su hijo(a)? Describa</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion4->evento_traumatico ?? '—'}}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- Historia Pre y Postnatal  -->
+        <div>
+            <div class="header" style="background-color: #54667a;">
+                <h1 class="title">Historia Pre y Postnatal</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="2">Mencione el número total de embarazos</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion5->total_embarazo ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">En general, ¿como fue el embarazo?</td>
+                    <td class="value" colspan="3">{{ $estudiante->seccion5->experi_embarazo ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">Mencione si la madre tuvo alguna enfermedad o complicaciones durante el embarazo.</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion5->mencione_embaenfe ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Tiempo de gestación</td>
+                    <td class="value">{{ $estudiante->seccion5->tiempo_gestacion ?? '—'}}</td>
+                    <td class="label">Especifique si el trabajo de parto fue:</td>
+                    <td class="value">{{ $estudiante->seccion5->tipo_parto ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">¿Lloró enseguida?</td>
+                    <td class="value">{{ $estudiante->seccion5->lloro ?? '—'}}</td>
+                    <td class="label">¿Fue necesario colocarlo(a) en incubadora o hacer algún tratamiento inmediato al nacimiento?</td>
+                    <td class="value">{{ $estudiante->seccion5->incubadora ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">¿Recuerda la calificación (APGAR) que tuvo su hijo(a) al nacer?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion5->apgar ?? '—'}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Desarrollo Visual y Desarrollo Auditivo  -->
+        <div>
+            <div class="header" style="background-color: #ff7843;">
+                <h1 class="title">Desarrollo Visual y Desarrollo Auditivo</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">Describa si ha experimentado algún problema visual</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion6->desa_visual ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Describa si ha experimentado algún problema de oido (operaciones, infecciones, drenajes, etc.)</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion6->desa_auditivo ?? '—'}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- Desarrollo motor -->
+        <div>
+            <div class="header" style="background-color: #54667a;">
+                <h1 class="title">Desarrollo motor</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="2">¿Cómo describiría el desarrollo motor del niño(a)?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion7->desarrollo_motor ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Mencione la edad en que comenzo a:</td>
+                </tr>
+                <tr>
+                    <td class="label">Gatear</td>
+                    <td class="value">{{ $estudiante->seccion7->edad_gate ?? '—'}}</td>
+                    <td class="label">Caminar</td>
+                    <td class="value">{{ $estudiante->seccion7->edad_cami ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">¿Es diestro(a) o zurdo(a)?</td>
+                    <td class="value" colspan="2">{{ implode(', ', $estudiante->seccion7->dies_zurdhijo ?? [])}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Qué tipo de deporte le interesa a su hijo de manera especial?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion7->prac_deporte ?? '—'}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Lenguaje -->
+        <div>
+            <div class="header">
+                <h1 class="title">Lenguaje</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="2">¿Cómo describiría el desarrollo del habla y lenguaje del niño(a)?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion8->desarrollo_lenguaje ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">¿A que edad dijo sus primeras palabras?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion8->prim_palabra ?? '—'}}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- Sueño -->
+        <div>
+            <div class="header" style="background-color: #54667a;">
+                <h1 class="title">Sueño</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">Características que presenta el sueño del menor</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ implode(', ', $estudiante->seccion9->suenonino ?? [])}}</td>
+                </tr>
+                <tr>
+                    <td class="label">¿A qué hora se acuesta por la noche?</td>
+                    <td class="value">{{ optional($estudiante->seccion9)->horadecama  ? \Carbon\Carbon::parse($estudiante->seccion9->horadecama)->format('H:i A'): '-' }}</td>
+                    <td class="label">¿A qué hora se despierta?</td>
+                    <td class="value">{{ optional($estudiante->seccion9)->horadespierta  ? \Carbon\Carbon::parse($estudiante->seccion9->horadespierta)->format('H:i A'): '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label">¿Duerme siesta?</td>
+                    <td class="value">{{ $estudiante->seccion9->dusiesta  ?? '-' }}</td>
+                    @if(optional($estudiante->seccion9)->dusiesta === 'Sí' )
+                    <td class="label">¿Cuántas horas?</td>
+                    <td class="value">{{ $estudiante->seccion9->horasiesta  ?? '-' }}</td>
+                    @else
+                    <td class="value" colspan="2"></td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="label">¿Comparte su habitación?</td>
+                    <td class="value">{{ $estudiante->seccion9->cohabitacion  ?? '-' }}</td>
+                    @if(optional($estudiante->seccion9)->cohabitacion === 'Sí' )
+                    <td class="label">¿Con quien?</td>
+                    <td class="value">{{ $estudiante->seccion9->conquien  ?? '-' }}</td>
+                    @else
+                    <td class="value" colspan="2"></td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="label">¿Comparte la cama?</td>
+                    <td class="value">{{ $estudiante->seccion9->cocama  ?? '-' }}</td>
+                    <td class="label">¿Hasta qué edad durmió con los papás? </td>
+                    <td class="value">{{ $estudiante->seccion9->edad_dupapa  ?? '-' }} años</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Salud -->
+        <div>
+            <div class="header" style="background-color: #ff7843;">
+                <h1 class="title">Salud</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">Algunos de los problemas que ha presentado:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ implode(', ', $estudiante->seccion10->saludnino ?? [])}}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Otros</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion10->otrosprob  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atencion medica especializada?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion10->enfeotrastor  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Recibe, o ha recibido, algun tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuándo</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion10->tipoterapia  ?? '-' }}</td>
+                </tr>
+            </table>
+            <div class="acuerdo-container">
+                <p class="acuerdo-text">
+                    <span class="bold">*ACUERDO</span> Número 11/03/19 por el que se establecen las normas generales para la evaluación del aprendizaje, acreditación,
+                    promoción, regularización y certificación de los educandos de la evaluación básica, publicado en el Diario oficial de la federación
+                    el 29 de marzo de 2019. <br>
+                    <span class="bold">Artículo 3. Sujetos participantes.</span> En la aplicación de las presentes normas deberá garantizarse la participacion activa de
+                    todos los involucrados en el proceso educativo: autoridades educativas y escolares, docentes, madres, padres de familia o
+                    tutores y educandos.
+                    Quienes ejercen la patria potestad o la tutela de los estudiantes deberán informar a las autoridades educativas y escolares,
+                    según corresponda, sobre la salud, condición física o socioemocional de los educandos y, en su caso, de requerimientos especiales para garantizar su inclusión efectiva en el proceso educativo. Dicha información se proporcionará en el marco de las
+                    disposiciones jurídicas aplicables.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Salud -->
+        <div>
+            <div class="header" style="background-color: #54667a;">
+                <h1 class="title">Caracteristicas Personales</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">Describa la personalidad de su hijo(a) </td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion11->personalidadhijo  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Qué áreas de oportunidad o atención considera importante para la personalidad de su hijo(a)?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion11->oportunihijo  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Describa la adaptación social de su hijo(a) con otros niños y adultos (sociales, independientes, sencibles al trato con los demás, etc.) </td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion11->adapthijo  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Juega contento(a) con otros niños o prefiere parmanecer solo(a)?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion11->juegacnhijo  ?? '-' }}</td>
                 </tr>
             </table>
         </div>

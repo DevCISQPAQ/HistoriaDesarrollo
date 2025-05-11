@@ -50,6 +50,11 @@ class Seccion2 extends Model
      protected $casts = [
         'redessoc_padre' => 'array',
         'padre_lateralidad' => 'array',
+        'redessoc_madre' => 'array',
+        'madre_lateralidad' => 'array',
+        'estado_civil' => 'array',
+        'redessoc_conyuge'=> 'array',
+        'conyuge_lateralidad'=> 'array',
     ];
 
 

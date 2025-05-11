@@ -432,7 +432,7 @@ $nombre = session('nombre');
                     <div class="grid grid-cols-3 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="religion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
-                            <span class="ml-2">Si</span>
+                            <span class="ml-2">Sí</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                             <input type="radio" name="religion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">

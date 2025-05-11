@@ -33,7 +33,7 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">¿Qué áreas de oportunidad o atención considera importante para la personalidad de su hijo(a) <span class="text-red-500">*</span></label>
+                <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">¿Qué áreas de oportunidad o atención considera importante para la personalidad de su hijo(a)? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="oportunihijo" name="oportunihijo" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

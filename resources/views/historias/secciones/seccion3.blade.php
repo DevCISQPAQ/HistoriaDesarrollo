@@ -15,7 +15,7 @@ $nombre = session('nombre');
     <div class="bg-[#ff7843] px-6 py-4">
         <div class="flex items-center">
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
-            <h2 class="text-xl font-bold text-white">Idioma y Adopcion</h2>
+            <h2 class="text-xl font-bold text-white">Idioma y Adopción</h2>
         </div>
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}} </p>
     </div>

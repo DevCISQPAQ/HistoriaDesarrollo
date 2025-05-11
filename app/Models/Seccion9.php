@@ -19,6 +19,10 @@ class Seccion9 extends Model
         'edad_dupapa',
     ];
 
+     protected $casts = [
+        'suenonino' => 'array',
+    ];
+
     //
     public function estudiante()
     {

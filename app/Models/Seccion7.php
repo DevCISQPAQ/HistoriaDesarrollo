@@ -15,6 +15,10 @@ class Seccion7 extends Model
         'prac_deporte',
     ];
 
+    protected $casts = [
+        'dies_zurdhijo' => 'array',
+    ];
+
     //
     public function estudiante()
     {

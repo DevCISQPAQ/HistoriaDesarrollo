@@ -91,7 +91,7 @@ class Estudiante extends Model
 
     public function hermano()
     {
-        return $this->hasOne(HistoriaDesarrollo::class);
+        return $this->hasOne(Hermano::class);
     }
 
 }

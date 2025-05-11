@@ -15,6 +15,14 @@ class Hermano extends Model
         'salud_hermano'
     ];
 
+      protected $casts = [
+        'nombre_hermano' => 'array',
+        'edad_hermano' => 'array',
+        'escolar_ocupacion' => 'array',
+        'escuela_hermano' => 'array',
+        'salud_hermano' => 'array',
+    ];
+
     public function estudiante()
     {
         return$this->belongsTo(Estudiante::class);

@@ -27,7 +27,7 @@ $nombre = session('nombre');
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Lenguaje del niño(a)</h3> -->
             <!--Describre lenguaje -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 pb-2">Como describiria el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 pb-2">¿Cómo describiría el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                         <input type="radio" name="desarrollo_lenguaje" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">

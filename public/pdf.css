@@ -45,6 +45,7 @@
      font-weight: bold;
      border: 1px solid #ddd;
      width: 25%;
+     background-color: #e8e8e8;
  }
 
  .info-table td.value {
@@ -69,11 +70,41 @@
      font-size: .9rem;
  }
 
- .header1 {
-     background-color: #54667a;
-     color: white;
-     padding: .5rem;
-     text-align: center;
-     border-radius: 6px 6px 0 0;
-     margin-top: 2rem;
+ .tablehermano {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1rem;
+     font-size: 12px;
  }
+
+
+ .trhermano {
+     background-color: #e8e8e8;
+     color: #333;
+ }
+
+ .tablehermano th {
+     border: .08rem solid #ccc;
+     padding: .1rem;
+ }
+
+ .tablehermano td {
+     border: .08 solid #ccc;
+     padding: .5rem;
+ }
+
+ .acuerdo-container {
+    margin-top: 0.5rem; /* mt-1 */
+}
+
+.acuerdo-text {
+    text-align: justify;
+    color: #1f355e;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+     font-size: .7rem;
+}
+
+.bold {
+    font-weight: bold;
+}

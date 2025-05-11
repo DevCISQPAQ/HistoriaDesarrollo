@@ -101,13 +101,14 @@ class BDController extends Controller
 
         // ]);
         if (($request->numero_hijos) > 1) {
-            $hermano =  Hermano::create([
-                'estudiante_id' =>session('id_alumno'),
-                'nombre_hermano' => json_encode((array) $request->nombre_hermano),
-                'edad_hermano' => json_encode((array) $request->edad_hermano),
-                'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
-                'escuela_hermano' => json_encode((array) $request->escuela_hermano),
-                'salud_hermano' => json_encode((array) $request->salud_hermano),
+            $hermano =  Hermano::updateOrCreate(
+                ['estudiante_id' =>session('id_alumno')],
+                [
+                'nombre_hermano' => $request->nombre_hermano,
+                'edad_hermano' => $request->edad_hermano,
+                'escolar_ocupacion' =>  $request->escolar_ocupacion,
+                'escuela_hermano' => $request->escuela_hermano,
+                'salud_hermano' => $request->salud_hermano,
 
             ]);
         } else {
@@ -115,33 +116,33 @@ class BDController extends Controller
             $hermano->id = null;
         }
 
-        $seccion2 =  Seccion2::create([
-
-            'estudiante_id' =>session('id_alumno'),
+        $seccion2 =  Seccion2::updateOrCreate(
+            ['estudiante_id' =>session('id_alumno')],
+            [
             'nombre_padre' => $request->nombre_padre,
             'edad_padre' => $request->edad_padre,
             'empresa_padre' => $request->empresa_padre,
             'puesto_padre' => $request->puesto_padre,
             'ocupacion_padre' => $request->ocupacion_padre,
             'correo_padre' => $request->correo_padre,
-            'redessoc_padre' => json_encode((array) $request->redessoc_padre),
-            'padre_lateralidad' => json_encode((array) $request->padre_lateralidad),
+            'redessoc_padre' =>  $request->redessoc_padre,
+            'padre_lateralidad' =>  $request->padre_lateralidad,
             'nombre_madre' => $request->nombre_madre,
             'edad_madre' => $request->edad_madre,
             'empresa_madre' => $request->empresa_madre,
             'puesto_madre' => $request->puesto_madre,
             'ocupacion_madre' => $request->ocupacion_madre,
             'correo_madre' => $request->correo_madre,
-            'redessoc_madre' => json_encode((array) $request->redessoc_madre),
-            'madre_lateralidad' => json_encode((array) $request->madre_lateralidad),
-            'estado_civil' => json_encode((array) $request->estado_civil),
+            'redessoc_madre' => $request->redessoc_madre,
+            'madre_lateralidad' => $request->madre_lateralidad,
+            'estado_civil' =>  $request->estado_civil,
             'nombre_conyuge' => $request->nombre_conyuge,
             'edad_conyuge' => $request->edad_conyuge,
             'empresa_conyuge' => $request->empresa_conyuge,
             'puesto_conyuge' => $request->puesto_conyuge,
             'correo_conyuge' => $request->correo_conyuge,
-            'redessoc_conyuge' => json_encode((array) $request->redessoc_conyuge),
-            'conyuge_lateralidad' => json_encode((array) $request->conyuge_lateralidad),
+            'redessoc_conyuge' => $request->redessoc_conyuge,
+            'conyuge_lateralidad' => $request->conyuge_lateralidad,
             'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
             'anos_casados' => $request->anos_casados,
             'numero_hijos' => $request->numero_hijos,
@@ -280,7 +281,7 @@ class BDController extends Controller
             'desarrollo_motor' => $request->desarrollo_motor,
             'edad_gate' => $request->edad_gate,
             'edad_cami' => $request->edad_cami,
-            'dies_zurdhijo' => json_encode((array) $request->dies_zurdhijo),
+            'dies_zurdhijo' => $request->dies_zurdhijo,
             'prac_deporte' => $request->prac_deporte,
         ]);
 
@@ -314,7 +315,7 @@ class BDController extends Controller
 
         $seccion9 = Seccion9::create([
             'estudiante_id' =>session('id_alumno'),
-            'suenonino' => json_encode((array)  $request->suenonino),
+            'suenonino' => $request->suenonino,
             'horadecama' => $request->horadecama,
             'horadespierta' => $request->horadespierta,
             'dusiesta' => $request->dusiesta,
@@ -338,7 +339,7 @@ class BDController extends Controller
 
         $seccion10 = Seccion10::create([
             'estudiante_id' =>session('id_alumno'),
-            'saludnino' => json_encode((array) $request->saludnino),
+            'saludnino' =>  $request->saludnino,
             'otrosprob' => $request->otrosprob,
             'enfeotrastor' => $request->enfeotrastor,
             'tipoterapia' => $request->tipoterapia,

@@ -45,6 +45,7 @@ class EstudianteController extends Controller
     {
         $estudiante = Estudiante::with([
             'seccion2',
+            'hermano',
             'seccion3',
             'seccion4',
             'seccion5',

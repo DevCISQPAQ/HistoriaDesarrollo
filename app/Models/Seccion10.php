@@ -15,6 +15,10 @@ class Seccion10 extends Model
         
     ];
 
+      protected $casts = [
+        'saludnino' => 'array',
+    ];
+
     //
     public function estudiante()
     {
