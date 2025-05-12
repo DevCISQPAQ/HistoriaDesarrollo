@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('redessoc_conyuge')->nullable();
             $table->string('conyuge_lateralidad')->nullable();
             $table->string('noviveconpadres_situtor')->nullable();
-            $table->integer('anos_casados');
+            $table->integer('anos_casados')->nullable();
             $table->integer('numero_hijos');
             $table->string('moti_separa')->nullable();
             $table->string('vive_con')->nullable();

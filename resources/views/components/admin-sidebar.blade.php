@@ -1,7 +1,7 @@
 <div x-data="{ sidebarOpen: false }" @click.away="sidebarOpen = false">
     {{-- Título del panel --}}
     <div class="p-6 font-bold text-xl text-blue-600 border-b">
-        Admin Panel
+        Panel de Administración
     </div>
 
     {{-- Navegación --}}

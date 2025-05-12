@@ -94,17 +94,42 @@
  }
 
  .acuerdo-container {
-    margin-top: 0.5rem; /* mt-1 */
-}
+     margin-top: 0.5rem;
+     /* mt-1 */
+ }
 
-.acuerdo-text {
-    text-align: justify;
-    color: #1f355e;
-    line-height: 1.5;
-    font-family: Arial, sans-serif;
+ .acuerdo-text {
+     text-align: justify;
+     color: #1f355e;
+     line-height: 1.5;
+     font-family: Arial, sans-serif;
      font-size: .7rem;
-}
+ }
 
-.bold {
-    font-weight: bold;
-}
+ .bold {
+     font-weight: bold;
+ }
+
+ .firma-tabla {
+     width: 100%;
+     margin-top: 50px;
+     font-size: 14px;
+     border-collapse: collapse;
+ }
+
+ .firma-tabla td {
+     padding: 20px;
+     vertical-align: top;
+ }
+
+ .firma-label {
+     font-weight: bold;
+     margin-bottom: 5px;
+     display: block;
+ }
+
+ .firma-line {
+     border-bottom: 1px solid #000;
+     height: 30px;
+     width: 100%;
+ }

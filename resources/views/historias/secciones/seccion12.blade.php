@@ -26,7 +26,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Experiencia escolar</h3> -->
             <div>
-                <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">¿Como reaccionó en su primer ingreso a la escuela? <span class="text-red-500">*</span></label>
+                <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">¿Cómo reaccionó en su primer ingreso a la escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="reaccprimer" name="reaccprimer" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
@@ -80,7 +80,7 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="conductaambito" class="block text-sm font-medium text-gray-700 pt-3">¿Como ha sido la conducta general a su hijo(a) en el ámbito escolar? <span class="text-red-500">*</span></label>
+                <label for="conductaambito" class="block text-sm font-medium text-gray-700 pt-3">¿Cómo ha sido la conducta general a su hijo(a) en el ámbito escolar? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="conductaambito" name="conductaambito" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>
@@ -175,7 +175,7 @@ $nombre = session('nombre');
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <div>
-                <label for="motivoscamb" class="block text-sm font-medium text-gray-700 pt-3">¿Cuales son los principales motivos que los orientaron a buscar un cambio de escuela? <span class="text-red-500">*</span></label>
+                <label for="motivoscamb" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles son los principales motivos que los orientaron a buscar un cambio de escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="motivoscamb" name="motivoscamb" placeholder="Escribe aqui la respuesta" required></textarea>
             </div>

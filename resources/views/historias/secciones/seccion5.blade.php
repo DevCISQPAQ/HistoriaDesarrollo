@@ -67,9 +67,9 @@ $nombre = session('nombre');
                 </div>
                 <div>
                     <label for="tipo_parto" class="block text-sm font-medium text-gray-700">Especifique si el trabajo de parto fue: <span class="text-red-500">*</span></label>
-                    <select id="tipo_parto" name="tipo_parto" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition">
-                        <option selected="true" disabled="disabled">Seleccione una opcion</option>
+                    <select id="tipo_parto" name="tipo_parto" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                        <option value="" selected disabled>Seleccione una opcion</option>
                         <option value="Normal">Natural</option>
                         <option value="Cesarea">Cesárea</option>
                     </select>

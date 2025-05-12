@@ -100,59 +100,83 @@ class BDController extends Controller
         //     'valores_familia' => 'required|string',
 
         // ]);
+
+        $request->validate([
+            'padre_lateralidad' => 'required|array|min:1',
+            'madre_lateralidad' => 'required|array|min:1',
+            'estado_civil' => 'required|array|min:1',
+        ]);
+
+        if (in_array('Vuelto a casar', $request->estado_civil)) {
+            $request->validate([
+                'conyuge_lateralidad' => 'required|array|min:1',
+            ]);
+        }
+
+        // $hasCheckbox = $request->filled('estado_civil');
+        // if (!$hasCheckbox) {
+        //     return back()->withErrors([
+        //         'estado_civil' => 'Debes seleccionar al menos una opción de estado civil.'
+        //     ])->withInput();
+        // }
+
+
         if (($request->numero_hijos) > 1) {
             $hermano =  Hermano::updateOrCreate(
-                ['estudiante_id' =>session('id_alumno')],
+                ['estudiante_id' => session('id_alumno')],
                 [
-                'nombre_hermano' => $request->nombre_hermano,
-                'edad_hermano' => $request->edad_hermano,
-                'escolar_ocupacion' =>  $request->escolar_ocupacion,
-                'escuela_hermano' => $request->escuela_hermano,
-                'salud_hermano' => $request->salud_hermano,
+                    'nombre_hermano' => $request->nombre_hermano,
+                    'edad_hermano' => $request->edad_hermano,
+                    'escolar_ocupacion' =>  $request->escolar_ocupacion,
+                    'escuela_hermano' => $request->escuela_hermano,
+                    'salud_hermano' => $request->salud_hermano,
 
-            ]);
+                ]
+            );
         } else {
             $hermano = new Hermano(); // Crea un modelo vacío
             $hermano->id = null;
         }
 
         $seccion2 =  Seccion2::updateOrCreate(
-            ['estudiante_id' =>session('id_alumno')],
+            ['estudiante_id' => session('id_alumno')],
             [
-            'nombre_padre' => $request->nombre_padre,
-            'edad_padre' => $request->edad_padre,
-            'empresa_padre' => $request->empresa_padre,
-            'puesto_padre' => $request->puesto_padre,
-            'ocupacion_padre' => $request->ocupacion_padre,
-            'correo_padre' => $request->correo_padre,
-            'redessoc_padre' =>  $request->redessoc_padre,
-            'padre_lateralidad' =>  $request->padre_lateralidad,
-            'nombre_madre' => $request->nombre_madre,
-            'edad_madre' => $request->edad_madre,
-            'empresa_madre' => $request->empresa_madre,
-            'puesto_madre' => $request->puesto_madre,
-            'ocupacion_madre' => $request->ocupacion_madre,
-            'correo_madre' => $request->correo_madre,
-            'redessoc_madre' => $request->redessoc_madre,
-            'madre_lateralidad' => $request->madre_lateralidad,
-            'estado_civil' =>  $request->estado_civil,
-            'nombre_conyuge' => $request->nombre_conyuge,
-            'edad_conyuge' => $request->edad_conyuge,
-            'empresa_conyuge' => $request->empresa_conyuge,
-            'puesto_conyuge' => $request->puesto_conyuge,
-            'correo_conyuge' => $request->correo_conyuge,
-            'redessoc_conyuge' => $request->redessoc_conyuge,
-            'conyuge_lateralidad' => $request->conyuge_lateralidad,
-            'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
-            'anos_casados' => $request->anos_casados,
-            'numero_hijos' => $request->numero_hijos,
-            'moti_separa' => $request->moti_separa,
-            'vive_con' => $request->vive_con,
-            'religion' => $request->religion,
-            'valores_familia' => $request->valores_familia,
-            'hermano_id' => $hermano->id,
+                'nombre_padre' => $request->nombre_padre,
+                'edad_padre' => $request->edad_padre,
+                'empresa_padre' => $request->empresa_padre,
+                'puesto_padre' => $request->puesto_padre,
+                'ocupacion_padre' => $request->ocupacion_padre,
+                'correo_padre' => $request->correo_padre,
+                'redessoc_padre' =>  $request->redessoc_padre,
+                'padre_lateralidad' =>  $request->padre_lateralidad,
+                'nombre_madre' => $request->nombre_madre,
+                'edad_madre' => $request->edad_madre,
+                'empresa_madre' => $request->empresa_madre,
+                'puesto_madre' => $request->puesto_madre,
+                'ocupacion_madre' => $request->ocupacion_madre,
+                'correo_madre' => $request->correo_madre,
+                'redessoc_madre' => $request->redessoc_madre,
+                'madre_lateralidad' => $request->madre_lateralidad,
+                'estado_civil' =>  $request->estado_civil,
+                'nombre_conyuge' => $request->nombre_conyuge,
+                'edad_conyuge' => $request->edad_conyuge,
+                'empresa_conyuge' => $request->empresa_conyuge,
+                'puesto_conyuge' => $request->puesto_conyuge,
+                'correo_conyuge' => $request->correo_conyuge,
+                'ocupacion_conyuge' => $request->ocupacion_conyuge,
+                'redessoc_conyuge' => $request->redessoc_conyuge,
+                'conyuge_lateralidad' => $request->conyuge_lateralidad,
+                'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
+                'anos_casados' => $request->anos_casados,
+                'numero_hijos' => $request->numero_hijos,
+                'moti_separa' => $request->moti_separa,
+                'vive_con' => $request->vive_con,
+                'religion' => $request->religion,
+                'valores_familia' => $request->valores_familia,
+                'hermano_id' => $hermano->id,
 
-        ]);
+            ]
+        );
 
         session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
@@ -184,7 +208,7 @@ class BDController extends Controller
 
 
         $seccion3 =  Seccion3::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             // 'hermano_id' => $hermano->id,
             'idioma_casa' => $request->idioma_casa,
             'personas_casa' => $request->personas_casa,
@@ -212,7 +236,7 @@ class BDController extends Controller
     {
 
         $seccion4 = Seccion4::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'califica_adaptacion' => $request->califica_adaptacion,
             'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
             'relacion_familia_madre' => $request->relacion_familia_madre,
@@ -237,7 +261,7 @@ class BDController extends Controller
     {
 
         $seccion5 = Seccion5::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'total_embarazo' => $request->total_embarazo,
             'experi_embarazo' => $request->experi_embarazo,
             'mencione_embaenfe' => $request->mencione_embaenfe,
@@ -260,7 +284,7 @@ class BDController extends Controller
     {
 
         $seccion6 = Seccion6::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'desa_visual' => $request->desa_visual,
             'desa_auditivo' => $request->desa_auditivo,
         ]);
@@ -277,7 +301,7 @@ class BDController extends Controller
     {
 
         $seccion7 = Seccion7::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'desarrollo_motor' => $request->desarrollo_motor,
             'edad_gate' => $request->edad_gate,
             'edad_cami' => $request->edad_cami,
@@ -297,7 +321,7 @@ class BDController extends Controller
     {
 
         $seccion8 = Seccion8::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
             'prim_palabra' => $request->prim_palabra,
         ]);
@@ -314,7 +338,7 @@ class BDController extends Controller
     {
 
         $seccion9 = Seccion9::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'suenonino' => $request->suenonino,
             'horadecama' => $request->horadecama,
             'horadespierta' => $request->horadespierta,
@@ -338,7 +362,7 @@ class BDController extends Controller
     {
 
         $seccion10 = Seccion10::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'saludnino' =>  $request->saludnino,
             'otrosprob' => $request->otrosprob,
             'enfeotrastor' => $request->enfeotrastor,
@@ -357,7 +381,7 @@ class BDController extends Controller
     {
 
         $seccion11 = Seccion11::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'personalidadhijo' => $request->personalidadhijo,
             'oportunihijo' => $request->oportunihijo,
             'adapthijo' => $request->adapthijo,
@@ -376,7 +400,7 @@ class BDController extends Controller
     {
 
         $seccion12 = Seccion12::create([
-            'estudiante_id' =>session('id_alumno'),
+            'estudiante_id' => session('id_alumno'),
             'reaccprimer' => $request->reaccprimer,
             'dificumateria' => $request->dificumateria,
             'nivel_lectura' => $request->nivel_lectura,

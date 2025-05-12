@@ -55,9 +55,9 @@ class AdminController extends Controller
 
 
 
-        $usuarios = Estudiante::count();
-        $activosHoy = Estudiante::whereDate('updated_at', now()->toDateString())->count();
-        $pendientes = 8; // Aquí podrías usar algún modelo real
+        // $usuarios = Estudiante::count();
+        // $activosHoy = Estudiante::whereDate('updated_at', now()->toDateString())->count();
+        // $pendientes = 8; // Aquí podrías usar algún modelo real
 
         return view('admin.dashboard', compact('terminados', 'no_terminados', 'totales_formularios'));
     }

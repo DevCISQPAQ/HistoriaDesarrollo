@@ -9,30 +9,47 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class EstudianteController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+{
+    $prescolarCount = Estudiante::where('grado_escolar', 'LIKE', '%bambolino%')
+        ->orWhere('grado_escolar', 'LIKE', '%kinder%')
+        ->count();
 
-        $prescolarCount = Estudiante::where('grado_escolar', 'LIKE', '%bambolino%')
-            ->orWhere('grado_escolar', 'LIKE', '%kinder%')
-            ->count();
+    $primariaCount = Estudiante::where('grado_escolar', 'LIKE', '%primaria%')->count();
+    $secundariaCount = Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')->count();
 
-        $primariaCount = Estudiante::where('grado_escolar', 'LIKE', '%primero de primaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%segundo de primaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%tercero de primaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%cuarto de primaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%quinto de primaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%sexto de primaria%')
-            ->count();
+    // Iniciamos la consulta
+    $query = Estudiante::with('historiaDesarrollo');
 
-        $secundariaCount = Estudiante::where('grado_escolar', 'LIKE', '%primero de secundaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%segundo de secundaria%')
-            ->orWhere('grado_escolar', 'LIKE', '%tercero de secundaria%')
-            ->count();
-
-
-        $estudiantes = Estudiante::all();
-        return view('admin.estudiantes.index', compact('estudiantes', 'prescolarCount', 'primariaCount', 'secundariaCount'));
+    // Si hay un término de búsqueda, filtramos
+    if ($request->filled('buscar')) {
+        $buscar = strtolower($request->buscar);
+        $query->whereRaw('LOWER(nombre_completo) LIKE ?', ["%{$buscar}%"])
+            ->orWhereRaw('LOWER(grado_escolar) LIKE ?', ["%{$buscar}%"]);
     }
+
+    // Realizamos la paginación
+    $estudiantes = $query->paginate(10)->withQueryString();
+
+    // Para cada estudiante, verificamos si el historial de desarrollo está completo
+    foreach ($estudiantes as $estudiante) {
+        $historia = $estudiante->historiaDesarrollo;
+
+        if (!$historia) {
+            $estudiante->historia_completa = 'Incompleto';
+            continue;
+        }
+
+        $completo = collect($historia->getAttributes())
+            ->except(['id', 'estudiante_id', 'created_at', 'updated_at'])
+            ->every(fn($valor) => !is_null($valor) && $valor !== '');
+
+        $estudiante->historia_completa = $completo ? 'Completo' : 'Incompleto';
+    }
+    
+    return view('admin.estudiantes.index', compact('estudiantes', 'prescolarCount', 'primariaCount', 'secundariaCount'));
+}
+
 
 
     public function destroy($id)
@@ -61,6 +78,6 @@ class EstudianteController extends Controller
 
         // $estudiante = Estudiante::findOrFail($id);
         $pdf = Pdf::loadView('admin.estudiantes.pdf', compact('estudiante'));
-        return $pdf->stream("alumno_{$estudiante->id}.pdf");
+        return $pdf->stream("alumno_{$estudiante->nombre_completo}.pdf");
     }
 }

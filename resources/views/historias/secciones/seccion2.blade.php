@@ -33,37 +33,37 @@ $nombre = session('nombre');
                 <div>
                     <label for="nombre_padre" class="block text-sm font-medium text-gray-700">Nombre del Padre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nombre_padre" name="nombre_padre" placeholder="Nombre(s) y apellidos" required>
+                        id="nombre_padre" name="nombre_padre" value="{{ old('nombre_padre') }}" placeholder="Nombre(s) y apellidos" required>
                 </div>
 
                 <div>
                     <label for="edad_padre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_padre" name="edad_padre" required placeholder="Edad en años">
+                        id="edad_padre" name="edad_padre" value="{{ old('edad_padre') }}" required placeholder="Edad en años">
                 </div>
 
                 <div>
                     <label for="empresa_padre" class="block text-sm font-medium text-gray-700">Nombre de la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="empresa_padre" name="empresa_padre" required placeholder="Empresa, negocio, etc.">
+                        id="empresa_padre" name="empresa_padre" value="{{ old('empresa_padre') }}" required placeholder="Empresa, negocio, etc.">
                 </div>
 
                 <div>
                     <label for="puesto_padre" class="block text-sm font-medium text-gray-700">Puesto en la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="puesto_padre" name="puesto_padre" required placeholder="Jefe, Socio, Administrador, etc.">
+                        id="puesto_padre" name="puesto_padre" value="{{ old('puesto_padre') }}" required placeholder="Jefe, Socio, Administrador, etc.">
                 </div>
 
                 <div>
                     <label for="ocupacion_padre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_padre" name="ocupacion_padre" required placeholder="">
+                        id="ocupacion_padre" name="ocupacion_padre" value="{{ old('ocupacion_padre') }}" required placeholder="">
                 </div>
 
                 <div>
                     <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
                     <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="correo_padre" name="correo_padre" required placeholder="correo@correo.com">
+                        id="correo_padre" name="correo_padre" value="{{ old('correo_padre') }}" required placeholder="correo@correo.com">
                 </div>
 
                 <div>
@@ -98,18 +98,23 @@ $nombre = session('nombre');
                 </div>
 
                 <!-- Diestro/Zurdo -->
-                <div class="md:col-span-2">
+                <div class="md:col-span-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
                     <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4 mt-2">
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestro" id="check1">
                             <span class="ml-2">Diestro</span>
                         </label>
                         <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_lateralidad[]" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                            <input type="checkbox" name="padre_lateralidad[]" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="zurdo" id="check2">
                             <span class="ml-2">Zurdo</span>
                         </label>
                     </div>
+                    <!-- Campo oculto que se usa para hacer la validación required -->
+                    <input type="hidden" name="padre_lateralidad_required" x-bind:required="!diestro && !zurdo">
+                    @error('padre_lateralidad')
+                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -122,37 +127,37 @@ $nombre = session('nombre');
                 <div>
                     <label for="nombre_madre" class="block text-sm font-medium text-gray-700">Nombre de la Madre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nombre_madre" name="nombre_madre" placeholder="Nombre(s) y apellidos" required>
+                        id="nombre_madre" name="nombre_madre" value="{{ old('nombre_madre') }}" placeholder="Nombre(s) y apellidos" required>
                 </div>
 
                 <div>
                     <label for="edad_madre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
                     <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="edad_madre" name="edad_madre" placeholder="Edad en años" required>
+                        id="edad_madre" name="edad_madre" value="{{ old('edad_madre') }}" placeholder="Edad en años" required>
                 </div>
 
                 <div>
                     <label for="empresa_madre" class="block text-sm font-medium text-gray-700">Nombre de la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="empresa_madre" name="empresa_madre" placeholder="Empresa, negocio, etc" required>
+                        id="empresa_madre" name="empresa_madre" value="{{ old('empresa_madre') }}" placeholder="Empresa, negocio, etc" required>
                 </div>
 
                 <div>
                     <label for="puesto_madre" class="block text-sm font-medium text-gray-700">Puesto en la empresa <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="puesto_madre" name="puesto_madre" placeholder="Jefa, Socia, Administradora, etc." required>
+                        id="puesto_madre" name="puesto_madre" value="{{ old('puesto_madre') }}" placeholder="Jefa, Socia, Administradora, etc." required>
                 </div>
 
                 <div>
                     <label for="ocupacion_madre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_madre" name="ocupacion_madre" required placeholder="">
+                        id="ocupacion_madre" name="ocupacion_madre" value="{{ old('ocupacion_madre') }}" required placeholder="">
                 </div>
 
                 <div>
                     <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="correo_madre" name="correo_madre" placeholder="Correo@correo.com" required>
+                        id="correo_madre" name="correo_madre" value="{{ old('correo_madre') }}" placeholder="Correo@correo.com" required>
                 </div>
 
                 <div>
@@ -199,6 +204,9 @@ $nombre = session('nombre');
                             <span class="ml-2">Zurda</span>
                         </label>
                     </div>
+                    @error('madre_lateralidad')
+                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -212,25 +220,17 @@ $nombre = session('nombre');
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Estado civil actual de los padres <span class="text-red-500">*</span></label>
 
-                    <div class="space-y-2" x-data="{casadosigl: false, civil: false }">
+                    <div class="space-y-2" x-data="{casadosigl: false, civil: false, estcivil: '' }">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="checkbox" name="estado_civil[]" value="Casados Iglesia" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="casadosigl">
+                            <input type="checkbox" name="estado_civil[]" value="Casados Iglesia" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="casadosigl" @change="estcivil = ''">
                             <span class="ml-2">Casados Iglesia</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="checkbox" name="estado_civil[]" value="Civil" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="civil">
+                            <input type="checkbox" name="estado_civil[]" value="Civil" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="civil" @change="estcivil = ''">
                             <span class="ml-2">Civil</span>
                         </label>
-                        <!-- Años de casados -->
-                        <div id="Casados Iglesia" x-show="casadosigl || civil" x-transition>
-                            <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
-                            <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="anos_casados" name="anos_casados" placeholder="Años">
-                        </div>
 
-
-
-                        <div x-data="{estcivil: ''}" x-show="!casadosigl && !civil" x-transition>
+                        <div x-show="!casadosigl && !civil" x-transition>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                                 <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
                                     <input type="radio" name="estado_civil[]" value="Divorciados" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
@@ -265,37 +265,37 @@ $nombre = session('nombre');
                                     <div>
                                         <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
                                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos">
+                                            id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
                                         <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años">
+                                            id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
                                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc.">
+                                            id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
                                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc.">
+                                            id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación</label>
                                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="">
+                                            id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
                                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                            id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com">
+                                            id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
@@ -342,6 +342,9 @@ $nombre = session('nombre');
                                                 <span class="ml-2">Zurdo(a)</span>
                                             </label>
                                         </div>
+                                        @error('conyuge_lateralidad')
+                                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="py-4">
@@ -351,29 +354,39 @@ $nombre = session('nombre');
                                 </div>
                             </div>
 
-
-
                             <div id="Divorciados" x-show="estcivil == $el.id">
                                 <!-- Motivos separación (condicional) -->
                                 <div x-transition>
                                     <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
                                     <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="moti_separa" name="moti_separa" rows="3"></textarea>
+                                        id="moti_separa" name="moti_separa" rows="3" x-bind:required="estcivil === 'Divorciados'"></textarea>
                                 </div>
-
                                 <!-- Vive con (condicional) -->
                                 <div x-transition>
                                     <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
                                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="vive_con" name="vive_con">
+                                        id="vive_con" name="vive_con" x-bind:required="estcivil === 'Divorciados'">
                                 </div>
 
                             </div>
 
+
+                        </div> <!-- vuelto a casar  -->
+                        <!-- Años de casados -->
+                        <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
+                            <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
+                            <input type="number" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                         </div>
 
                     </div>
                 </div>
+                @error('estado_civil')
+                <div class="text-red-500 text-sm mt-2">
+                    {{ $message }}
+                </div>
+                @enderror
+
                 <!-- Número de hijos -->
                 <div x-data="{ cantidad: 1 }">
                     <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
@@ -431,7 +444,7 @@ $nombre = session('nombre');
                     <label class="block text-sm font-medium text-gray-700">En la educación de su hijo(a) ¿Toman ustedes en cuenta el punto de vista religioso?:<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-2">
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
-                            <input type="radio" name="religion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                            <input type="radio" name="religion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                             <span class="ml-2">Sí</span>
                         </label>
                         <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
@@ -441,9 +454,17 @@ $nombre = session('nombre');
                     </div>
 
                     <div>
-                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2 ">¿Cuáles son los valores familiares?</label>
-                        <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="valores_familia" name="valores_familia" required placeholder=""> </textarea>
+                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2">¿Cuáles son los valores familiares?</label>
+                        <textarea
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="valores_familia"
+                            name="valores_familia"
+                            placeholder="Ej. Respeto, honestidad, etc."
+                            required>{{ old('valores_familia') }}</textarea>
+
+                        @error('valores_familia')
+                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>

@@ -20,7 +20,14 @@
                 <img src="{{ public_path('img/sello-cumbres.svg') }}" alt="Logo" style="width: 5rem;">
             </div>
             <div>
-                <p>HISTORIA DE DESARROLLO NUEVO INGRESO PRIMARIA Y SECUNDARIA***</p>
+                @if(
+                str_contains($estudiante->grado_escolar, 'Secundaria') ||
+                str_contains($estudiante->grado_escolar, 'Primaria')
+                )
+                <p>HISTORIA DE DESARROLLO NUEVO INGRESO PRIMARIA Y SECUNDARIA</p>
+                @else
+                <p>HISTORIA DE DESARROLLO NUEVO INGRESO PREESCOLAR</p>
+                @endif
             </div>
         </div>
 
@@ -141,14 +148,17 @@
                     <td class="label" colspan="2">Estado civil actual de los padres:</td>
                     <td class="value" colspan="1">{{ implode(', ', $estudiante->seccion2->estado_civil ?? []) }}</td>
                     <td class="value"></td>
+                </tr>
+                @php
+                $estadoCivil = optional($estudiante->seccion2)->estado_civil;
+                @endphp
 
-                    @php
-                    $estadoCivil = optional($estudiante->seccion2)->estado_civil;
-                    @endphp
-
-                    @if(is_array($estadoCivil) && in_array('Vuelto a casar', $estadoCivil))
+                @if(is_array($estadoCivil) && in_array('Vuelto a casar', $estadoCivil))
                 <tr>
                     <td class="value" colspan="4"></td>
+                </tr>
+                <tr>
+                    <td class="title" colspan="4">Cónyuge</td>
                 </tr>
                 <tr>
                     <td class="label">Nombre del cónyuge:</td>
@@ -179,17 +189,33 @@
                     <td class="value"> {{ implode(', ', $estudiante->seccion2->conyuge_lateralidad ?? []) }}</td>
                     <td class="value" colspan="2"></td>
                 </tr>
-                @elseif(is_array($estadoCivil) && in_array('Divorciados', $estadoCivil))
-                <tr>
-                    <td class="label">¿Cuáles fueron los motivos de la separación?:</td>
-                    <td class="value" colspan="3"> {{$estudiante->seccion2->moti_separa ?? '-' }}</td>
-                    <!-- <td class="value" colspan="2"></td> -->
-                </tr>
-                @elseif(is_array($estadoCivil) && (in_array('Civil', $estadoCivil) || in_array('Casados Iglesia', $estadoCivil)))
+
                 <tr>
                     <td class="label" colspan="2">¿Cuántos años llevan de casados?:</td>
-                    <td class="value" colspan="2"> {{$estudiante->seccion2->anos_casados ?? '-' }}</td>
+                    <td class="value" colspan="2"> {{$estudiante->seccion2->anos_casados ?? '-' }} años</td>
+                </tr>
 
+                @elseif(is_array($estadoCivil) && in_array('Divorciados', $estadoCivil))
+                <tr>
+                    <td class="label" colspan="4">¿Cuáles fueron los motivos de la separación?:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4"> {{$estudiante->seccion2->moti_separa ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">En caso de separación o divorcio, ¿con quién vive el niño(a)?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4"> {{$estudiante->seccion2->vive_con ?? '-' }}</td>
+                </tr>
+
+
+                @elseif(is_array($estadoCivil) && (
+                in_array('Civil', $estadoCivil) ||
+                in_array('Casados Iglesia', $estadoCivil)))
+                <tr>
+                    <td class="label" colspan="2">¿Cuántos años llevan de casados?:</td>
+                    <td class="value" colspan="2"> {{$estudiante->seccion2->anos_casados ?? '-' }} años</td>
                 </tr>
                 @else
                 <tr>
@@ -268,7 +294,7 @@
                 <tr>
                     <td class="value" colspan="4">{{ $estudiante->seccion3->personas_casa ?? '—'}}</td>
                 </tr>
-               @if(optional($estudiante->seccion3)->personas_casa === 'Sí')
+                @if(optional($estudiante->seccion3)->personas_casa === 'Sí')
                 <tr>
                     <td class="label" colspan="4">¿Quiénes?:</td>
                 </tr>
@@ -300,7 +326,7 @@
 
             </table>
         </div>
-
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
         <!-- dinamica/familiar  -->
         <div>
             <div class="header" style="background-color: #263c57;">
@@ -358,7 +384,8 @@
 
             </table>
         </div>
-
+        <!-- 
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}} -->
         <!-- Historia Pre y Postnatal  -->
         <div>
             <div class="header" style="background-color: #54667a;">
@@ -395,7 +422,7 @@
                 </tr>
             </table>
         </div>
-
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
         <!-- Desarrollo Visual y Desarrollo Auditivo  -->
         <div>
             <div class="header" style="background-color: #ff7843;">
@@ -417,12 +444,6 @@
             </table>
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <!-- Desarrollo motor -->
         <div>
             <div class="header" style="background-color: #54667a;">
@@ -519,7 +540,7 @@
                 </tr>
             </table>
         </div>
-
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
         <!-- Salud -->
         <div>
             <div class="header" style="background-color: #ff7843;">
@@ -566,8 +587,7 @@
             </div>
         </div>
 
-
-        <!-- Salud -->
+        <!-- Caracteristicas Personales -->
         <div>
             <div class="header" style="background-color: #54667a;">
                 <h1 class="title">Caracteristicas Personales</h1>
@@ -598,6 +618,155 @@
                     <td class="value" colspan="4">{{ $estudiante->seccion11->juegacnhijo  ?? '-' }}</td>
                 </tr>
             </table>
+        </div>
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
+        <!-- Historia Escolar-->
+        <div>
+            <div class="header">
+                <h1 class="title">Historia Escolar</h1>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <td class="label" colspan="4">¿Cómo reaccionó en su primer ingreso a la escuela? </td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->reaccprimer  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Ha tenido alguna dificultad para aprender alguna materia? </td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->dificumateria  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label">¿Ha repetido algun año? </td>
+                    <td class="value">{{ $estudiante->seccion12->ha_repetido  ?? '-' }}</td>
+                    @if(optional($estudiante->seccion12)->ha_repetido === 'Sí' )
+                    <td class="label">¿Cuál?</td>
+                    <td class="value">{{ $estudiante->seccion12->cual_escuela  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Por qué motivo?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->porque_escuela  ?? '-' }}</td>
+                </tr>
+                @else
+                <td class="value" colspan="2"></td>
+                @endif
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">¿Puede concentrarse por periodos largos?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion12->puedeperiodolarg  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Cómo ha sido la conducta general a su hijo(a) en el ámbito escolar? </td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->conductaambito  ?? '-' }}</td>
+                </tr>
+
+                @if(
+                str_contains($estudiante->grado_escolar, 'Secundaria') ||
+                str_contains($estudiante->grado_escolar, 'Primaria')
+                )
+                <tr>
+                    <td class="label">¿Cuál es su nivel de lectura? </td>
+                    <td class="value">{{ $estudiante->seccion12->nivel_lectura  ?? '-' }}</td>
+                    <td class="label">¿Cuál es su nivel de escritura?</td>
+                    <td class="value">{{ $estudiante->seccion12->nivel_escritura  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">¿Tiene dificultad para hacer tarea? </td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion12->dificultad_tarea  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Cómo es la relación con maestros y compañeros?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->relacion_maestro  ?? '-' }}</td>
+                </tr>
+                @endif
+
+                <tr>
+                    <td class="label">¿Ha presentado dificultad en la pronunciacion de alguna letra?</td>
+                    <td class="value">{{ $estudiante->seccion12->hay_dific  ?? '-' }}</td>
+                    @if(optional($estudiante->seccion12)->hay_dific === 'Sí' )
+                    <td class="label">¿Cuáles?</td>
+                    <td class="value">{{ $estudiante->seccion12->cual_letra  ?? '-' }}</td>
+                    @else
+                    <td class="value" colspan="2"></td>
+                    @endif
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">¿Maneja el idioma Inglés?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion12->maneingles  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="2">¿Cómo calificaría el desempeño académico general de su hijo(a)?</td>
+                    <td class="value" colspan="2">{{ $estudiante->seccion12->cali_desemp  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">¿Por qué?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->porq_desemp  ?? '-' }}</td>
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="4">¿Cuáles son los principales motivos que los orientaron a buscar un cambio de escuela?</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->motivoscamb  ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="label" colspan="4">Mencione las razones por las que desea que su hijo(a) ingrese a este colegio:</td>
+                </tr>
+                <tr>
+                    <td class="value" colspan="4">{{ $estudiante->seccion12->razoning  ?? '-' }}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
+
+        <!-- Acuerdo de conformidad-->
+        <div>
+            <div class="header" style="background-color: #54667a;">
+                <h1 class="title">CONFORMIDAD SOBRE EL PROCESO DE ADMISIÓN</h1>
+            </div>
+            <p class="acuerdo-text">
+                Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta Institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admision de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
+
+                De igual forma, manifiesto que me fue debidamente informado sobre el Aviso de Privacidad con que cuenta el Colegio, y que puede ser consultado en la página de internet: www.semperaltius.edu.mx/aviso-de-privacidad
+            </p>
+
+            <table class="firma-tabla">
+                <tr>
+                    <td>
+                        <span class="firma-label">Nombre del responsable:</span>
+                        <div class="firma-line"></div>
+                    </td>
+                    <td>
+                        <span class="firma-label">Parentesco con el solicitante:</span>
+                        <div class="firma-line"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firma-label">Fecha:</span>
+                        <div class="firma-line"></div>
+                    </td>
+                    <td>
+                        <span class="firma-label">Firma de conformidad:</span>
+                        <div class="firma-line"></div>
+                    </td>
+                </tr>
+            </table>
+
         </div>
 
 
