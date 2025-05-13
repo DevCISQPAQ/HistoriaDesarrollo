@@ -29,15 +29,15 @@ $nombre = session('nombre');
             <div>
                 <label class="block text-sm font-medium text-gray-700 pb-2">¿Cómo describiría el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="desarrollo_lenguaje" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Despues de lo esperado para la edad</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="desarrollo_lenguaje" value="Esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Esperado para la edad</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="desarrollo_lenguaje" value="Antes de lo esperado" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Antes de lo esperado</span>
                     </label>

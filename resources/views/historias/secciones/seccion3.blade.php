@@ -23,95 +23,9 @@ $nombre = session('nombre');
     <form action="{{ route('seccion3.guardar') }}" method="POST" class="p-1">
         @csrf
 
-        <!-- Datos del hermano -->
-        <!-- <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4 relative overflow-x-auto">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de los Hermanos <span class="text-red-500">*</span></h3>
-
-            <table class="w-full text-sm text-left rtl:text-right text-gray-700 ">
-                <thead class=" text-xs text-white uppercase bg-gray-50 bg-primary">
-                    <tr>
-                        <th scope="col" class="border border-gray-300 px-3 ">Nombre</th>
-                        <th scope="col" class="border border-gray-300 px-3 ">Edad</th>
-                        <th scope="col" class="border border-gray-300 px-3 ">Año escolar u <br> ocupacion</th>
-                        <th scope="col" class="border border-gray-300 px-3 ">Escuela</th>
-                        <th scope="col" class="border border-gray-300 px-3 ">Salud</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="nombre_hermano" name="nombre_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="edad_hermano" name="edad_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escolar_ocupacion" name="escolar_ocupacion[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escuela_hermano" name="escuela_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="salud_hermano" name="salud_hermano[]">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="nombre_hermano" name="nombre_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="edad_hermano" name="edad_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escolar_ocupacion" name="escolar_ocupacion[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escuela_hermano" name="escuela_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="salud_hermano" name="salud_hermano[]">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="nombre_hermano" name="nombre_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="edad_hermano" name="edad_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escolar_ocupacion" name="escolar_ocupacion[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="escuela_hermano" name="escuela_hermano[]">
-                        </td>
-                        <td class="">
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="salud_hermano" name="salud_hermano[]">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
 
         <!-- Idioma-->
         <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Idioma hablado en casa</h3> -->
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label for="idioma_casa" class="block text-sm font-medium text-gray-700">¿Qué idioma se habla en casa?<span class="text-red-500">*</span></label>
@@ -123,12 +37,12 @@ $nombre = session('nombre');
                     <label for="personas_casa" class="block text-sm font-medium text-gray-700">Además de padres e hijos, ¿Viven otras personas en casa? <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4">
 
-                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <label class="radio-box-btn">
                             <input type="radio" name="personas_casa" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                 x-model="viveconotro" required>
                             <span class="ml-2">Sí</span>
                         </label>
-                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <label class="radio-box-btn">
                             <input type="radio" name="personas_casa" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                 x-model="viveconotro">
                             <span class="ml-2">No</span>
@@ -147,30 +61,28 @@ $nombre = session('nombre');
 
         <!-- En caso de adopcion-->
         <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">En caso de Adopción</h3> -->
-
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <div class="space-y-1" x-data="{isadoptado: ''}">
                     <label class="block text-sm font-medium text-gray-700">¿El niño es adoptado?<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-2 gap-2">
-                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <label class="radio-box-btn">
                             <input type="radio" name="siadopcion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
                                 x-model="isadoptado">
                             <span class="ml-2">Sí</span>
                         </label>
-                        <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                        <label class="radio-box-btn">
                             <input type="radio" name="siadopcion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="isadoptado">
                             <span class="ml-2">No</span>
                         </label>
 
                         <div id="Si" x-show="isadoptado == $el.id" x-transition>
                             <label class="block font-medium text-sm text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
-                            <div class="grid grid-cols-2 gap-2">
-                                <label for="" class="text-sm ">
-                                    Edad del niño al momento de la adopción:
-                                    <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses">
-                                </label>
+                            <label for="" class="text-sm ">
+                                Edad del niño al momento de la adopción:
+                                <input type="text" class=" w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses">
+                            </label>
+                            <div class="grid grid-cols-2 gap-2 pt-2">
                                 <label for="" class="text-sm ">
                                     Padre:
                                     <input type="number" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
@@ -209,7 +121,4 @@ $nombre = session('nombre');
         </div>
     </form>
 </div>
-
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endsection

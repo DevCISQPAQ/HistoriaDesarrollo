@@ -9,8 +9,6 @@ $nombre = session('nombre');
 ?>
 
 
-
-
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
     @if (session('id_alumno') !== null)
     <!-- Encabezado de sección -->
@@ -31,19 +29,19 @@ $nombre = session('nombre');
             <div> <!-- radiobutton -->
                 <label class="block text-sm font-medium text-gray-700 py-2">¿Cómo calificaría la adaptación general de su hijo(a) en la casa? <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="califica_adaptacion" value="Inadecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Inadecuada</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="califica_adaptacion" value="Regular" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Regular</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="califica_adaptacion" value="Adecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Adecuada</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="califica_adaptacion" value="Excelente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Excelente</span>
                     </label>

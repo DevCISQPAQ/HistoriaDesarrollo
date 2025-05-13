@@ -49,6 +49,10 @@
     @apply inline-flex items-center border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer bg-white;
   }
 
+   .imput-label{
+    @apply w-full inline-flex items-center border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer bg-white;
+  }
+
   .progress-bar {
     animation: progress 1.5s ease-out forwards;
   }

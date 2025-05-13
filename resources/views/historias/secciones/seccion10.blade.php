@@ -28,70 +28,70 @@ $nombre = session('nombre');
             <div required>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Respiratorios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" >
                         <span class="ml-2">Respiratorios</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Fracturas" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Fracturas</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Cardiovasculares" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Cardiovasculares</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Tics" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Tics</span>
                     </label>
 
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="De la piel" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">De la piel</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Convulciones" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Convulciones</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Digestivos" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Digestivos</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Epilepcias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Epilepcias</span>
                     </label>
 
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Cirugias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Cirugias</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Alergias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Alergias</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Traumatismos" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Traumatismos</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Urinarios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Urinarios</span>
                     </label>
 
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Falta de atencion" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Falta de atencion</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Diabetes" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Diabetes</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Hiperactividad" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Hiperactividad</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer pr-5 ">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Impulsividad" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Impulsividad</span>
                     </label>

@@ -264,37 +264,37 @@ $nombre = session('nombre');
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-1">
                                     <div>
                                         <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
-                                        <input type="text" class="radio-box-btn"
+                                        <input type="text" class="imput-label"
                                             id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
-                                        <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        <input type="number" class="imput-label"
                                             id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
-                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        <input type="text" class="imput-label"
                                             id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
-                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        <input type="text" class="imput-label"
                                             id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación</label>
-                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        <input type="text" class="imput-label"
                                             id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div>
                                         <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
-                                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                        <input type="text" class="imput-label"
                                             id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
@@ -310,7 +310,7 @@ $nombre = session('nombre');
                                                         </svg>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                                <input type="text" class="imput-label"
                                                     id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Facebook">
                                             </div>
 
@@ -323,7 +323,7 @@ $nombre = session('nombre');
                                                         </svg>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                                <input type="text" class="imput-label"
                                                     id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Instagram">
                                             </div>
                                         </div>
@@ -349,7 +349,7 @@ $nombre = session('nombre');
                                 </div>
                                 <div class="py-4">
                                     <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relación o parentesco que tenga con el niño(a):</label>
-                                    <textarea rows="4" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    <textarea rows="4" class="imput-label"
                                         id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
                                 </div>
                             </div>
@@ -493,5 +493,5 @@ $nombre = session('nombre');
 </div>
 
 <!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script> -->
 @endsection

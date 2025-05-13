@@ -29,72 +29,72 @@ $nombre = session('nombre');
             <label class="inline-flex items-center"> Marque las características que presenta el sueño del menor <span class="text-red-500">*</span></label>
             <!-- Check box options -->
             <div class=" grid grid-cols-1 md:grid-cols-3 gap-2 pt-2">
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Continuo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Continuo</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Inquieto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Inquieto</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Habla dormido" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Habla dormido</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Despierta excitado" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Despierta excitado</span>
                 </label>
 
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Tiene pesadillas" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Tiene pesadillas</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Despierta con frecuencia" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Despierta con frecuencia</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Despierta llorando" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Despierta llorando</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Se hace pipi" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Se hace pipí</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer  w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Se hace popo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Se hace popó</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Despierta gritando" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Despierta gritando</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Presenta insomnio" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Presenta insomnio</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Duerme solo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Duerme solo</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Duerme acompañado" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Duerme acompañado</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Se despierta de mal humor" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Se despierta de mal humor</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Presenta sonambulismo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Presenta sonambulismo</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full ">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Tiene temor a dormir solo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Tiene temor a dormir solo</span>
                 </label>
-                <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer w-full">
+                <label class="radio-box-btn">
                     <input type="checkbox" name="suenonino[]" value="Se pasa a media noche a la cama de sus papas" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Se pasa a media noche a la cama de sus papas</span>
                 </label>
@@ -117,12 +117,12 @@ $nombre = session('nombre');
             <div>
                 <div class="space-y-1" x-data="{sidusiesta: ''}">
                     <label for="dusiesta" class="block text-sm font-medium text-gray-700 pt-3">¿Duerme siesta? <span class="text-red-500">*</span></label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="dusiesta" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
                             x-model="sidusiesta">
                         <span class="ml-2">Sí</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="dusiesta" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="sidusiesta">
                         <span class="ml-2">No</span>
                     </label>
@@ -135,12 +135,12 @@ $nombre = session('nombre');
                 </div>
                 <div class="space-y-1" x-data="{sicohabitacion: ''}">
                     <label for="cohabitacion" class="block text-sm font-medium text-gray-700 pt-3">¿Comparte su habitación? <span class="text-red-500">*</span></label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cohabitacion" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
                             x-model="sicohabitacion">
                         <span class="ml-2">Sí</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cohabitacion" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="sicohabitacion">
                         <span class="ml-2">No</span>
                     </label>
@@ -152,18 +152,18 @@ $nombre = session('nombre');
                 </div>
                 <div>
                     <label for="cocama" class="block text-sm font-medium text-gray-700 pt-3">¿Comparte la cama? <span class="text-red-500">*</span></label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cocama" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Sí</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cocama" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
                 <div>
                     <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">¿Hasta qué edad durmió con los papás? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="edad_dupapa" name="edad_dupapa" placeholder="Años" required>
                 </div>
             </div>

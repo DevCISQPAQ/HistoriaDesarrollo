@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit88970a0117c062eed55fa8728fc43833
+class ComposerStaticInit15e11a6551b71116478e15009b2f818b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -2527,6 +2527,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Illuminate\\Http\\Client\\RequestException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/RequestException.php',
         'Illuminate\\Http\\Client\\Response' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Response.php',
         'Illuminate\\Http\\Client\\ResponseSequence' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/ResponseSequence.php',
+        'Illuminate\\Http\\Client\\StrayRequestException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/StrayRequestException.php',
         'Illuminate\\Http\\Concerns\\CanBePrecognitive' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/CanBePrecognitive.php',
         'Illuminate\\Http\\Concerns\\InteractsWithContentTypes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithContentTypes.php',
         'Illuminate\\Http\\Concerns\\InteractsWithFlashData' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithFlashData.php',
@@ -7050,9 +7051,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit88970a0117c062eed55fa8728fc43833::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit88970a0117c062eed55fa8728fc43833::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit88970a0117c062eed55fa8728fc43833::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit15e11a6551b71116478e15009b2f818b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit15e11a6551b71116478e15009b2f818b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit15e11a6551b71116478e15009b2f818b::$classMap;
 
         }, null, ClassLoader::class);
     }

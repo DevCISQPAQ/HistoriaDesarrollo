@@ -1987,6 +1987,7 @@ return array(
     'Illuminate\\Http\\Client\\RequestException' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Client/RequestException.php',
     'Illuminate\\Http\\Client\\Response' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Client/Response.php',
     'Illuminate\\Http\\Client\\ResponseSequence' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Client/ResponseSequence.php',
+    'Illuminate\\Http\\Client\\StrayRequestException' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Client/StrayRequestException.php',
     'Illuminate\\Http\\Concerns\\CanBePrecognitive' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Concerns/CanBePrecognitive.php',
     'Illuminate\\Http\\Concerns\\InteractsWithContentTypes' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithContentTypes.php',
     'Illuminate\\Http\\Concerns\\InteractsWithFlashData' => $vendorDir . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithFlashData.php',

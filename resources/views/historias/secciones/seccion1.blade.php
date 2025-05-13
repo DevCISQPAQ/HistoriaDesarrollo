@@ -19,8 +19,6 @@ $grado = session('grado');
         <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante</p>
     </div>
 
-    <!-- Formulario -->
-    <!-- {{-- <form action="{{ route('preescolar.seccion1.guardar') }}" method="POST" class="p-6"> --}} -->
     <form action="{{ route('seccion1.guardar') }}" method="POST" class="p-6">
         @csrf
 
@@ -147,7 +145,7 @@ $grado = session('grado');
             <div class="space-y-1 md:col-span-2">
                 <label for="escuela_procedencia" class="block text-sm font-medium text-gray-700">Escuela de procedencia <span class="text-red-500">*</span></label>
                 <input type="text" id="escuela_procedencia" name="escuela_procedencia"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" placeholder="Escuela de procedencia" required>
             </div>
         </div>
 

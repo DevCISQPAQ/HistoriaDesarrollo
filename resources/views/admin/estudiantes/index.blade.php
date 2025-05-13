@@ -56,7 +56,7 @@
 
     <!-- Tabla de estudiantes -->
     <div class="overflow-x-auto">
-        <div class="max-h-[500px] overflow-y-auto border rounded">
+        <div class="max-h-[500px] overflow-y-auto border border-gray-300 rounded-lg">
             <table class="min-w-full text-left bg-white">
                 <thead class="sticky top-0 bg-blue-100 z-10 shadow">
                     <tr>
@@ -72,7 +72,7 @@
                         {{ json_encode(strtolower($estudiante->nombre_completo)) }}.includes(buscar.toLowerCase()) ||
                         {{ json_encode(strtolower($estudiante->grado_escolar)) }}.includes(buscar.toLowerCase())
                     ) || buscar === ''"> -->
-                    <tr class="border-b hover:bg-gray-50">
+                    <tr class="border border-gray-300 rounded-lg hover:bg-gray-50">
                         <td class="p-3">{{ $estudiante->nombre_completo }}</td>
                         <td class="p-3">{{ $estudiante->grado_escolar }}</td>
                         <td class="p-3 font-semibold 

@@ -46,12 +46,12 @@ $nombre = session('nombre');
                 <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha repetido algun año? <span class="text-red-500">*</span></label>
 
                 <div class="flex space-x-4 pb-4">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="ha_repetido" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                             x-model="harepetido">
                         <span class="ml-2">Sí</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="ha_repetido" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                             x-model="harepetido">
                         <span class="ml-2">No</span>
@@ -121,12 +121,12 @@ $nombre = session('nombre');
                 <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha presentado dificultad en la pronunciacion de alguna letra? <span class="text-red-500">*</span></label>
 
                 <div class="flex space-x-4 pb-4">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="hay_dific" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                             x-model="haydificultad">
                         <span class="ml-2">Sí</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="hay_dific" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                             x-model="haydificultad">
                         <span class="ml-2">No</span>
@@ -150,15 +150,15 @@ $nombre = session('nombre');
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Cómo calificaría el desempeño académico general de su hijo(a)? <span class="text-red-500">*</span></label>
                 <div class="flex space-x-4 pb-4">
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Sobresaliente</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cali_desemp" value="Promedio" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Promedio</span>
                     </label>
-                    <label class="inline-flex items-center border rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                    <label class="radio-box-btn">
                         <input type="radio" name="cali_desemp" value="Deficiente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Deficiente</span>
                     </label>
