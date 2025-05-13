@@ -1,0 +1,135 @@
+ body {
+     font-family: DejaVu Sans, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f9fafb;
+     color: #333;
+ }
+
+ .container {
+     max-width: 700px;
+     margin: 0;
+     background: #fff;
+     padding: .3rem;
+     border: 1px solid #e5e7eb;
+     border-radius: 8px;
+ }
+
+ .header {
+     background-color: #263c57;
+     color: white;
+     padding: .5rem;
+     text-align: center;
+     border-radius: 6px 6px 0 0;
+     margin-top: 2rem;
+ }
+
+ .title {
+     font-size: .8rem;
+     margin: 0;
+     text-transform: uppercase;
+ }
+
+ .info-table {
+     width: 100%;
+     border-collapse: collapse;
+     margin: 0;
+     font-family: Arial, sans-serif;
+     font-size: .7rem;
+ }
+
+
+
+ .info-table td.label {
+     padding: 10px;
+     font-weight: bold;
+     border: 1px solid #ddd;
+     width: 25%;
+     background-color: #e8e8e8;
+ }
+
+ .info-table td.value {
+     padding: 10px;
+     border: 1px solid #ddd;
+     width: 25%;
+ }
+
+ .footer {
+     margin-top: 30px;
+     font-size: 12px;
+     text-align: center;
+     color: #999;
+ }
+
+ .bannerpdf p {
+     display: flex;
+     justify-content:
+         space-between;
+     align-items: center;
+     text-align: right;
+     font-size: .9rem;
+ }
+
+ .tablehermano {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1rem;
+     font-size: 12px;
+ }
+
+
+ .trhermano {
+     background-color: #e8e8e8;
+     color: #333;
+ }
+
+ .tablehermano th {
+     border: .08rem solid #ccc;
+     padding: .1rem;
+ }
+
+ .tablehermano td {
+     border: .08 solid #ccc;
+     padding: .5rem;
+ }
+
+ .acuerdo-container {
+     margin-top: 0.5rem;
+     /* mt-1 */
+ }
+
+ .acuerdo-text {
+     text-align: justify;
+     color: #1f355e;
+     line-height: 1.5;
+     font-family: Arial, sans-serif;
+     font-size: .7rem;
+ }
+
+ .bold {
+     font-weight: bold;
+ }
+
+ .firma-tabla {
+     width: 100%;
+     margin-top: 50px;
+     font-size: 14px;
+     border-collapse: collapse;
+ }
+
+ .firma-tabla td {
+     padding: 20px;
+     vertical-align: top;
+ }
+
+ .firma-label {
+     font-weight: bold;
+     margin-bottom: 5px;
+     display: block;
+ }
+
+ .firma-line {
+     border-bottom: 1px solid #000;
+     height: 30px;
+     width: 100%;
+ }
