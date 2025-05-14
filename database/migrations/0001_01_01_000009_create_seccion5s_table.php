@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('total_embarazo');
             $table->string('experi_embarazo');
             $table->string('mencione_embaenfe');
+            $table->string('especificar')->nullable();
             $table->string('tiempo_gestacion');
             $table->string('tipo_parto');
             $table->string('lloro');

@@ -107,7 +107,15 @@
                 <tr>
                     <td class="label">Lateridad:</td>
                     <td class="value"> {{ implode(', ', $estudiante->seccion2->padre_lateralidad ?? []) }}</td>
-                    <td class="value" colspan="2"></td>
+                    <td class="label">¿Es egresado de la red?</td>
+                    <td class="value"> {{$estudiante->seccion2->egresadored_padre ?? '_' }}</td>
+                    <!-- <td class="value" colspan="2"></td> -->
+                </tr>
+                <tr>
+                    @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_padre), ['sí', 'si']))
+                    <td class="label">¿Cúal colegio?</td>
+                    <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_padre ?? '_' }}</td>
+                    @endif
                 </tr>
             </table>
             <!-- madre -->
@@ -139,7 +147,15 @@
                 <tr>
                     <td class="label">Lateridad:</td>
                     <td class="value"> {{ implode(', ', $estudiante->seccion2->madre_lateralidad ?? []) }}</td>
-                    <td class="value" colspan="2"></td>
+                    <td class="label">¿Es egresada de la red?</td>
+                    <td class="value"> {{$estudiante->seccion2->egresadored_madre ?? '_' }}</td>
+                    <!-- <td class="value" colspan="2"></td> -->
+                </tr>
+                <tr>
+                    @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_madre), ['sí', 'si']))
+                    <td class="label">¿Cúal colegio?</td>
+                    <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_madre ?? '_' }}</td>
+                    @endif
                 </tr>
             </table>
             <!-- estado civil  -->
@@ -407,6 +423,12 @@
                     <td class="value" colspan="2">{{ $estudiante->seccion5->mencione_embaenfe ?? '—'}}</td>
                 </tr>
                 <tr>
+                    @if(in_array(mb_strtolower(optional($estudiante->seccion5)->mencione_embaenfe), ['sí', 'si']))
+                    <td class="label">Especificar</td>
+                    <td class="value" colspan="3"> {{$estudiante->seccion5->especificar ?? '_' }}</td>
+                    @endif
+                </tr>
+                <tr>
                     <td class="label">Tiempo de gestación</td>
                     <td class="value">{{ $estudiante->seccion5->tiempo_gestacion ?? '—'}}</td>
                     <td class="label">Especifique si el trabajo de parto fue:</td>
@@ -645,7 +667,7 @@
                 <tr>
                     <td class="label">¿Ha repetido algun año? </td>
                     <td class="value">{{ $estudiante->seccion12->ha_repetido  ?? '-' }}</td>
-                  
+
                     @if(in_array(mb_strtolower(optional($estudiante->seccion12)->ha_repetido), ['sí', 'si']))
                     <td class="label">¿Cuál?</td>
                     <td class="value">{{ $estudiante->seccion12->cual_escuela  ?? '-' }}</td>
@@ -697,7 +719,7 @@
                 <tr>
                     <td class="label">¿Ha presentado dificultad en la pronunciacion de alguna letra?</td>
                     <td class="value">{{ $estudiante->seccion12->hay_dific  ?? '-' }}</td>
-                 
+
                     @if(in_array(mb_strtolower(optional($estudiante->seccion12)->hay_dific), ['sí', 'si']))
                     <td class="label">¿Cuáles?</td>
                     <td class="value">{{ $estudiante->seccion12->cual_letra  ?? '-' }}</td>

@@ -29,7 +29,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos del Padre</h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                     <label for="nombre_padre" class="block text-sm font-medium text-gray-700">Nombre del Padre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
@@ -98,24 +98,46 @@ $nombre = session('nombre');
                 </div>
 
                 <!-- Diestro/Zurdo -->
-                <div class="md:col-span-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
-                    <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
-                    <div class="flex space-x-4 mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestro" id="check1">
-                            <span class="ml-2">Diestro</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="padre_lateralidad[]" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="zurdo" id="check2">
-                            <span class="ml-2">Zurdo</span>
-                        </label>
+                <div class="flex items-center">
+                    <div class="pl-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
+                        <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
+                        <div class="flex space-x-4 mt-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestro" id="check1">
+                                <span class="ml-2">Diestro</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="padre_lateralidad[]" value="Zurdo" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="zurdo" id="check2">
+                                <span class="ml-2">Zurdo</span>
+                            </label>
+                        </div>
+                        <!-- Campo oculto que se usa para hacer la validación required -->
+                        <input type="hidden" name="padre_lateralidad_required" x-bind:required="!diestro && !zurdo">
+                        @error('padre_lateralidad')
+                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
-                    <!-- Campo oculto que se usa para hacer la validación required -->
-                    <input type="hidden" name="padre_lateralidad_required" x-bind:required="!diestro && !zurdo">
-                    @error('padre_lateralidad')
-                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
-                    @enderror
                 </div>
+
+                <div class="space-y-1" x-data="{siegresadored: ''}">
+                    <label for="egresadored" class="block text-sm font-medium text-gray-700">¿Es egresado de la red? <span class="text-red-500">*</span></label>
+                    <label class="radio-box-btn">
+                        <input type="radio" name="egresadored_padre" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
+                            x-model="siegresadored">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="radio-box-btn">
+                        <input type="radio" name="egresadored_padre" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="siegresadored">
+                        <span class="ml-2">No</span>
+                    </label>
+                    <div id="Si" x-show="siegresadored == $el.id" x-transition>
+                        <label for="cualcolegio_padre" class="block text-sm font-medium text-gray-700 pt-3">¿Cúal colegio?</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="cualcolegio_padre" name="cualcolegio_padre">
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
@@ -123,7 +145,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Datos de la Madre</h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                     <label for="nombre_madre" class="block text-sm font-medium text-gray-700">Nombre de la Madre <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
@@ -192,21 +214,41 @@ $nombre = session('nombre');
                 </div>
 
                 <!-- Diestra/Zurda -->
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
-                    <div class="flex space-x-4 mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                            <span class="ml-2">Diestra</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="madre_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                            <span class="ml-2">Zurda</span>
-                        </label>
+                <div class="flex items-center">
+                    <div class="pl-2" x-data="{ diestra: false, zurda: false }" x-init="$watch('diestra', checkRequired); $watch('zurda', checkRequired)">
+                        <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
+                        <div class="flex space-x-4 mt-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded"  x-model="diestra" id="check1">
+                                <span class="ml-2">Diestra</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="madre_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded"  x-model="zurda" id="check2">
+                                <span class="ml-2">Zurda</span>
+                            </label>
+                        </div>
+                        @error('madre_lateralidad')
+                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
-                    @error('madre_lateralidad')
-                    <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
-                    @enderror
+                </div>
+
+                <div class="space-y-1" x-data="{siegresadored: ''}">
+                    <label for="egresadored" class="block text-sm font-medium text-gray-700">¿Es egresada de la red? <span class="text-red-500">*</span></label>
+                    <label class="radio-box-btn">
+                        <input type="radio" name="egresadored_madre" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
+                            x-model="siegresadored">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="radio-box-btn">
+                        <input type="radio" name="egresadored_madre" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="siegresadored">
+                        <span class="ml-2">No</span>
+                    </label>
+                    <div id="Si" x-show="siegresadored == $el.id" x-transition>
+                        <label for="cualcolegio_madre" class="block text-sm font-medium text-gray-700 pt-3">¿Cúal colegio?</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="cualcolegio_madre" name="cualcolegio_madre">
+                    </div>
                 </div>
             </div>
         </div>

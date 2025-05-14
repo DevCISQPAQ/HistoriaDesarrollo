@@ -42,18 +42,21 @@ $nombre = session('nombre');
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Complicaciones en el embarazo</h3> -->
-            <div>
+            <div x-data="{sienfermedad: ''}">
                 <label for="mencione_embaenfe" class="block text-sm font-medium text-gray-700 ">Mencione si la madre tuvo alguna enfermedad o complicaciónes durante el embarazo.<span class="text-red-500">*</span> </label>
                 <label class="radio-box-btn">
-                    <input type="radio" name="mencione_embaenfe" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
+                    <input type="radio" name="mencione_embaenfe" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required x-model="sienfermedad">
                     <span class="ml-2">Sí</span>
                 </label>
                 <label class="radio-box-btn">
-                    <input type="radio" name="mencione_embaenfe" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <input type="radio" name="mencione_embaenfe" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="sienfermedad">
                     <span class="ml-2">No</span>
                 </label>
-
+                <div id="Si" x-show="sienfermedad == $el.id" x-transition>
+                    <label for="especificar" class="block text-sm font-medium text-gray-700 pt-3">Especificar</label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="especificar" name="especificar">
+                </div>
             </div>
         </div>
         <!-- .... -->
@@ -67,7 +70,7 @@ $nombre = session('nombre');
                 </div>
                 <div>
                     <label for="tipo_parto" class="block text-sm font-medium text-gray-700">Especifique si el trabajo de parto fue: <span class="text-red-500">*</span></label>
-                    <select id="tipo_parto" name="tipo_parto" 
+                    <select id="tipo_parto" name="tipo_parto"
                         class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
                         <option value="" selected disabled>Seleccione una opcion</option>
                         <option value="Normal">Natural</option>
@@ -111,8 +114,8 @@ $nombre = session('nombre');
 
         </div>
 
-         <!-- Botones de navegación -->
-         <div class="flex justify-between mt-8 m-4 gap-2">
+        <!-- Botones de navegación -->
+        <div class="flex justify-between mt-8 m-4 gap-2">
             <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />

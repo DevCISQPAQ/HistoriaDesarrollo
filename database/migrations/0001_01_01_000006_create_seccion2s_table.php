@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('seccion2s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('estudiante_id')->constrained('estudiantes')->onDelete('cascade');
-            $table->string('nombre_padre', 150); 
+            $table->string('nombre_padre', 150);
             $table->integer('edad_padre');
             $table->string('empresa_padre');
             $table->string('puesto_padre');
@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('correo_padre');
             $table->string('redessoc_padre')->nullable();
             $table->string('padre_lateralidad');
+            $table->string('egresadored_padre');
+            $table->string('cualcolegio_padre')->nullable();
             $table->string('nombre_madre');
             $table->integer('edad_madre');
             $table->string('empresa_madre');
@@ -30,6 +32,8 @@ return new class extends Migration
             $table->string('correo_madre');
             $table->string('redessoc_madre')->nullable();
             $table->string('madre_lateralidad');
+            $table->string('egresadored_madre');
+            $table->string('cualcolegio_madre')->nullable();
             $table->string('estado_civil');
             $table->string('nombre_conyuge')->nullable();
             $table->integer('edad_conyuge')->nullable();

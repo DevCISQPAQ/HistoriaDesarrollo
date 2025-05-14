@@ -65,42 +65,7 @@ class BDController extends Controller
 
     public function guardarSeccion2(Request $request)
     {
-        // $request->validate([
-        //     'nombre_padre' => 'required|string',
-        //     'edad_padre' => 'required|integer',
-        //     'empresa_padre' => 'required|string',
-        //     'puesto_padre' => 'required|string',
-        //     'ocupacion_padre' => 'required|string',
-        //     'correo_padre' => 'required|string',
-        //     'redessoc_padre' => 'nullable|array',
-        //     'padre_lateralidad' => 'required|array',
-        //     'nombre_madre' => 'required|string',
-        //     'edad_madre' => 'required|integer',
-        //     'empresa_madre' => 'required|string',
-        //     'puesto_madre' => 'required|string',
-        //     'ocupacion_madre' => 'required|string',
-        //     'correo_madre' => 'required|string',
-        //     'redessoc_madre' => 'nullable|array',
-        //     'madre_lateralidad' => 'required|array',
-        //     'estado_civil' => 'required|array',
-        //     'nombre_conyuge' => 'nullable|string',
-        //     'edad_conyuge' => 'nullable|integer',
-        //     'empresa_conyuge' => 'nullable|string',
-        //     'puesto_conyuge' => 'nullable|string',
-        //     'ocupacion_conyuge' => 'nullable|string',
-        //     'correo_conyuge' => 'nullable|string',
-        //     'redessoc_conyuge' => 'nullable|array',
-        //     'conyuge_lateralidad' => 'nullable|array',
-        //     'noviveconpadres_situtor' => 'nullable|string',
-        //     'anos_casados' => 'required|integer',
-        //     'numero_hijos' => 'required|integer',
-        //     'moti_separa' => 'nullable|string',
-        //     'vive_con' => 'nullable|string',
-        //     'religion' => 'required|string',
-        //     'valores_familia' => 'required|string',
-
-        // ]);
-
+       
         $request->validate([
             'padre_lateralidad' => 'required|array|min:1',
             'madre_lateralidad' => 'required|array|min:1',
@@ -113,12 +78,6 @@ class BDController extends Controller
             ]);
         }
 
-        // $hasCheckbox = $request->filled('estado_civil');
-        // if (!$hasCheckbox) {
-        //     return back()->withErrors([
-        //         'estado_civil' => 'Debes seleccionar al menos una opción de estado civil.'
-        //     ])->withInput();
-        // }
 
 
         if (($request->numero_hijos) > 1) {
@@ -149,6 +108,8 @@ class BDController extends Controller
                 'correo_padre' => $request->correo_padre,
                 'redessoc_padre' =>  $request->redessoc_padre,
                 'padre_lateralidad' =>  $request->padre_lateralidad,
+                'egresadored_padre' => $request->egresadored_padre,
+                'cualcolegio_padre' => $request->cualcolegio_padre,
                 'nombre_madre' => $request->nombre_madre,
                 'edad_madre' => $request->edad_madre,
                 'empresa_madre' => $request->empresa_madre,
@@ -157,6 +118,8 @@ class BDController extends Controller
                 'correo_madre' => $request->correo_madre,
                 'redessoc_madre' => $request->redessoc_madre,
                 'madre_lateralidad' => $request->madre_lateralidad,
+                'egresadored_madre' => $request->egresadored_madre,
+                'cualcolegio_madre' => $request->cualcolegio_madre,
                 'estado_civil' =>  $request->estado_civil,
                 'nombre_conyuge' => $request->nombre_conyuge,
                 'edad_conyuge' => $request->edad_conyuge,
@@ -181,10 +144,6 @@ class BDController extends Controller
         session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
 
-        // $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
-        //     'seccion2_id' => $seccion2->id
-        // ]);
-
         $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
         $formulario->seccion2_id = $seccion2->id;
         $formulario->save();
@@ -196,20 +155,10 @@ class BDController extends Controller
 
     public function guardarSeccion3(Request $request)
     {
-        // $hermano =  Hermano::create([
-
-        //     'nombre_hermano' => json_encode((array) $request->nombre_hermano),
-        //     'edad_hermano' => json_encode((array) $request->edad_hermano),
-        //     'escolar_ocupacion' => json_encode((array) $request->escolar_ocupacion),
-        //     'escuela_hermano' => json_encode((array) $request->escuela_hermano),
-        //     'salud_hermano' => json_encode((array) $request->salud_hermano),
-
-        // ]);
-
-
-        $seccion3 =  Seccion3::create([
-            'estudiante_id' => session('id_alumno'),
-            // 'hermano_id' => $hermano->id,
+        
+        $seccion3 =  Seccion3::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'idioma_casa' => $request->idioma_casa,
             'personas_casa' => $request->personas_casa,
             'quienes_casa' => $request->quienes_casa,
@@ -235,8 +184,9 @@ class BDController extends Controller
     public function guardarSeccion4(Request $request)
     {
 
-        $seccion4 = Seccion4::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion4 = Seccion4::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'califica_adaptacion' => $request->califica_adaptacion,
             'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
             'relacion_familia_madre' => $request->relacion_familia_madre,
@@ -260,11 +210,13 @@ class BDController extends Controller
     public function guardarSeccion5(Request $request)
     {
 
-        $seccion5 = Seccion5::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion5 = Seccion5::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'total_embarazo' => $request->total_embarazo,
             'experi_embarazo' => $request->experi_embarazo,
             'mencione_embaenfe' => $request->mencione_embaenfe,
+            'especificar' => $request->especificar,
             'tiempo_gestacion' => $request->tiempo_gestacion,
             'tipo_parto' => $request->tipo_parto,
             'lloro' => $request->lloro,
@@ -283,8 +235,9 @@ class BDController extends Controller
     public function guardarSeccion6(Request $request)
     {
 
-        $seccion6 = Seccion6::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion6 = Seccion6::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'desa_visual' => $request->desa_visual,
             'desa_auditivo' => $request->desa_auditivo,
         ]);
@@ -300,8 +253,9 @@ class BDController extends Controller
     public function guardarSeccion7(Request $request)
     {
 
-        $seccion7 = Seccion7::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion7 = Seccion7::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'desarrollo_motor' => $request->desarrollo_motor,
             'edad_gate' => $request->edad_gate,
             'edad_cami' => $request->edad_cami,
@@ -320,8 +274,9 @@ class BDController extends Controller
     public function guardarSeccion8(Request $request)
     {
 
-        $seccion8 = Seccion8::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion8 = Seccion8::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
             'prim_palabra' => $request->prim_palabra,
         ]);
@@ -337,8 +292,9 @@ class BDController extends Controller
     public function guardarSeccion9(Request $request)
     {
 
-        $seccion9 = Seccion9::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion9 = Seccion9::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'suenonino' => $request->suenonino,
             'horadecama' => $request->horadecama,
             'horadespierta' => $request->horadespierta,
@@ -361,8 +317,9 @@ class BDController extends Controller
     public function guardarSeccion10(Request $request)
     {
 
-        $seccion10 = Seccion10::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion10 = Seccion10::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'saludnino' =>  $request->saludnino,
             'otrosprob' => $request->otrosprob,
             'enfeotrastor' => $request->enfeotrastor,
@@ -380,8 +337,9 @@ class BDController extends Controller
     public function guardarSeccion11(Request $request)
     {
 
-        $seccion11 = Seccion11::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion11 = Seccion11::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'personalidadhijo' => $request->personalidadhijo,
             'oportunihijo' => $request->oportunihijo,
             'adapthijo' => $request->adapthijo,
@@ -399,8 +357,9 @@ class BDController extends Controller
     public function guardarSeccion12(Request $request)
     {
 
-        $seccion12 = Seccion12::create([
-            'estudiante_id' => session('id_alumno'),
+        $seccion12 = Seccion12::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
             'reaccprimer' => $request->reaccprimer,
             'dificumateria' => $request->dificumateria,
             'nivel_lectura' => $request->nivel_lectura,

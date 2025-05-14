@@ -12,6 +12,7 @@ class Seccion5 extends Model
         'total_embarazo',
         'experi_embarazo',
         'mencione_embaenfe',
+        'especificar',
         'tiempo_gestacion',
         'tipo_parto',
         'lloro',
