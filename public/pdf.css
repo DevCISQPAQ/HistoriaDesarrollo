@@ -74,7 +74,7 @@
      width: 100%;
      border-collapse: collapse;
      margin-top: 1rem;
-     font-size: 12px;
+     font-size: .7rem;
  }
 
 
@@ -91,6 +91,7 @@
  .tablehermano td {
      border: .08 solid #ccc;
      padding: .5rem;
+     font-size: .7rem;
  }
 
  .acuerdo-container {

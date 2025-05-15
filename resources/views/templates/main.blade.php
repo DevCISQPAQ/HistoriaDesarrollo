@@ -7,7 +7,8 @@
     <title>Historia de Desarrollo</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-
+    <link rel="shortcut icon" type="image/svg" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
+    <link rel="shortcut icon" sizes="192x192" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
 </head>
 
 <body class="bg-gray-100 font-sans">

@@ -61,7 +61,7 @@ $nombre = session('nombre');
                 <!-- Motivos  -->
                 <div id="Si" x-show="harepetido == $el.id" x-transition>
                     <label for="cual_escuela" class="block text-sm font-medium text-gray-700">¿Cuál?</label>
-                    <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="cual_escuela" name="cual_escuela"></textarea>
                 </div>
 
@@ -101,7 +101,7 @@ $nombre = session('nombre');
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="nivel_escritura" name="nivel_escritura">
                 </div>
-<!--  -->
+                <!--  -->
                 <div>
                     <label for="dificultad_tarea" class="block text-sm font-medium text-gray-700 pt-3">¿Tiene dificultad para hacer tarea? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
@@ -113,7 +113,7 @@ $nombre = session('nombre');
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="relacion_maestro" name="relacion_maestro">
                 </div>
-<!--  -->
+                <!--  -->
             </div>
             @endif
             <!-- opciones de si dificultad -->
@@ -136,7 +136,7 @@ $nombre = session('nombre');
                 <!-- Motivos  -->
                 <div id="Si" x-show="haydificultad == $el.id" x-transition>
                     <label for="cual_letra" class="block text-sm font-medium text-gray-700">¿Cuáles?</label>
-                    <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="cual_letra" name="cual_letra"></textarea>
                 </div>
             </div>
@@ -205,8 +205,5 @@ $nombre = session('nombre');
     </form>
 </div>
 
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script>
 </script>
 @endsection

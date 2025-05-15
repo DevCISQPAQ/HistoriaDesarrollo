@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Ficha del Estudiante</title>
     <link rel="stylesheet" href="{{ public_path('pdf.css') }}" type="text/css">
-
-
+    <link rel="shortcut icon" type="image/svg" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
+    <link rel="shortcut icon" sizes="192x192" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
 </head>
 
 <body>

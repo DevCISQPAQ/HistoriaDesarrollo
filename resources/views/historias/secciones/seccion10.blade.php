@@ -25,7 +25,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
             <!-- check box -->
-            <div required>
+            <div>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                     <label class="radio-box-btn">
@@ -152,9 +152,4 @@ $nombre = session('nombre');
         </div>
     </form>
 </div>
-
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script>
-</script>
 @endsection

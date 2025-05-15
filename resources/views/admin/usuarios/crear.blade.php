@@ -24,7 +24,7 @@
 
         <div class="mb-4">
             <label class="block text-sm font-semibold text-gray-700">Correo electrónico</label>
-            <input type="email" name="email" required class="w-full mt-1 px-4 py-2 border rounded focus:ring focus:ring-blue-200">
+            <input type="email" name="email" id="email"  required class="w-full mt-1 px-4 py-2 border rounded focus:ring focus:ring-blue-200">
         </div>
 
         <div class="mb-4">

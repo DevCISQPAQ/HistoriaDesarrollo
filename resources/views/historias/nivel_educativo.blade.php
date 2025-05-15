@@ -22,7 +22,7 @@
                 <div class="p-6 md:p-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Opción Preescolar -->
-                        <a href="{{ route('preescolar.seccion1') }}"
+                        <a href="{{ route('historia.seccion1', ['grado' => 'preescolar']) }}"
                             class="group border-2 border-blue-100 rounded-xl p-6 text-center hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-blue-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-blue-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -39,7 +39,7 @@
                         </a>
 
                         <!-- Opción Primaria/Secundaria -->
-                        <a href="{{ route('primaria_secundaria.seccion1') }}"
+                        <a href="{{ route('historia.seccion1', ['grado' => 'primaria_secundaria']) }}"
                             class="group border-2 border-green-100 rounded-xl p-6 text-center hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-green-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:bg-green-200 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,7 +87,7 @@
                     <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar Estudiantes</h1>
 
                     {{-- Formulario de búsqueda --}}
-                    <form action="{{ route('historia.nivel-educativo.buscar') }}" method="POST">
+                    <form action="{{ route('historia.nivel_educativo.buscar') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
                             <div>
@@ -133,13 +133,5 @@
         </div>
 
     </main>
-
-    <!-- Pie de página -->
-    <!-- <footer class="bg-secondary text-white text-center py-4 mt-8">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2025 Historia de Desarrollo. Todos los derechos reservados.</p>
-            <p class="text-sm mt-2 opacity-80">Colegio Cumbres - Sistema de Admisiones</p>
-        </div>
-    </footer> -->
 </div>
 @endsection

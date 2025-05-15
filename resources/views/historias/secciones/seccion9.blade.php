@@ -101,15 +101,15 @@ $nombre = session('nombre');
             </div>
 
             <!-- Hora siesta -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 pt-6">
                 <div>
                     <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se acuesta por la noche? <span class="text-red-500">*</span></label>
-                    <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
                 <div>
                     <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se despierta? <span class="text-red-500">*</span></label>
-                    <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
             </div>
@@ -129,7 +129,7 @@ $nombre = session('nombre');
 
                     <div id="Si" x-show="sidusiesta == $el.id" x-transition>
                         <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">¿Cuántas horas?</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="horasiesta" name="horasiesta" placeholder="Horas">
                     </div>
                 </div>
@@ -146,7 +146,7 @@ $nombre = session('nombre');
                     </label>
                     <div id="Si" x-show="sicohabitacion == $el.id" x-transition>
                         <label for="conquien" class="block text-sm font-medium text-gray-700 pt-3">¿Con quien?</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="conquien" name="conquien">
                     </div>
                 </div>
@@ -187,7 +187,4 @@ $nombre = session('nombre');
         </div>
     </form>
 </div>
-
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endsection

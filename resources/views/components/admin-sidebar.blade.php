@@ -1,7 +1,7 @@
 <div x-data="{ sidebarOpen: false }" @click.away="sidebarOpen = false">
     {{-- Título del panel --}}
-    <div class="p-6 font-bold text-xl text-blue-600 border-b">
-        Panel de Administración
+    <div class="p-6 font-bold text-dm text-blue-600 border-b border-gray-300 ">
+        Panel de Administración de Historial de Desarrollo
     </div>
 
     {{-- Navegación --}}
@@ -26,7 +26,7 @@
     </nav>
     </nav>
     {{-- Pie de menú opcional --}}
-    <div class="p-4 text-sm text-gray-500 border-t">
+    <div class="p-4 text-sm text-gray-500 border-t border-gray-300">
         &copy; {{ date('Y') }} Panel Admin
     </div>
 </div>

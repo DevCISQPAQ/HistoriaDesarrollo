@@ -394,7 +394,7 @@ class BDController extends Controller
             'acepto_terminos' => $request->acepto_terminos
         ]);
 
-        return redirect()->route('historia.nivel-educativo');
+        return redirect()->route('historia.nivel_educativo');
     }
 
 
@@ -453,11 +453,13 @@ class BDController extends Controller
                 if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
 
                     session()->put(['grado' => 'primaria_secundaria']);
+                }else{
+                    session()->put(['grado' => 'preescolar']);
                 }
 
 
                 // Redirigir a la vista intermedia y pasar el nombre de la vista
-                return view('historias.level-selector', [
+                return view('historias.nivel_educativo', [
                     'vista' => $vista,
                     'estudiantes' => $estudiantes,
                     'campoLlenoCount' => $campoLlenoCount
@@ -465,12 +467,12 @@ class BDController extends Controller
                 ]);
             } else {
                 // Si el estudiante no existe, cargamos una vista por defecto
-                return view('historias.level-selector', [
+                return view('historias.nivel_educativo', [
                     'vista' => 'seccion1' // Por ejemplo, si no se encuentra el estudiante
                 ]);
             }
         } else {
-            return view('historias.level-selector', compact('estudiantes'));
+            return view('historias.nivel_educativo', compact('estudiantes'));
         }
     }
 }

@@ -137,8 +137,8 @@ $nombre = session('nombre');
                 </svg>
             </button>
         </div>
-
     </form>
+
     @else
     <div class="flex justify-between mt-8 m-4 gap-2">
         <h3 class="text-lg font-semibold text-[#1f355e] mb-4">No hay valores validos, por favor regrese a la pagina principal</h3>
@@ -152,6 +152,4 @@ $nombre = session('nombre');
     @endif
 </div>
 
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endsection

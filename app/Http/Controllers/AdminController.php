@@ -78,10 +78,21 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            // 'email' => 'required|email|unique:users',
+            // 'email' => 'required|email:dns|unique:users',
+            'email' => ['required', 'email', 'unique:users', function ($attribute, $value, $fail) {
+                $domain = substr(strrchr($value, "@"), 1);  // Obtener el dominio del correo
+                if (!checkdnsrr($domain, 'MX')) {  // Verificar registros MX para el dominio
+                    $fail('El dominio del correo electrónico no es válido.');
+                }
+            }],
+
             'password' => 'required|min:6',
             'is_admin' => 'required|boolean',
         ]);
+        // ], [
+        //     'email.dns' => 'El dominio del correo electrónico no es válido.',
+        // ]);
 
         User::create([
             'name' => $request->name,

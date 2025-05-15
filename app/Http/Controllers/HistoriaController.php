@@ -21,16 +21,15 @@ class HistoriaController extends Controller
 
         ]);
 
-        return view('historias.level-selector');
+        return view('historias.nivel_educativo');
     }
 
-    public function showPreescolarSeccion1()
+    public function showSeccion1(Request $request)
     {
         session([
             'id_alumno' => '',
             'nombre' => '',
-            'grado' => 'preescolar',
-
+            'grado' => $request->input('grado')
         ]);
 
         return view('historias.secciones.seccion1');

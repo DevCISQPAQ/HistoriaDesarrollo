@@ -65,8 +65,4 @@ $nombre = session('nombre');
         </div>
     </form>
 </div>
-
-<!-- AlpineJS para la funcionalidad condicional -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
 @endsection

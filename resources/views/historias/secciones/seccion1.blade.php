@@ -92,7 +92,7 @@ $grado = session('grado');
             <!-- Grado escolar -->
             <div class="space-y-1">
                 <label for="grado_escolar" class="block text-sm font-medium text-gray-700">Grado escolar <span class="text-red-500">*</span></label>
-                <select id="grado_escolar" name="grado_escolar" 
+                <select id="grado_escolar" name="grado_escolar"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
 
                     @if($grado === 'preescolar')
@@ -151,12 +151,13 @@ $grado = session('grado');
 
         <!-- Botones de acción -->
         <div class="flex justify-between mt-8 m-4 gap-2">
-            <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
+            <a href="{{ route('historia.nivel_educativo') }}" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
-            </button>
+            </a>
+
 
             <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
                 Guardar y <br> Continuar

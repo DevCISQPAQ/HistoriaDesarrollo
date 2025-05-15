@@ -47,7 +47,7 @@
                         </p>
 
                         <div class="mt-8">
-                            <a href="{{ route('historia.nivel-educativo') }}" class="inline-block w-full md:w-auto px-8 py-3 text-center bg-[#FF6B6B] hover:bg-red-600 text-white font-medium rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            <a href="{{ route('historia.nivel_educativo') }}" class="inline-block w-full md:w-auto px-8 py-3 text-center bg-[#FF6B6B] hover:bg-red-600 text-white font-medium rounded-lg shadow-md transition duration-300 transform hover:scale-105">
                                 {{-- <a href="#" class="inline-block w-full md:w-auto px-8 py-3 text-center bg-[#FF6B6B] hover:bg-red-600 text-white font-medium rounded-lg shadow-md transition duration-300 transform hover:scale-105"> --}}
 
                                 Comenzar ahora
