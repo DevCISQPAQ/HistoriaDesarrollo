@@ -1,7 +1,6 @@
 @extends('templates.main')
 @section('progress-title', 'Datos del alumno')
 @section('progress-percentage', '50') <!-- Porcentaje completado -->
-{{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
 
 <?php
@@ -10,6 +9,7 @@ $nombre = session('nombre');
 ?>
 
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+    @if (session('id_alumno'))
     <!-- Encabezado de sección -->
     <div class="bg-[#667c87] px-6 py-4">
         <div class="flex items-center">
@@ -77,14 +77,13 @@ $nombre = session('nombre');
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Coordinacion del hijo(a)</h3> -->
-          
+
             <div>
                 <label for="prac_deporte" class="block text-sm font-medium text-gray-700">¿Qué tipo de actividad le interesa a su hijo de manera especial?<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="prac_deporte" name="prac_deporte" placeholder="Hobbies/Deportes " required>
             </div>
         </div>
-
 
         <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 m-4 gap-2">
@@ -103,5 +102,16 @@ $nombre = session('nombre');
             </button>
         </div>
     </form>
+    @else
+    <div class="flex justify-between mt-8 m-4 gap-2">
+        <h3 class="text-lg font-semibold text-[#1f355e] mb-4">No hay valores validos, por favor regrese a la pagina principal</h3>
+        <a href="{{ route('historia.nivel_educativo') }}" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Regresar
+        </a>
+    </div>
+    @endif
 </div>
 @endsection

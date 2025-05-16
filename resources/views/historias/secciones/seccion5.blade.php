@@ -1,7 +1,6 @@
 @extends('templates.main')
 @section('progress-title', 'Datos del alumno')
 @section('progress-percentage', '35') <!-- Porcentaje completado -->
-{{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
 
 
@@ -11,6 +10,7 @@ $nombre = session('nombre');
 ?>
 
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+    @if (session('id_alumno'))
     <!-- Encabezado de sección -->
     <div class="bg-[#667c87] px-6 py-4">
         <div class="flex items-center">
@@ -131,5 +131,16 @@ $nombre = session('nombre');
             </button>
         </div>
     </form>
+    @else
+    <div class="flex justify-between mt-8 m-4 gap-2">
+        <h3 class="text-lg font-semibold text-[#1f355e] mb-4">No hay valores validos, por favor regrese a la pagina principal</h3>
+        <a href="{{ route('historia.nivel_educativo') }}" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Regresar
+        </a>
+    </div>
+    @endif
 </div>
 @endsection

@@ -1,7 +1,6 @@
 @extends('templates.main')
 @section('progress-title', 'Datos del alumno')
 @section('progress-percentage', '10') <!-- Porcentaje completado -->
-{{-- @section('current-section', 1) <!-- Resalta la sección actual --> --}}
 @section('content')
 
 <?php
@@ -11,6 +10,7 @@ $nombre = session('nombre');
 
 
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+    @if (session('id_alumno'))
     <!-- Encabezado de sección -->
     <div class="bg-[#667c87] px-6 py-4">
         <div class="flex items-center">
@@ -21,7 +21,6 @@ $nombre = session('nombre');
     </div>
 
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
-        <!-- <form action="#" method="POST"> -->
         @csrf
 
         <!-- Datos del Padre (manteniendo tus campos originales) -->
@@ -65,7 +64,7 @@ $nombre = session('nombre');
                         id="correo_padre" name="correo_padre" value="{{ old('correo_padre') }}" required placeholder="correo@correo.com">
                 </div>
 
-                <div  class="col-span-1 md:col-span-2">
+                <div class="col-span-1 md:col-span-2">
                     <label for="redessoc_padre" class="block text-sm font-medium text-gray-700 ">Redes sociales</label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                         <div class="flex">
@@ -97,7 +96,7 @@ $nombre = session('nombre');
                 </div>
 
                 <!-- Diestro/Zurdo -->
-                <div  class="col-span-1 md:col-span-2">
+                <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
                         <div class="flex space-x-4 mt-2">
@@ -181,7 +180,7 @@ $nombre = session('nombre');
                         id="correo_madre" name="correo_madre" value="{{ old('correo_madre') }}" placeholder="Correo@correo.com" required>
                 </div>
 
-                <div  class="col-span-1 md:col-span-2">
+                <div class="col-span-1 md:col-span-2">
                     <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales</label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                         <div class="flex">
@@ -213,16 +212,16 @@ $nombre = session('nombre');
                 </div>
 
                 <!-- Diestra/Zurda -->
-                <div  class="col-span-1 md:col-span-2">
+                <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestra: false, zurda: false }" x-init="$watch('diestra', checkRequired); $watch('zurda', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
                         <div class="flex space-x-4 mt-2">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded"  x-model="diestra" id="check1">
+                                <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestra" id="check1">
                                 <span class="ml-2">Diestra</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" name="madre_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded"  x-model="zurda" id="check2">
+                                <input type="checkbox" name="madre_lateralidad[]" value="Zurda" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="zurda" id="check2">
                                 <span class="ml-2">Zurda</span>
                             </label>
                         </div>
@@ -302,8 +301,8 @@ $nombre = session('nombre');
 
                             <div class="pt-4 bg-[#8caab945] rounded-xl shadow-lg overflow-hidden p-4 mt-2" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
                                 <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre biológic(a)), con quien vive el niño(a) actualmente <span class="text-red-500">*</span></p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"">
-                                    <div class="col-span-1">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div class=" col-span-1">
                                         <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
                                         <input type="text" class="imput-label"
                                             id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos" x-bind:required="estcivil === 'Vuelto a casar'">
@@ -394,92 +393,90 @@ $nombre = session('nombre');
                                         id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div id="Divorciados" x-show="estcivil == $el.id">
-                                <!-- Motivos separación (condicional) -->
-                                <div x-transition>
-                                    <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
-                                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="moti_separa" name="moti_separa" rows="3" x-bind:required="estcivil === 'Divorciados'"></textarea>
-                                </div>
-                                <!-- Vive con (condicional) -->
-                                <div x-transition>
-                                    <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="vive_con" name="vive_con" x-bind:required="estcivil === 'Divorciados'">
-                                </div>
-
+                        <div id="Divorciados" x-show="estcivil == $el.id">
+                            <!-- Motivos separación (condicional) -->
+                            <div x-transition>
+                                <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
+                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    id="moti_separa" name="moti_separa" rows="3" x-bind:required="estcivil === 'Divorciados'"></textarea>
+                            </div>
+                            <!-- Vive con (condicional) -->
+                            <div x-transition>
+                                <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    id="vive_con" name="vive_con" x-bind:required="estcivil === 'Divorciados'">
                             </div>
 
-
-                        </div> <!-- vuelto a casar  -->
-                        <!-- Años de casados -->
-                        <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
-                            <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
-                            <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                         </div>
-
+                    </div> <!-- vuelto a casar  -->
+                    <!-- Años de casados -->
+                    <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
+                        <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
+                        <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                     </div>
-                </div>
-                @error('estado_civil')
-                <div class="text-red-500 text-sm mt-2">
-                    {{ $message }}
-                </div>
-                @enderror
 
-                <!-- Número de hijos -->
-                <div class="col-span-1" x-data="{ cantidad: 1 }">
-                    <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
-                    <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
-                    <template x-if="cantidad > 1">
-                        <div class="mt-3 overflow-x-auto">
-                            <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
-                            <table class="min-w-full text-sm text-left text-gray-700">
-                                <thead class="text-xs text-white uppercase bg-primary bg-[#667c87]">
+                </div>
+            </div>
+            @error('estado_civil')
+            <div class="text-red-500 text-sm mt-2">
+                {{ $message }}
+            </div>
+            @enderror
+
+            <!-- Número de hijos -->
+            <div class="col-span-1" x-data="{ cantidad: 1 }">
+                <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
+                <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
+                <template x-if="cantidad > 1">
+                    <div class="mt-3 overflow-x-auto">
+                        <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
+                        <table class="min-w-full text-sm text-left text-gray-700">
+                            <thead class="text-xs text-white uppercase bg-primary bg-[#667c87]">
+                                <tr>
+                                    <th class="border border-gray-300 px-3 py-2">Nombre</th>
+                                    <th class="border border-gray-300 px-3 py-2">Edad</th>
+                                    <th class="border border-gray-300 px-3 py-2">Año escolar u <br> ocupación</th>
+                                    <th class="border border-gray-300 px-3 py-2">Escuela</th>
+                                    <th class="border border-gray-300 px-3 py-2">Salud</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template x-for="i in (cantidad -1)" :key="i">
                                     <tr>
-                                        <th class="border border-gray-300 px-3 py-2">Nombre</th>
-                                        <th class="border border-gray-300 px-3 py-2">Edad</th>
-                                        <th class="border border-gray-300 px-3 py-2">Año escolar u <br> ocupación</th>
-                                        <th class="border border-gray-300 px-3 py-2">Escuela</th>
-                                        <th class="border border-gray-300 px-3 py-2">Salud</th>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <input type="text" name="nombre_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                        </td>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <input type="number" name="edad_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                        </td>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <input type="text" name="escolar_ocupacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                        </td>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <input type="text" name="escuela_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                        </td>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <input type="text" name="salud_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <template x-for="i in (cantidad -1)" :key="i">
-                                        <tr>
-                                            <td class="border border-gray-300 px-2 py-1">
-                                                <input type="text" name="nombre_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
-                                            </td>
-                                            <td class="border border-gray-300 px-2 py-1">
-                                                <input type="number" name="edad_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
-                                            </td>
-                                            <td class="border border-gray-300 px-2 py-1">
-                                                <input type="text" name="escolar_ocupacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
-                                            </td>
-                                            <td class="border border-gray-300 px-2 py-1">
-                                                <input type="text" name="escuela_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
-                                            </td>
-                                            <td class="border border-gray-300 px-2 py-1">
-                                                <input type="text" name="salud_hermano[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:outline-none">
-                                            </td>
-                                        </tr>
-                                    </template>
-                                </tbody>
-                            </table>
-                        </div>
-                    </template>
-
-                </div>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
 
             </div>
+
         </div>
 
-        <!-- Religion-->
-        <div class="mb-8 border border-gray-200 rounded-lg p-4 m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Religion</h3>
 
+        <!-- Religion-->
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
+            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Religion</h3>
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <div class="space-y-1">
                     <label class="block text-sm font-medium text-gray-700">En la educación de su hijo(a) ¿Toman ustedes en cuenta el punto de vista religioso?:<span class="text-red-500">*</span></label>
@@ -513,24 +510,31 @@ $nombre = session('nombre');
 
         <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 m-4 gap-2">
-
             <button type="button" onclick="history.back()" class=" flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Regresar
             </button>
-
-
             <button type="submit" class=" flex-none md:flex px-6 py-2 bg-[#ff7843] text-white rounded-lg hover:bg-[#ffaf25] transition items-center shadow-md">
                 Guardar y<br> Continuar
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </button>
-
         </div>
     </form>
+    @else
+    <div class="flex justify-between mt-8 m-4 gap-2">
+        <h3 class="text-lg font-semibold text-[#1f355e] mb-4">No hay valores validos, por favor regrese a la pagina principal</h3>
+        <a href="{{ route('historia.nivel_educativo') }}" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Regresar
+        </a>
+    </div>
+    @endif
 </div>
 
 <!-- AlpineJS para la funcionalidad condicional -->

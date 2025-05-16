@@ -80,7 +80,7 @@
 
                 <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
                     <h2 class="text-xl md:text-2xl font-bold text-center">Buscar alunmo</h2>
-                    <p class="text-center text-[#ffffff] mt-1">Si usted ya habia empezado a llenar el formulario busque asu hijo por su nombre</p>
+                    <p class="text-center text-[#ffffff] mt-1">Si usted ya habia empezado a llenar el formulario busque a su hijo por su nombre y fecha de nacimiento</p>
                 </div>
 
                 <div class="p-6 md:p-8">
