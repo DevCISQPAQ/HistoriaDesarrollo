@@ -29,7 +29,6 @@
 @endif
 
 <div x-data="{ buscar: '{{ request('buscar', '') }}', eliminarActivo: false  }">
-    <!-- <div x-data="{ buscar: '', eliminarActivo: false }"> -->
     <!-- Formulario de búsqueda -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
         <!-- Campo de búsqueda -->
@@ -41,8 +40,6 @@
 
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded mt-2 md:mt-2">Buscar</button>
             </form>
-            <!-- <input x-model="buscar" type="text" placeholder="Buscar estudiante..."
-                class="px-4 py-2 border rounded w-full focus:outline-none focus:ring focus:border-blue-300" /> -->
         </div>
 
         <!-- Checkbox de activación -->
@@ -68,10 +65,6 @@
                 </thead>
                 <tbody>
                     @foreach($estudiantes as $estudiante)
-                    <!-- <tr class="border-b hover:bg-gray-50" x-show="(
-                        {{ json_encode(strtolower($estudiante->nombre_completo)) }}.includes(buscar.toLowerCase()) ||
-                        {{ json_encode(strtolower($estudiante->grado_escolar)) }}.includes(buscar.toLowerCase())
-                    ) || buscar === ''"> -->
                     <tr class="border border-gray-300 rounded-lg hover:bg-gray-50">
                         <td class="p-3">{{ $estudiante->nombre_completo }}</td>
                         <td class="p-3">{{ $estudiante->grado_escolar }}</td>

@@ -42,9 +42,6 @@
                     <td class="value">{{ $estudiante->nombre_completo ?? '—'}}</td>
                     <td class="label">Edad:</td>
                     <td class="value">{{ $estudiante->edad ?? '—'}} Años</td>
-
-                    <!-- <td class="label">Fecha de creación:</td>
-                <td class="value">{{ $estudiante->created_at->format('d/m/Y H:i') }}</td> -->
                 </tr>
                 <tr>
                     <td class="label">Sexo:</td>
@@ -280,14 +277,12 @@
                 </tr>
                 <tr>
                     <td class="value" colspan="3">{{ $estudiante->seccion2->religion ?? '—' }}</td>
-                    <!-- <td class="value" colspan="2"></td> -->
                 </tr>
                 <tr>
                     <td class="label" colspan="3">¿Cuáles son los valores familiares?:</td>
                 </tr>
                 <tr>
                     <td class="value" colspan="3">{{ $estudiante->seccion2->valores_familia ?? '—' }}</td>
-                    <!-- <td class="value" colspan="2"></td> -->
                 </tr>
             </table>
         </div>
@@ -402,8 +397,7 @@
 
             </table>
         </div>
-        <!-- 
-        <div style="page-break-after: always;"></div> {{-- Salto de página --}} -->
+        
         <!-- Historia Pre y Postnatal  -->
         <div>
             <div class="header" style="background-color: #54667a;">
@@ -796,10 +790,6 @@
             </table>
 
         </div>
-
-
-        <!-- <td class="value" colspan="2"></td> -->
-
 
         <div class="footer">
             Documento generado automáticamente por el sistema.

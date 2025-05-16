@@ -24,7 +24,6 @@ $nombre = session('nombre');
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Sueño del hijo(a)</h3> -->
             <!--Describre lenguaje -->
             <label class="inline-flex items-center"> Marque las características que presenta el sueño del menor <span class="text-red-500">*</span></label>
             <!-- Check box options -->

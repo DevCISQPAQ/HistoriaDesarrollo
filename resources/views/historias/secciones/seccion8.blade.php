@@ -24,7 +24,6 @@ $nombre = session('nombre');
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Lenguaje del niño(a)</h3> -->
             <!--Describre lenguaje -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 pb-2">¿Cómo describiría el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>

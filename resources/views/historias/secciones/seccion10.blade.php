@@ -23,7 +23,6 @@ $nombre = session('nombre');
         @csrf
         <!-- Salud -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
             <!-- check box -->
             <div>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
@@ -118,7 +117,6 @@ $nombre = session('nombre');
         </div>
         <!-- Acuerdo -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Salud del hijo(a)</h3> -->
             <div class="space-y-2">
                 <p class="text-justify  text-[#1f355e] mt-1">
                     <span class="font-bold">*ACUERDO</span> Número 11/03/19 por el que se establecen las normas generales para la evaluación del aprendizaje, acreditación,

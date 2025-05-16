@@ -174,8 +174,6 @@ class BDController extends Controller
             'seccion3_id' => $seccion3->id
         ]);
 
-        // 3. Guardar en sesión el ID para siguientes secciones
-        //  session(['historia_id' => $historia->id]);
 
         // 4. Redirigir a sección 2
         return redirect()->route('historia.seccion4');
@@ -192,9 +190,7 @@ class BDController extends Controller
             'relacion_familia_madre' => $request->relacion_familia_madre,
             'relacion_familia_padre' => $request->relacion_familia_padre,
             'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
-            // 'responde_desobede' => $request->responde_desobede,
             'sanciones_casa' => $request->sanciones_casa,
-            // 'sanciones_conductas' => $request->sanciones_conductas,
             'docil_desafiante' => $request->docil_desafiante,
             'evento_traumatico' => $request->evento_traumatico,
         ]);
@@ -448,7 +444,7 @@ class BDController extends Controller
                 } else {
                     session()->put(['numero_hijos' => null]); // o algún valor por defecto
                 }
-                // session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+                
 
                 if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
 

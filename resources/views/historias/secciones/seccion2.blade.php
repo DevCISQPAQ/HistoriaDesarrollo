@@ -417,7 +417,6 @@ $nombre = session('nombre');
                         <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                     </div>
-
                 </div>
             </div>
             @error('estado_civil')

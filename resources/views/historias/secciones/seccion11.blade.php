@@ -24,8 +24,6 @@ $nombre = session('nombre');
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-2">Caracteristicas del hijo(a)</h3> -->
-
             <div>
                 <label for="personalidadhijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la personalidad de su hijo(a) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"

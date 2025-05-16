@@ -25,7 +25,6 @@ $nombre = session('nombre');
 
         <!-- Datos -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Experiencia del embarazo</h3> -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label for="total_embarazo" class="block text-sm font-medium text-gray-700 ">Mencione el número total de embarazos<span class="text-red-500">*</span></label>
@@ -61,7 +60,6 @@ $nombre = session('nombre');
         </div>
         <!-- .... -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <!-- <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Informacion del parto</h3> -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="tiempo_gestacion" class="block text-sm font-medium text-gray-700">Tiempo de gestación <span class="text-red-500">*</span></label>

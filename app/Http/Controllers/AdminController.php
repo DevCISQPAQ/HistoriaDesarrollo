@@ -53,12 +53,6 @@ class AdminController extends Controller
 
         $totales_formularios = HistoriaDesarrollo::count();
 
-
-
-        // $usuarios = Estudiante::count();
-        // $activosHoy = Estudiante::whereDate('updated_at', now()->toDateString())->count();
-        // $pendientes = 8; // Aquí podrías usar algún modelo real
-
         return view('admin.dashboard', compact('terminados', 'no_terminados', 'totales_formularios'));
     }
 
@@ -78,8 +72,6 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            // 'email' => 'required|email|unique:users',
-            // 'email' => 'required|email:dns|unique:users',
             'email' => ['required', 'email', 'unique:users', function ($attribute, $value, $fail) {
                 $domain = substr(strrchr($value, "@"), 1);  // Obtener el dominio del correo
                 if (!checkdnsrr($domain, 'MX')) {  // Verificar registros MX para el dominio
@@ -90,9 +82,6 @@ class AdminController extends Controller
             'password' => 'required|min:6',
             'is_admin' => 'required|boolean',
         ]);
-        // ], [
-        //     'email.dns' => 'El dominio del correo electrónico no es válido.',
-        // ]);
 
         User::create([
             'name' => $request->name,
