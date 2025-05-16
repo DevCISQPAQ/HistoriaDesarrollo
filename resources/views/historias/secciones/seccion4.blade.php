@@ -10,7 +10,7 @@ $nombre = session('nombre');
 
 
 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-    @if (session('id_alumno') !== null)
+    @if (session('id_alumno') !== null) 
     <!-- Encabezado de sección -->
     <div class="bg-[#1f355e] px-6 py-4">
         <div class="flex items-center">

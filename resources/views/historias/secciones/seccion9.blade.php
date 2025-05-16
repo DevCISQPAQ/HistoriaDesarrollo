@@ -99,17 +99,19 @@ $nombre = session('nombre');
                     <span class="ml-2">Se pasa a media noche a la cama de sus papas</span>
                 </label>
             </div>
-
+        </div>
+        
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- Hora siesta -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 pt-6">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 pt-1">
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se acuesta por la noche? <span class="text-red-500">*</span></label>
-                    <input type="time" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
-                <div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se despierta? <span class="text-red-500">*</span></label>
-                    <input type="time" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
             </div>
@@ -163,13 +165,13 @@ $nombre = session('nombre');
                 </div>
                 <div>
                     <label for="edad_dupapa" class="block text-sm font-medium text-gray-700 pt-3">¿Hasta qué edad durmió con los papás? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="edad_dupapa" name="edad_dupapa" placeholder="Años" required>
                 </div>
             </div>
         </div>
 
-       <!-- Botones de navegación -->
+        <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 m-4 gap-2">
             <button type="button" onclick="history.back()" class="flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">

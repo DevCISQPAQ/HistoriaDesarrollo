@@ -75,7 +75,7 @@ $nombre = session('nombre');
 
             <div>
                 <label for="puedeperiodolarg" class="block text-sm font-medium text-gray-700 pt-3">¿Puede concentrarse por periodos largos? <span class="text-red-500">*</span></label>
-                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="puedeperiodolarg" name="puedeperiodolarg" required>
             </div>
 
@@ -90,27 +90,27 @@ $nombre = session('nombre');
 
             @if(session('grado')==='primaria_secundaria')
             <div class="pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
-                <div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="nivel_lectura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de lectura? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="nivel_lectura" name="nivel_lectura">
                 </div>
 
-                <div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="nivel_escritura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de escritura? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="nivel_escritura" name="nivel_escritura">
                 </div>
                 <!--  -->
-                <div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="dificultad_tarea" class="block text-sm font-medium text-gray-700 pt-3">¿Tiene dificultad para hacer tarea? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="dificultad_tarea" name="dificultad_tarea">
                 </div>
 
-                <div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="relacion_maestro" class="block text-sm font-medium text-gray-700 pt-3">¿Cómo es la relación con maestros y compañeros? <span class="text-red-500">*</span></label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="relacion_maestro" name="relacion_maestro">
                 </div>
                 <!--  -->
@@ -143,13 +143,13 @@ $nombre = session('nombre');
 
             <div>
                 <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-3">¿Maneja el idioma Inglés? <span class="text-red-500">*</span></label>
-                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="maneingles" name="maneingles" required>
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Cómo calificaría el desempeño académico general de su hijo(a)? <span class="text-red-500">*</span></label>
-                <div class="flex space-x-4 pb-4">
+                <div class="flex flex-col sm:flex-row sm:space-x-4 gap-2 sm:gap-0 pb-4">
                     <label class="radio-box-btn">
                         <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Sobresaliente</span>
@@ -167,7 +167,7 @@ $nombre = session('nombre');
                 <!-- Motivos  -->
                 <div>
                     <label for="porq_desemp" class="block text-sm font-medium text-gray-700">¿Por qué?</label>
-                    <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="porq_desemp" name="porq_desemp"></textarea>
                 </div>
             </div>
