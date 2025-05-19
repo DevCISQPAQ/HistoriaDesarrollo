@@ -33,7 +33,7 @@
                             <p class="text-gray-600">---</p>
                             <div class="mt-4">
                                 <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium group-hover:bg-blue-200">
-                                    Bombolino a Kinder 3
+                                    Bambolino a Kinder 3
                                 </span>
                             </div>
                         </a>
@@ -79,12 +79,12 @@
             <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-fade-in">
 
                 <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
-                    <h2 class="text-xl md:text-2xl font-bold text-center">Buscar alunmo</h2>
-                    <p class="text-center text-[#ffffff] mt-1">Si usted ya habia empezado a llenar el formulario busque a su hijo por su nombre y fecha de nacimiento</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-center">Buscar alumno</h2>
+                    <p class="text-center text-[#ffffff] mt-1">Si usted ya había empezado a llenar el formulario busque a su hijo por su nombre y fecha de nacimiento</p>
                 </div>
 
                 <div class="p-6 md:p-8">
-                    <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar Estudiantes</h1>
+                    <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar Estudiante</h1>
 
                     {{-- Formulario de búsqueda --}}
                     <form action="{{ route('historia.nivel_educativo.buscar') }}" method="POST">
@@ -95,7 +95,7 @@
                                 <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" type="text" name="nombre_completo" id="nombre_completo" value="{{ request('nombre_completo') }}">
                             </div>
                             <div>
-                                <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimineto:</label>
+                                <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimiento:</label>
                                 <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ request('fecha_nacimiento') }}">
                             </div>
                         </div>

@@ -28,7 +28,7 @@ $nombre = session('nombre');
                 SOBRE EL PROCESO DE ADMISIÓN </h3>
 
             <p class="text-justify text-[#1f355e] mt-1">Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití
-                detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta Institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admision de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
+                detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicación de dichos exámenes no garantiza la admisión de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
                 <br>
                 <br>
                 De igual forma, manifiesto que me fue debidamente informado sobre el Aviso de Privacidad con que cuenta el Colegio, y que
@@ -37,11 +37,11 @@ $nombre = session('nombre');
 
 
             <div class="md:col-span-2 pt-4">
-                <label class="block text-sm font-medium text-gray-700">Accepto los terminos de conformidad del proceso de admision<span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700">Acepto los términos de conformidad del proceso de admisión<span class="text-red-500">*</span></label>
                 <div class="flex space-x-4 mt-2">
                     <label class="inline-flex items-center">
-                        <input type="checkbox" name="acepto_terminos" value="Accepto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" required>
-                        <span class="ml-2">Accepto</span>
+                        <input type="checkbox" name="acepto_terminos" value="Acepto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" required>
+                        <span class="ml-2">Acepto</span>
                     </label>
                 </div>
             </div>

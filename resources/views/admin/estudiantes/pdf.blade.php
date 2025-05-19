@@ -110,7 +110,7 @@
                 </tr>
                 <tr>
                     @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_padre), ['sí', 'si']))
-                    <td class="label">¿Cúal colegio?</td>
+                    <td class="label">Nombre del colegio</td>
                     <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_padre ?? '_' }}</td>
                     @endif
                 </tr>
@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                     @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_madre), ['sí', 'si']))
-                    <td class="label">¿Cúal colegio?</td>
+                    <td class="label">Nombre del colegio</td>
                     <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_madre ?? '_' }}</td>
                     @endif
                 </tr>
@@ -358,7 +358,7 @@
                 </tr>
 
                 <tr>
-                    <td class="label" colspan="4">Describa la relación de su hijo(a) con cada mienbro de la familia</td>
+                    <td class="label" colspan="4">Describa la relación de su hijo(a) con cada miembro de la familia</td>
                 </tr>
                 <tr>
                     <td class="label">Madre</td>
@@ -454,7 +454,7 @@
                     <td class="value" colspan="4">{{ $estudiante->seccion6->desa_visual ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label" colspan="4">Describa si ha experimentado algún problema de oido (operaciones, infecciones, drenajes, etc.)</td>
+                    <td class="label" colspan="4">Describa si ha experimentado algún problema de oído (operaciones, infecciones, drenajes, etc.)</td>
                 </tr>
                 <tr>
                     <td class="value" colspan="4">{{ $estudiante->seccion6->desa_auditivo ?? '—'}}</td>
@@ -473,7 +473,7 @@
                     <td class="value" colspan="2">{{ $estudiante->seccion7->desarrollo_motor ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label" colspan="4">Mencione la edad en que comenzo a:</td>
+                    <td class="label" colspan="4">Mencione la edad en que comenzó a:</td>
                 </tr>
                 <tr>
                     <td class="label">Gatear</td>
@@ -505,7 +505,7 @@
                     <td class="value" colspan="2">{{ $estudiante->seccion8->desarrollo_lenguaje ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label" colspan="2">¿A que edad dijo sus primeras palabras?</td>
+                    <td class="label" colspan="2">¿A qué edad dijo sus primeras palabras?</td>
                     <td class="value" colspan="2">{{ $estudiante->seccion8->prim_palabra ?? '—'}}</td>
                 </tr>
 
@@ -597,7 +597,7 @@
                     <span class="bold">*ACUERDO</span> Número 11/03/19 por el que se establecen las normas generales para la evaluación del aprendizaje, acreditación,
                     promoción, regularización y certificación de los educandos de la evaluación básica, publicado en el Diario oficial de la federación
                     el 29 de marzo de 2019. <br>
-                    <span class="bold">Artículo 3. Sujetos participantes.</span> En la aplicación de las presentes normas deberá garantizarse la participacion activa de
+                    <span class="bold">Artículo 3. Sujetos participantes.</span> En la aplicación de las presentes normas deberá garantizarse la participación activa de
                     todos los involucrados en el proceso educativo: autoridades educativas y escolares, docentes, madres, padres de familia o
                     tutores y educandos.
                     Quienes ejercen la patria potestad o la tutela de los estudiantes deberán informar a las autoridades educativas y escolares,
@@ -610,7 +610,7 @@
         <!-- Caracteristicas Personales -->
         <div>
             <div class="header" style="background-color: #54667a;">
-                <h1 class="title">Caracteristicas Personales</h1>
+                <h1 class="title">Características Personales</h1>
             </div>
             <table class="info-table">
                 <tr>
@@ -761,7 +761,7 @@
                 <h1 class="title">CONFORMIDAD SOBRE EL PROCESO DE ADMISIÓN</h1>
             </div>
             <p class="acuerdo-text">
-                Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta Institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admision de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
+                Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admision de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
 
                 De igual forma, manifiesto que me fue debidamente informado sobre el Aviso de Privacidad con que cuenta el Colegio, y que puede ser consultado en la página de internet: www.semperaltius.edu.mx/aviso-de-privacidad
             </p>

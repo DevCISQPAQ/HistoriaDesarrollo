@@ -17,7 +17,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
             <h2 class="text-xl font-bold text-white">Estructura Familiar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
@@ -59,13 +59,13 @@ $nombre = session('nombre');
                 </div>
 
                 <div class="col-span-1">
-                    <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
+                    <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electrónico personal <span class="text-red-500">*</span></label>
                     <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="correo_padre" name="correo_padre" value="{{ old('correo_padre') }}" required placeholder="correo@correo.com">
                 </div>
 
                 <div class="col-span-1 md:col-span-2">
-                    <label for="redessoc_padre" class="block text-sm font-medium text-gray-700 ">Redes sociales</label>
+                    <label for="redessoc_padre" class="block text-sm font-medium text-gray-700 mb-2">Redes sociales <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                         <div class="flex">
                             <div class="flex-none pt-2">
@@ -77,7 +77,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="flex-initial  w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Facebook">
+                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Facebook" required>
                         </div>
 
                         <div class="flex">
@@ -90,7 +90,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="flex-initial  w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Instagram">
+                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Instagram" required>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ $nombre = session('nombre');
                 <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
-                        <div class="flex space-x-4 mt-2">
+                        <div class="flex space-x-4 mt-1">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestro" id="check1">
                                 <span class="ml-2">Diestro</span>
@@ -129,12 +129,11 @@ $nombre = session('nombre');
                         <span class="ml-2">No</span>
                     </label>
                     <div id="Si" x-show="siegresadored == $el.id" x-transition>
-                        <label for="cualcolegio_padre" class="block text-sm font-medium text-gray-700 pt-3">¿Cúal colegio?</label>
+                        <label for="cualcolegio_padre" class="block text-sm font-medium text-gray-700 pt-3">Nombre del colegio</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="cualcolegio_padre" name="cualcolegio_padre">
+                            id="cualcolegio_padre" name="cualcolegio_padre" x-bind:required="siegresadored === 'Si'">
                     </div>
                 </div>
-
 
             </div>
         </div>
@@ -175,13 +174,13 @@ $nombre = session('nombre');
                 </div>
 
                 <div class="col-span-1">
-                    <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
+                    <label for="correo_madre" class="block text-sm font-medium text-gray-700">Correo electrónico personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="correo_madre" name="correo_madre" value="{{ old('correo_madre') }}" placeholder="Correo@correo.com" required>
                 </div>
 
                 <div class="col-span-1 md:col-span-2">
-                    <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales</label>
+                    <label for="redessoc_madre" class="block text-sm font-medium text-gray-700">Redes sociales <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                         <div class="flex">
                             <div class="flex-none pt-2">
@@ -193,7 +192,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Facebook">
+                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Facebook" required>
                         </div>
 
                         <div class="flex">
@@ -206,7 +205,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Instagram">
+                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Instagram" required>
                         </div>
                     </div>
                 </div>
@@ -215,7 +214,7 @@ $nombre = session('nombre');
                 <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestra: false, zurda: false }" x-init="$watch('diestra', checkRequired); $watch('zurda', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
-                        <div class="flex space-x-4 mt-2">
+                        <div class="flex space-x-4 mt-1">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestra" id="check1">
                                 <span class="ml-2">Diestra</span>
@@ -243,9 +242,9 @@ $nombre = session('nombre');
                         <span class="ml-2">No</span>
                     </label>
                     <div id="Si" x-show="siegresadored == $el.id" x-transition>
-                        <label for="cualcolegio_madre" class="block text-sm font-medium text-gray-700 pt-3">¿Cúal colegio?</label>
+                        <label for="cualcolegio_madre" class="block text-sm font-medium text-gray-700 pt-3">Nombre del colegio</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="cualcolegio_madre" name="cualcolegio_madre">
+                            id="cualcolegio_madre" name="cualcolegio_madre" x-bind:required="siegresadored === 'Si'">
                     </div>
                 </div>
             </div>
@@ -300,46 +299,46 @@ $nombre = session('nombre');
                             </div>
 
                             <div class="pt-4 bg-[#8caab945] rounded-xl shadow-lg overflow-hidden p-4 mt-2" id="Vuelto a casar" x-show="estcivil == $el.id" x-transition>
-                                <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre biológic(a)), con quien vive el niño(a) actualmente <span class="text-red-500">*</span></p>
+                                <p class="text-sm font-medium text-gray-700 pb-4">Si se trata de una familia reconstructiva(padre o madre vuelto a casar por viudez, divorcio, etc) escribir los datos de la persona (diferente al padre o a la madre biológico(a)), con quien vive el niño(a) actualmente <span class="text-red-500">*</span></p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class=" col-span-1">
-                                        <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge</label>
+                                        <label for="nombre_conyuge" class="block text-sm font-medium text-gray-700">Nombre Cónyuge <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="nombre_conyuge" name="nombre_conyuge" placeholder="Nombre(s) y apellidos" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">
-                                        <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad</label>
+                                        <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
                                         <input type="number" class="imput-label"
                                             id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div class="col-span-1">
 
                                     <div class="col-span-1">
-                                        <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
+                                        <label for="empresa_conyuge" class="block text-sm font-medium text-gray-700">Nombre de la empresa <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="empresa_conyuge" name="empresa_conyuge" placeholder="Empresa, negocio, etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">
-                                        <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa</label>
+                                        <label for="puesto_conyuge" class="block text-sm font-medium text-gray-700">Puesto la empresa <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="puesto_conyuge" name="puesto_conyuge" placeholder="Jefe(a), Socio(a), Administrador(a), etc." x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">
-                                        <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación</label>
+                                        <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">
-                                        <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal</label>
+                                        <label for="correo_conyuge" class="block text-sm font-medium text-gray-700">Correo electronico personal <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="correo_conyuge" name="correo_conyuge" placeholder="Correo@correo.com" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1 md:col-span-2">
-                                        <label for="redessoc_conyuge" class="block text-sm font-medium text-gray-700">Redes sociales</label>
+                                        <label for="redessoc_conyuge" class="block text-sm font-medium text-gray-700">Redes sociales <span class="text-red-500">*</span></label>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                                             <div class="flex">
                                                 <div class="flex-none pt-2">
@@ -351,7 +350,7 @@ $nombre = session('nombre');
                                                     </span>
                                                 </div>
                                                 <input type="text" class="imput-label"
-                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Facebook">
+                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Facebook" x-bind:required="estcivil === 'Vuelto a casar'">
                                             </div>
 
                                             <div class="flex">
@@ -364,14 +363,14 @@ $nombre = session('nombre');
                                                     </span>
                                                 </div>
                                                 <input type="text" class="imput-label"
-                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Instagram">
+                                                    id="redessoc_conyuge" name="redessoc_conyuge[]" placeholder="Instagram" x-bind:required="estcivil === 'Vuelto a casar'">
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Diestra/Zurda -->
                                     <div class="col-span-1 md:col-span-2">
-                                        <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es</label>
+                                        <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es <span class="text-red-500">*</span></label>
                                         <div class="flex space-x-4 mt-2">
                                             <label class="inline-flex items-center">
                                                 <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -387,36 +386,47 @@ $nombre = session('nombre');
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="py-4">
+                                <div x-data="{ mensaje: '' }" class="py-4">
                                     <label for="noviveconpadres_situtor" class="block text-sm font-medium text-gray-700">En caso de que el niño(a) no viva con algunos de los padres, escriba el nombre del tutor(a) y la relación o parentesco que tenga con el niño(a):</label>
                                     <textarea rows="4" class="imput-label"
-                                        id="noviveconpadres_situtor" name="noviveconpadres_situtor" placeholder="Escribe aqui la respuesta"></textarea>
+                                        id="noviveconpadres_situtor" name="noviveconpadres_situtor" x-model="mensaje"
+                                        maxlength="200" placeholder="Escriba aquí su respuesta"></textarea>
+                                    <div class="text-sm mt-1 text-right">
+                                        <span
+                                            :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                                            x-text="mensaje.length + ' / 200 caracteres'"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div id="Divorciados" x-show="estcivil == $el.id">
                             <!-- Motivos separación (condicional) -->
-                            <div x-transition>
+                            <div x-data="{ mensaje: '' }" x-transition>
                                 <label for="moti_separa" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles fueron los motivos de la separación?</label>
                                 <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="moti_separa" name="moti_separa" rows="3" x-bind:required="estcivil === 'Divorciados'"></textarea>
+                                    id="moti_separa" name="moti_separa" rows="3" x-bind:required="estcivil === 'Divorciados'" x-model="mensaje"
+                                    maxlength="200" placeholder="Escriba aquí su respuesta"></textarea>
+                                <div class="text-sm text-right">
+                                    <span
+                                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                                </div>
                             </div>
                             <!-- Vive con (condicional) -->
                             <div x-transition>
                                 <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                     id="vive_con" name="vive_con" x-bind:required="estcivil === 'Divorciados'">
                             </div>
-
+                        </div>
+                        <!-- Años de casados -->
+                        <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
+                            <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
+                            <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                         </div>
                     </div> <!-- vuelto a casar  -->
-                    <!-- Años de casados -->
-                    <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
-                        <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
-                        <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
-                    </div>
                 </div>
             </div>
             @error('estado_civil')
@@ -475,7 +485,7 @@ $nombre = session('nombre');
 
         <!-- Religion-->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
-            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Religion</h3>
+            <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Religión</h3>
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                 <div class="space-y-1">
                     <label class="block text-sm font-medium text-gray-700">En la educación de su hijo(a) ¿Toman ustedes en cuenta el punto de vista religioso?:<span class="text-red-500">*</span></label>
@@ -490,14 +500,21 @@ $nombre = session('nombre');
                         </label>
                     </div>
 
-                    <div>
-                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2">¿Cuáles son los valores familiares?</label>
+                    <div x-data="{ mensaje: '' }">
+                        <label for="valores_familia" class="block text-sm font-medium text-gray-700 pt-2">¿Cuáles son los valores familiares? <span class="text-red-500">*</span></label>
                         <textarea
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="valores_familia"
+                            x-model="mensaje"
+                            maxlength="200"
                             name="valores_familia"
                             placeholder="Ej. Respeto, honestidad, etc."
                             required>{{ old('valores_familia') }}</textarea>
+                        <div class="text-sm mt-1 text-right">
+                            <span
+                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                                x-text="mensaje.length + ' / 200 caracteres'"></span>
+                        </div>
 
                         @error('valores_familia')
                         <p class="text-sm text-red-600 mt-2">{{ $message }}</p>

@@ -1,6 +1,6 @@
 @extends('templates.main')
 @section('progress-title', 'Datos del alumno')
-@section('progress-percentage', '90') <!-- Porcentaje completado -->
+@section('progress-percentage', '95') <!-- Porcentaje completado -->
 @section('content')
 
 <?php
@@ -17,23 +17,35 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">12</span>
             <h2 class="text-xl font-bold text-white">Historia Escolar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion12.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">¿Cómo reaccionó en su primer ingreso a la escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="reaccprimer" name="reaccprimer" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="reaccprimer" name="reaccprimer" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="dificumateria" class="block text-sm font-medium text-gray-700 pt-3">¿Ha tenido alguna dificultad para aprender alguna materia? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="dificumateria" name="dificumateria" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="dificumateria" name="dificumateria" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
 
@@ -42,7 +54,7 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- opciones de si repitio -->
             <div x-data="{harepetido: ''}">
-                <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha repetido algun año? <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha repetido algún año? <span class="text-red-500">*</span></label>
 
                 <div class="flex space-x-4 pb-4">
                     <label class="radio-box-btn">
@@ -60,28 +72,47 @@ $nombre = session('nombre');
                 <!-- Motivos  -->
                 <div id="Si" x-show="harepetido == $el.id" x-transition>
                     <label for="cual_escuela" class="block text-sm font-medium text-gray-700">¿Cuál?</label>
-                    <input class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="cual_escuela" name="cual_escuela"></textarea>
+                    <input class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="cual_escuela" name="cual_escuela">
                 </div>
 
                 <!-- -->
-                <div class="pt-2" id="Si" x-show="harepetido == $el.id" x-transition>
+                <div x-data="{ mensaje: '' }" class="pt-2" id="Si" x-show="harepetido == $el.id" x-transition>
                     <label for="porque_escuela" class="block text-sm font-medium text-gray-700">¿Por qué motivo?</label>
                     <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="porque_escuela" name="porque_escuela" rows="3"></textarea>
+                        id="porque_escuela" name="porque_escuela" rows="3" x-model="mensaje"
+                        maxlength="200" placeholder="Escriba aquí su respuesta"></textarea>
+                    <div class="text-sm mt-1 text-right">
+                        <span
+                            :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                            x-text="mensaje.length + ' / 200 caracteres'"></span>
+                    </div>
                 </div>
             </div>
 
             <div>
                 <label for="puedeperiodolarg" class="block text-sm font-medium text-gray-700 pt-3">¿Puede concentrarse por periodos largos? <span class="text-red-500">*</span></label>
-                <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="puedeperiodolarg" name="puedeperiodolarg" required>
+                <!-- <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    id="puedeperiodolarg" name="puedeperiodolarg" required> -->
+
+                <select id="puedeperiodolarg" name="puedeperiodolarg"
+                    class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select>
             </div>
 
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="conductaambito" class="block text-sm font-medium text-gray-700 pt-3">¿Cómo ha sido la conducta general a su hijo(a) en el ámbito escolar? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="conductaambito" name="conductaambito" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="conductaambito" name="conductaambito" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
 
@@ -91,33 +122,65 @@ $nombre = session('nombre');
             <div class="pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="nivel_lectura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de lectura? <span class="text-red-500">*</span></label>
-                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nivel_lectura" name="nivel_lectura">
+                    <!-- <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="nivel_lectura" name="nivel_lectura"> -->
+
+                    <select id="nivel_lectura" name="nivel_lectura"
+                        class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="Básico">Básico</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Avanzado">Avanzado</option>
+                    </select>
+
+
                 </div>
 
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="nivel_escritura" class="block text-sm font-medium text-gray-700 pt-3">¿Cuál es su nivel de escritura? <span class="text-red-500">*</span></label>
-                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="nivel_escritura" name="nivel_escritura">
+                    <!-- <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="nivel_escritura" name="nivel_escritura"> -->
+
+                    <select id="nivel_escritura" name="nivel_escritura"
+                        class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="Básico">Básico</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Avanzado">Avanzado</option>
+                    </select>
                 </div>
                 <!--  -->
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="dificultad_tarea" class="block text-sm font-medium text-gray-700 pt-3">¿Tiene dificultad para hacer tarea? <span class="text-red-500">*</span></label>
-                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="dificultad_tarea" name="dificultad_tarea">
+                    <!-- <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="dificultad_tarea" name="dificultad_tarea"> -->
+                    <select id="dificultad_tarea" name="dificultad_tarea"
+                        class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
 
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="relacion_maestro" class="block text-sm font-medium text-gray-700 pt-3">¿Cómo es la relación con maestros y compañeros? <span class="text-red-500">*</span></label>
-                    <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="relacion_maestro" name="relacion_maestro">
+                    <!-- <input type="text" class="md:w-md lg:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="relacion_maestro" name="relacion_maestro"> -->
+
+                    <select id="relacion_maestro" name="relacion_maestro"
+                        class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="Buena">Buena</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Mala">Mala</option>
+                    </select>
                 </div>
                 <!--  -->
             </div>
             @endif
             <!-- opciones de si dificultad -->
             <div x-data="{haydificultad: ''}">
-                <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha presentado dificultad en la pronunciacion de alguna letra? <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 mb-2 mt-1">¿Ha presentado dificultad en la pronunciación de alguna letra? <span class="text-red-500">*</span></label>
 
                 <div class="flex space-x-4 pb-4">
                     <label class="radio-box-btn">
@@ -136,12 +199,12 @@ $nombre = session('nombre');
                 <div id="Si" x-show="haydificultad == $el.id" x-transition>
                     <label for="cual_letra" class="block text-sm font-medium text-gray-700">¿Cuáles?</label>
                     <input class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="cual_letra" name="cual_letra"></textarea>
+                        id="cual_letra" name="cual_letra">
                 </div>
             </div>
 
             <div>
-                <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-3">¿Maneja el idioma Inglés? <span class="text-red-500">*</span></label>
+                <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-2">¿Maneja el idioma Inglés? <span class="text-red-500">*</span></label>
                 <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="maneingles" name="maneingles" required>
             </div>
@@ -173,15 +236,27 @@ $nombre = session('nombre');
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="motivoscamb" class="block text-sm font-medium text-gray-700 pt-3">¿Cuáles son los principales motivos que los orientaron a buscar un cambio de escuela? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="motivoscamb" name="motivoscamb" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="motivoscamb" name="motivoscamb" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="razoning" class="block text-sm font-medium text-gray-700 pt-3">Mencione las razones por las que desea que su hijo(a) ingrese a este colegio: <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="razoning" name="razoning" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="razoning" name="razoning" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
 

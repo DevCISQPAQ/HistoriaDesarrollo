@@ -15,37 +15,61 @@ $nombre = session('nombre');
     <div class="bg-[#667c87] px-6 py-4">
         <div class="flex items-center">
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">11</span>
-            <h2 class="text-xl font-bold text-white">Caracteristicas Personales</h2>
+            <h2 class="text-xl font-bold text-white">Características Personales</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno}} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion11.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="personalidadhijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la personalidad de su hijo(a) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="personalidadhijo" name="personalidadhijo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="personalidadhijo" name="personalidadhijo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="oportunihijo" class="block text-sm font-medium text-gray-700 pt-3">¿Qué áreas de oportunidad o atención considera importante para la personalidad de su hijo(a)? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="oportunihijo" name="oportunihijo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="oportunihijo" name="oportunihijo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="adapthijo" class="block text-sm font-medium text-gray-700 pt-3">Describa la adaptación social de su hijo(a) con otros niños y adultos (sociales, independientes, sensibles al trato con los demás, etc.) <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="adapthijo" name="adapthijo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="adapthijo" name="adapthijo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="juegacnhijo" class="block text-sm font-medium text-gray-700 pt-3">¿Juega contento(a) con otros niños o prefiere parmanecer solo(a)? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="juegacnhijo" name="juegacnhijo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="juegacnhijo" name="juegacnhijo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
 
         </div>

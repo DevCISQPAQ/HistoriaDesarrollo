@@ -17,7 +17,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">9</span>
             <h2 class="text-xl font-bold text-white">Sueño</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion9.guardar') }}" method="POST" class="p-1">
@@ -58,7 +58,7 @@ $nombre = session('nombre');
                     <span class="ml-2">Despierta llorando</span>
                 </label>
                 <label class="radio-box-btn">
-                    <input type="checkbox" name="suenonino[]" value="Se hace pipi" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                    <input type="checkbox" name="suenonino[]" value="Se hace pipí" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                     <span class="ml-2">Se hace pipí</span>
                 </label>
                 <label class="radio-box-btn">
@@ -94,8 +94,8 @@ $nombre = session('nombre');
                     <span class="ml-2">Tiene temor a dormir solo</span>
                 </label>
                 <label class="radio-box-btn">
-                    <input type="checkbox" name="suenonino[]" value="Se pasa a media noche a la cama de sus papas" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                    <span class="ml-2">Se pasa a media noche a la cama de sus papas</span>
+                    <input type="checkbox" name="suenonino[]" value="Se pasa a media noche a la cama de sus papás" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                    <span class="ml-2">Se pasa a media noche a la cama de sus papás</span>
                 </label>
             </div>
         </div>

@@ -16,25 +16,37 @@ $nombre = session('nombre');
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">6</span>
             <h2 class="text-xl font-bold text-white">Desarrollo Visual y Auditivo</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion6.guardar') }}" method="POST" class="p-1">
         @csrf
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="desa_visual" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algún problema visual<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="desa_visual" name="desa_visual" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="desa_visual" name="desa_visual" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <div>
-                <label for="desa_auditivo" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algún problema de oido (operaciones, infecciones, drenajes, etc.)<span class="text-red-500">*</span></label>
+            <div x-data="{ mensaje: '' }">
+                <label for="desa_auditivo" class="block text-sm font-medium text-gray-700">Describa si ha experimentado algún problema de oído (operaciones, infecciones, drenajes, etc.)<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="desa_auditivo" name="desa_auditivo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="desa_auditivo" name="desa_auditivo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
 

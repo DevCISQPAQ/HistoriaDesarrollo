@@ -16,7 +16,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">7</span>
             <h2 class="text-xl font-bold text-white">Desarrollo motor</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion7.guardar') }}" method="POST" class="p-1">
@@ -24,12 +24,12 @@ $nombre = session('nombre');
 
         <!-- Datos -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <label class="block text-sm font-medium text-gray-700 pb-3">¿Cómo describiria el desarrollo motor del niño(a)? <span class="text-red-500">*</span></label>
+            <label class="block text-sm font-medium text-gray-700 pb-3">¿Cómo describiría el desarrollo motor del niño(a)? <span class="text-red-500">*</span></label>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <label class="radio-box-btn">
                     <input type="radio" name="desarrollo_motor" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
-                    <span class="ml-2">Despues de lo esperado para la edad</span>
+                    <span class="ml-2">Después de lo esperado para la edad</span>
                 </label>
                 <label class="radio-box-btn">
                     <input type="radio" name="desarrollo_motor" value="Esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
@@ -43,7 +43,7 @@ $nombre = session('nombre');
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
-            <label for="desa-visual" class="block text-sm font-medium text-gray-700">Mencione la edad en que comenzo a:</label>
+            <label for="desa-visual" class="block text-sm font-medium text-gray-700">Mencione la edad en que comenzó a:</label>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
                 <div>
                     <label for="edad_gate" class="block text-sm font-medium text-gray-700 pt-3">Gatear: <span class="text-red-500">*</span></label>

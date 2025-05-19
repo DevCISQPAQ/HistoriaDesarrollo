@@ -17,7 +17,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D]  rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">5</span>
             <h2 class="text-xl font-bold text-white">Historia Pre y Postnatal</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno}} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion5.guardar') }}" method="POST" class="p-1">
@@ -33,16 +33,22 @@ $nombre = session('nombre');
                 </div>
 
             </div>
-            <div>
-                <label for="experi_embarazo" class="block text-sm font-medium text-gray-700 pt-3">En general, ¿como fue el embarazo?<span class="text-red-500">*</span></label>
+            <div x-data="{ mensaje: '' }">
+                <label for="experi_embarazo" class="block text-sm font-medium text-gray-700 pt-3">En general, ¿cómo fue el embarazo?<span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="experi_embarazo" name="experi_embarazo" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="experi_embarazo" name="experi_embarazo" x-model="mensaje"
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <div x-data="{sienfermedad: ''}">
-                <label for="mencione_embaenfe" class="block text-sm font-medium text-gray-700 ">Mencione si la madre tuvo alguna enfermedad o complicaciónes durante el embarazo.<span class="text-red-500">*</span> </label>
+                <label for="mencione_embaenfe" class="block text-sm font-medium text-gray-700 ">Mencione si la madre tuvo alguna enfermedad o complicaciones durante el embarazo.<span class="text-red-500">*</span> </label>
                 <label class="radio-box-btn">
                     <input type="radio" name="mencione_embaenfe" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required x-model="sienfermedad">
                     <span class="ml-2">Sí</span>
@@ -70,12 +76,11 @@ $nombre = session('nombre');
                     <label for="tipo_parto" class="block text-sm font-medium text-gray-700">Especifique si el trabajo de parto fue: <span class="text-red-500">*</span></label>
                     <select id="tipo_parto" name="tipo_parto"
                         class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
-                        <option value="" selected disabled>Seleccione una opcion</option>
+                        <option value="" selected disabled>Seleccione una opción</option>
                         <option value="Normal">Natural</option>
-                        <option value="Cesarea">Cesárea</option>
+                        <option value="Cesárea">Cesárea</option>
                     </select>
                 </div>
-
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">

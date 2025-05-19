@@ -16,7 +16,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">10</span>
             <h2 class="text-xl font-bold text-white">Salud</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion10.guardar') }}" method="POST" class="p-1">
@@ -49,21 +49,21 @@ $nombre = session('nombre');
                         <span class="ml-2">De la piel</span>
                     </label>
                     <label class="radio-box-btn">
-                        <input type="checkbox" name="saludnino[]" value="Convulciones" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                        <span class="ml-2">Convulciones</span>
+                        <input type="checkbox" name="saludnino[]" value="Convulsiones" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <span class="ml-2">Convulsiones</span>
                     </label>
                     <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Digestivos" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Digestivos</span>
                     </label>
                     <label class="radio-box-btn">
-                        <input type="checkbox" name="saludnino[]" value="Epilepcias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                        <span class="ml-2">Epilepcias</span>
+                        <input type="checkbox" name="saludnino[]" value="Epilepsias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <span class="ml-2">Epilepsias</span>
                     </label>
 
                     <label class="radio-box-btn">
-                        <input type="checkbox" name="saludnino[]" value="Cirugias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                        <span class="ml-2">Cirugias</span>
+                        <input type="checkbox" name="saludnino[]" value="Cirugías" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <span class="ml-2">Cirugías</span>
                     </label>
                     <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Alergias" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -79,8 +79,8 @@ $nombre = session('nombre');
                     </label>
 
                     <label class="radio-box-btn">
-                        <input type="checkbox" name="saludnino[]" value="Falta de atencion" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
-                        <span class="ml-2">Falta de atencion</span>
+                        <input type="checkbox" name="saludnino[]" value="Falta de atención" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <span class="ml-2">Falta de atención</span>
                     </label>
                     <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Diabetes" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -103,16 +103,28 @@ $nombre = session('nombre');
                     id="otrosprob" name="otrosprob">
             </div>
             <!-- padece -->
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="enfeotrastor" class="block text-sm font-medium text-gray-700 pt-3">¿Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atención médica especializada? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="enfeotrastor" name="enfeotrastor" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="enfeotrastor" name="enfeotrastor" x-model="mensaje"
+                            maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                     <div class="text-sm mt-1 text-right">
+                            <span
+                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                                x-text="mensaje.length + ' / 200 caracteres'"></span>
+                        </div>
             </div>
             <!-- recibe -->
-            <div>
+            <div x-data="{ mensaje: '' }">
                 <label for="tipoterapia" class="block text-sm font-medium text-gray-700 pt-3">¿Recibe, o ha recibido, algún tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuándo <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="tipoterapia" name="tipoterapia" placeholder="Escribe aqui la respuesta" required></textarea>
+                    id="tipoterapia" name="tipoterapia" x-model="mensaje"
+                            maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                     <div class="text-sm mt-1 text-right">
+                            <span
+                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                                x-text="mensaje.length + ' / 200 caracteres'"></span>
+                        </div>
             </div>
         </div>
         <!-- Acuerdo -->
@@ -122,7 +134,7 @@ $nombre = session('nombre');
                     <span class="font-bold">*ACUERDO</span> Número 11/03/19 por el que se establecen las normas generales para la evaluación del aprendizaje, acreditación,
                     promoción, regularización y certificación de los educandos de la evaluación básica, publicado en el Diario oficial de la federación
                     el 29 de marzo de 2019. <br>
-                    <span class="font-bold">Artículo 3. Sujetos participantes.</span> En la aplicación de las presentes normas deberá garantizarse la participacion activa de
+                    <span class="font-bold">Artículo 3. Sujetos participantes.</span> En la aplicación de las presentes normas deberá garantizarse la participación activa de
                     todos los involucrados en el proceso educativo: autoridades educativas y escolares, docentes, madres, padres de familia o
                     tutores y educandos.
                     Quienes ejercen la patria potestad o la tutela de los estudiantes deberán informar a las autoridades educativas y escolares,

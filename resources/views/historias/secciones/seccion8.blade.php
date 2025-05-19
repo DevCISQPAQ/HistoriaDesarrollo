@@ -17,7 +17,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">8</span>
             <h2 class="text-xl font-bold text-white">Lenguaje</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$id_alumno }} , {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion8.guardar') }}" method="POST" class="p-1">
@@ -30,7 +30,7 @@ $nombre = session('nombre');
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <label class="radio-box-btn">
                         <input type="radio" name="desarrollo_lenguaje" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
-                        <span class="ml-2">Despues de lo esperado para la edad</span>
+                        <span class="ml-2">Después de lo esperado para la edad</span>
                     </label>
                     <label class="radio-box-btn">
                         <input type="radio" name="desarrollo_lenguaje" value="Esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
@@ -44,8 +44,8 @@ $nombre = session('nombre');
             </div>
 
             <div>
-                <label for="prim_palabra" class="block text-sm font-medium text-gray-700 pt-3">¿A que edad dijo sus primeras palabras?<span class="text-red-500">*</span></label>
-                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                <label for="prim_palabra" class="block text-sm font-medium text-gray-700 pt-3">¿A qué edad dijo sus primeras palabras?<span class="text-red-500">*</span></label>
+                <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="prim_palabra" name="prim_palabra" required>
             </div>
         </div>

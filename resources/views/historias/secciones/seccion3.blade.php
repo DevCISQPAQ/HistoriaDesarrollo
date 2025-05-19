@@ -17,7 +17,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#ff7843] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">3</span>
             <h2 class="text-xl font-bold text-white">Idioma y Adopción</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$id_alumno }} , {{$nombre}} </p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}} </p>
     </div>
 
     <form action="{{ route('seccion3.guardar') }}" method="POST" class="p-1">
@@ -75,21 +75,22 @@ $nombre = session('nombre');
                         </label>
 
                         <div id="Si" x-show="isadoptado == $el.id" x-transition>
-                            <label class="block font-medium text-sm text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
-                            <label for="" class="text-sm ">
+
+                            <label for="" class="font-medium text-sm text-gray-700">
                                 Edad del niño al momento de la adopción:
-                                <input type="text" class=" w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                <input type="text" class=" md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                     id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses">
                             </label>
-                            <div class="grid grid-cols-2 gap-2 pt-2">
+                            <label class="flex font-medium text-sm text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-2">
                                 <label for="" class="text-sm ">
                                     Padre:
-                                    <input type="number" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    <input type="number" class=" md:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                         id="padre_edadadopt" name="padre_edadadopt" placeholder="Años">
                                 </label>
                                 <label for="" class="text-sm ">
                                     Madre:
-                                    <input type="number" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                    <input type="number" class=" md:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                         id="madre_edadadopt" name="madre_edadadopt" placeholder="Años">
                                 </label>
                             </div>
