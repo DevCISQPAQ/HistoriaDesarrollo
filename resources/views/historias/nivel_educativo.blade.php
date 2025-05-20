@@ -79,12 +79,12 @@
             <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-fade-in">
 
                 <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
-                    <h2 class="text-xl md:text-2xl font-bold text-center">Buscar alumno</h2>
+                    <h2 class="text-xl font-bold text-center">Buscar alumno</h2>
                     <p class="text-center text-[#ffffff] mt-1">Si usted ya había empezado a llenar el formulario busque a su hijo por su nombre y fecha de nacimiento</p>
                 </div>
 
                 <div class="p-6 md:p-8">
-                    <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar Estudiante</h1>
+                    <!-- <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar alumno</h1> -->
 
                     {{-- Formulario de búsqueda --}}
                     <form action="{{ route('historia.nivel_educativo.buscar') }}" method="POST">

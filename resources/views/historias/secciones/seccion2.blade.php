@@ -36,7 +36,7 @@ $nombre = session('nombre');
 
                 <div class="col-span-1">
                     <label for="edad_padre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="number" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="edad_padre" name="edad_padre" value="{{ old('edad_padre') }}" required placeholder="Edad en años">
                 </div>
 
@@ -77,7 +77,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="flex-initial  w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Facebook" required>
+                                id="redessoc_padre" name="redessoc_padre[]" value="{{ old('redessoc_padre.0') }}" placeholder="Facebook" required>
                         </div>
 
                         <div class="flex">
@@ -90,7 +90,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="flex-initial  w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_padre" name="redessoc_padre[]" placeholder="Instagram" required>
+                                id="redessoc_padre" name="redessoc_padre[]" value="{{ old('redessoc_padre.1') }}" placeholder="Instagram" required>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ $nombre = session('nombre');
 
                 <div class="col-span-1">
                     <label for="edad_madre" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
-                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="number" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="edad_madre" name="edad_madre" value="{{ old('edad_madre') }}" placeholder="Edad en años" required>
                 </div>
 
@@ -192,7 +192,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Facebook" required>
+                                id="redessoc_madre" name="redessoc_madre[]" value="{{ old('redessoc_madre.0') }}" placeholder="Facebook" required>
                         </div>
 
                         <div class="flex">
@@ -205,7 +205,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_madre" name="redessoc_madre[]" placeholder="Instagram" required>
+                                id="redessoc_madre" name="redessoc_madre[]"  value="{{ old('redessoc_madre.1') }}"  placeholder="Instagram" required>
                         </div>
                     </div>
                 </div>
@@ -309,7 +309,7 @@ $nombre = session('nombre');
 
                                     <div class="col-span-1">
                                         <label for="edad_conyuge" class="block text-sm font-medium text-gray-700">Edad <span class="text-red-500">*</span></label>
-                                        <input type="number" class="imput-label"
+                                        <input type="number" min="0" class="imput-label"
                                             id="edad_conyuge" name="edad_conyuge" placeholder="Edad en años" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div class="col-span-1">
 
@@ -423,7 +423,7 @@ $nombre = session('nombre');
                         <!-- Años de casados -->
                         <div id="Vuelto a casar" x-show="casadosigl || civil || estcivil == $el.id " x-transition>
                             <label for="anos_casados" class="block text-sm font-medium text-gray-700 py-2">¿Cuántos años llevan de casados?</label>
-                            <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                            <input type="number" min="0" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                                 id="anos_casados" name="anos_casados" placeholder="Años" x-bind:required="casadosigl || civil || estcivil === 'Vuelto a casar'">
                         </div>
                     </div> <!-- vuelto a casar  -->
@@ -438,7 +438,7 @@ $nombre = session('nombre');
             <!-- Número de hijos -->
             <div class="col-span-1" x-data="{ cantidad: 1 }">
                 <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
-                <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                <input type="number"  class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
                 <template x-if="cantidad > 1">
                     <div class="mt-3 overflow-x-auto">

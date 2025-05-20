@@ -28,7 +28,7 @@ $nombre = session('nombre');
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <label class="radio-box-btn">
-                    <input type="radio" name="desarrollo_motor" value="Despues de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <input type="radio" name="desarrollo_motor" value="Después de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                     <span class="ml-2">Después de lo esperado para la edad</span>
                 </label>
                 <label class="radio-box-btn">

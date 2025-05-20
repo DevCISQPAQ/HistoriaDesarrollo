@@ -323,6 +323,10 @@
 
                 @if(in_array(mb_strtolower(optional($estudiante->seccion3)->siadopcion), ['sí', 'si']))
                 <tr>
+                    <td class="label" colspan="2">Edad del niño al momento de la adopción:</td>
+                    <td class="value" colspan="2">{{$estudiante->seccion3->hijo_edadadopt ?? '—' }} años</td>
+                </tr>
+                <tr>
                     <td class="label" colspan="4">Edad de los padres al momento de la adopción</td>
                 </tr>
                 <tr>
@@ -330,10 +334,6 @@
                     <td class="value">{{$estudiante->seccion3->padre_edadadopt ?? '—' }} años</td>
                     <td class="label">Edad de la madre:</td>
                     <td class="value">{{$estudiante->seccion3->madre_edadadopt ?? '—' }} años</td>
-                </tr>
-                <tr>
-                    <td class="label" colspan="2">Edad del niño al momento de la adopción:</td>
-                    <td class="value" colspan="2">{{$estudiante->seccion3->hijo_edadadopt ?? '—' }} años</td>
                 </tr>
                 @endif
 
@@ -377,7 +377,7 @@
                 @endif
 
                 <tr>
-                    <td class="label" colspan="4">¿Cuáles son las sanciones que comúnmente se manejan en casa y como responde su hijo(a) ante ellas?</td>
+                    <td class="label" colspan="4">¿Cuáles son las sanciones que comúnmente se manejan en casa y cómo responde su hijo(a) ante ellas?</td>
                 </tr>
                 <tr>
                     <td class="value" colspan="4">{{ $estudiante->seccion4->sanciones_casa ?? '—'}}</td>
@@ -409,7 +409,7 @@
                     <td class="value" colspan="2">{{ $estudiante->seccion5->total_embarazo ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label">En general, ¿como fue el embarazo?</td>
+                    <td class="label">En general, ¿cómo fue el embarazo?</td>
                     <td class="value" colspan="3">{{ $estudiante->seccion5->experi_embarazo ?? '—'}}</td>
                 </tr>
                 <tr>
@@ -659,7 +659,7 @@
                     <td class="value" colspan="4">{{ $estudiante->seccion12->dificumateria  ?? '-' }}</td>
                 </tr>
                 <tr>
-                    <td class="label">¿Ha repetido algun año? </td>
+                    <td class="label">¿Ha repetido algún año? </td>
                     <td class="value">{{ $estudiante->seccion12->ha_repetido  ?? '-' }}</td>
 
                     @if(in_array(mb_strtolower(optional($estudiante->seccion12)->ha_repetido), ['sí', 'si']))
@@ -761,7 +761,7 @@
                 <h1 class="title">CONFORMIDAD SOBRE EL PROCESO DE ADMISIÓN</h1>
             </div>
             <p class="acuerdo-text">
-                Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admision de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
+                Manifiesto bajo protesta de decir la verdad que toda la información proporcionada es verdadera y completa, que no omití detalles significativos sobre el desarrollo de mi hijo(a). Por lo que de haber omitido algún dato significativo que pueda incidir en su proceso de aprendizaje, libero de toda responsabilidad al colegio, al no haberle proporcionado toda la información necesaria, a fin de atender los requerimientos educativos que presenta mi hijo(a). Comprometiéndome a mantener actualizada la historia de desarrollo de mi hijo(a), durante su estancia en esta institución educativa. Acepto que los resultados de la valoración de admisión sean confidenciales y para uso exclusivo del colegio. La aplicacion de dichos exámenes no garantiza la admisión de mi hijo(a), la cual implica una decisión inapelable del Consejo de Admisiones, así como disponibilidad de cupo.
 
                 De igual forma, manifiesto que me fue debidamente informado sobre el Aviso de Privacidad con que cuenta el Colegio, y que puede ser consultado en la página de internet: www.semperaltius.edu.mx/aviso-de-privacidad
             </p>
