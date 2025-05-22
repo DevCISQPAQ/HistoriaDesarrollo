@@ -1,6 +1,9 @@
 <div x-data="{ sidebarOpen: false }" @click.away="sidebarOpen = false">
     {{-- Título del panel --}}
     <div class="p-6 font-bold text-dm text-blue-600 border-b border-gray-300 ">
+        <div class="flex justify-center mb-3">
+            <img src="/img/sello-cumbres.svg" alt="Logo" class="h-24">
+        </div>
         Panel de Administración de Historial de Desarrollo
     </div>
 

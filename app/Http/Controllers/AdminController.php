@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Estudiante;
 use App\Models\HistoriaDesarrollo;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -21,39 +22,28 @@ class AdminController extends Controller
             abort(403, 'Acceso no autorizado');
         }
 
+        $terminadosData = $this->contarFormulariosTerminados();
+        $nivelesData = $this->contarFormulariosPorNivel();
+        $conteosPorGrado = $this->obtenerConteosPorGrado();
 
-        $terminados = HistoriaDesarrollo::whereNotNull('seccion2_id')
-            ->whereNotNull('seccion3_id')
-            ->whereNotNull('seccion4_id')
-            ->whereNotNull('seccion5_id')
-            ->whereNotNull('seccion6_id')
-            ->whereNotNull('seccion7_id')
-            ->whereNotNull('seccion8_id')
-            ->whereNotNull('seccion9_id')
-            ->whereNotNull('seccion10_id')
-            ->whereNotNull('seccion11_id')
-            ->whereNotNull('seccion12_id')
-            ->whereNotNull('acepto_terminos')
-            ->count();
+        $etiquetasPorGrado = collect(array_keys($conteosPorGrado))
+            ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
+            ->toArray();
 
-        $no_terminados = HistoriaDesarrollo::where(function ($query) {
-            $query->whereNull('seccion2_id')
-                ->orWhereNull('seccion3_id')
-                ->orWhereNull('seccion4_id')
-                ->orWhereNull('seccion5_id')
-                ->orWhereNull('seccion6_id')
-                ->orWhereNull('seccion7_id')
-                ->orWhereNull('seccion8_id')
-                ->orWhereNull('seccion9_id')
-                ->orWhereNull('seccion10_id')
-                ->orWhereNull('seccion11_id')
-                ->orWhereNull('seccion12_id')
-                ->orWhereNull('acepto_terminos');
-        })->count();
 
-        $totales_formularios = HistoriaDesarrollo::count();
+        $data = array_merge(
+            $terminadosData,
+            $nivelesData,
+            [
+                'conteosPorGrado' => $conteosPorGrado,
+                'etiquetasPorGrado' => $etiquetasPorGrado,
+            ]
+        );
 
-        return view('admin.dashboard', compact('terminados', 'no_terminados', 'totales_formularios'));
+        // // Combinar todos los datos para enviar a la vista4
+        // $data = array_merge($terminadosData, $nivelesData, $conteosPorGrado, $etiquetasPorGrado);
+
+        return view('admin.dashboard', $data);
     }
 
 
@@ -126,4 +116,87 @@ class AdminController extends Controller
         return redirect()->route('admin.usuarios')->with('success', 'Usuario eliminado.');
     }
     //////
+
+
+    private function contarFormulariosPorNivel()
+    {
+        return [
+
+            'prescolarCount' => Estudiante::where('grado_escolar', 'LIKE', '%bambolino%')
+                ->orWhere('grado_escolar', 'LIKE', '%kinder%')
+                ->count(),
+
+            'primariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%primaria%')->count(),
+            'secundariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')->count(),
+        ];
+    }
+
+    private function contarFormulariosTerminados()
+    {
+        $terminados = HistoriaDesarrollo::whereNotNull('seccion2_id')
+            ->whereNotNull('seccion3_id')
+            ->whereNotNull('seccion4_id')
+            ->whereNotNull('seccion5_id')
+            ->whereNotNull('seccion6_id')
+            ->whereNotNull('seccion7_id')
+            ->whereNotNull('seccion8_id')
+            ->whereNotNull('seccion9_id')
+            ->whereNotNull('seccion10_id')
+            ->whereNotNull('seccion11_id')
+            ->whereNotNull('seccion12_id')
+            ->whereNotNull('acepto_terminos')
+            ->count();
+
+        $no_terminados = HistoriaDesarrollo::where(function ($query) {
+            $query->whereNull('seccion2_id')
+                ->orWhereNull('seccion3_id')
+                ->orWhereNull('seccion4_id')
+                ->orWhereNull('seccion5_id')
+                ->orWhereNull('seccion6_id')
+                ->orWhereNull('seccion7_id')
+                ->orWhereNull('seccion8_id')
+                ->orWhereNull('seccion9_id')
+                ->orWhereNull('seccion10_id')
+                ->orWhereNull('seccion11_id')
+                ->orWhereNull('seccion12_id')
+                ->orWhereNull('acepto_terminos');
+        })->count();
+
+        $totales_formularios = HistoriaDesarrollo::count();
+
+        return compact('terminados', 'no_terminados', 'totales_formularios');
+    }
+
+    private function obtenerConteosPorGrado()
+    {
+        $grados = [
+            // Preescolar
+            'Bambolino 2',
+            'Bambolino 3',
+            'Kinder 1',
+            'Kinder 2',
+            'Kinder 3',
+
+            // Primaria
+            'Primero de Primaria',
+            'Segundo de Primaria',
+            'Tercero de Primaria',
+            'Cuarto de Primaria',
+            'Quinto de Primaria',
+            'Sexto de Primaria',
+
+            // Secundaria
+            'Primero de Secundaria',
+            'Segundo de Secundaria',
+            'Tercero de Secundaria',
+        ];
+
+        $conteos = [];
+
+        foreach ($grados as $grado) {
+            $conteos[Str::slug($grado, '_')] = Estudiante::where('grado_escolar', 'LIKE', "%{$grado}%")->count();
+        }
+
+        return $conteos;
+    }
 }

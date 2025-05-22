@@ -102,15 +102,15 @@ $nombre = session('nombre');
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!-- Hora siesta -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 pt-1">
-                <div class="col-span-1 md:col-span-2 lg:col-span-1">
+            <div class="pt-1 md:w-1/2">
+                <div>
                     <label for="horadecama" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se acuesta por la noche? <span class="text-red-500">*</span></label>
-                    <input type="time" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-full md:w-lg px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadecama" name="horadecama" required>
                 </div>
-                <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <div>
                     <label for="horadespierta" class="block text-sm font-medium text-gray-700 pt-3">¿A qué hora se despierta? <span class="text-red-500">*</span></label>
-                    <input type="time" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="time" class="w-full md:w-lg px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="horadespierta" name="horadespierta" required>
                 </div>
             </div>

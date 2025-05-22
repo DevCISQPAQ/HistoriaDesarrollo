@@ -211,7 +211,7 @@ $nombre = session('nombre');
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Cómo calificaría el desempeño académico general de su hijo(a)? <span class="text-red-500">*</span></label>
-                <div class="flex flex-col sm:flex-row sm:space-x-4 gap-2 sm:gap-0 pb-4">
+                <div class="flex flex-col md:flex-row sm:space-x-4 gap-2 pb-4">
                     <label class="radio-box-btn">
                         <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
                         <span class="ml-2">Sobresaliente</span>
