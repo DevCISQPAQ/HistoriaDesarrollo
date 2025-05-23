@@ -8,8 +8,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="shortcut icon" type="image/svg" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
     <link rel="shortcut icon" sizes="192x192" href="{{ asset('/img/sello-cumbres-en-blanco-01.png') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('js/dashboard-charts.js') }}"></script>
 </head>
 
 <body x-data="{
@@ -21,8 +19,8 @@
     class="bg-gray-100 min-h-screen flex relative overflow-x-hidden transition-all duration-300">
 
     {{-- Sidebar responsivo --}}
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
-           class="fixed inset-y-0 left-0 w-64 bg-white shadow-md z-40 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0">
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+        class="fixed inset-y-0 left-0 w-64 bg-white shadow-md z-40 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0">
         <x-admin-sidebar />
     </aside>
 
@@ -30,7 +28,7 @@
     <div class="flex-1 flex flex-col w-full">
 
         {{-- Header superior --}}
-        <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+        <header class="bg-white shadow px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div class="flex items-center gap-4">
                 {{-- Botón hamburguesa visible solo en móviles --}}
                 <button @click="toggleSidebar" class="md:hidden text-gray-700">
@@ -41,25 +39,28 @@
                     </svg>
                 </button>
 
-                <h1 class="text-xl font-semibold text-gray-800">Administración</h1>
+                <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800">
+                    Administración
+                </h1>
             </div>
 
-            <div class="flex items-center gap-4">
+           <div class="flex items-center gap-4 self-end sm:self-auto">
                 <span class="text-gray-700 font-medium">👤 {{ Auth::user()->name }}</span>
                 <button @click.prevent="
-                    fetch('{{ route('logout') }}', {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                    }).then(() => window.location.href = '/login')"
+            fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }).then(() => window.location.href = '/login')"
                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
                     Cerrar sesión
                 </button>
             </div>
         </header>
+
 
         {{-- Contenido dinámico --}}
         <main class="p-6">

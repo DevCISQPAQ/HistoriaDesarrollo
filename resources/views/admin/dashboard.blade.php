@@ -24,10 +24,12 @@
     <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center lg:text-left">Resumen general</h3>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="flex justify-center p-6">
-            <canvas id="nivelesChart" class="max-w-[350px] w-full max-h-[350px]"></canvas>
+            <canvas id="nivelesChart" class="w-[400px] h-[400px]"></canvas>
         </div>
         <div class="flex justify-center p-6">
-            <canvas id="graficaPorGrado" class="max-w-[400px] w-full max-h-[400px]"></canvas>
+            <div class="w-full max-w-3xl h-[500px]">
+                <canvas id="graficaPorGrado" class="w-full h-full"></canvas>
+            </div>
         </div>
     </div>
 </div>
