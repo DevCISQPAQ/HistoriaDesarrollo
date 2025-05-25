@@ -60,7 +60,7 @@ $nombre = session('nombre');
                 <div id="Si" x-show="sienfermedad == $el.id" x-transition>
                     <label for="especificar" class="block text-sm font-medium text-gray-700 pt-3">Especificar</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="especificar" name="especificar">
+                        id="especificar" name="especificar" placeholder="Indique la enfermedad o complicación" :required="sienfermedad === 'Si'" >
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="lloro" class="block text-sm font-medium text-gray-700 pt-3 pb-2">¿Lloró enseguida? <span class="text-red-500">*</span></label>
                     <label class="radio-box-btn">
-                        <input type="radio" name="lloro" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <input type="radio" name="lloro" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="radio-box-btn">
@@ -99,7 +99,7 @@ $nombre = session('nombre');
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
                     <label for="incubadora" class="block text-sm font-medium text-gray-700 pt-3 pb-2">¿Fue necesario colocarlo(a) en incubadora o hacer algún tratamiento inmediato al nacimiento? <span class="text-red-500">*</span></label>
                     <label class="radio-box-btn">
-                        <input type="radio" name="incubadora" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <input type="radio" name="incubadora" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="radio-box-btn">
@@ -112,7 +112,7 @@ $nombre = session('nombre');
             <div>
                 <label for="apgar" class="block text-sm font-medium text-gray-700 pt-4">¿Recuerda la calificación (APGAR) que tuvo su hijo(a) al nacer? <span class="text-red-500">*</span></label>
                 <input type="text" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="apgar" name="apgar" required>
+                    id="apgar" name="apgar" placeholder="Indique la calificación" required>
             </div>
 
         </div>

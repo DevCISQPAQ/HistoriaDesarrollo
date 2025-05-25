@@ -50,7 +50,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="viveconotro == $el.id" x-transition>
                         <label for="quienes_casa" class="block text-sm font-medium text-gray-700">¿Quiénes?</label>
                         <input type="text" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="quienes_casa" name="quienes_casa" placeholder="">
+                            id="quienes_casa" name="quienes_casa" placeholder="Ej: Abuelos, tíos, primos" :required="viveconotro === 'Si'">
                     </div>
 
                 </div>
@@ -79,19 +79,19 @@ $nombre = session('nombre');
                             <label for="" class="font-medium text-sm text-gray-700">
                                 Edad del niño al momento de la adopción:
                                 <input type="text" class=" md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses">
+                                    id="hijo_edadadopt" name="hijo_edadadopt" placeholder="Años/meses" :required="isadoptado === 'Si'">
                             </label>
                             <label class="flex font-medium text-sm text-gray-700 py-2">Edad de los padres al momento de la adopción</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-2">
                                 <label for="" class="text-sm ">
                                     Padre:
                                     <input type="number" class=" md:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="padre_edadadopt" name="padre_edadadopt" placeholder="Años">
+                                        id="padre_edadadopt" name="padre_edadadopt" placeholder="Años" :required="isadoptado === 'Si'">
                                 </label>
                                 <label for="" class="text-sm ">
                                     Madre:
                                     <input type="number" class=" md:w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                        id="madre_edadadopt" name="madre_edadadopt" placeholder="Años">
+                                        id="madre_edadadopt" name="madre_edadadopt" placeholder="Años" :required="isadoptado === 'Si'">
                                 </label>
                             </div>
                         </div>

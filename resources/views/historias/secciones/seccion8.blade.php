@@ -29,7 +29,7 @@ $nombre = session('nombre');
                 <label class="block text-sm font-medium text-gray-700 pb-2">¿Cómo describiría el desarrollo del habla y lenguaje del niño(a)?<span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <label class="radio-box-btn">
-                        <input type="radio" name="desarrollo_lenguaje" value="Después de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <input type="radio" name="desarrollo_lenguaje" value="Después de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Después de lo esperado para la edad</span>
                     </label>
                     <label class="radio-box-btn">
@@ -46,7 +46,7 @@ $nombre = session('nombre');
             <div>
                 <label for="prim_palabra" class="block text-sm font-medium text-gray-700 pt-3">¿A qué edad dijo sus primeras palabras?<span class="text-red-500">*</span></label>
                 <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="prim_palabra" name="prim_palabra" required>
+                    id="prim_palabra" name="prim_palabra" placeholder="Ej: 1 año y 2 meses" required>
             </div>
         </div>
 

@@ -55,7 +55,7 @@ $nombre = session('nombre');
                 <div class="col-span-1">
                     <label for="ocupacion_padre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_padre" name="ocupacion_padre" value="{{ old('ocupacion_padre') }}" required placeholder="">
+                        id="ocupacion_padre" name="ocupacion_padre" placeholder="Profesión u oficio" value="{{ old('ocupacion_padre') }}" required>
                 </div>
 
                 <div class="col-span-1">
@@ -112,7 +112,8 @@ $nombre = session('nombre');
                         <!-- Campo oculto que se usa para hacer la validación required -->
                         <input type="hidden" name="padre_lateralidad_required" x-bind:required="!diestro && !zurdo">
                         @error('padre_lateralidad')
-                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                            Es necesario seleccionar al menos uno</p>
                         @enderror
                     </div>
                 </div>
@@ -131,7 +132,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="siegresadored == $el.id" x-transition>
                         <label for="cualcolegio_padre" class="block text-sm font-medium text-gray-700 pt-3">Nombre del colegio</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="cualcolegio_padre" name="cualcolegio_padre" x-bind:required="siegresadored === 'Si'">
+                            id="cualcolegio_padre" placeholder="Escribe el nombre del colegio" name="cualcolegio_padre" x-bind:required="siegresadored === 'Si'">
                     </div>
                 </div>
 
@@ -170,7 +171,7 @@ $nombre = session('nombre');
                 <div class="col-span-1">
                     <label for="ocupacion_madre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="ocupacion_madre" name="ocupacion_madre" value="{{ old('ocupacion_madre') }}" required placeholder="">
+                        id="ocupacion_madre" name="ocupacion_madre" placeholder="Profesión u oficio" value="{{ old('ocupacion_madre') }}" required>
                 </div>
 
                 <div class="col-span-1">
@@ -205,7 +206,7 @@ $nombre = session('nombre');
                                 </span>
                             </div>
                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                id="redessoc_madre" name="redessoc_madre[]"  value="{{ old('redessoc_madre.1') }}"  placeholder="Instagram" required>
+                                id="redessoc_madre" name="redessoc_madre[]" value="{{ old('redessoc_madre.1') }}" placeholder="Instagram" required>
                         </div>
                     </div>
                 </div>
@@ -225,7 +226,8 @@ $nombre = session('nombre');
                             </label>
                         </div>
                         @error('madre_lateralidad')
-                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                            Es necesario seleccionar al menos uno</p>
                         @enderror
                     </div>
                 </div>
@@ -244,7 +246,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="siegresadored == $el.id" x-transition>
                         <label for="cualcolegio_madre" class="block text-sm font-medium text-gray-700 pt-3">Nombre del colegio</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="cualcolegio_madre" name="cualcolegio_madre" x-bind:required="siegresadored === 'Si'">
+                            id="cualcolegio_madre" placeholder="Escribe el nombre del colegio" name="cualcolegio_madre" x-bind:required="siegresadored === 'Si'">
                     </div>
                 </div>
             </div>
@@ -328,7 +330,7 @@ $nombre = session('nombre');
                                     <div class="col-span-1">
                                         <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
-                                            id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="" x-bind:required="estcivil === 'Vuelto a casar'">
+                                            id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="Profesión u oficio" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">
@@ -382,7 +384,8 @@ $nombre = session('nombre');
                                             </label>
                                         </div>
                                         @error('conyuge_lateralidad')
-                                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
+                                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                                            Es necesario seleccionar al menos uno</p>
                                         @enderror
                                     </div>
                                 </div>
@@ -417,7 +420,7 @@ $nombre = session('nombre');
                             <div x-transition>
                                 <label for="vive_con" class="block text-sm font-medium text-gray-700">En caso de separación o divorcio, ¿con quién vive el niño(a)?</label>
                                 <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                                    id="vive_con" name="vive_con" x-bind:required="estcivil === 'Divorciados'">
+                                    id="vive_con" name="vive_con" placeholder="Ej: Madre, Padre, Abuelo(a)" x-bind:required="estcivil === 'Divorciados'">
                             </div>
                         </div>
                         <!-- Años de casados -->
@@ -430,15 +433,14 @@ $nombre = session('nombre');
                 </div>
             </div>
             @error('estado_civil')
-            <div class="text-red-500 text-sm mt-2">
-                {{ $message }}
-            </div>
+            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                Es necesario seleccionar al menos uno</p>
             @enderror
 
             <!-- Número de hijos -->
             <div class="col-span-1" x-data="{ cantidad: 1 }">
                 <label for="numero_hijos" class="block text-sm font-medium text-gray-700 ">Número de hijos</label>
-                <input type="number"  class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="numero_hijos" min="1" x-model.number="cantidad" name="numero_hijos" required placeholder="Cantidad">
                 <template x-if="cantidad > 1">
                     <div class="mt-3 overflow-x-auto">

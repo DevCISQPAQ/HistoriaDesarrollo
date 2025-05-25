@@ -94,37 +94,45 @@ $nombre = session('nombre');
                         <input type="checkbox" name="saludnino[]" value="Impulsividad" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Impulsividad</span>
                     </label>
+                     <label class="radio-box-btn">
+                        <input type="checkbox" name="saludnino[]" value="Ninguno" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
+                        <span class="ml-2">Ninguno</span>
+                    </label>
                 </div>
+                @error('saludnino')
+                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                    Es necesario seleccionar al menos uno</p>
+                @enderror
             </div>
             <!-- otros -->
             <div>
                 <label for="otrosprob" class="block text-sm font-medium text-gray-700 pt-3">Otros</label>
                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="otrosprob" name="otrosprob">
+                    id="otrosprob" name="otrosprob" placeholder="Especifique otros problemas de salud, si los hay">
             </div>
             <!-- padece -->
             <div x-data="{ mensaje: '' }">
                 <label for="enfeotrastor" class="block text-sm font-medium text-gray-700 pt-3">¿Padece, o ha padecido, alguna enfermedad o trastorno que requiera de atención médica especializada? <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="enfeotrastor" name="enfeotrastor" x-model="mensaje"
-                            maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
-                     <div class="text-sm mt-1 text-right">
-                            <span
-                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
-                                x-text="mensaje.length + ' / 200 caracteres'"></span>
-                        </div>
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
             <!-- recibe -->
             <div x-data="{ mensaje: '' }">
                 <label for="tipoterapia" class="block text-sm font-medium text-gray-700 pt-3">¿Recibe, o ha recibido, algún tipo de terapia (emocional, motriz, de lenguaje, de aprendizaje)? Describa el tipo y desde cuándo <span class="text-red-500">*</span></label>
                 <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                     id="tipoterapia" name="tipoterapia" x-model="mensaje"
-                            maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
-                     <div class="text-sm mt-1 text-right">
-                            <span
-                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
-                                x-text="mensaje.length + ' / 200 caracteres'"></span>
-                        </div>
+                    maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
+                <div class="text-sm mt-1 text-right">
+                    <span
+                        :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                        x-text="mensaje.length + ' / 200 caracteres'"></span>
+                </div>
             </div>
         </div>
         <!-- Acuerdo -->

@@ -98,6 +98,10 @@ $nombre = session('nombre');
                     <span class="ml-2">Se pasa a media noche a la cama de sus papás</span>
                 </label>
             </div>
+            @error('suenonino')
+            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                Es necesario seleccionar al menos uno</p>
+            @enderror
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
@@ -131,7 +135,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="sidusiesta == $el.id" x-transition>
                         <label for="horasiesta" class="block text-sm font-medium text-gray-700 pt-3">¿Cuántas horas?</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="horasiesta" name="horasiesta" placeholder="Horas">
+                            id="horasiesta" name="horasiesta" placeholder="Horas" :required="sidusiesta === 'Si'">
                     </div>
                 </div>
                 <div class="space-y-1" x-data="{sicohabitacion: ''}">
@@ -148,7 +152,7 @@ $nombre = session('nombre');
                     <div id="Si" x-show="sicohabitacion == $el.id" x-transition>
                         <label for="conquien" class="block text-sm font-medium text-gray-700 pt-3">¿Con quien?</label>
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                            id="conquien" name="conquien">
+                            id="conquien" name="conquien" placeholder="Indique con quién comparte habitación" :required="sicohabitacion === 'Si'">
                     </div>
                 </div>
                 <div>

@@ -28,7 +28,7 @@ $nombre = session('nombre');
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <label class="radio-box-btn">
-                    <input type="radio" name="desarrollo_motor" value="Después de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                    <input type="radio" name="desarrollo_motor" value="Después de lo esperado para la edad" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                     <span class="ml-2">Después de lo esperado para la edad</span>
                 </label>
                 <label class="radio-box-btn">
@@ -70,6 +70,10 @@ $nombre = session('nombre');
                         <span class="ml-2">Zurdo</span>
                     </label>
                 </div>
+                @error('dies_zurdhijo')
+                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                    Es necesario seleccionar al menos uno</p>
+                @enderror
             </div>
         </div>
 

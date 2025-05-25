@@ -65,7 +65,7 @@ class BDController extends Controller
 
     public function guardarSeccion2(Request $request)
     {
-       
+
         $request->validate([
             'padre_lateralidad' => 'required|array|min:1',
             'madre_lateralidad' => 'required|array|min:1',
@@ -155,19 +155,20 @@ class BDController extends Controller
 
     public function guardarSeccion3(Request $request)
     {
-        
+
         $seccion3 =  Seccion3::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'idioma_casa' => $request->idioma_casa,
-            'personas_casa' => $request->personas_casa,
-            'quienes_casa' => $request->quienes_casa,
-            'siadopcion' => $request->siadopcion,
-            'padre_edadadopt' => $request->padre_edadadopt,
-            'madre_edadadopt' => $request->madre_edadadopt,
-            'hijo_edadadopt' => $request->hijo_edadadopt,
+                'idioma_casa' => $request->idioma_casa,
+                'personas_casa' => $request->personas_casa,
+                'quienes_casa' => $request->quienes_casa,
+                'siadopcion' => $request->siadopcion,
+                'padre_edadadopt' => $request->padre_edadadopt,
+                'madre_edadadopt' => $request->madre_edadadopt,
+                'hijo_edadadopt' => $request->hijo_edadadopt,
 
-        ]);
+            ]
+        );
 
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
@@ -185,15 +186,16 @@ class BDController extends Controller
         $seccion4 = Seccion4::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'califica_adaptacion' => $request->califica_adaptacion,
-            'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
-            'relacion_familia_madre' => $request->relacion_familia_madre,
-            'relacion_familia_padre' => $request->relacion_familia_padre,
-            'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
-            'sanciones_casa' => $request->sanciones_casa,
-            'docil_desafiante' => $request->docil_desafiante,
-            'evento_traumatico' => $request->evento_traumatico,
-        ]);
+                'califica_adaptacion' => $request->califica_adaptacion,
+                'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
+                'relacion_familia_madre' => $request->relacion_familia_madre,
+                'relacion_familia_padre' => $request->relacion_familia_padre,
+                'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
+                'sanciones_casa' => $request->sanciones_casa,
+                'docil_desafiante' => $request->docil_desafiante,
+                'evento_traumatico' => $request->evento_traumatico,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion4_id' => $seccion4->id
@@ -209,16 +211,17 @@ class BDController extends Controller
         $seccion5 = Seccion5::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'total_embarazo' => $request->total_embarazo,
-            'experi_embarazo' => $request->experi_embarazo,
-            'mencione_embaenfe' => $request->mencione_embaenfe,
-            'especificar' => $request->especificar,
-            'tiempo_gestacion' => $request->tiempo_gestacion,
-            'tipo_parto' => $request->tipo_parto,
-            'lloro' => $request->lloro,
-            'incubadora' => $request->incubadora,
-            'apgar' => $request->apgar,
-        ]);
+                'total_embarazo' => $request->total_embarazo,
+                'experi_embarazo' => $request->experi_embarazo,
+                'mencione_embaenfe' => $request->mencione_embaenfe,
+                'especificar' => $request->especificar,
+                'tiempo_gestacion' => $request->tiempo_gestacion,
+                'tipo_parto' => $request->tipo_parto,
+                'lloro' => $request->lloro,
+                'incubadora' => $request->incubadora,
+                'apgar' => $request->apgar,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion5_id' => $seccion5->id
@@ -234,9 +237,10 @@ class BDController extends Controller
         $seccion6 = Seccion6::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'desa_visual' => $request->desa_visual,
-            'desa_auditivo' => $request->desa_auditivo,
-        ]);
+                'desa_visual' => $request->desa_visual,
+                'desa_auditivo' => $request->desa_auditivo,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion6_id' => $seccion6->id
@@ -248,16 +252,20 @@ class BDController extends Controller
 
     public function guardarSeccion7(Request $request)
     {
+        $request->validate([
+            'dies_zurdhijo' => 'required|array|min:1',
+        ]);
 
         $seccion7 = Seccion7::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'desarrollo_motor' => $request->desarrollo_motor,
-            'edad_gate' => $request->edad_gate,
-            'edad_cami' => $request->edad_cami,
-            'dies_zurdhijo' => $request->dies_zurdhijo,
-            'prac_deporte' => $request->prac_deporte,
-        ]);
+                'desarrollo_motor' => $request->desarrollo_motor,
+                'edad_gate' => $request->edad_gate,
+                'edad_cami' => $request->edad_cami,
+                'dies_zurdhijo' => $request->dies_zurdhijo,
+                'prac_deporte' => $request->prac_deporte,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion7_id' => $seccion7->id
@@ -273,9 +281,10 @@ class BDController extends Controller
         $seccion8 = Seccion8::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
-            'prim_palabra' => $request->prim_palabra,
-        ]);
+                'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
+                'prim_palabra' => $request->prim_palabra,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion8_id' => $seccion8->id
@@ -287,20 +296,24 @@ class BDController extends Controller
 
     public function guardarSeccion9(Request $request)
     {
+        $request->validate([
+            'suenonino' => 'required|array|min:1',
+        ]);
 
         $seccion9 = Seccion9::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'suenonino' => $request->suenonino,
-            'horadecama' => $request->horadecama,
-            'horadespierta' => $request->horadespierta,
-            'dusiesta' => $request->dusiesta,
-            'horasiesta' => $request->horasiesta,
-            'cohabitacion' => $request->cohabitacion,
-            'conquien' => $request->conquien,
-            'cocama' => $request->cocama,
-            'edad_dupapa' => $request->edad_dupapa,
-        ]);
+                'suenonino' => $request->suenonino,
+                'horadecama' => $request->horadecama,
+                'horadespierta' => $request->horadespierta,
+                'dusiesta' => $request->dusiesta,
+                'horasiesta' => $request->horasiesta,
+                'cohabitacion' => $request->cohabitacion,
+                'conquien' => $request->conquien,
+                'cocama' => $request->cocama,
+                'edad_dupapa' => $request->edad_dupapa,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion9_id' => $seccion9->id
@@ -312,15 +325,19 @@ class BDController extends Controller
 
     public function guardarSeccion10(Request $request)
     {
+        $request->validate([
+            'saludnino' => 'required|array|min:1',
+        ]);
 
         $seccion10 = Seccion10::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'saludnino' =>  $request->saludnino,
-            'otrosprob' => $request->otrosprob,
-            'enfeotrastor' => $request->enfeotrastor,
-            'tipoterapia' => $request->tipoterapia,
-        ]);
+                'saludnino' =>  $request->saludnino,
+                'otrosprob' => $request->otrosprob,
+                'enfeotrastor' => $request->enfeotrastor,
+                'tipoterapia' => $request->tipoterapia,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion10_id' => $seccion10->id
@@ -336,11 +353,12 @@ class BDController extends Controller
         $seccion11 = Seccion11::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'personalidadhijo' => $request->personalidadhijo,
-            'oportunihijo' => $request->oportunihijo,
-            'adapthijo' => $request->adapthijo,
-            'juegacnhijo' => $request->juegacnhijo,
-        ]);
+                'personalidadhijo' => $request->personalidadhijo,
+                'oportunihijo' => $request->oportunihijo,
+                'adapthijo' => $request->adapthijo,
+                'juegacnhijo' => $request->juegacnhijo,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion11_id' => $seccion11->id
@@ -356,25 +374,26 @@ class BDController extends Controller
         $seccion12 = Seccion12::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
-            'reaccprimer' => $request->reaccprimer,
-            'dificumateria' => $request->dificumateria,
-            'nivel_lectura' => $request->nivel_lectura,
-            'nivel_escritura' => $request->nivel_escritura,
-            'dificultad_tarea' => $request->dificultad_tarea,
-            'relacion_maestro' => $request->relacion_maestro,
-            'ha_repetido' => $request->ha_repetido,
-            'cual_escuela' => $request->cual_escuela,
-            'porque_escuela' => $request->porque_escuela,
-            'puedeperiodolarg' => $request->puedeperiodolarg,
-            'conductaambito' => $request->conductaambito,
-            'hay_dific' => $request->hay_dific,
-            'cual_letra' => $request->cual_letra,
-            'maneingles' => $request->maneingles,
-            'cali_desemp' => $request->cali_desemp,
-            'porq_desemp' => $request->porq_desemp,
-            'motivoscamb' => $request->motivoscamb,
-            'razoning' => $request->razoning,
-        ]);
+                'reaccprimer' => $request->reaccprimer,
+                'dificumateria' => $request->dificumateria,
+                'nivel_lectura' => $request->nivel_lectura,
+                'nivel_escritura' => $request->nivel_escritura,
+                'dificultad_tarea' => $request->dificultad_tarea,
+                'relacion_maestro' => $request->relacion_maestro,
+                'ha_repetido' => $request->ha_repetido,
+                'cual_escuela' => $request->cual_escuela,
+                'porque_escuela' => $request->porque_escuela,
+                'puedeperiodolarg' => $request->puedeperiodolarg,
+                'conductaambito' => $request->conductaambito,
+                'hay_dific' => $request->hay_dific,
+                'cual_letra' => $request->cual_letra,
+                'maneingles' => $request->maneingles,
+                'cali_desemp' => $request->cali_desemp,
+                'porq_desemp' => $request->porq_desemp,
+                'motivoscamb' => $request->motivoscamb,
+                'razoning' => $request->razoning,
+            ]
+        );
 
         HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
             'seccion12_id' => $seccion12->id
@@ -444,12 +463,12 @@ class BDController extends Controller
                 } else {
                     session()->put(['numero_hijos' => null]); // o algún valor por defecto
                 }
-                
+
 
                 if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
 
                     session()->put(['grado' => 'primaria_secundaria']);
-                }else{
+                } else {
                     session()->put(['grado' => 'preescolar']);
                 }
 

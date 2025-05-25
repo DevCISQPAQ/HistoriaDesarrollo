@@ -29,7 +29,7 @@ $nombre = session('nombre');
                 <label class="block text-sm font-medium text-gray-700 py-2">¿Cómo calificaría la adaptación general de su hijo(a) en la casa? <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                     <label class="radio-box-btn">
-                        <input type="radio" name="califica_adaptacion" value="Inadecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <input type="radio" name="califica_adaptacion" value="Inadecuada" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Inadecuada</span>
                     </label>
                     <label class="radio-box-btn">
@@ -48,7 +48,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="califica-adaptacion-porq" class="block text-sm font-medium text-gray-700 pt-3">¿Por qué? <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="califica-adaptacion-porq" name="califica_adaptacion_porq" required>
+                        id="califica-adaptacion-porq" name="califica_adaptacion_porq" placeholder="Escriba aquí la razón o motivo" required>
                 </div>
             </div>
         </div>

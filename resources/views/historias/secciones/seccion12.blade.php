@@ -59,7 +59,7 @@ $nombre = session('nombre');
                 <div class="flex space-x-4 pb-4">
                     <label class="radio-box-btn">
                         <input type="radio" name="ha_repetido" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                            x-model="harepetido">
+                            x-model="harepetido" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="radio-box-btn">
@@ -73,7 +73,7 @@ $nombre = session('nombre');
                 <div id="Si" x-show="harepetido == $el.id" x-transition>
                     <label for="cual_escuela" class="block text-sm font-medium text-gray-700">¿Cuál?</label>
                     <input class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="cual_escuela" name="cual_escuela">
+                        id="cual_escuela" name="cual_escuela" placeholder="Indique el grado o año escolar repetido" :required="harepetido === 'Si'">
                 </div>
 
                 <!-- -->
@@ -81,7 +81,7 @@ $nombre = session('nombre');
                     <label for="porque_escuela" class="block text-sm font-medium text-gray-700">¿Por qué motivo?</label>
                     <textarea type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="porque_escuela" name="porque_escuela" rows="3" x-model="mensaje"
-                        maxlength="200" placeholder="Escriba aquí su respuesta"></textarea>
+                        maxlength="200" placeholder="Escriba aquí su respuesta" :required="harepetido === 'Si'"></textarea>
                     <div class="text-sm mt-1 text-right">
                         <span
                             :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
@@ -185,7 +185,7 @@ $nombre = session('nombre');
                 <div class="flex space-x-4 pb-4">
                     <label class="radio-box-btn">
                         <input type="radio" name="hay_dific" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
-                            x-model="haydificultad">
+                            x-model="haydificultad" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="radio-box-btn">
@@ -199,21 +199,21 @@ $nombre = session('nombre');
                 <div id="Si" x-show="haydificultad == $el.id" x-transition>
                     <label for="cual_letra" class="block text-sm font-medium text-gray-700">¿Cuáles?</label>
                     <input class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="cual_letra" name="cual_letra">
+                        id="cual_letra" name="cual_letra" placeholder="Indique las letras con las que tuvo dificultad" :required="haydificultad === 'Si'">
                 </div>
             </div>
 
             <div>
                 <label for="maneingles" class="block text-sm font-medium text-gray-700 pt-2">¿Maneja el idioma Inglés? <span class="text-red-500">*</span></label>
                 <input type="text" class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                    id="maneingles" name="maneingles" required>
+                    id="maneingles" name="maneingles" placeholder="Sí / No. Especifique el nivel si aplica" required>
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2 pt-4">¿Cómo calificaría el desempeño académico general de su hijo(a)? <span class="text-red-500">*</span></label>
                 <div class="flex flex-col md:flex-row sm:space-x-4 gap-2 pb-4">
                     <label class="radio-box-btn">
-                        <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <input type="radio" name="cali_desemp" value="Sobresaliente" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
                         <span class="ml-2">Sobresaliente</span>
                     </label>
                     <label class="radio-box-btn">
@@ -230,7 +230,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="porq_desemp" class="block text-sm font-medium text-gray-700">¿Por qué?</label>
                     <input class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="porq_desemp" name="porq_desemp"></textarea>
+                        id="porq_desemp" name="porq_desemp" placeholder="Escriba aquí la razón o motivo" required ></textarea>
                 </div>
             </div>
         </div>
