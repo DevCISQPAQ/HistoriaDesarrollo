@@ -99,6 +99,10 @@ $nombre = session('nombre');
                 <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestro: false, zurdo: false }" x-init="$watch('diestro', checkRequired); $watch('zurdo', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si el padre es <span class="text-red-500">*</span></label>
+                        @error('padre_lateralidad')
+                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                            Es necesario seleccionar al menos uno</p>
+                        @enderror
                         <div class="flex space-x-4 mt-1">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" name="padre_lateralidad[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestro" id="check1">
@@ -111,10 +115,6 @@ $nombre = session('nombre');
                         </div>
                         <!-- Campo oculto que se usa para hacer la validación required -->
                         <input type="hidden" name="padre_lateralidad_required" x-bind:required="!diestro && !zurdo">
-                        @error('padre_lateralidad')
-                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                            Es necesario seleccionar al menos uno</p>
-                        @enderror
                     </div>
                 </div>
 
@@ -215,6 +215,10 @@ $nombre = session('nombre');
                 <div class="col-span-1 md:col-span-2">
                     <div class="pl-2" x-data="{ diestra: false, zurda: false }" x-init="$watch('diestra', checkRequired); $watch('zurda', checkRequired)">
                         <label class="block text-sm font-medium text-gray-700">Marcar si la madre es <span class="text-red-500">*</span></label>
+                        @error('madre_lateralidad')
+                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                            Es necesario seleccionar al menos uno</p>
+                        @enderror
                         <div class="flex space-x-4 mt-1">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" name="madre_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" x-model="diestra" id="check1">
@@ -225,10 +229,6 @@ $nombre = session('nombre');
                                 <span class="ml-2">Zurda</span>
                             </label>
                         </div>
-                        @error('madre_lateralidad')
-                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                            Es necesario seleccionar al menos uno</p>
-                        @enderror
                     </div>
                 </div>
 
@@ -256,6 +256,10 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
             <h3 class="text-lg font-semibold text-[#1f355e] mb-4">Estado Civil</h3>
 
+            @error('estado_civil')
+            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                Es necesario seleccionar al menos uno</p>
+            @enderror
             <div class="space-y-6">
                 <!-- Estado civil (checkboxes como en tu original) -->
                 <div>
@@ -373,6 +377,10 @@ $nombre = session('nombre');
                                     <!-- Diestra/Zurda -->
                                     <div class="col-span-1 md:col-span-2">
                                         <label class="block text-sm font-medium text-gray-700">Marcar si el(la) cónyuge es <span class="text-red-500">*</span></label>
+                                        @error('conyuge_lateralidad')
+                                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                                            Es necesario seleccionar al menos uno</p>
+                                        @enderror
                                         <div class="flex space-x-4 mt-2">
                                             <label class="inline-flex items-center">
                                                 <input type="checkbox" name="conyuge_lateralidad[]" value="Diestra" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -383,10 +391,6 @@ $nombre = session('nombre');
                                                 <span class="ml-2">Zurdo(a)</span>
                                             </label>
                                         </div>
-                                        @error('conyuge_lateralidad')
-                                        <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                                            Es necesario seleccionar al menos uno</p>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div x-data="{ mensaje: '' }" class="py-4">
@@ -432,10 +436,6 @@ $nombre = session('nombre');
                     </div> <!-- vuelto a casar  -->
                 </div>
             </div>
-            @error('estado_civil')
-            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                Es necesario seleccionar al menos uno</p>
-            @enderror
 
             <!-- Número de hijos -->
             <div class="col-span-1" x-data="{ cantidad: 1 }">
@@ -483,7 +483,6 @@ $nombre = session('nombre');
             </div>
 
         </div>
-
 
         <!-- Religion-->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">

@@ -26,6 +26,10 @@ $nombre = session('nombre');
             <!-- check box -->
             <div>
                 <label class="inline-flex items-center"> Especifique si ha presentado alguno de los siguientes problemas: <span class="text-red-500">*</span></label>
+                @error('saludnino')
+                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                    Es necesario seleccionar al menos uno</p>
+                @enderror
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4">
                     <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Respiratorios" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -99,10 +103,6 @@ $nombre = session('nombre');
                         <span class="ml-2">Ninguno</span>
                     </label>
                 </div>
-                @error('saludnino')
-                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                    Es necesario seleccionar al menos uno</p>
-                @enderror
             </div>
             <!-- otros -->
             <div>

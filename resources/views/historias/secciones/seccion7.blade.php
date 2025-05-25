@@ -60,6 +60,10 @@ $nombre = session('nombre');
             <!-- Diestro/Zurdo -->
             <div class="md:col-span-2 pt-4">
                 <label class="block text-sm font-medium text-gray-700">¿Es diestro(a) o zurdo(a)?<span class="text-red-500">*</span></label>
+                @error('dies_zurdhijo')
+                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                    Es necesario seleccionar al menos uno</p>
+                @enderror
                 <div class="flex space-x-4 mt-2">
                     <label class="inline-flex items-center">
                         <input type="checkbox" name="dies_zurdhijo[]" value="Diestro" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
@@ -70,10 +74,6 @@ $nombre = session('nombre');
                         <span class="ml-2">Zurdo</span>
                     </label>
                 </div>
-                @error('dies_zurdhijo')
-                <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                    Es necesario seleccionar al menos uno</p>
-                @enderror
             </div>
         </div>
 

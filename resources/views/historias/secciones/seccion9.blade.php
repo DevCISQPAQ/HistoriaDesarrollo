@@ -26,6 +26,10 @@ $nombre = session('nombre');
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <!--Describre lenguaje -->
             <label class="inline-flex items-center"> Marque las características que presenta el sueño del menor <span class="text-red-500">*</span></label>
+            @error('suenonino')
+            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
+                Es necesario seleccionar al menos uno</p>
+            @enderror
             <!-- Check box options -->
             <div class=" grid grid-cols-1 md:grid-cols-3 gap-2 pt-2">
                 <label class="radio-box-btn">
@@ -98,10 +102,6 @@ $nombre = session('nombre');
                     <span class="ml-2">Se pasa a media noche a la cama de sus papás</span>
                 </label>
             </div>
-            @error('suenonino')
-            <p class="mt-2 text-sm font-semibold text-red-700 bg-red-100 border border-red-400 rounded-md px-3 py-2">
-                Es necesario seleccionar al menos uno</p>
-            @enderror
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
