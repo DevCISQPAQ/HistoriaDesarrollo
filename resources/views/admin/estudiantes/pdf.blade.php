@@ -108,12 +108,12 @@
                     <td class="value"> {{$estudiante->seccion2->egresadored_padre ?? '_' }}</td>
                     <!-- <td class="value" colspan="2"></td> -->
                 </tr>
+                @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_padre), ['sí', 'si']))
                 <tr>
-                    @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_padre), ['sí', 'si']))
                     <td class="label">Nombre del colegio</td>
                     <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_padre ?? '_' }}</td>
-                    @endif
                 </tr>
+                @endif
             </table>
             <!-- madre -->
             <table class="info-table" style="padding-top: 1rem;">
@@ -148,12 +148,12 @@
                     <td class="value"> {{$estudiante->seccion2->egresadored_madre ?? '_' }}</td>
                     <!-- <td class="value" colspan="2"></td> -->
                 </tr>
+                @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_madre), ['sí', 'si']))
                 <tr>
-                    @if(in_array(mb_strtolower(optional($estudiante->seccion2)->egresadored_madre), ['sí', 'si']))
                     <td class="label">Nombre del colegio</td>
                     <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_madre ?? '_' }}</td>
-                    @endif
                 </tr>
+                @endif
             </table>
             <!-- estado civil  -->
             <table class="info-table" style="padding-top: 1rem;">
@@ -397,7 +397,7 @@
 
             </table>
         </div>
-        
+
         <!-- Historia Pre y Postnatal  -->
         <div>
             <div class="header" style="background-color: #54667a;">
