@@ -103,7 +103,7 @@ $grado = session('grado');
                     <option value="Kinder 3">Kinder 3</option>
                     @elseif($grado === 'primaria_secundaria')
                     <option selected="true" disabled="disabled">Seleccione un grado</option>
-                    <option value="Primero de Primaria<">Primero de Primaria</option>
+                    <option value="Primero de Primaria">Primero de Primaria</option>
                     <option value="Segundo de Primaria">Segundo de Primaria</option>
                     <option value="Tercero de Primaria">Tercero de Primaria</option>
                     <option value="Cuarto de Primaria">Cuarto de Primaria</option>

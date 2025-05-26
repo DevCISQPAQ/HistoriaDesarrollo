@@ -36,28 +36,36 @@ class BDController extends Controller
         //     'escuela_procedencia' => 'nullable|string',
         // ]);
 
-        $estudiante = Estudiante::create([
-            'nombre_completo' => $request->nombre_completo,
-            'fecha_nacimiento' => $request->fecha_nacimiento,
-            'lugar_nacimiento' => $request->lugar_nacimiento,
-            'genero' => $request->sexo,
-            'edad' => $request->edad,
-            'grado_escolar' => $request->grado_escolar,
-            'direccion' => $request->direccion,
-            'cp' => $request->cp,
-            'telefono' => $request->telefono,
-            'escuela_procedencia' => $request->escuela_procedencia,
+        // Actualiza o crea el estudiante según nombre y fecha
+        $estudiante = Estudiante::updateOrCreate(
+            [
+                'nombre_completo' => $request->nombre_completo,
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+            ],
+            [
+                'lugar_nacimiento' => $request->lugar_nacimiento,
+                'genero' => $request->sexo,
+                'edad' => $request->edad,
+                'grado_escolar' => $request->grado_escolar,
+                'direccion' => $request->direccion,
+                'cp' => $request->cp,
+                'telefono' => $request->telefono,
+                'escuela_procedencia' => $request->escuela_procedencia,
+            ]
+        );
+
+
+        // Crear historia de desarrollo solo si no existe (opcional)
+        if (!$estudiante->historiaDesarrollo) {
+            HistoriaDesarrollo::create([
+                'estudiante_id' => $estudiante->id,
+            ]);
+        }
+
+        session()->put([
+            'id_alumno' => $estudiante->id,
+            'nombre' => $estudiante->nombre_completo,
         ]);
-
-
-        // 2. Crear historia de desarrollo asociada
-        $historia = HistoriaDesarrollo::create([
-            'estudiante_id' => $estudiante->id
-        ]);
-
-        // 3. Guardar en sesión el ID para siguientes secciones
-        session()->put(['id_alumno' => $estudiante->id]);
-        session()->put(['nombre' => $estudiante->nombre_completo]);
 
         // 4. Redirigir a sección 2
         return redirect()->route('historia.seccion2');
