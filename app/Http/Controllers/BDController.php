@@ -23,18 +23,6 @@ class BDController extends Controller
     //Metodo para guardar
     public function guardarSeccion1(Request $request)
     {
-        // $request->validate([
-        //     'nombre_completo' => 'required|string|max:100',
-        //     'fecha_nacimiento' => 'required|date',
-        //     'lugar_nacimiento' => 'required|string',
-        //     'sexo' => 'required|in:masculino,femenino',
-        //     'edad' => 'required|integer|between:3,6',
-        //     'grado_escolar' => 'required|string',
-        //     'direccion' => 'required|string',
-        //     'cp' => 'required|digits:5',
-        //     'telefono' => 'required|string',
-        //     'escuela_procedencia' => 'nullable|string',
-        // ]);
 
         // Actualiza o crea el estudiante según nombre y fecha
         $estudiante = Estudiante::updateOrCreate(
@@ -54,7 +42,6 @@ class BDController extends Controller
             ]
         );
 
-
         // Crear historia de desarrollo solo si no existe (opcional)
         if (!$estudiante->historiaDesarrollo) {
             HistoriaDesarrollo::create([
@@ -67,8 +54,15 @@ class BDController extends Controller
             'nombre' => $estudiante->nombre_completo,
         ]);
 
-        // 4. Redirigir a sección 2
-        return redirect()->route('historia.seccion2');
+        ////
+        if (session('old_hijoId')) {
+            $this->copiarSeccion2DeUsuario(session('old_hijoId'), $estudiante->id);
+
+            return redirect()->route('historia.seccion3');
+        } else {
+            // 4. Redirigir a sección 2
+            return redirect()->route('historia.seccion2');
+        }
     }
 
     public function guardarSeccion2(Request $request)
@@ -413,9 +407,23 @@ class BDController extends Controller
 
     public function guardarSeccion13(Request $request)
     {
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'acepto_terminos' => $request->acepto_terminos
-        ]);
+
+        if (session('old_hijoId')) {
+
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'acepto_terminos' => $request->acepto_terminos
+            ]);
+
+             HistoriaDesarrollo::where('estudiante_id', session('old_hijoId'))->update([
+                'acepto_terminos' => $request->acepto_terminos
+            ]);
+
+        }else{
+
+             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'acepto_terminos' => $request->acepto_terminos
+            ]);
+        }
 
         return redirect()->route('historia.nivel_educativo');
     }
@@ -497,5 +505,23 @@ class BDController extends Controller
         } else {
             return view('historias.nivel_educativo', compact('estudiantes'));
         }
+    }
+
+    ///
+
+    public function copiarSeccion2DeUsuario($idOrigen, $idDestino)
+    {
+        // Obtener todos los registros de seccion2 del usuario original
+        $registros = Seccion2::where('estudiante_id', $idOrigen)->get();
+
+        foreach ($registros as $registro) {
+            $nuevo = $registro->replicate(); // copia todos los campos excepto ID
+            $nuevo->estudiante_id = $idDestino;    // asigna el nuevo ID de usuario
+            $nuevo->save();                  // guarda el nuevo registro
+        }
+
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+            'seccion2_id' => $nuevo->id
+        ]);
     }
 }

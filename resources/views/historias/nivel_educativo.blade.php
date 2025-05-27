@@ -84,8 +84,6 @@
                 </div>
 
                 <div class="p-6 md:p-8">
-                    <!-- <h1 class="text-center pb-6 font-bold text-gray-700 text-sm">Buscar alumno</h1> -->
-
                     {{-- Formulario de búsqueda --}}
                     <form action="{{ route('historia.nivel_educativo.buscar') }}" method="POST">
                         @csrf

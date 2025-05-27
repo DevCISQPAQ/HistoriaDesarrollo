@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use App\Models\HistoriaDesarrollo;
+use App\Models\Seccion2;
 use Illuminate\Http\Request;
 
 class HistoriaController extends Controller
@@ -18,6 +19,8 @@ class HistoriaController extends Controller
             'nombre' => null,
             'grado' => null,
             'numero_hijos' => null,
+            'old_hijoId' => null,
+            'add_hijo' => null,
 
         ]);
 
@@ -26,11 +29,27 @@ class HistoriaController extends Controller
 
     public function showSeccion1(Request $request)
     {
-        session([
-            'id_alumno' => '',
-            'nombre' => '',
-            'grado' => $request->input('grado')
-        ]);
+        if ($request->input('add_hijo') === '1') {
+
+            //      HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+            //     'acepto_terminos' => 'Acepto'
+            // ]);
+
+            session([
+                'old_hijoId' => session('id_alumno'),
+                'id_alumno' => '',
+                'nombre' => '',
+                'grado' => $request->input('grado'),
+                'add_hijo' => '',
+            ]);
+        } else {
+
+            session([
+                'id_alumno' => '',
+                'nombre' => '',
+                'grado' => $request->input('grado')
+            ]);
+        }
 
         return view('historias.secciones.seccion1');
     }
@@ -94,21 +113,4 @@ class HistoriaController extends Controller
     {
         return view('historias.secciones.seccion13');
     }
-
-
-    ////
-    public function showPrimariaSecundariaSeccion1()
-    {
-        session([
-            'id_alumno' => '',
-            'nombre' => '',
-            'grado' => 'primaria_secundaria',
-
-        ]);
-
-        return view('historias.secciones.seccion1');
-        //return redirect()->route('historias.preescolar.seccion1');
-    }
-    //////
-
 }

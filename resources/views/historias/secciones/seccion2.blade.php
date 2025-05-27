@@ -6,6 +6,7 @@
 <?php
 $id_alumno = session('id_alumno');
 $nombre = session('nombre');
+$old_alumno = session('old_hijoId');
 ?>
 
 
@@ -17,7 +18,7 @@ $nombre = session('nombre');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
             <h2 class="text-xl font-bold text-white">Estructura Familiar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}} {{$old_alumno}}</p>
     </div>
 
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">

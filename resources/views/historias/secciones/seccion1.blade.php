@@ -5,6 +5,8 @@
 
 <?php
 $grado = session('grado');
+$id_alumno = session('id_alumno');
+$old_alumno = session('old_hijoId');
 ?>
 
 
@@ -15,7 +17,7 @@ $grado = session('grado');
             <span class="bg-white text-[#1f355e] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">1</span>
             <h2 class="text-xl font-bold text-white">Datos de Identificación del Alumno</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante {{$old_alumno}}</p>
     </div>
 
     <form action="{{ route('seccion1.guardar') }}" method="POST" class="p-6">

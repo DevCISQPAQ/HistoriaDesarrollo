@@ -35,7 +35,6 @@ $nombre = session('nombre');
                 <div x-data="{viveconotro: ''}">
                     <label for="personas_casa" class="block text-sm font-medium text-gray-700">Además de padres e hijos, ¿Viven otras personas en casa? <span class="text-red-500">*</span></label>
                     <div class="flex space-x-4">
-
                         <label class="radio-box-btn">
                             <input type="radio" name="personas_casa" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]"
                                 x-model="viveconotro" required>
