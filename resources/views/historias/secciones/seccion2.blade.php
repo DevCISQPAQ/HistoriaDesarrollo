@@ -7,6 +7,7 @@
 $id_alumno = session('id_alumno');
 $nombre = session('nombre');
 $old_alumno = session('old_hijoId');
+$old_numerohijos = session('numero_hijos');
 ?>
 
 
@@ -18,11 +19,55 @@ $old_alumno = session('old_hijoId');
             <span class="bg-white text-[#5D7E8D] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</span>
             <h2 class="text-xl font-bold text-white">Estructura Familiar</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}} {{$old_alumno}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
     </div>
 
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
         @csrf
+
+        @if(session('old_hijoId'))
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
+
+            <div class="mt-3 overflow-x-auto">
+                <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
+                <table class="min-w-full text-sm text-left text-gray-700">
+                    <thead class="text-xs text-white uppercase bg-primary bg-[#667c87]">
+                        <tr>
+                            <th class="border border-gray-300 px-3 py-2">Nombre</th>
+                            <th class="border border-gray-300 px-3 py-2">Edad</th>
+                            <th class="border border-gray-300 px-3 py-2">Año escolar u <br> ocupación</th>
+                            <th class="border border-gray-300 px-3 py-2">Escuela</th>
+                            <th class="border border-gray-300 px-3 py-2">Salud</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($hermanos as $hermano)
+                        <tr>
+                            <td class="border border-gray-300 px-2 py-1">
+                                <input type="text" name="nombre_hermano[]" value="{{ $hermano->nombre_hermano }}" class="w-full px-2 py-1 border rounded-lg">
+                            </td>
+                            <td class="border border-gray-300 px-2 py-1">
+                                <input type="number" name="edad_hermano[]" value="{{ $hermano->edad_hermano }}" class="w-full px-2 py-1 border rounded-lg">
+                            </td>
+                            <td class="border border-gray-300 px-2 py-1">
+                                <input type="text" name="escolar_ocupacion[]" value="{{ $hermano->escolar_ocupacion }}" class="w-full px-2 py-1 border rounded-lg">
+                            </td>
+                            <td class="border border-gray-300 px-2 py-1">
+                                <input type="text" name="escuela_hermano[]" value="{{ $hermano->escuela_hermano }}" class="w-full px-2 py-1 border rounded-lg">
+                            </td>
+                            <td class="border border-gray-300 px-2 py-1">
+                                <input type="text" name="salud_hermano[]" value="{{ $hermano->salud_hermano }}" class="w-full px-2 py-1 border rounded-lg">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+
+                </table>
+            </div>
+
+        </div>
+        @else
 
         <!-- Datos del Padre (manteniendo tus campos originales) -->
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
@@ -525,7 +570,7 @@ $old_alumno = session('old_hijoId');
                 </div>
             </div>
         </div>
-
+        @endif
         <!-- Botones de navegación -->
         <div class="flex justify-between mt-8 m-4 gap-2">
             <button type="button" onclick="history.back()" class=" flex-none md:flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition items-center">

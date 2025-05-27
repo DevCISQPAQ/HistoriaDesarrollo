@@ -58,7 +58,31 @@ class BDController extends Controller
         if (session('old_hijoId')) {
             $this->copiarSeccion2DeUsuario(session('old_hijoId'), $estudiante->id);
 
-            return redirect()->route('historia.seccion3');
+            $hermanosDestino = Hermano::where('estudiante_id', $estudiante->id)->get();
+
+            $hermanosNormalizados = collect();
+
+            if ($hermanosDestino->isNotEmpty()) {
+                $hermano = $hermanosDestino->first();
+
+                // Contar cuántos hermanos hay (tomando el tamaño del array de un campo)
+                $total = is_array($hermano->nombre_hermano) ? count($hermano->nombre_hermano) : 1;
+
+                for ($i = 0; $i < $total; $i++) {
+                    $hermanosNormalizados->push((object)[
+                        'nombre_hermano' => is_array($hermano->nombre_hermano) ? $hermano->nombre_hermano[$i] : $hermano->nombre_hermano,
+                        'edad_hermano' => is_array($hermano->edad_hermano) ? $hermano->edad_hermano[$i] : $hermano->edad_hermano,
+                        'escolar_ocupacion' => is_array($hermano->escolar_ocupacion) ? $hermano->escolar_ocupacion[$i] : $hermano->escolar_ocupacion,
+                        'escuela_hermano' => is_array($hermano->escuela_hermano) ? $hermano->escuela_hermano[$i] : $hermano->escuela_hermano,
+                        'salud_hermano' => is_array($hermano->salud_hermano) ? $hermano->salud_hermano[$i] : $hermano->salud_hermano,
+                    ]);
+                }
+            }
+
+            return view('historias.secciones.seccion2', [
+                'hermanos' => $hermanosNormalizados,
+                'old_numerohijos' => $hermanosNormalizados->count(),
+            ]);
         } else {
             // 4. Redirigir a sección 2
             return redirect()->route('historia.seccion2');
@@ -68,87 +92,82 @@ class BDController extends Controller
     public function guardarSeccion2(Request $request)
     {
 
-        $request->validate([
-            'padre_lateralidad' => 'required|array|min:1',
-            'madre_lateralidad' => 'required|array|min:1',
-            'estado_civil' => 'required|array|min:1',
-        ]);
-
-        if (in_array('Vuelto a casar', $request->estado_civil)) {
+        if (!session('old_hijoId')) {
+            //validate
             $request->validate([
-                'conyuge_lateralidad' => 'required|array|min:1',
+                'padre_lateralidad' => 'required|array|min:1',
+                'madre_lateralidad' => 'required|array|min:1',
+                'estado_civil' => 'required|array|min:1',
             ]);
-        }
 
+            if (in_array('Vuelto a casar', $request->estado_civil)) {
+                $request->validate([
+                    'conyuge_lateralidad' => 'required|array|min:1',
+                ]);
+            }
+            //
 
+            if (($request->numero_hijos) > 1) {
+                $hermano = $this->guardarHermano($request);
+            } else {
+                $hermano = new Hermano(); // Crea un modelo vacío
+                $hermano->id = null;
+            }
 
-        if (($request->numero_hijos) > 1) {
-            $hermano =  Hermano::updateOrCreate(
+            $seccion2 =  Seccion2::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
-                    'nombre_hermano' => $request->nombre_hermano,
-                    'edad_hermano' => $request->edad_hermano,
-                    'escolar_ocupacion' =>  $request->escolar_ocupacion,
-                    'escuela_hermano' => $request->escuela_hermano,
-                    'salud_hermano' => $request->salud_hermano,
+                    'nombre_padre' => $request->nombre_padre,
+                    'edad_padre' => $request->edad_padre,
+                    'empresa_padre' => $request->empresa_padre,
+                    'puesto_padre' => $request->puesto_padre,
+                    'ocupacion_padre' => $request->ocupacion_padre,
+                    'correo_padre' => $request->correo_padre,
+                    'redessoc_padre' =>  $request->redessoc_padre,
+                    'padre_lateralidad' =>  $request->padre_lateralidad,
+                    'egresadored_padre' => $request->egresadored_padre,
+                    'cualcolegio_padre' => $request->cualcolegio_padre,
+                    'nombre_madre' => $request->nombre_madre,
+                    'edad_madre' => $request->edad_madre,
+                    'empresa_madre' => $request->empresa_madre,
+                    'puesto_madre' => $request->puesto_madre,
+                    'ocupacion_madre' => $request->ocupacion_madre,
+                    'correo_madre' => $request->correo_madre,
+                    'redessoc_madre' => $request->redessoc_madre,
+                    'madre_lateralidad' => $request->madre_lateralidad,
+                    'egresadored_madre' => $request->egresadored_madre,
+                    'cualcolegio_madre' => $request->cualcolegio_madre,
+                    'estado_civil' =>  $request->estado_civil,
+                    'nombre_conyuge' => $request->nombre_conyuge,
+                    'edad_conyuge' => $request->edad_conyuge,
+                    'empresa_conyuge' => $request->empresa_conyuge,
+                    'puesto_conyuge' => $request->puesto_conyuge,
+                    'correo_conyuge' => $request->correo_conyuge,
+                    'ocupacion_conyuge' => $request->ocupacion_conyuge,
+                    'redessoc_conyuge' => $request->redessoc_conyuge,
+                    'conyuge_lateralidad' => $request->conyuge_lateralidad,
+                    'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
+                    'anos_casados' => $request->anos_casados,
+                    'numero_hijos' => $request->numero_hijos,
+                    'moti_separa' => $request->moti_separa,
+                    'vive_con' => $request->vive_con,
+                    'religion' => $request->religion,
+                    'valores_familia' => $request->valores_familia,
+                    'hermano_id' => $hermano->id,
 
                 ]
             );
+
+            session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+
+            $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
+            $formulario->seccion2_id = $seccion2->id;
+            $formulario->save();
         } else {
-            $hermano = new Hermano(); // Crea un modelo vacío
-            $hermano->id = null;
+
+            $hermano = $this->guardarHermano($request);
         }
 
-        $seccion2 =  Seccion2::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'nombre_padre' => $request->nombre_padre,
-                'edad_padre' => $request->edad_padre,
-                'empresa_padre' => $request->empresa_padre,
-                'puesto_padre' => $request->puesto_padre,
-                'ocupacion_padre' => $request->ocupacion_padre,
-                'correo_padre' => $request->correo_padre,
-                'redessoc_padre' =>  $request->redessoc_padre,
-                'padre_lateralidad' =>  $request->padre_lateralidad,
-                'egresadored_padre' => $request->egresadored_padre,
-                'cualcolegio_padre' => $request->cualcolegio_padre,
-                'nombre_madre' => $request->nombre_madre,
-                'edad_madre' => $request->edad_madre,
-                'empresa_madre' => $request->empresa_madre,
-                'puesto_madre' => $request->puesto_madre,
-                'ocupacion_madre' => $request->ocupacion_madre,
-                'correo_madre' => $request->correo_madre,
-                'redessoc_madre' => $request->redessoc_madre,
-                'madre_lateralidad' => $request->madre_lateralidad,
-                'egresadored_madre' => $request->egresadored_madre,
-                'cualcolegio_madre' => $request->cualcolegio_madre,
-                'estado_civil' =>  $request->estado_civil,
-                'nombre_conyuge' => $request->nombre_conyuge,
-                'edad_conyuge' => $request->edad_conyuge,
-                'empresa_conyuge' => $request->empresa_conyuge,
-                'puesto_conyuge' => $request->puesto_conyuge,
-                'correo_conyuge' => $request->correo_conyuge,
-                'ocupacion_conyuge' => $request->ocupacion_conyuge,
-                'redessoc_conyuge' => $request->redessoc_conyuge,
-                'conyuge_lateralidad' => $request->conyuge_lateralidad,
-                'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
-                'anos_casados' => $request->anos_casados,
-                'numero_hijos' => $request->numero_hijos,
-                'moti_separa' => $request->moti_separa,
-                'vive_con' => $request->vive_con,
-                'religion' => $request->religion,
-                'valores_familia' => $request->valores_familia,
-                'hermano_id' => $hermano->id,
-
-            ]
-        );
-
-        session()->put(['numero_hijos' => $seccion2->numero_hijos]);
-
-
-        $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
-        $formulario->seccion2_id = $seccion2->id;
-        $formulario->save();
 
 
 
@@ -408,24 +427,20 @@ class BDController extends Controller
     public function guardarSeccion13(Request $request)
     {
 
-        if (session('old_hijoId')) {
 
-            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-                'acepto_terminos' => $request->acepto_terminos
+        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+            'acepto_terminos' => $request->acepto_terminos
+        ]);
+
+        if (session('numero_hijos') > 1) {
+            session()->put([
+                'formulario_aceptado' => true,
             ]);
 
-             HistoriaDesarrollo::where('estudiante_id', session('old_hijoId'))->update([
-                'acepto_terminos' => $request->acepto_terminos
-            ]);
-
-        }else{
-
-             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-                'acepto_terminos' => $request->acepto_terminos
-            ]);
+            return redirect()->route('historia.seccion13');
+        } else {
+            return redirect()->route('historia.nivel_educativo');
         }
-
-        return redirect()->route('historia.nivel_educativo');
     }
 
 
@@ -512,16 +527,61 @@ class BDController extends Controller
     public function copiarSeccion2DeUsuario($idOrigen, $idDestino)
     {
         // Obtener todos los registros de seccion2 del usuario original
-        $registros = Seccion2::where('estudiante_id', $idOrigen)->get();
+        $existenRegistros = Seccion2::where('estudiante_id', $idDestino)->exists();
 
-        foreach ($registros as $registro) {
-            $nuevo = $registro->replicate(); // copia todos los campos excepto ID
-            $nuevo->estudiante_id = $idDestino;    // asigna el nuevo ID de usuario
-            $nuevo->save();                  // guarda el nuevo registro
+        if (!$existenRegistros) {
+            $registros = Seccion2::where('estudiante_id', $idOrigen)->get();
+
+            foreach ($registros as $registro) {
+                $nuevo = $registro->replicate();
+                $nuevo->estudiante_id = $idDestino;
+                $nuevo->save();
+            }
+            HistoriaDesarrollo::where('estudiante_id', $idDestino)->update([
+                'seccion2_id' => $nuevo->id
+            ]);
         }
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion2_id' => $nuevo->id
-        ]);
+        ///
+        $nuevosHermanos = collect();
+
+        $existenHermanos = Hermano::where('estudiante_id', $idDestino)->exists();
+
+        if (!$existenHermanos) {
+            $registrosh = Hermano::where('estudiante_id', $idOrigen)->get();
+
+            foreach ($registrosh as $registroh) {
+                $nuevoh = $registroh->replicate(); // copia todos los campos excepto ID
+                $nuevoh->estudiante_id = $idDestino; // asigna el nuevo ID de usuario
+                $nuevoh->save(); // guarda el nuevo registro
+
+                $nuevosHermanos->push($nuevoh);
+            }
+
+            // Después de duplicar, puedes usar el último hermano creado (el último del foreach)
+            Seccion2::where('estudiante_id', $idDestino)->update([
+                'hermano_id' => $nuevoh->id // usa el ID del último hermano duplicado
+            ]);
+        }
+    }
+
+
+
+    protected function guardarHermano($request)
+    {
+
+
+        $hermano = Hermano::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
+                'nombre_hermano' => $request->nombre_hermano,
+                'edad_hermano' => $request->edad_hermano,
+                'escolar_ocupacion' => $request->escolar_ocupacion,
+                'escuela_hermano' => $request->escuela_hermano,
+                'salud_hermano' => $request->salud_hermano,
+            ]
+        );
+
+        return $hermano;
     }
 }

@@ -21,6 +21,7 @@ class HistoriaController extends Controller
             'numero_hijos' => null,
             'old_hijoId' => null,
             'add_hijo' => null,
+            'formulario_aceptado' => null,
 
         ]);
 
@@ -31,23 +32,23 @@ class HistoriaController extends Controller
     {
         if ($request->input('add_hijo') === '1') {
 
-            //      HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            //     'acepto_terminos' => 'Acepto'
-            // ]);
-
             session([
                 'old_hijoId' => session('id_alumno'),
                 'id_alumno' => '',
                 'nombre' => '',
                 'grado' => $request->input('grado'),
                 'add_hijo' => '',
+                'formulario_aceptado' => null,
             ]);
         } else {
 
             session([
+                'old_hijoId' => '',//
                 'id_alumno' => '',
                 'nombre' => '',
-                'grado' => $request->input('grado')
+                'grado' => $request->input('grado'),
+                'add_hijo' => '',//
+                'formulario_aceptado' => null,
             ]);
         }
 

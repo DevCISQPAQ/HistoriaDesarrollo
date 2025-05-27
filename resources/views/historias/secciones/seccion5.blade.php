@@ -28,7 +28,7 @@ $nombre = session('nombre');
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label for="total_embarazo" class="block text-sm font-medium text-gray-700 ">Mencione el número total de embarazos<span class="text-red-500">*</span></label>
-                    <input type="number" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                    <input type="number" min="1" class="w-ms px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="total_embarazo" name="total_embarazo" placeholder="Cantidad" required>
                 </div>
 
