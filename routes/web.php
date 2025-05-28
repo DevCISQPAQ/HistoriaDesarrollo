@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstudianteController;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    Session::flush();
    return view('welcome');
 });
 

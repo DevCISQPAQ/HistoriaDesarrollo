@@ -26,6 +26,18 @@ $nombre = session('nombre');
         @if(session('old_hijoId'))
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
 
+                <div class="bg-blue-50 rounded-lg p-4 mb-8">
+                    <div class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-sm text-gray-700">
+                            <strong>Nota:</strong> Favor de verificar la información o en su defecto confirma.
+                        </p>
+                    </div>
+                </div>
+            
+
             <div class="mt-3 overflow-x-auto">
                 <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
                 <table class="min-w-full text-sm text-left text-gray-700">

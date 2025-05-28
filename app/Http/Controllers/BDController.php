@@ -413,15 +413,18 @@ class BDController extends Controller
             'acepto_terminos' => $request->acepto_terminos
         ]);
 
-        if (session('numero_hijos') > 1) {
-            session()->put([
-                'formulario_aceptado' => true,
-            ]);
-
-            return redirect()->route('historia.seccion13');
-        } else {
-            return redirect()->route('historia.nivel_educativo');
-        }
+        // if (session('numero_hijos') > 1) {
+        //     session()->put([
+        //         'formulario_aceptado' => true,
+        //     ]);
+        // }
+        session()->put([
+            'formulario_aceptado' => true,
+        ]);
+        return redirect()->route('historia.seccion13')->with('success', '¡Formulario enviado correctamente!');
+        // } else {
+        //     return redirect()->route('historia.nivel_educativo');
+        // }
     }
 
 
