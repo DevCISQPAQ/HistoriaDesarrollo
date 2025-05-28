@@ -6,7 +6,6 @@
 <?php
 $grado = session('grado');
 $id_alumno = session('id_alumno');
-$old_alumno = session('old_hijoId');
 ?>
 
 
@@ -17,7 +16,7 @@ $old_alumno = session('old_hijoId');
             <span class="bg-white text-[#1f355e] rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">1</span>
             <h2 class="text-xl font-bold text-white">Datos de Identificación del Alumno</h2>
         </div>
-        <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante {{$old_alumno}}</p>
+        <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante</p>
     </div>
 
     <form action="{{ route('seccion1.guardar') }}" method="POST" class="p-6">
@@ -146,7 +145,7 @@ $old_alumno = session('old_hijoId');
             <div class="space-y-1 md:col-span-2">
                 <label for="escuela_procedencia" class="block text-sm font-medium text-gray-700">Escuela de procedencia <span class="text-red-500">*</span></label>
                 <input type="text" id="escuela_procedencia" name="escuela_procedencia"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" placeholder="Escuela de procedencia" required>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" placeholder="Escribe el nombre o pon 'Ninguna'" required>
             </div>
         </div>
 

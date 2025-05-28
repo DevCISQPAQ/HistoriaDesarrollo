@@ -57,34 +57,15 @@ class BDController extends Controller
         ////
         if (session('old_hijoId')) {
             $this->copiarSeccion2DeUsuario(session('old_hijoId'), $estudiante->id);
+            $hermanosNormalizados = $this->obtenerHermanosNormalizados($estudiante);
+            $this->guardarHermanosNormalizados($hermanosNormalizados, $estudiante->id);
 
-            $hermanosDestino = Hermano::where('estudiante_id', $estudiante->id)->get();
-
-            $hermanosNormalizados = collect();
-
-            if ($hermanosDestino->isNotEmpty()) {
-                $hermano = $hermanosDestino->first();
-
-                // Contar cuántos hermanos hay (tomando el tamaño del array de un campo)
-                $total = is_array($hermano->nombre_hermano) ? count($hermano->nombre_hermano) : 1;
-
-                for ($i = 0; $i < $total; $i++) {
-                    $hermanosNormalizados->push((object)[
-                        'nombre_hermano' => is_array($hermano->nombre_hermano) ? $hermano->nombre_hermano[$i] : $hermano->nombre_hermano,
-                        'edad_hermano' => is_array($hermano->edad_hermano) ? $hermano->edad_hermano[$i] : $hermano->edad_hermano,
-                        'escolar_ocupacion' => is_array($hermano->escolar_ocupacion) ? $hermano->escolar_ocupacion[$i] : $hermano->escolar_ocupacion,
-                        'escuela_hermano' => is_array($hermano->escuela_hermano) ? $hermano->escuela_hermano[$i] : $hermano->escuela_hermano,
-                        'salud_hermano' => is_array($hermano->salud_hermano) ? $hermano->salud_hermano[$i] : $hermano->salud_hermano,
-                    ]);
-                }
+            if ($hermanosNormalizados) {
+                return view('historias.secciones.seccion2', [
+                    'hermanos' => $hermanosNormalizados,
+                ]);
             }
-
-            return view('historias.secciones.seccion2', [
-                'hermanos' => $hermanosNormalizados,
-                'old_numerohijos' => $hermanosNormalizados->count(),
-            ]);
         } else {
-            // 4. Redirigir a sección 2
             return redirect()->route('historia.seccion2');
         }
     }
@@ -583,5 +564,79 @@ class BDController extends Controller
         );
 
         return $hermano;
+    }
+
+
+    private function obtenerHermanosNormalizados($estudiante)
+    {
+
+        $hermanosDestino = Hermano::where('estudiante_id', $estudiante->id)->get();
+
+        $hermanosNormalizados = collect();
+
+        $estudianteAnterior = Estudiante::find(session('old_hijoId'));
+
+
+        if ($hermanosDestino->isNotEmpty()) {
+            $hermano = $hermanosDestino->first();
+
+            $total = is_array($hermano->nombre_hermano) ? count($hermano->nombre_hermano) : 1;
+
+            for ($i = 0; $i < $total; $i++) {
+
+                $nombre = is_array($hermano->nombre_hermano) ? $hermano->nombre_hermano[$i] : $hermano->nombre_hermano;
+                $edad = is_array($hermano->edad_hermano) ? $hermano->edad_hermano[$i] : $hermano->edad_hermano;
+                $anioescolar = is_array($hermano->escolar_ocupacion) ? $hermano->escolar_ocupacion[$i] : $hermano->escolar_ocupacion;
+                $escuela_proce = is_array($hermano->escuela_hermano) ? $hermano->escuela_hermano[$i] : $hermano->escuela_hermano;
+
+                // Si el nombre del hermano coincide con el del estudiante actual
+                if ($nombre === $estudiante->nombre_completo && $estudianteAnterior) {
+                    $nombre = $estudianteAnterior->nombre_completo;
+                    $edad = $estudianteAnterior->edad;
+                    $anioescolar = $estudianteAnterior->grado_escolar;
+                    $escuela_proce = $estudianteAnterior->escuela_procedencia;
+                }
+
+                $hermanosNormalizados->push((object)[
+                    'nombre_hermano' => $nombre,
+                    'edad_hermano' => $edad,
+                    'escolar_ocupacion' =>  $anioescolar,
+                    'escuela_hermano' => $escuela_proce,
+                    'salud_hermano' => is_array($hermano->salud_hermano) ? $hermano->salud_hermano[$i] : $hermano->salud_hermano,
+                ]);
+            }
+        }
+
+        return $hermanosNormalizados;
+    }
+
+    private function guardarHermanosNormalizados($hermanosNormalizados, $estudianteId)
+    {
+        // Convertir la colección en arreglos separados por campo
+        $nombres = [];
+        $edades = [];
+        $escolaridades = [];
+        $escuelas = [];
+        $saludes = [];
+
+        foreach ($hermanosNormalizados as $hermano) {
+            $nombres[] = $hermano->nombre_hermano;
+            $edades[] = $hermano->edad_hermano;
+            $escolaridades[] = $hermano->escolar_ocupacion;
+            $escuelas[] = $hermano->escuela_hermano;
+            $saludes[] = $hermano->salud_hermano;
+        }
+
+        // Guardar o actualizar el registro en la tabla hermanos
+        Hermano::updateOrCreate(
+            ['estudiante_id' => $estudianteId],
+            [
+                'nombre_hermano' => $nombres,
+                'edad_hermano' => $edades,
+                'escolar_ocupacion' => $escolaridades,
+                'escuela_hermano' => $escuelas,
+                'salud_hermano' => $saludes,
+            ]
+        );
     }
 }

@@ -6,8 +6,6 @@
 <?php
 $id_alumno = session('id_alumno');
 $nombre = session('nombre');
-$old_alumno = session('old_hijoId');
-$old_numerohijos = session('numero_hijos');
 ?>
 
 

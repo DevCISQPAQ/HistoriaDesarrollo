@@ -50,7 +50,6 @@ $nombre = session('nombre');
                             </label>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="flex justify-between mt-8 m-4 gap-2">
@@ -93,7 +92,6 @@ $nombre = session('nombre');
                                 </label>
                             </div>
                         </div>
-
                     </div>
 
                     <div id="Si" x-show="otro_hijo == $el.id" class="max-w-2xl mx-auto" x-transition>
@@ -152,12 +150,6 @@ $nombre = session('nombre');
             </div>
             
         </div>
-
-
-
-
-
-
     </div>
     @else
     <div class="flex justify-between mt-8 m-4 gap-2">
