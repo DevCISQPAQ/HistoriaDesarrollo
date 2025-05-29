@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\Estudiante;
 use App\Models\Hermano;
 use App\Models\HistoriaDesarrollo;
@@ -17,239 +18,272 @@ use App\Models\Seccion9;
 use App\Models\Seccion10;
 use App\Models\Seccion11;
 use App\Models\Seccion12;
+use Exception;
 
 class BDController extends Controller
 {
     //Metodo para guardar
     public function guardarSeccion1(Request $request)
     {
+        try {
+            // Actualiza o crea el estudiante según nombre y fecha
+            $estudiante = Estudiante::updateOrCreate(
+                [
+                    'nombre_completo' => $request->nombre_completo,
+                    'fecha_nacimiento' => $request->fecha_nacimiento,
+                ],
+                [
+                    'lugar_nacimiento' => $request->lugar_nacimiento,
+                    'genero' => $request->sexo,
+                    'edad' => $request->edad,
+                    'grado_escolar' => $request->grado_escolar,
+                    'direccion' => $request->direccion,
+                    'cp' => $request->cp,
+                    'telefono' => $request->telefono,
+                    'escuela_procedencia' => $request->escuela_procedencia,
+                ]
+            );
 
-        // Actualiza o crea el estudiante según nombre y fecha
-        $estudiante = Estudiante::updateOrCreate(
-            [
-                'nombre_completo' => $request->nombre_completo,
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-            ],
-            [
-                'lugar_nacimiento' => $request->lugar_nacimiento,
-                'genero' => $request->sexo,
-                'edad' => $request->edad,
-                'grado_escolar' => $request->grado_escolar,
-                'direccion' => $request->direccion,
-                'cp' => $request->cp,
-                'telefono' => $request->telefono,
-                'escuela_procedencia' => $request->escuela_procedencia,
-            ]
-        );
-
-        // Crear historia de desarrollo solo si no existe (opcional)
-        if (!$estudiante->historiaDesarrollo) {
-            HistoriaDesarrollo::create([
-                'estudiante_id' => $estudiante->id,
-            ]);
-        }
-
-        session()->put([
-            'id_alumno' => $estudiante->id,
-            'nombre' => $estudiante->nombre_completo,
-        ]);
-
-        ////
-        if (session('old_hijoId')) {
-            $this->copiarSeccion2DeUsuario(session('old_hijoId'), $estudiante->id);
-            $hermanosNormalizados = $this->obtenerHermanosNormalizados($estudiante);
-            $this->guardarHermanosNormalizados($hermanosNormalizados, $estudiante->id);
-
-            if ($hermanosNormalizados) {
-                return view('historias.secciones.seccion2', [
-                    'hermanos' => $hermanosNormalizados,
+            // Crear historia de desarrollo solo si no existe (opcional)
+            if (!$estudiante->historiaDesarrollo) {
+                HistoriaDesarrollo::create([
+                    'estudiante_id' => $estudiante->id,
                 ]);
             }
-        } else {
+
+            session()->put([
+                'id_alumno' => $estudiante->id,
+                'nombre' => $estudiante->nombre_completo,
+            ]);
+
+            ////
+            if (session('old_hijoId')) {
+                $this->copiarSeccion2DeUsuario(session('old_hijoId'), $estudiante->id);
+                $hermanosNormalizados = $this->obtenerHermanosNormalizados($estudiante);
+                $this->guardarHermanosNormalizados($hermanosNormalizados, $estudiante->id);
+
+                if ($hermanosNormalizados) {
+                    return redirect()->route('historia.seccion2')->with('hermanos', $hermanosNormalizados);
+                }
+            }
+
             return redirect()->route('historia.seccion2');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 1: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 1. Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion2(Request $request)
     {
 
-        if (!session('old_hijoId')) {
-            //validate
-            $request->validate([
-                'padre_lateralidad' => 'required|array|min:1',
-                'madre_lateralidad' => 'required|array|min:1',
-                'estado_civil' => 'required|array|min:1',
-            ]);
-
-            if (in_array('Vuelto a casar', $request->estado_civil)) {
+        try {
+            if (!session('old_hijoId')) {
+                //validate
                 $request->validate([
-                    'conyuge_lateralidad' => 'required|array|min:1',
+                    'padre_lateralidad' => 'required|array|min:1',
+                    'madre_lateralidad' => 'required|array|min:1',
+                    'estado_civil' => 'required|array|min:1',
                 ]);
+
+                if (in_array('Vuelto a casar', $request->estado_civil)) {
+                    $request->validate([
+                        'conyuge_lateralidad' => 'required|array|min:1',
+                    ]);
+                }
+                //
+
+                if (($request->numero_hijos) > 1) {
+                    $hermano = $this->guardarHermano($request);
+                } else {
+                    $hermano = new Hermano(); // Crea un modelo vacío
+                    $hermano->id = null;
+                }
+
+                $seccion2 =  Seccion2::updateOrCreate(
+                    ['estudiante_id' => session('id_alumno')],
+                    [
+                        'nombre_padre' => $request->nombre_padre,
+                        'edad_padre' => $request->edad_padre,
+                        'empresa_padre' => $request->empresa_padre,
+                        'puesto_padre' => $request->puesto_padre,
+                        'ocupacion_padre' => $request->ocupacion_padre,
+                        'correo_padre' => $request->correo_padre,
+                        'redessoc_padre' =>  $request->redessoc_padre,
+                        'padre_lateralidad' =>  $request->padre_lateralidad,
+                        'egresadored_padre' => $request->egresadored_padre,
+                        'cualcolegio_padre' => $request->cualcolegio_padre,
+                        'nombre_madre' => $request->nombre_madre,
+                        'edad_madre' => $request->edad_madre,
+                        'empresa_madre' => $request->empresa_madre,
+                        'puesto_madre' => $request->puesto_madre,
+                        'ocupacion_madre' => $request->ocupacion_madre,
+                        'correo_madre' => $request->correo_madre,
+                        'redessoc_madre' => $request->redessoc_madre,
+                        'madre_lateralidad' => $request->madre_lateralidad,
+                        'egresadored_madre' => $request->egresadored_madre,
+                        'cualcolegio_madre' => $request->cualcolegio_madre,
+                        'estado_civil' =>  $request->estado_civil,
+                        'nombre_conyuge' => $request->nombre_conyuge,
+                        'edad_conyuge' => $request->edad_conyuge,
+                        'empresa_conyuge' => $request->empresa_conyuge,
+                        'puesto_conyuge' => $request->puesto_conyuge,
+                        'correo_conyuge' => $request->correo_conyuge,
+                        'ocupacion_conyuge' => $request->ocupacion_conyuge,
+                        'redessoc_conyuge' => $request->redessoc_conyuge,
+                        'conyuge_lateralidad' => $request->conyuge_lateralidad,
+                        'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
+                        'anos_casados' => $request->anos_casados,
+                        'numero_hijos' => $request->numero_hijos,
+                        'moti_separa' => $request->moti_separa,
+                        'vive_con' => $request->vive_con,
+                        'religion' => $request->religion,
+                        'valores_familia' => $request->valores_familia,
+                        'hermano_id' => $hermano->id,
+
+                    ]
+                );
+
+                session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+
+                $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
+                $formulario->seccion2_id = $seccion2->id;
+                $formulario->save();
+
+                return redirect()->route('historia.seccion3');
             }
-            //
-
-            if (($request->numero_hijos) > 1) {
-                $hermano = $this->guardarHermano($request);
-            } else {
-                $hermano = new Hermano(); // Crea un modelo vacío
-                $hermano->id = null;
-            }
-
-            $seccion2 =  Seccion2::updateOrCreate(
-                ['estudiante_id' => session('id_alumno')],
-                [
-                    'nombre_padre' => $request->nombre_padre,
-                    'edad_padre' => $request->edad_padre,
-                    'empresa_padre' => $request->empresa_padre,
-                    'puesto_padre' => $request->puesto_padre,
-                    'ocupacion_padre' => $request->ocupacion_padre,
-                    'correo_padre' => $request->correo_padre,
-                    'redessoc_padre' =>  $request->redessoc_padre,
-                    'padre_lateralidad' =>  $request->padre_lateralidad,
-                    'egresadored_padre' => $request->egresadored_padre,
-                    'cualcolegio_padre' => $request->cualcolegio_padre,
-                    'nombre_madre' => $request->nombre_madre,
-                    'edad_madre' => $request->edad_madre,
-                    'empresa_madre' => $request->empresa_madre,
-                    'puesto_madre' => $request->puesto_madre,
-                    'ocupacion_madre' => $request->ocupacion_madre,
-                    'correo_madre' => $request->correo_madre,
-                    'redessoc_madre' => $request->redessoc_madre,
-                    'madre_lateralidad' => $request->madre_lateralidad,
-                    'egresadored_madre' => $request->egresadored_madre,
-                    'cualcolegio_madre' => $request->cualcolegio_madre,
-                    'estado_civil' =>  $request->estado_civil,
-                    'nombre_conyuge' => $request->nombre_conyuge,
-                    'edad_conyuge' => $request->edad_conyuge,
-                    'empresa_conyuge' => $request->empresa_conyuge,
-                    'puesto_conyuge' => $request->puesto_conyuge,
-                    'correo_conyuge' => $request->correo_conyuge,
-                    'ocupacion_conyuge' => $request->ocupacion_conyuge,
-                    'redessoc_conyuge' => $request->redessoc_conyuge,
-                    'conyuge_lateralidad' => $request->conyuge_lateralidad,
-                    'noviveconpadres_situtor' => $request->noviveconpadres_situtor,
-                    'anos_casados' => $request->anos_casados,
-                    'numero_hijos' => $request->numero_hijos,
-                    'moti_separa' => $request->moti_separa,
-                    'vive_con' => $request->vive_con,
-                    'religion' => $request->religion,
-                    'valores_familia' => $request->valores_familia,
-                    'hermano_id' => $hermano->id,
-
-                ]
-            );
-
-            session()->put(['numero_hijos' => $seccion2->numero_hijos]);
-
-            $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
-            $formulario->seccion2_id = $seccion2->id;
-            $formulario->save();
-        } else {
 
             $hermano = $this->guardarHermano($request);
+            return redirect()->route('historia.seccion3');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 2: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 2. Inténtelo de nuevo.');
         }
-
-
-
-
-        return redirect()->route('historia.seccion3');
     }
 
     public function guardarSeccion3(Request $request)
     {
+        try {
 
-        $seccion3 =  Seccion3::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'idioma_casa' => $request->idioma_casa,
-                'personas_casa' => $request->personas_casa,
-                'quienes_casa' => $request->quienes_casa,
-                'siadopcion' => $request->siadopcion,
-                'padre_edadadopt' => $request->padre_edadadopt,
-                'madre_edadadopt' => $request->madre_edadadopt,
-                'hijo_edadadopt' => $request->hijo_edadadopt,
+            $seccion3 =  Seccion3::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'idioma_casa' => $request->idioma_casa,
+                    'personas_casa' => $request->personas_casa,
+                    'quienes_casa' => $request->quienes_casa,
+                    'siadopcion' => $request->siadopcion,
+                    'padre_edadadopt' => $request->padre_edadadopt,
+                    'madre_edadadopt' => $request->madre_edadadopt,
+                    'hijo_edadadopt' => $request->hijo_edadadopt,
 
-            ]
-        );
-
-
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion3_id' => $seccion3->id
-        ]);
+                ]
+            );
 
 
-        // 4. Redirigir a sección 2
-        return redirect()->route('historia.seccion4');
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion3_id' => $seccion3->id
+            ]);
+
+            return redirect()->route('historia.seccion4');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 3: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 3. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion4(Request $request)
     {
+        try {
 
-        $seccion4 = Seccion4::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'califica_adaptacion' => $request->califica_adaptacion,
-                'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
-                'relacion_familia_madre' => $request->relacion_familia_madre,
-                'relacion_familia_padre' => $request->relacion_familia_padre,
-                'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
-                'sanciones_casa' => $request->sanciones_casa,
-                'docil_desafiante' => $request->docil_desafiante,
-                'evento_traumatico' => $request->evento_traumatico,
-            ]
-        );
+            $seccion4 = Seccion4::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'califica_adaptacion' => $request->califica_adaptacion,
+                    'califica_adaptacion_porq' => $request->califica_adaptacion_porq,
+                    'relacion_familia_madre' => $request->relacion_familia_madre,
+                    'relacion_familia_padre' => $request->relacion_familia_padre,
+                    'relacion_familia_hermanos' => $request->relacion_familia_hermanos,
+                    'sanciones_casa' => $request->sanciones_casa,
+                    'docil_desafiante' => $request->docil_desafiante,
+                    'evento_traumatico' => $request->evento_traumatico,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion4_id' => $seccion4->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion4_id' => $seccion4->id
+            ]);
 
+            return redirect()->route('historia.seccion5');
+        } catch (Exception $e) {
 
-        return redirect()->route('historia.seccion5');
+            Log::error('Error al guardar Sección 4: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 4. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion5(Request $request)
     {
 
-        $seccion5 = Seccion5::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'total_embarazo' => $request->total_embarazo,
-                'experi_embarazo' => $request->experi_embarazo,
-                'mencione_embaenfe' => $request->mencione_embaenfe,
-                'especificar' => $request->especificar,
-                'tiempo_gestacion' => $request->tiempo_gestacion,
-                'tipo_parto' => $request->tipo_parto,
-                'lloro' => $request->lloro,
-                'incubadora' => $request->incubadora,
-                'apgar' => $request->apgar,
-            ]
-        );
+        try {
+            $seccion5 = Seccion5::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'total_embarazo' => $request->total_embarazo,
+                    'experi_embarazo' => $request->experi_embarazo,
+                    'mencione_embaenfe' => $request->mencione_embaenfe,
+                    'especificar' => $request->especificar,
+                    'tiempo_gestacion' => $request->tiempo_gestacion,
+                    'tipo_parto' => $request->tipo_parto,
+                    'lloro' => $request->lloro,
+                    'incubadora' => $request->incubadora,
+                    'apgar' => $request->apgar,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion5_id' => $seccion5->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion5_id' => $seccion5->id
+            ]);
 
 
-        return redirect()->route('historia.seccion6');
+            return redirect()->route('historia.seccion6');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 5: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 5. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion6(Request $request)
     {
+        try {
+            $seccion6 = Seccion6::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'desa_visual' => $request->desa_visual,
+                    'desa_auditivo' => $request->desa_auditivo,
+                ]
+            );
 
-        $seccion6 = Seccion6::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'desa_visual' => $request->desa_visual,
-                'desa_auditivo' => $request->desa_auditivo,
-            ]
-        );
-
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion6_id' => $seccion6->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion6_id' => $seccion6->id
+            ]);
 
 
-        return redirect()->route('historia.seccion7');
+            return redirect()->route('historia.seccion7');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 6: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 6. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion7(Request $request)
@@ -258,42 +292,56 @@ class BDController extends Controller
             'dies_zurdhijo' => 'required|array|min:1',
         ]);
 
-        $seccion7 = Seccion7::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'desarrollo_motor' => $request->desarrollo_motor,
-                'edad_gate' => $request->edad_gate,
-                'edad_cami' => $request->edad_cami,
-                'dies_zurdhijo' => $request->dies_zurdhijo,
-                'prac_deporte' => $request->prac_deporte,
-            ]
-        );
+        try {
+            $seccion7 = Seccion7::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'desarrollo_motor' => $request->desarrollo_motor,
+                    'edad_gate' => $request->edad_gate,
+                    'edad_cami' => $request->edad_cami,
+                    'dies_zurdhijo' => $request->dies_zurdhijo,
+                    'prac_deporte' => $request->prac_deporte,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion7_id' => $seccion7->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion7_id' => $seccion7->id
+            ]);
 
 
-        return redirect()->route('historia.seccion8');
+            return redirect()->route('historia.seccion8');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 7: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 7. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion8(Request $request)
     {
 
-        $seccion8 = Seccion8::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
-                'prim_palabra' => $request->prim_palabra,
-            ]
-        );
+        try {
+            $seccion8 = Seccion8::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'desarrollo_lenguaje' => $request->desarrollo_lenguaje,
+                    'prim_palabra' => $request->prim_palabra,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion8_id' => $seccion8->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion8_id' => $seccion8->id
+            ]);
 
 
-        return redirect()->route('historia.seccion9');
+            return redirect()->route('historia.seccion9');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 8: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 8. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion9(Request $request)
@@ -302,27 +350,34 @@ class BDController extends Controller
             'suenonino' => 'required|array|min:1',
         ]);
 
-        $seccion9 = Seccion9::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'suenonino' => $request->suenonino,
-                'horadecama' => $request->horadecama,
-                'horadespierta' => $request->horadespierta,
-                'dusiesta' => $request->dusiesta,
-                'horasiesta' => $request->horasiesta,
-                'cohabitacion' => $request->cohabitacion,
-                'conquien' => $request->conquien,
-                'cocama' => $request->cocama,
-                'edad_dupapa' => $request->edad_dupapa,
-            ]
-        );
+        try {
+            $seccion9 = Seccion9::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'suenonino' => $request->suenonino,
+                    'horadecama' => $request->horadecama,
+                    'horadespierta' => $request->horadespierta,
+                    'dusiesta' => $request->dusiesta,
+                    'horasiesta' => $request->horasiesta,
+                    'cohabitacion' => $request->cohabitacion,
+                    'conquien' => $request->conquien,
+                    'cocama' => $request->cocama,
+                    'edad_dupapa' => $request->edad_dupapa,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion9_id' => $seccion9->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion9_id' => $seccion9->id
+            ]);
 
 
-        return redirect()->route('historia.seccion10');
+            return redirect()->route('historia.seccion10');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 9: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 9. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion10(Request $request)
@@ -331,178 +386,204 @@ class BDController extends Controller
             'saludnino' => 'required|array|min:1',
         ]);
 
-        $seccion10 = Seccion10::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'saludnino' =>  $request->saludnino,
-                'otrosprob' => $request->otrosprob,
-                'enfeotrastor' => $request->enfeotrastor,
-                'tipoterapia' => $request->tipoterapia,
-            ]
-        );
+        try {
+            $seccion10 = Seccion10::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'saludnino' =>  $request->saludnino,
+                    'otrosprob' => $request->otrosprob,
+                    'enfeotrastor' => $request->enfeotrastor,
+                    'tipoterapia' => $request->tipoterapia,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion10_id' => $seccion10->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion10_id' => $seccion10->id
+            ]);
 
 
-        return redirect()->route('historia.seccion11');
+            return redirect()->route('historia.seccion11');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 10: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 10. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion11(Request $request)
     {
 
-        $seccion11 = Seccion11::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'personalidadhijo' => $request->personalidadhijo,
-                'oportunihijo' => $request->oportunihijo,
-                'adapthijo' => $request->adapthijo,
-                'juegacnhijo' => $request->juegacnhijo,
-            ]
-        );
+        try {
+            $seccion11 = Seccion11::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'personalidadhijo' => $request->personalidadhijo,
+                    'oportunihijo' => $request->oportunihijo,
+                    'adapthijo' => $request->adapthijo,
+                    'juegacnhijo' => $request->juegacnhijo,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion11_id' => $seccion11->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion11_id' => $seccion11->id
+            ]);
 
 
-        return redirect()->route('historia.seccion12');
+            return redirect()->route('historia.seccion12');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 11: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 11. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion12(Request $request)
     {
 
-        $seccion12 = Seccion12::updateOrCreate(
-            ['estudiante_id' => session('id_alumno')],
-            [
-                'reaccprimer' => $request->reaccprimer,
-                'dificumateria' => $request->dificumateria,
-                'nivel_lectura' => $request->nivel_lectura,
-                'nivel_escritura' => $request->nivel_escritura,
-                'dificultad_tarea' => $request->dificultad_tarea,
-                'relacion_maestro' => $request->relacion_maestro,
-                'ha_repetido' => $request->ha_repetido,
-                'cual_escuela' => $request->cual_escuela,
-                'porque_escuela' => $request->porque_escuela,
-                'puedeperiodolarg' => $request->puedeperiodolarg,
-                'conductaambito' => $request->conductaambito,
-                'hay_dific' => $request->hay_dific,
-                'cual_letra' => $request->cual_letra,
-                'maneingles' => $request->maneingles,
-                'cali_desemp' => $request->cali_desemp,
-                'porq_desemp' => $request->porq_desemp,
-                'motivoscamb' => $request->motivoscamb,
-                'razoning' => $request->razoning,
-            ]
-        );
+        try {
+            $seccion12 = Seccion12::updateOrCreate(
+                ['estudiante_id' => session('id_alumno')],
+                [
+                    'reaccprimer' => $request->reaccprimer,
+                    'dificumateria' => $request->dificumateria,
+                    'nivel_lectura' => $request->nivel_lectura,
+                    'nivel_escritura' => $request->nivel_escritura,
+                    'dificultad_tarea' => $request->dificultad_tarea,
+                    'relacion_maestro' => $request->relacion_maestro,
+                    'ha_repetido' => $request->ha_repetido,
+                    'cual_escuela' => $request->cual_escuela,
+                    'porque_escuela' => $request->porque_escuela,
+                    'puedeperiodolarg' => $request->puedeperiodolarg,
+                    'conductaambito' => $request->conductaambito,
+                    'hay_dific' => $request->hay_dific,
+                    'cual_letra' => $request->cual_letra,
+                    'maneingles' => $request->maneingles,
+                    'cali_desemp' => $request->cali_desemp,
+                    'porq_desemp' => $request->porq_desemp,
+                    'motivoscamb' => $request->motivoscamb,
+                    'razoning' => $request->razoning,
+                ]
+            );
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'seccion12_id' => $seccion12->id
-        ]);
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'seccion12_id' => $seccion12->id
+            ]);
 
 
-        return redirect()->route('historia.seccion13');
+            return redirect()->route('historia.seccion13');
+        } catch (Exception $e) {
+
+            Log::error('Error al guardar Sección 12: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 12. Inténtelo de nuevo.');
+        }
     }
 
     public function guardarSeccion13(Request $request)
     {
 
+        try {
+            HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'acepto_terminos' => $request->acepto_terminos
+            ]);
 
-        HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
-            'acepto_terminos' => $request->acepto_terminos
-        ]);
+            session()->put([
+                'formulario_aceptado' => true,
+            ]);
+            return redirect()->route('historia.seccion13')->with('success', '¡Formulario enviado correctamente!');
+        } catch (Exception $e) {
 
-        // if (session('numero_hijos') > 1) {
-        //     session()->put([
-        //         'formulario_aceptado' => true,
-        //     ]);
-        // }
-        session()->put([
-            'formulario_aceptado' => true,
-        ]);
-        return redirect()->route('historia.seccion13')->with('success', '¡Formulario enviado correctamente!');
-        // } else {
-        //     return redirect()->route('historia.nivel_educativo');
-        // }
+            Log::error('Error al guardar Sección 13: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al enviar el formulario. Inténtelo de nuevo.');
+        }
     }
 
 
     //
     public function buscar(Request $request)
     {
-        $estudiantes = Estudiante::where('nombre_completo', $request->nombre_completo)
-            ->where('fecha_nacimiento', $request->fecha_nacimiento)
-            ->get();
-        $estudiante = $estudiantes->first();
-        if ($estudiante) {
+        try {
 
-            $historias = HistoriaDesarrollo::find($estudiante->id);
-            $seccion2 = Seccion2::find($historias->seccion2_id);
+            $estudiantes = Estudiante::where('nombre_completo', $request->nombre_completo)
+                ->where('fecha_nacimiento', $request->fecha_nacimiento)
+                ->get();
+            $estudiante = $estudiantes->first();
+            if ($estudiante) {
+
+                $historias = HistoriaDesarrollo::find($estudiante->id);
+                $seccion2 = Seccion2::find($historias->seccion2_id);
 
 
-            if ($historias) {
-                // Obtener todos los atributos del estudiante
-                $attributes = $historias->getAttributes();
+                if ($historias) {
+                    // Obtener todos los atributos del estudiante
+                    $attributes = $historias->getAttributes();
 
-                // Recorrer los atributos del estudiante
-                unset($attributes['created_at']);
-                unset($attributes['updated_at']);
+                    // Recorrer los atributos del estudiante
+                    unset($attributes['created_at']);
+                    unset($attributes['updated_at']);
 
-                // Inicializar el contador de campos llenos
-                $campoLlenoCount = 0;
-                $ultimoCampo = null;
+                    // Inicializar el contador de campos llenos
+                    $campoLlenoCount = 0;
+                    $ultimoCampo = null;
 
-                // Recorrer los atributos del estudiante
-                foreach ($attributes as $campo => $valor) {
-                    // Verificar si el campo no es nulo ni vacío
-                    if (!is_null($valor) && $valor !== '') {
-                        // Incrementar el contador de campos llenos
-                        $campoLlenoCount++;
+                    // Recorrer los atributos del estudiante
+                    foreach ($attributes as $campo => $valor) {
+                        // Verificar si el campo no es nulo ni vacío
+                        if (!is_null($valor) && $valor !== '') {
+                            // Incrementar el contador de campos llenos
+                            $campoLlenoCount++;
 
-                        // Guardar el nombre del campo si está lleno
-                        $ultimoCampo = $campo;
+                            // Guardar el nombre del campo si está lleno
+                            $ultimoCampo = $campo;
+                        }
                     }
-                }
 
-                // Determinar el nombre de la vista basado en el total de campos llenos
-                $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
-
+                    // Determinar el nombre de la vista basado en el total de campos llenos
+                    $vista = 'seccion' . $campoLlenoCount; // Sección dinámica
 
 
-                session()->put(['id_alumno' => $estudiante->id]);
-                session()->put(['nombre' => $estudiante->nombre_completo]);
 
-                if ($seccion2) {
-                    session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+                    session()->put(['id_alumno' => $estudiante->id]);
+                    session()->put(['nombre' => $estudiante->nombre_completo]);
+
+                    if ($seccion2) {
+                        session()->put(['numero_hijos' => $seccion2->numero_hijos]);
+                    } else {
+                        session()->put(['numero_hijos' => null]); // o algún valor por defecto
+                    }
+
+
+                    if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
+
+                        session()->put(['grado' => 'primaria_secundaria']);
+                    } else {
+                        session()->put(['grado' => 'preescolar']);
+                    }
+
+
+                    // Redirigir a la vista intermedia y pasar el nombre de la vista
+                    return view('historias.nivel_educativo', [
+                        'vista' => $vista,
+                        'estudiantes' => $estudiantes,
+                        'campoLlenoCount' => $campoLlenoCount
+
+                    ]);
                 } else {
-                    session()->put(['numero_hijos' => null]); // o algún valor por defecto
+                    // Si el estudiante no existe, cargamos una vista por defecto
+                    return view('historias.nivel_educativo', [
+                        'vista' => 'seccion1' // Por ejemplo, si no se encuentra el estudiante
+                    ]);
                 }
-
-
-                if (stripos($estudiante->grado_escolar, 'primaria') !== false || stripos($estudiante->grado_escolar, 'secundaria') !== false) {
-
-                    session()->put(['grado' => 'primaria_secundaria']);
-                } else {
-                    session()->put(['grado' => 'preescolar']);
-                }
-
-
-                // Redirigir a la vista intermedia y pasar el nombre de la vista
-                return view('historias.nivel_educativo', [
-                    'vista' => $vista,
-                    'estudiantes' => $estudiantes,
-                    'campoLlenoCount' => $campoLlenoCount
-
-                ]);
             } else {
-                // Si el estudiante no existe, cargamos una vista por defecto
-                return view('historias.nivel_educativo', [
-                    'vista' => 'seccion1' // Por ejemplo, si no se encuentra el estudiante
-                ]);
+                return view('historias.nivel_educativo', compact('estudiantes'));
             }
-        } else {
-            return view('historias.nivel_educativo', compact('estudiantes'));
+        } catch (\Exception $e) {
+            Log::error('Error en buscar(): ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al procesar la búsqueda. Inténtelo de nuevo.');
         }
     }
 
@@ -548,8 +629,6 @@ class BDController extends Controller
             ]);
         }
     }
-
-
 
     protected function guardarHermano($request)
     {

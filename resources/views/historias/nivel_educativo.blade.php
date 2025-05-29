@@ -77,12 +77,18 @@
         <!-- Tarjeta buscar estudiante -->
         <div class="max-w-3xl mx-auto pt-10">
             <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-fade-in">
-
                 <div class="bg-[#ff7843] text-[#ffffff] py-2 px-3">
                     <h2 class="text-xl font-bold text-center">Buscar alumno</h2>
                     <p class="text-center text-[#ffffff] mt-1">Si usted ya había empezado a llenar el formulario busque a su hijo por su nombre y fecha de nacimiento</p>
                 </div>
 
+                {{-- Mensaje de error --}}
+                @if (session('error'))
+                <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+                    <strong class="font-bold">¡Error!</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+                @endif
                 <div class="p-6 md:p-8">
                     {{-- Formulario de búsqueda --}}
                     <form action="{{ route('historia.nivel_educativo.buscar') }}" method="POST">

@@ -20,6 +20,14 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}} </p>
     </div>
 
+    {{-- Mensaje de error --}}
+    @if (session('error'))
+    <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+        <strong class="font-bold">¡Error!</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+    @endif
+
     <form action="{{ route('seccion4.guardar') }}" method="POST" class="p-1">
         @csrf
 
@@ -105,11 +113,11 @@ $nombre = session('nombre');
                     <textarea rows="2" class=" w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="sanciones_casa" name="sanciones_casa" x-model="mensaje"
                         maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
-                        <div class="text-sm mt-1 text-right">
-                            <span
-                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
-                                x-text="mensaje.length + ' / 200 caracteres'"></span>
-                        </div>
+                    <div class="text-sm mt-1 text-right">
+                        <span
+                            :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                            x-text="mensaje.length + ' / 200 caracteres'"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,22 +130,22 @@ $nombre = session('nombre');
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="docil_desafiante" name="docil_desafiante" x-model="mensaje"
                         maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
-                        <div class="text-sm mt-1 text-right">
-                            <span
-                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
-                                x-text="mensaje.length + ' / 200 caracteres'"></span>
-                        </div>
+                    <div class="text-sm mt-1 text-right">
+                        <span
+                            :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                            x-text="mensaje.length + ' / 200 caracteres'"></span>
+                    </div>
                 </div>
                 <div x-data="{ mensaje: '' }">
                     <label for="evento_traumatico" class="block text-sm font-medium text-gray-700 pt-3">¿Ha habido algún evento traumático o significativo en la familia durante el desarrollo de su hijo(a)? Describa<span class="text-red-500">*</span></label>
                     <textarea rows="2" class=" w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="evento_traumatico" name="evento_traumatico" x-model="mensaje"
                         maxlength="200" placeholder="Escriba aquí su respuesta" required></textarea>
-                        <div class="text-sm mt-1 text-right">
-                            <span
-                                :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
-                                x-text="mensaje.length + ' / 200 caracteres'"></span>
-                        </div>
+                    <div class="text-sm mt-1 text-right">
+                        <span
+                            :class="mensaje.length >= 200 ? 'text-red-600' : 'text-gray-500'"
+                            x-text="mensaje.length + ' / 200 caracteres'"></span>
+                    </div>
                 </div>
             </div>
         </div>

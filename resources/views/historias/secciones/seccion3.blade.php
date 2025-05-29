@@ -20,6 +20,14 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}} </p>
     </div>
 
+    {{-- Mensaje de error --}}
+    @if (session('error'))
+    <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+        <strong class="font-bold">¡Error!</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+    @endif
+
     <form action="{{ route('seccion3.guardar') }}" method="POST" class="p-1">
         @csrf
 
@@ -29,7 +37,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="idioma_casa" class="block text-sm font-medium text-gray-700">¿Qué idioma se habla en casa?<span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="idioma_casa" name=" idioma_casa" placeholder="Ingles, Español, etc." required>
+                        id="idioma_casa" name="idioma_casa" value="{{ old('idioma_casa') }}" placeholder="Ingles, Español, etc." required>
                 </div>
 
                 <div x-data="{viveconotro: ''}">

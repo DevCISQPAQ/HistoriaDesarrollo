@@ -6,6 +6,7 @@
 <?php
 $id_alumno = session('id_alumno');
 $nombre = session('nombre');
+$hermanos = session('hermanos');
 ?>
 
 
@@ -20,23 +21,30 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
     </div>
 
+    {{-- Mensaje de error --}}
+    @if (session('error'))
+    <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+        <strong class="font-bold">¡Error!</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+    @endif
+
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
         @csrf
 
         @if(session('old_hijoId'))
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
 
-                <div class="bg-blue-50 rounded-lg p-4 mb-8">
-                    <div class="flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p class="text-sm text-gray-700">
-                            <strong>Nota:</strong> Favor de verificar la información o en su defecto confirma.
-                        </p>
-                    </div>
+            <div class="bg-blue-50 rounded-lg p-4 mb-8">
+                <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-sm text-gray-700">
+                        <strong>Nota:</strong> Favor de verificar la información o en su defecto confirma.
+                    </p>
                 </div>
-            
+            </div>
 
             <div class="mt-3 overflow-x-auto">
                 <label for="numero_hijos" class="block text-sm font-medium text-gray-700 mb-2 ">Datos de los hermanos</label>
@@ -51,7 +59,8 @@ $nombre = session('nombre');
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($hermanos as $hermano)
+                        @if(session()->has('hermanos'))
+                        @foreach(session('hermanos') as $hermano)
                         <tr>
                             <td class="border border-gray-300 px-2 py-1">
                                 <input type="text" name="nombre_hermano[]" value="{{ $hermano->nombre_hermano }}" class="w-full px-2 py-1 border rounded-lg">
@@ -70,9 +79,8 @@ $nombre = session('nombre');
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
-
-
                 </table>
             </div>
 

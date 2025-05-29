@@ -20,6 +20,14 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre la familia del estudiante {{$nombre}}</p>
     </div>
 
+    {{-- Mensaje de error --}}
+    @if (session('error'))
+    <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+        <strong class="font-bold">¡Error!</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+    @endif
+
     <form action="{{ route('seccion5.guardar') }}" method="POST" class="p-1">
         @csrf
 
@@ -60,7 +68,7 @@ $nombre = session('nombre');
                 <div id="Si" x-show="sienfermedad == $el.id" x-transition>
                     <label for="especificar" class="block text-sm font-medium text-gray-700 pt-3">Especificar</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="especificar" name="especificar" placeholder="Indique la enfermedad o complicación" :required="sienfermedad === 'Si'" >
+                        id="especificar" name="especificar" placeholder="Indique la enfermedad o complicación" :required="sienfermedad === 'Si'">
                 </div>
             </div>
         </div>
