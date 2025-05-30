@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Estudiante;
 use App\Models\Hermano;
 use App\Models\HistoriaDesarrollo;
@@ -18,6 +19,7 @@ use App\Models\Seccion9;
 use App\Models\Seccion10;
 use App\Models\Seccion11;
 use App\Models\Seccion12;
+use App\Mail\ContactoMailable;
 use Exception;
 
 class BDController extends Controller
@@ -502,6 +504,9 @@ class BDController extends Controller
             session()->put([
                 'formulario_aceptado' => true,
             ]);
+
+            $this->enviarEmail();
+
             return redirect()->route('historia.seccion13')->with('success', '¡Formulario enviado correctamente!');
         } catch (Exception $e) {
 
@@ -597,7 +602,27 @@ class BDController extends Controller
         }
     }
 
+
     ///
+    public function enviarEmail()
+    {
+        try {
+
+            $datos = [
+                'nombre' => session('nombre') ?? 'Sin nombre',
+                'email' => 'ejemplo@correo.com',
+                'mensaje' => 'Este es un mensaje manual que no viene del formulario.',
+            ];
+
+            Mail::to('ajimenez@cumbresqueretaro.com')
+            // ->cc('lhernandez@cumbresqueretaro.com')
+            ->send(new ContactoMailable($datos));
+        } catch (\Exception $e) {
+            Log::error('Error al enviar correo: ' . $e->getMessage());
+        }
+    }
+    ///
+
 
     public function copiarSeccion2DeUsuario($idOrigen, $idDestino)
     {

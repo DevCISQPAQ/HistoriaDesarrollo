@@ -69,6 +69,7 @@ $nombre = session('nombre');
                 </div>
             </form>
 
+            @if (session('success'))
             <!-- Mostrar que el documento se envio -->
             <div x-show="enviado">
                 <!-- mensaje -->
@@ -177,6 +178,14 @@ $nombre = session('nombre');
                 </div>
                 @endif
             </div>
+            @elseif(session('formulario_aceptado'))
+            <div class="flex justify-center mt-6">
+                <a href="{{ url('/') }}"
+                    class="inline-block px-6 py-4 mb-4 bg-[#ff7843] text-white font-semibold rounded-lg shadow-md hover:bg-[#ffaf25] transition duration-300">
+                    Volver al inicio
+                </a>
+            </div>
+            @endif
         </div>
     </div>
     @else
