@@ -6,12 +6,6 @@
         <a href="{{ route('admin.usuarios.crear') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Crear Usuario</a>
     </div>
 
-    @if(session('success'))
-    <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <div class="overflow-x-auto">
      <table class="w-full table-auto">
             <thead>

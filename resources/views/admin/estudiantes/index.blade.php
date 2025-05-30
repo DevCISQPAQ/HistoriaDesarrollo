@@ -24,10 +24,6 @@
     </div>
 </div>
 
-@if(session('success'))
-<div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ session('success') }}</div>
-@endif
-
 <div x-data="{ buscar: '{{ request('buscar', '') }}', eliminarActivo: false  }">
     <!-- Formulario de búsqueda -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">

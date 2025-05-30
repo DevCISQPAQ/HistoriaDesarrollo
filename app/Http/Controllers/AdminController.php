@@ -17,40 +17,50 @@ class AdminController extends Controller
         // if (!Auth::check() || !Auth::user()->is_admin) {
         //     abort(403, 'Acceso no autorizado');
         // }
+        try {
 
-        if (!Auth::check()) {
-            abort(403, 'Acceso no autorizado');
+            //throw new \PDOException('Simulando desconexión de base de datos');
+
+            if (!Auth::check()) {
+                abort(403, 'Acceso no autorizado');
+            }
+
+            $terminadosData = $this->contarFormulariosTerminados();
+            $nivelesData = $this->contarFormulariosPorNivel();
+            $conteosPorGrado = $this->obtenerConteosPorGrado();
+
+            $etiquetasPorGrado = collect(array_keys($conteosPorGrado))
+                ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
+                ->toArray();
+
+
+            $data = array_merge(
+                $terminadosData,
+                $nivelesData,
+                [
+                    'conteosPorGrado' => $conteosPorGrado,
+                    'etiquetasPorGrado' => $etiquetasPorGrado,
+                ]
+            );
+
+            // // Combinar todos los datos para enviar a la vista4
+            // $data = array_merge($terminadosData, $nivelesData, $conteosPorGrado, $etiquetasPorGrado);
+
+            return view('admin.dashboard', $data);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al cargar la página de Dashboard ' . $e->getMessage());
         }
-
-        $terminadosData = $this->contarFormulariosTerminados();
-        $nivelesData = $this->contarFormulariosPorNivel();
-        $conteosPorGrado = $this->obtenerConteosPorGrado();
-
-        $etiquetasPorGrado = collect(array_keys($conteosPorGrado))
-            ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
-            ->toArray();
-
-
-        $data = array_merge(
-            $terminadosData,
-            $nivelesData,
-            [
-                'conteosPorGrado' => $conteosPorGrado,
-                'etiquetasPorGrado' => $etiquetasPorGrado,
-            ]
-        );
-
-        // // Combinar todos los datos para enviar a la vista4
-        // $data = array_merge($terminadosData, $nivelesData, $conteosPorGrado, $etiquetasPorGrado);
-
-        return view('admin.dashboard', $data);
     }
-
 
     public function listarUsuarios()
     {
-        $usuarios = User::all();
-        return view('admin.usuarios.index', compact('usuarios'));
+        try {
+
+            $usuarios = User::all();
+            return view('admin.usuarios.index', compact('usuarios'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al cargar la página de Usuarios ' . $e->getMessage());
+        }
     }
 
     public function crearUsuario()
@@ -73,47 +83,66 @@ class AdminController extends Controller
             'is_admin' => 'required|boolean',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'is_admin' => $request->is_admin,
-        ]);
+        try {
 
-        return redirect()->route('admin.usuarios')->with('success', 'Usuario creado correctamente.');
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_admin' => $request->is_admin,
+            ]);
+
+            return redirect()->route('admin.usuarios')->with('success', 'Usuario creado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al guardar usuario ' . $e->getMessage());
+        }
     }
 
     public function editarUsuario($id)
     {
-        $usuario = User::findOrFail($id);
-        return view('admin.usuarios.editar', compact('usuario'));
+        try {
+
+            $usuario = User::findOrFail($id);
+            return view('admin.usuarios.editar', compact('usuario'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al editar usuario ' . $e->getMessage());
+        }
     }
 
     public function actualizarUsuario(Request $request, $id)
     {
-        $usuario = User::findOrFail($id);
-
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'is_admin' => 'required|boolean',
         ]);
 
-        $usuario->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_admin' => $request->is_admin,
-        ]);
+        try {
 
-        return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado.');
+            $usuario = User::findOrFail($id);
+
+            $usuario->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'is_admin' => $request->is_admin,
+            ]);
+
+            return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al actualizar usuario ' . $e->getMessage());
+        }
     }
 
     public function eliminarUsuario($id)
     {
-        $usuario = User::findOrFail($id);
-        $usuario->delete();
+        try {
+            $usuario = User::findOrFail($id);
+            $usuario->delete();
 
-        return redirect()->route('admin.usuarios')->with('success', 'Usuario eliminado.');
+            return redirect()->route('admin.usuarios')->with('success', 'Usuario eliminado.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al eliminar usuario ' . $e->getMessage());
+        }
     }
     //////
 

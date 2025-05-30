@@ -44,7 +44,7 @@
                 </h1>
             </div>
 
-           <div class="flex items-center gap-4 self-end sm:self-auto">
+            <div class="flex items-center gap-4 self-end sm:self-auto">
                 <span class="text-gray-700 font-medium">👤 {{ Auth::user()->name }}</span>
                 <button @click.prevent="
             fetch('{{ route('logout') }}', {
@@ -64,6 +64,11 @@
 
         {{-- Contenido dinámico --}}
         <main class="p-6">
+            @if(session('success') || session('error'))
+            <div class="{{ session('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }} p-3 rounded mb-4">
+                {{ session('success') ?? session('error') }}
+            </div>
+            @endif
             @yield('content')
         </main>
     </div>

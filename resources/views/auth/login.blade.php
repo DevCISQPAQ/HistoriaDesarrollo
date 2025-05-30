@@ -11,6 +11,11 @@
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        @if(session('success') || session('error'))
+        <div class="{{ session('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }} p-3 rounded mb-4">
+            {{ session('success') ?? session('error') }}
+        </div>
+        @endif
         <div class="flex justify-center mb-3">
             <img src="/img/sello-cumbres.svg" alt="Logo" class="h-20">
         </div>

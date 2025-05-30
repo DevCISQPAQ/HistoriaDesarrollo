@@ -11,39 +11,61 @@ class EstudianteController extends Controller
 {
     public function index(Request $request)
     {
-        $conteos = $this->obtenerConteosPorNivel();
-        $estudiantes = $this->obtenerEstudiantesConHistoria($request);
+        try {
 
-        return view('admin.estudiantes.index', array_merge($conteos, compact('estudiantes')));
+            //throw new \PDOException('Simulando desconexión de base de datos');
+
+            $conteos = $this->obtenerConteosPorNivel();
+            $estudiantes = $this->obtenerEstudiantesConHistoria($request);
+
+            return view('admin.estudiantes.index', array_merge($conteos, compact('estudiantes')));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al cargar la página de estudiantes: ' . $e->getMessage());
+        }
     }
 
     public function destroy($id)
     {
-        Estudiante::destroy($id);
-        return redirect()->back()->with('success', 'Estudiante eliminado correctamente.');
+        try {
+
+            $deleted = Estudiante::destroy($id);
+
+            if (!$deleted) {
+                return redirect()->back()->with('error', 'No se pudo eliminar el estudiante. El registro no existe.');
+            }
+
+            return redirect()->back()->with('success', 'Estudiante eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al eliminar al estudiante: ' . $e->getMessage());
+        }
     }
 
     public function verPDF($id)
     {
-        $estudiante = Estudiante::with([
-            'seccion2',
-            'hermano',
-            'seccion3',
-            'seccion4',
-            'seccion5',
-            'seccion6',
-            'seccion7',
-            'seccion8',
-            'seccion9',
-            'seccion10',
-            'seccion11',
-            'seccion12'
-        ])->findOrFail($id);
+
+        try {
+            $estudiante = Estudiante::with([
+                'seccion2',
+                'hermano',
+                'seccion3',
+                'seccion4',
+                'seccion5',
+                'seccion6',
+                'seccion7',
+                'seccion8',
+                'seccion9',
+                'seccion10',
+                'seccion11',
+                'seccion12'
+            ])->findOrFail($id);
 
 
-        // $estudiante = Estudiante::findOrFail($id);
-        $pdf = Pdf::loadView('admin.estudiantes.pdf', compact('estudiante'));
-        return $pdf->stream("alumno_{$estudiante->nombre_completo}.pdf");
+            // $estudiante = Estudiante::findOrFail($id);
+            $pdf = Pdf::loadView('admin.estudiantes.pdf', compact('estudiante'));
+            return $pdf->stream("alumno_{$estudiante->nombre_completo}.pdf");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al ver el PDF del estudiante: ' . $e->getMessage());
+        }
     }
 
 
