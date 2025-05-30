@@ -72,29 +72,31 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 1: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 1. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Datos de Identificación del Alumno". Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion2(Request $request)
     {
 
-        try {
-            if (!session('old_hijoId')) {
-                //validate
+        $isNuevo = !session('old_hijoId');
+
+        if ($isNuevo) {
+            $request->validate([
+                'padre_lateralidad' => 'required|array|min:1',
+                'madre_lateralidad' => 'required|array|min:1',
+                'estado_civil' => 'required|array|min:1',
+            ]);
+
+            if (in_array('Vuelto a casar', $request->estado_civil)) {
                 $request->validate([
-                    'padre_lateralidad' => 'required|array|min:1',
-                    'madre_lateralidad' => 'required|array|min:1',
-                    'estado_civil' => 'required|array|min:1',
+                    'conyuge_lateralidad' => 'required|array|min:1',
                 ]);
+            }
+        }
 
-                if (in_array('Vuelto a casar', $request->estado_civil)) {
-                    $request->validate([
-                        'conyuge_lateralidad' => 'required|array|min:1',
-                    ]);
-                }
-                //
-
+        try {
+            if ($isNuevo) {
                 if (($request->numero_hijos) > 1) {
                     $hermano = $this->guardarHermano($request);
                 } else {
@@ -149,19 +151,21 @@ class BDController extends Controller
                 session()->put(['numero_hijos' => $seccion2->numero_hijos]);
 
                 $formulario = HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->first();
-                $formulario->seccion2_id = $seccion2->id;
-                $formulario->save();
+                if ($formulario) {
+                    $formulario->seccion2_id = $seccion2->id;
+                    $formulario->save();
+                }
 
                 return redirect()->route('historia.seccion3');
             }
 
-            $hermano = $this->guardarHermano($request);
+            $this->guardarHermano($request);
             return redirect()->route('historia.seccion3');
         } catch (Exception $e) {
 
             Log::error('Error al guardar Sección 2: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 2. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Estructura Familiar". Inténtelo de nuevo.');
         }
     }
 
@@ -193,7 +197,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 3: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 3. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Idioma y Adopción". Inténtelo de nuevo.');
         }
     }
 
@@ -224,14 +228,14 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 4: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 4. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Dinámica Familiar". Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion5(Request $request)
     {
-
         try {
+
             $seccion5 = Seccion5::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -257,13 +261,14 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 5: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 5. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Historia Pre y Postnatal". Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion6(Request $request)
     {
         try {
+
             $seccion6 = Seccion6::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -282,7 +287,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 6: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 6. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Desarrollo Visual y Auditivo". Inténtelo de nuevo.');
         }
     }
 
@@ -293,6 +298,7 @@ class BDController extends Controller
         ]);
 
         try {
+
             $seccion7 = Seccion7::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -314,14 +320,14 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 7: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 7. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Desarrollo motor". Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion8(Request $request)
     {
-
         try {
+
             $seccion8 = Seccion8::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -340,7 +346,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 8: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 8. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Lenguaje". Inténtelo de nuevo.');
         }
     }
 
@@ -351,6 +357,7 @@ class BDController extends Controller
         ]);
 
         try {
+
             $seccion9 = Seccion9::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -376,7 +383,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 9: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 9. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Sueño". Inténtelo de nuevo.');
         }
     }
 
@@ -387,6 +394,7 @@ class BDController extends Controller
         ]);
 
         try {
+
             $seccion10 = Seccion10::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -407,7 +415,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 10: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 10. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Salud". Inténtelo de nuevo.');
         }
     }
 
@@ -415,6 +423,7 @@ class BDController extends Controller
     {
 
         try {
+
             $seccion11 = Seccion11::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -435,14 +444,14 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 11: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 11. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Características Personales". Inténtelo de nuevo.');
         }
     }
 
     public function guardarSeccion12(Request $request)
     {
-
         try {
+
             $seccion12 = Seccion12::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -477,7 +486,7 @@ class BDController extends Controller
 
             Log::error('Error al guardar Sección 12: ' . $e->getMessage());
 
-            return redirect()->back()->with('error', 'Hubo un problema al guardar la Sección 12. Inténtelo de nuevo.');
+            return redirect()->back()->with('error', 'Hubo un problema al guardar la sección "Historia Escolar". Inténtelo de nuevo.');
         }
     }
 
@@ -485,6 +494,7 @@ class BDController extends Controller
     {
 
         try {
+
             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
                 'acepto_terminos' => $request->acepto_terminos
             ]);

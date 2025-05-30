@@ -19,13 +19,13 @@ $id_alumno = session('id_alumno');
         <p class="text-blue-100 ml-11 mt-1">Complete la información básica del estudiante</p>
     </div>
 
-    {{-- Mensaje de error --}}
+    <!-- {{-- Mensaje de error --}}
     @if (session('error'))
     <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
         <strong class="font-bold">¡Error!</strong>
         <span class="block sm:inline">{{ session('error') }}</span>
     </div>
-    @endif
+    @endif -->
 
     <form action="{{ route('seccion1.guardar') }}" method="POST" class="p-6">
         @csrf

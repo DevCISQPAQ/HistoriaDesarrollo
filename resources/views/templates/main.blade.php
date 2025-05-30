@@ -49,6 +49,13 @@
 
             <!-- Contenido de la vista -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                {{-- Mensaje de error --}}
+                @if (session('error'))
+                <div class=" rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+                    <strong class="font-bold">¡Error!</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+                @endif
                 @yield('content')
             </div>
         </main>

@@ -20,14 +20,6 @@ $nombre = session('nombre');
         <p class="text-blue-100 ml-11 mt-1">Gracias por terminar el formulario para el estudiante: {{$nombre}}</p>
     </div>
 
-    {{-- Mensaje de error --}}
-    @if (session('error'))
-    <div class="mb-4 mt-4 rounded-md bg-red-100 border border-red-400 text-red-700 px-4 py-3">
-        <strong class="font-bold">¡Error!</strong>
-        <span class="block sm:inline">{{ session('error') }}</span>
-    </div>
-    @endif
-
     <!-- Parte de seleccion si agrega otro hijo -->
     <div class="mb-8 border border-gray-200 rounded-lg p-1 relative overflow-x-auto m-4">
         <div x-data="{ enviado: {{ session()->has('formulario_aceptado') ? 'true' : 'false' }} }">

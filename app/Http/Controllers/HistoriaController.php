@@ -9,7 +9,21 @@ use Illuminate\Http\Request;
 
 class HistoriaController extends Controller
 {
-    //Intentar meter todo esto a un case o una funcion que mande valor de la seccion
+    public function showWelcome()
+    {
+        session([
+            'id_alumno' => null,
+            'nombre' => null,
+            'grado' => null,
+            'numero_hijos' => null,
+            'old_hijoId' => null,
+            'add_hijo' => null,
+            'formulario_aceptado' => null,
+
+        ]);
+
+        return view('welcome');
+    }
     // Mostrar selector de nivel
     public function nivel_selector()
     {
@@ -43,11 +57,11 @@ class HistoriaController extends Controller
         } else {
 
             session([
-                'old_hijoId' => '',//
+                'old_hijoId' => '', //
                 'id_alumno' => '',
                 'nombre' => '',
                 'grado' => $request->input('grado'),
-                'add_hijo' => '',//
+                'add_hijo' => '', //
                 'formulario_aceptado' => null,
             ]);
         }
