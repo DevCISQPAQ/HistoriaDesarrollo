@@ -6,21 +6,26 @@
 <!-- Tarjetas de conteo de estudiantes por grado escolar -->
 <div class="flex flex-wrap gap-4 mb-6">
     <!-- Tarjeta para Prescolar -->
-    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(33.333%-1rem)]">
+    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(25%-1rem)]">
         <h3 class="text-xl font-semibold text-blue-600">Prescolar</h3>
         <p class="text-2xl font-bold text-gray-800">{{ $prescolarCount }}</p>
     </div>
 
     <!-- Tarjeta para Primaria -->
-    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(33.333%-1rem)]">
+    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(25%-1rem)]">
         <h3 class="text-xl font-semibold text-blue-600">Primaria</h3>
         <p class="text-2xl font-bold text-gray-800">{{ $primariaCount }}</p>
     </div>
 
     <!-- Tarjeta para Secundaria -->
-    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(33.333%-1rem)]">
+    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(25%-1rem)]">
         <h3 class="text-xl font-semibold text-blue-600">Secundaria</h3>
         <p class="text-2xl font-bold text-gray-800">{{ $secundariaCount }}</p>
+    </div>
+    <!-- totales -->
+    <div class="bg-blue-100 p-4 rounded shadow-lg text-center flex-1 min-w-[200px] sm:basis-[calc(25%-1rem)]">
+        <h3 class="text-xl font-semibold text-green-600">Total de estudiantes</h3>
+        <p class="text-2xl font-bold text-gray-800">{{ $totales_estudiantes }}</p>
     </div>
 </div>
 

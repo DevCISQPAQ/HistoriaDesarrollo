@@ -28,6 +28,7 @@ class AdminController extends Controller
             $terminadosData = $this->contarFormulariosTerminados();
             $nivelesData = $this->contarFormulariosPorNivel();
             $conteosPorGrado = $this->obtenerConteosPorGrado();
+            $registrosPorMes = $this->obtenerRegistrosPorMes();
 
             $etiquetasPorGrado = collect(array_keys($conteosPorGrado))
                 ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
@@ -40,6 +41,8 @@ class AdminController extends Controller
                 [
                     'conteosPorGrado' => $conteosPorGrado,
                     'etiquetasPorGrado' => $etiquetasPorGrado,
+                    'graficaLabels' => $registrosPorMes['labels'],
+                    'graficaData' => $registrosPorMes['data'],
                 ]
             );
 
@@ -147,21 +150,10 @@ class AdminController extends Controller
     //////
 
 
-    private function contarFormulariosPorNivel()
-    {
-        return [
-
-            'prescolarCount' => Estudiante::where('grado_escolar', 'LIKE', '%bambolino%')
-                ->orWhere('grado_escolar', 'LIKE', '%kinder%')
-                ->count(),
-
-            'primariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%primaria%')->count(),
-            'secundariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')->count(),
-        ];
-    }
-
     private function contarFormulariosTerminados()
     {
+        $anioActual = date('Y');
+
         $terminados = HistoriaDesarrollo::whereNotNull('seccion2_id')
             ->whereNotNull('seccion3_id')
             ->whereNotNull('seccion4_id')
@@ -174,6 +166,7 @@ class AdminController extends Controller
             ->whereNotNull('seccion11_id')
             ->whereNotNull('seccion12_id')
             ->whereNotNull('acepto_terminos')
+            ->whereYear('created_at', $anioActual)
             ->count();
 
         $no_terminados = HistoriaDesarrollo::where(function ($query) {
@@ -189,15 +182,42 @@ class AdminController extends Controller
                 ->orWhereNull('seccion11_id')
                 ->orWhereNull('seccion12_id')
                 ->orWhereNull('acepto_terminos');
-        })->count();
+        })
+        ->whereYear('created_at', $anioActual)
+        ->count();
 
-        $totales_formularios = HistoriaDesarrollo::count();
+        $totales_formularios = HistoriaDesarrollo::whereYear('created_at', $anioActual)->count();
 
         return compact('terminados', 'no_terminados', 'totales_formularios');
     }
 
+    private function contarFormulariosPorNivel()
+    {
+        $anioActual = date('Y');
+
+        return [
+            'prescolarCount' => Estudiante::where(function ($query) {
+                $query->where('grado_escolar', 'LIKE', '%bambolino%')
+                    ->orWhere('grado_escolar', 'LIKE', '%kinder%');
+            })
+                ->whereYear('created_at', $anioActual)
+                ->count(),
+
+            'primariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%primaria%')
+                ->whereYear('created_at', $anioActual)
+                ->count(),
+
+            'secundariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')
+                ->whereYear('created_at', $anioActual)
+                ->count(),
+        ];
+    }
+
     private function obtenerConteosPorGrado()
     {
+
+        $anioActual = date('Y');
+
         $grados = [
             // Preescolar
             'Bambolino 2',
@@ -223,9 +243,34 @@ class AdminController extends Controller
         $conteos = [];
 
         foreach ($grados as $grado) {
-            $conteos[Str::slug($grado, '_')] = Estudiante::where('grado_escolar', 'LIKE', "%{$grado}%")->count();
+            $conteos[Str::slug($grado, '_')] = Estudiante::where('grado_escolar', 'LIKE', "%{$grado}%")
+                ->whereYear('created_at', $anioActual)
+                ->count();
         }
 
         return $conteos;
+    }
+
+    private function obtenerRegistrosPorMes()
+    {
+        $anioActual = date('Y');
+        $anioAnterior = $anioActual - 1;
+
+        $fechaInicio = "$anioActual-01-01 00:00:00";
+        $fechaFin = "$anioActual-12-31 23:59:59";
+
+        // $fechaInicio = "$anioAnterior-08-01";       // 1 agosto año anterior
+        // $fechaFin = "$anioActual-08-31 23:59:59";  // 31 agosto año actual, hasta el final del día
+
+        $resultados = Estudiante::selectRaw("DATE_FORMAT(created_at, '%M %Y') as mes, COUNT(*) as total")
+            ->whereBetween('created_at', [$fechaInicio, $fechaFin])
+            ->groupBy('mes')
+            ->orderByRaw("MIN(created_at)")
+            ->get();
+
+        return [
+            'labels' => $resultados->pluck('mes')->toArray(),
+            'data' => $resultados->pluck('total')->toArray(),
+        ];
     }
 }

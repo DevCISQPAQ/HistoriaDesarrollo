@@ -79,7 +79,9 @@ class EstudianteController extends Controller
 
         $secundariaCount = Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')->count();
 
-        return compact('prescolarCount', 'primariaCount', 'secundariaCount');
+         $totales_estudiantes = Estudiante::count();
+
+        return compact('prescolarCount', 'primariaCount', 'secundariaCount', 'totales_estudiantes');
     }
 
     private function obtenerEstudiantesConHistoria(Request $request)

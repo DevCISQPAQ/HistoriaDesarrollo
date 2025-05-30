@@ -62,7 +62,7 @@
 
         <!-- Pie de página -->
         <footer class="bg-secondary text-white text-center py-4 mt-8">
-            <p>&copy; 2025 Historia de Desarrollo. Todos los derechos reservados.</p>
+            <p>&copy; {{ date('Y') }} Historia de Desarrollo. Todos los derechos reservados.</p>
         </footer>
     </div>
 
