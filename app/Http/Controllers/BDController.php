@@ -496,7 +496,7 @@ class BDController extends Controller
     {
 
         try {
-           
+
             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
                 'acepto_terminos' => $request->acepto_terminos
             ]);
@@ -615,8 +615,12 @@ class BDController extends Controller
             ];
 
             Mail::to('ajimenez@cumbresqueretaro.com')
-            // ->cc('lhernandez@cumbresqueretaro.com')
-            ->send(new ContactoMailable($datos));
+                // ->cc([
+                //     // 'lhernandez@cumbresqueretaro.com',
+                //     'alcampos@cumbresqueretaro.com',
+                //     'abeltran@cumbresqueretaro.com'
+                // ])
+                ->send(new ContactoMailable($datos));
         } catch (\Exception $e) {
             Log::error('Error al enviar correo: ' . $e->getMessage());
         }
