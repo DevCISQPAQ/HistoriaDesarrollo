@@ -41,7 +41,7 @@
                     <td class="label">Nombre:</td>
                     <td class="value">{{ $estudiante->nombre_completo ?? '—'}}</td>
                     <td class="label">Edad:</td>
-                    <td class="value">{{ $estudiante->edad ?? '—'}} Años</td>
+                    <td class="value">{{ $estudiante->edad ?? '—'}}</td>
                 </tr>
                 <tr>
                     <td class="label">Sexo:</td>

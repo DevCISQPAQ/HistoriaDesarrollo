@@ -496,7 +496,7 @@ class BDController extends Controller
     {
 
         try {
-
+           
             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
                 'acepto_terminos' => $request->acepto_terminos
             ]);
@@ -505,9 +505,9 @@ class BDController extends Controller
                 'formulario_aceptado' => true,
             ]);
 
-            $this->enviarEmail();
+            //$this->enviarEmail();
 
-            return redirect()->route('historia.seccion13')->with('success', '¡Formulario enviado correctamente!');
+            return redirect()->route('historia.seccion14')->with('success', '¡Formulario enviado correctamente!');
         } catch (Exception $e) {
 
             Log::error('Error al guardar Sección 13: ' . $e->getMessage());

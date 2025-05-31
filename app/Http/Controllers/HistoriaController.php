@@ -128,4 +128,9 @@ class HistoriaController extends Controller
     {
         return view('historias.secciones.seccion13');
     }
+
+      public function showSeccion14()
+    {
+        return view('historias.secciones.seccion14');
+    }
 }

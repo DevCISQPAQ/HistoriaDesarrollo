@@ -28,6 +28,7 @@ Route::prefix('formulario')->group(function () {
     Route::get('/seccion11', [HistoriaController::class, 'showSeccion11'])->name('historia.seccion11');
     Route::get('/seccion12', [HistoriaController::class, 'showSeccion12'])->name('historia.seccion12');
     Route::get('/seccion13', [HistoriaController::class, 'showSeccion13'])->name('historia.seccion13');
+    Route::get('/seccion14', [HistoriaController::class, 'showSeccion14'])->name('historia.seccion14');
 
     // Ruta POST para guardar las secciones
     Route::post('/seccion1', [BDController::class, 'guardarSeccion1'])->name('seccion1.guardar');
