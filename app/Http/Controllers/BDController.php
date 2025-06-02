@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 use App\Models\Estudiante;
 use App\Models\Hermano;
 use App\Models\HistoriaDesarrollo;
@@ -505,7 +506,7 @@ class BDController extends Controller
                 'formulario_aceptado' => true,
             ]);
 
-            //$this->enviarEmail();
+            $this->enviarEmail();
 
             return redirect()->route('historia.seccion14')->with('success', '¡Formulario enviado correctamente!');
         } catch (Exception $e) {
@@ -608,19 +609,19 @@ class BDController extends Controller
     {
         try {
 
+            $usuarios = User::where('yes_notifications', 1)->pluck('email')->toArray();
+
+            if (empty($usuarios)) {
+                Log::info('No hay usuarios con notificaciones activadas.');
+                return;
+            }
+
             $datos = [
                 'nombre' => session('nombre') ?? 'Sin nombre',
-                'email' => 'ejemplo@correo.com',
                 'mensaje' => 'Este es un mensaje manual que no viene del formulario.',
             ];
 
-            Mail::to('ajimenez@cumbresqueretaro.com')
-                // ->cc([
-                //     // 'lhernandez@cumbresqueretaro.com',
-                //     'alcampos@cumbresqueretaro.com',
-                //     'abeltran@cumbresqueretaro.com'
-                // ])
-                ->send(new ContactoMailable($datos));
+            Mail::to($usuarios)->send(new ContactoMailable($datos));
         } catch (\Exception $e) {
             Log::error('Error al enviar correo: ' . $e->getMessage());
         }

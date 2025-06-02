@@ -84,6 +84,7 @@ class AdminController extends Controller
 
             'password' => 'required|min:6',
             'is_admin' => 'required|boolean',
+            'yes_notifications' => 'nullable|boolean', // 👉 validación del nuevo campo
         ]);
 
         try {
@@ -93,6 +94,7 @@ class AdminController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'is_admin' => $request->is_admin,
+                'yes_notifications' => $request->yes_notifications ?? false, // 👉 guardar campo
             ]);
 
             return redirect()->route('admin.usuarios')->with('success', 'Usuario creado correctamente.');
@@ -118,6 +120,7 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'is_admin' => 'required|boolean',
+            'yes_notifications' => 'nullable|boolean', // 👉 validación
         ]);
 
         try {
@@ -128,6 +131,7 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'is_admin' => $request->is_admin,
+                'yes_notifications' => $request->yes_notifications ?? false, // 👉 actualización
             ]);
 
             return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado.');
@@ -183,8 +187,8 @@ class AdminController extends Controller
                 ->orWhereNull('seccion12_id')
                 ->orWhereNull('acepto_terminos');
         })
-        ->whereYear('created_at', $anioActual)
-        ->count();
+            ->whereYear('created_at', $anioActual)
+            ->count();
 
         $totales_formularios = HistoriaDesarrollo::whereYear('created_at', $anioActual)->count();
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->boolean('yes_notifications')->default(false); // 👉 Aquí se agrega la columna
             $table->timestamps();
         });
     }

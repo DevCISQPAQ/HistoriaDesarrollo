@@ -5,13 +5,13 @@
     <h2 class="text-2xl font-semibold mb-4 text-gray-800">Editar usuario</h2>
 
     @if ($errors->any())
-        <div class="mb-4 bg-red-100 border border-red-400 text-red-700 p-3 rounded">
-            <ul class="list-disc pl-4 text-sm">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 p-3 rounded">
+        <ul class="list-disc pl-4 text-sm">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
 
     <form method="POST" action="{{ route('admin.usuarios.actualizar', $usuario->id) }}">
@@ -34,6 +34,15 @@
                 <option value="0" {{ $usuario->is_admin ? '' : 'selected' }}>Usuario</option>
                 <option value="1" {{ $usuario->is_admin ? 'selected' : '' }}>Administrador</option>
             </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="yes_notifications" value="1"
+                    class="form-checkbox text-blue-600"
+                    {{ old('yes_notifications', $usuario->yes_notifications) ? 'checked' : '' }}>
+                <span class="ml-2 text-sm text-gray-700">Recibir notificaciones</span>
+            </label>
         </div>
 
         <div class="flex justify-end">
