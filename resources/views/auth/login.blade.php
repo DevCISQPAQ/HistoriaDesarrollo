@@ -30,10 +30,8 @@
             </ul>
         </div>
         @endif
-
         <form method="POST" action="/login">
             @csrf
-
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Correo electrónico</label>
                 <input type="email" name="email" required
@@ -41,13 +39,18 @@
                     placeholder="ejemplo@correo.com">
             </div>
 
-            <div class="mb-6">
+            <div class="mb-6 relative">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
-                <input type="password" name="password" required
+                <input id="password" type="password" name="password" required
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="********">
-            </div>
 
+                <!-- Botón para mostrar/ocultar -->
+                <button type="button" id="togglePassword"
+                    class="absolute right-3 top-9 text-gray-600 hover:text-gray-900 focus:outline-none">
+                    Mostrar
+                </button>
+            </div>
             <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition">
                 Ingresar
@@ -55,5 +58,18 @@
         </form>
     </div>
 </body>
-
 </html>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function () {
+        // Cambiar tipo del input
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+
+        // Cambiar texto del botón
+        this.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+    });
+</script>

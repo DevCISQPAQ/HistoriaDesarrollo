@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 
 class EstudianteController extends Controller
@@ -68,18 +69,39 @@ class EstudianteController extends Controller
         }
     }
 
+    private function obtenerPeriodoEscolar()
+    {
+        $hoy = Carbon::now();
+        $anioInicio = $hoy->month >= 9 ? $hoy->year : $hoy->year - 1;
+
+        return [
+            'inicio' => Carbon::create($anioInicio, 10, 1)->startOfMonth(),
+            'fin' => Carbon::create($anioInicio + 1, 9, 30)->endOfMonth(),
+            // 'etiqueta' => 'Septiembre ' . $anioInicio . ' - Septiembre ' . ($anioInicio + 1),
+            'etiqueta' => $anioInicio . '-' . ($anioInicio + 1),
+        ];
+    }
 
     private function obtenerConteosPorNivel()
     {
-        $prescolarCount = Estudiante::where('grado_escolar', 'LIKE', '%bambolino%')
-            ->orWhere('grado_escolar', 'LIKE', '%kinder%')
+        $periodo = $this->obtenerPeriodoEscolar();
+
+        $prescolarCount = Estudiante::where(function ($query) {
+            $query->where('grado_escolar', 'LIKE', '%bambolino%')
+                ->orWhere('grado_escolar', 'LIKE', '%kinder%');
+        })
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
             ->count();
 
-        $primariaCount = Estudiante::where('grado_escolar', 'LIKE', '%primaria%')->count();
+        $primariaCount = Estudiante::where('grado_escolar', 'LIKE', '%primaria%')
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
+            ->count();
 
-        $secundariaCount = Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')->count();
+        $secundariaCount = Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
+            ->count();
 
-         $totales_estudiantes = Estudiante::count();
+        $totales_estudiantes = Estudiante::whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])->count();
 
         return compact('prescolarCount', 'primariaCount', 'secundariaCount', 'totales_estudiantes');
     }
@@ -88,10 +110,17 @@ class EstudianteController extends Controller
     {
         $query = Estudiante::with('historiaDesarrollo');
 
+        $periodo = $this->obtenerPeriodoEscolar();
+
         if ($request->filled('buscar')) {
             $buscar = strtolower($request->buscar);
+
+            // Cuando hay búsqueda, quitamos el filtro por periodo para buscar en toda la tabla
             $query->whereRaw('LOWER(nombre_completo) LIKE ?', ["%{$buscar}%"])
                 ->orWhereRaw('LOWER(grado_escolar) LIKE ?', ["%{$buscar}%"]);
+        } else {
+            // Solo si NO hay búsqueda, filtramos por periodo
+            $query->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']]);
         }
 
         $estudiantes = $query->paginate(10)->withQueryString();
@@ -113,4 +142,5 @@ class EstudianteController extends Controller
 
         return $estudiantes;
     }
+
 }

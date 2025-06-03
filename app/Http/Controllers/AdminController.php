@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Estudiante;
 use App\Models\HistoriaDesarrollo;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        // if (!Auth::check() || !Auth::user()->is_admin) {
-        //     abort(403, 'Acceso no autorizado');
-        // }
         try {
-
-            //throw new \PDOException('Simulando desconexión de base de datos');
 
             if (!Auth::check()) {
                 abort(403, 'Acceso no autorizado');
+            }
+
+            $user = Auth::user();
+
+            if (!$user->is_admin) {
+               return redirect()->route('estudiantes.index');
             }
 
             $terminadosData = $this->contarFormulariosTerminados();
@@ -34,6 +36,7 @@ class AdminController extends Controller
                 ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
                 ->toArray();
 
+            $periodo = $this->obtenerPeriodoEscolar();
 
             $data = array_merge(
                 $terminadosData,
@@ -43,11 +46,9 @@ class AdminController extends Controller
                     'etiquetasPorGrado' => $etiquetasPorGrado,
                     'graficaLabels' => $registrosPorMes['labels'],
                     'graficaData' => $registrosPorMes['data'],
+                    'periodoEtiqueta' => $periodo['etiqueta'],
                 ]
             );
-
-            // // Combinar todos los datos para enviar a la vista4
-            // $data = array_merge($terminadosData, $nivelesData, $conteosPorGrado, $etiquetasPorGrado);
 
             return view('admin.dashboard', $data);
         } catch (\Exception $e) {
@@ -154,9 +155,23 @@ class AdminController extends Controller
     //////
 
 
+    private function obtenerPeriodoEscolar()
+    {
+        $hoy = Carbon::now();
+        $anioInicio = $hoy->month >= 9 ? $hoy->year : $hoy->year - 1;
+
+        return [
+            'inicio' => Carbon::create($anioInicio, 10, 1)->startOfMonth(),
+            'fin' => Carbon::create($anioInicio + 1, 9, 30)->endOfMonth(),
+            // 'etiqueta' => 'Septiembre ' . $anioInicio . ' - Septiembre ' . ($anioInicio + 1),
+            'etiqueta' => $anioInicio . '-' . ($anioInicio + 1),
+        ];
+    }
+
     private function contarFormulariosTerminados()
     {
-        $anioActual = date('Y');
+        $periodo = $this->obtenerPeriodoEscolar();
+
 
         $terminados = HistoriaDesarrollo::whereNotNull('seccion2_id')
             ->whereNotNull('seccion3_id')
@@ -170,7 +185,7 @@ class AdminController extends Controller
             ->whereNotNull('seccion11_id')
             ->whereNotNull('seccion12_id')
             ->whereNotNull('acepto_terminos')
-            ->whereYear('created_at', $anioActual)
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
             ->count();
 
         $no_terminados = HistoriaDesarrollo::where(function ($query) {
@@ -187,40 +202,43 @@ class AdminController extends Controller
                 ->orWhereNull('seccion12_id')
                 ->orWhereNull('acepto_terminos');
         })
-            ->whereYear('created_at', $anioActual)
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
             ->count();
 
-        $totales_formularios = HistoriaDesarrollo::whereYear('created_at', $anioActual)->count();
+        $totales_formularios = HistoriaDesarrollo::whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])->count();
 
-        return compact('terminados', 'no_terminados', 'totales_formularios');
+        return compact('terminados', 'no_terminados', 'totales_formularios') + ['periodo' => $periodo['etiqueta']];
     }
+
 
     private function contarFormulariosPorNivel()
     {
-        $anioActual = date('Y');
+        $periodo = $this->obtenerPeriodoEscolar();
 
         return [
             'prescolarCount' => Estudiante::where(function ($query) {
                 $query->where('grado_escolar', 'LIKE', '%bambolino%')
                     ->orWhere('grado_escolar', 'LIKE', '%kinder%');
             })
-                ->whereYear('created_at', $anioActual)
+                ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
                 ->count(),
 
             'primariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%primaria%')
-                ->whereYear('created_at', $anioActual)
+                ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
                 ->count(),
 
             'secundariaCount' => Estudiante::where('grado_escolar', 'LIKE', '%secundaria%')
-                ->whereYear('created_at', $anioActual)
+                ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
                 ->count(),
+
+            'periodo' => $periodo['etiqueta'],
         ];
     }
 
+
     private function obtenerConteosPorGrado()
     {
-
-        $anioActual = date('Y');
+        $periodo = $this->obtenerPeriodoEscolar();
 
         $grados = [
             // Preescolar
@@ -248,7 +266,7 @@ class AdminController extends Controller
 
         foreach ($grados as $grado) {
             $conteos[Str::slug($grado, '_')] = Estudiante::where('grado_escolar', 'LIKE', "%{$grado}%")
-                ->whereYear('created_at', $anioActual)
+                ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
                 ->count();
         }
 
@@ -257,24 +275,29 @@ class AdminController extends Controller
 
     private function obtenerRegistrosPorMes()
     {
-        $anioActual = date('Y');
-        $anioAnterior = $anioActual - 1;
+        $periodo = $this->obtenerPeriodoEscolar();
 
-        $fechaInicio = "$anioActual-01-01 00:00:00";
-        $fechaFin = "$anioActual-12-31 23:59:59";
-
-        // $fechaInicio = "$anioAnterior-08-01";       // 1 agosto año anterior
-        // $fechaFin = "$anioActual-08-31 23:59:59";  // 31 agosto año actual, hasta el final del día
-
-        $resultados = Estudiante::selectRaw("DATE_FORMAT(created_at, '%M %Y') as mes, COUNT(*) as total")
-            ->whereBetween('created_at', [$fechaInicio, $fechaFin])
+        $resultados = Estudiante::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as mes, COUNT(*) as total")
+            ->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']])
             ->groupBy('mes')
-            ->orderByRaw("MIN(created_at)")
-            ->get();
+            ->orderBy('mes')
+            ->pluck('total', 'mes');
+
+        $labels = [];
+        $data = [];
+        $fecha = $periodo['inicio']->copy();
+
+        while ($fecha <= $periodo['fin']) {
+            $claveMes = $fecha->format('Y-m');
+            $labels[] = $fecha->translatedFormat('F Y');
+            $data[] = $resultados[$claveMes] ?? 0;
+            $fecha->addMonth();
+        }
 
         return [
-            'labels' => $resultados->pluck('mes')->toArray(),
-            'data' => $resultados->pluck('total')->toArray(),
+            'labels' => $labels,
+            'data' => $data,
+            'periodo' => $periodo['etiqueta'],
         ];
     }
 }

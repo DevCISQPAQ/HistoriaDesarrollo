@@ -44,12 +44,14 @@
         </div>
 
         <!-- Checkbox de activación -->
+        @if(auth()->user()->is_admin)
         <div class="whitespace-nowrap mt-2 md:mt-0">
             <label class="inline-flex items-center">
                 <input type="checkbox" x-model="eliminarActivo" class="mr-2">
                 <span>Activar eliminar estudiante</span>
             </label>
         </div>
+        @endif
     </div>
 
     <!-- Tabla de estudiantes -->
@@ -60,6 +62,7 @@
                     <tr>
                         <th class="p-3">Nombre</th>
                         <th class="p-3">Grado Escolar</th>
+                        <th class="p-3">Fecha de Creación</th>
                         <th class="p-3">Estatus</th>
                         <th class="p-3">Acciones</th>
                     </tr>
@@ -69,6 +72,7 @@
                     <tr class="border border-gray-300 rounded-lg hover:bg-gray-50">
                         <td class="p-3">{{ $estudiante->nombre_completo }}</td>
                         <td class="p-3">{{ $estudiante->grado_escolar }}</td>
+                        <td class="p-3">{{ $estudiante->created_at->format('Y-m-d') }}</td>
                         <td class="p-3 font-semibold 
                     {{ $estudiante->historia_completa === 'Completo' ? 'text-green-600' : 'text-red-600' }}">
                             {{ $estudiante->historia_completa }}
