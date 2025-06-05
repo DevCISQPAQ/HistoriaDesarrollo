@@ -604,7 +604,7 @@
                 </p>
 
                 <div style="text-align: center;">
-                    @if($estudiante->seccion10->acepto_acuerdo === 'Acepto')
+                    @if($estudiante->seccion10?->acepto_acuerdo === 'Acepto')
                     <p>
                         {!! '&#x2611;' !!} <span class="bold info-table"> Acepto el acuerdo </span>
                     </p>
@@ -777,7 +777,7 @@
             </p>
 
             <div style="text-align: center;">
-                @if($estudiante->historiadesarrollo->acepto_terminos === 'Acepto')
+                @if($estudiante->historiadesarrollo?->acepto_terminos === 'Acepto')
                 <p>
                     {!! '&#x2611;' !!} <span class="bold info-table"> Acepto conformidad </span>
                 </p>
