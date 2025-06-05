@@ -405,6 +405,7 @@ class BDController extends Controller
                     'otrosprob' => $request->otrosprob,
                     'enfeotrastor' => $request->enfeotrastor,
                     'tipoterapia' => $request->tipoterapia,
+                    'acepto_acuerdo' => $request->acepto_acuerdo,
                 ]
             );
 
@@ -499,6 +500,8 @@ class BDController extends Controller
         try {
 
             HistoriaDesarrollo::where('estudiante_id', session('id_alumno'))->update([
+                'nombre_responsable' => $request->nombre_responsable,
+                'parentesco_responsable' => $request->parentesco_responsable,
                 'acepto_terminos' => $request->acepto_terminos
             ]);
 

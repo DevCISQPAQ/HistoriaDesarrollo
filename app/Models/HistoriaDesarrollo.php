@@ -23,14 +23,15 @@ class HistoriaDesarrollo extends Model
         'seccion10_id',
         'seccion11_id',
         'seccion12_id',
+        'nombre_responsable',
+        'parentesco_responsable',
         'acepto_terminos',
-
     ];
 
 
     public function estudiante()
     {
-        return$this->belongsTo(Estudiante::class);
+        return $this->belongsTo(Estudiante::class);
     }
 
     public function seccion2()
@@ -87,6 +88,4 @@ class HistoriaDesarrollo extends Model
     {
         return $this->belongsTo(Seccion12::class);
     }
-
-
 }

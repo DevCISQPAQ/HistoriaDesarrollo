@@ -10,8 +10,6 @@
 </head>
 
 <body>
-
-
     <div class="container">
         {{-- Logo en la parte superior --}}
         <!-- Logo alineado a la izquierda -->
@@ -604,6 +602,18 @@
                     según corresponda, sobre la salud, condición física o socioemocional de los educandos y, en su caso, de requerimientos especiales para garantizar su inclusión efectiva en el proceso educativo. Dicha información se proporcionará en el marco de las
                     disposiciones jurídicas aplicables.
                 </p>
+
+                <div style="text-align: center;">
+                    @if($estudiante->seccion10->acepto_acuerdo === 'Acepto')
+                    <p>
+                        {!! '&#x2611;' !!} <span class="bold info-table"> Acepto el acuerdo </span>
+                    </p>
+                    @else
+                    <p>
+                        {!! '&#x2610;' !!} <span class="bold info-table"> No acepto el acuerdo </span>
+                    </p>
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -766,26 +776,41 @@
                 De igual forma, manifiesto que me fue debidamente informado sobre el Aviso de Privacidad con que cuenta el Colegio, y que puede ser consultado en la página de internet: www.semperaltius.edu.mx/aviso-de-privacidad
             </p>
 
+            <div style="text-align: center;">
+                @if($estudiante->historiadesarrollo->acepto_terminos === 'Acepto')
+                <p>
+                    {!! '&#x2611;' !!} <span class="bold info-table"> Acepto conformidad </span>
+                </p>
+                @else
+                <p>
+                    {!! '&#x2610;' !!} <span class="bold info-table"> No acepto conformidad </span>
+                </p>
+                @endif
+            </div>
+
             <table class="firma-tabla">
                 <tr>
                     <td>
                         <span class="firma-label">Nombre del responsable:</span>
+                        <span class="firma-data">{{ optional($estudiante->historiadesarrollo)->nombre_responsable ?? '-' }}</span>
                         <div class="firma-line"></div>
                     </td>
                     <td>
                         <span class="firma-label">Parentesco con el solicitante:</span>
+                        <span class="firma-data">{{ optional($estudiante->historiadesarrollo)->parentesco_responsable ?? '-' }}</span>
                         <div class="firma-line"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span class="firma-label">Fecha:</span>
+                        <span class="firma-data">{{ optional($estudiante->historiadesarrollo)->updated_at?->format('d/m/Y') ?? '-' }}</span>
                         <div class="firma-line"></div>
                     </td>
-                    <td>
+                    <!-- <td>
                         <span class="firma-label">Firma de conformidad:</span>
                         <div class="firma-line"></div>
-                    </td>
+                    </td> -->
                 </tr>
             </table>
 

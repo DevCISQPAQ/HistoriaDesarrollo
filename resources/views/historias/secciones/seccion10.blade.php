@@ -98,7 +98,7 @@ $nombre = session('nombre');
                         <input type="checkbox" name="saludnino[]" value="Impulsividad" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Impulsividad</span>
                     </label>
-                     <label class="radio-box-btn">
+                    <label class="radio-box-btn">
                         <input type="checkbox" name="saludnino[]" value="Ninguno" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded">
                         <span class="ml-2">Ninguno</span>
                     </label>
@@ -150,6 +150,17 @@ $nombre = session('nombre');
                     disposiciones jurídicas aplicables.
                 </p>
             </div>
+
+            <div class="md:col-span-2 pt-4">
+                <label class="block text-sm font-medium text-gray-700">Acepto el acuerdo anteriormente mencionado <span class="text-red-500">*</span></label>
+                <div class="flex space-x-4 mt-2">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="acepto_acuerdo" value="Acepto" class="form-checkbox text-[#1f355e] focus:ring-[#1f355e] rounded" required>
+                        <span class="ml-2">Acepto</span>
+                    </label>
+                </div>
+            </div>
+
         </div>
 
         <!-- Botones de navegación -->

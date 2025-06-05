@@ -26,6 +26,8 @@ return new class extends Migration
             $table->integer('seccion11_id')->nullable()->constrained('seccion11s')->onDelete('set null');
             $table->integer('seccion12_id')->nullable()->constrained('seccion12s')->onDelete('set null');
             $table->string('acepto_terminos')->nullable();
+            $table->string('nombre_responsable')->nullable();
+            $table->string('parentesco_responsable')->nullable();
             $table->timestamps();
         });
 

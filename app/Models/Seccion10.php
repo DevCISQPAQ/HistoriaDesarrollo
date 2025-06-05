@@ -12,6 +12,7 @@ class Seccion10 extends Model
         'otrosprob',
         'enfeotrastor',
         'tipoterapia',
+        'acepto_acuerdo',
         
     ];
 

@@ -42,7 +42,7 @@ $nombre = session('nombre');
                 method="POST" class="p-1">
                 @csrf
 
-                <div class="  p-6 mt-8 relative overflow-x-auto">
+                <div class="  p-6 mt-3 relative overflow-x-auto">
                     <h3 class="text-lg font-semibold text-[#1f355e] mb-4">CONFORMIDAD
                         SOBRE EL PROCESO DE ADMISIÓN </h3>
 
@@ -54,7 +54,6 @@ $nombre = session('nombre');
                         puede ser consultado en la página de internet: <span> <a href="https://www.semperaltius.edu.mx/aviso-de-privacidad"> www.semperaltius.edu.mx/aviso-de-privacidad</a></span>
                     </p>
 
-
                     <div class="md:col-span-2 pt-4">
                         <label class="block text-sm font-medium text-gray-700">Acepto los términos de conformidad del proceso de admisión<span class="text-red-500">*</span></label>
                         <div class="flex space-x-4 mt-2">
@@ -64,6 +63,22 @@ $nombre = session('nombre');
                             </label>
                         </div>
                     </div>
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                        <div class="col-span-1">
+                            <label for="nombre_responsable" class="block text-sm font-medium text-gray-700">Nombre del responsable: <span class="text-red-500">*</span></label>
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                id="nombre_responsable" name="nombre_responsable" value="{{ old('nombre_responsable') }}" placeholder="Nombre(s) y apellidos" required>
+                        </div>
+
+                        <div class="col-span-1">
+                            <label for="parentesco_responsable" class="block text-sm font-medium text-gray-700">Parentesco con el solicitante:<span class="text-red-500">*</span></label>
+                            <input type="text" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                                id="parentesco_responsable" name="parentesco_responsable" value="{{ old('parentesco_responsable') }}" required placeholder="Ej. Padre, Madre, Tutor...">
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="flex justify-between mt-8 m-4 gap-2">

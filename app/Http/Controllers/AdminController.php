@@ -24,7 +24,7 @@ class AdminController extends Controller
             $user = Auth::user();
 
             if (!$user->is_admin) {
-               return redirect()->route('estudiantes.index');
+                return redirect()->route('estudiantes.index');
             }
 
             $terminadosData = $this->contarFormulariosTerminados();
@@ -120,6 +120,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:6', // 👉 ahora es opcional
             'is_admin' => 'required|boolean',
             'yes_notifications' => 'nullable|boolean', // 👉 validación
         ]);
@@ -128,12 +129,19 @@ class AdminController extends Controller
 
             $usuario = User::findOrFail($id);
 
-            $usuario->update([
+            $data = [
                 'name' => $request->name,
                 'email' => $request->email,
                 'is_admin' => $request->is_admin,
-                'yes_notifications' => $request->yes_notifications ?? false, // 👉 actualización
-            ]);
+                'yes_notifications' => $request->yes_notifications ?? false,
+            ];
+
+
+            if ($request->filled('password')) {
+                $data['password'] = Hash::make($request->password);
+            }
+
+            $usuario->update($data);
 
             return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado.');
         } catch (\Exception $e) {

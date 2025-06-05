@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('otrosprob')->nullable();
             $table->string('enfeotrastor');
             $table->string('tipoterapia');
+            $table->string('acepto_acuerdo')->nullable();
             $table->timestamps();
         });
     }

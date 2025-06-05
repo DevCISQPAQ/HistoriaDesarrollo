@@ -28,6 +28,12 @@
             <input type="email" name="email" value="{{ old('email', $usuario->email) }}" required class="w-full mt-1 px-4 py-2 border rounded focus:ring focus:ring-blue-200">
         </div>
 
+         <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Nueva contraseña</label>
+            <input type="password" name="password" class="w-full mt-1 px-4 py-2 border rounded focus:ring focus:ring-blue-200">
+            <small class="text-muted">Déjalo en blanco si no deseas cambiarla.</small>
+        </div>
+
         <div class="mb-4">
             <label class="block text-sm font-semibold text-gray-700">Rol</label>
             <select name="is_admin" class="w-full mt-1 px-4 py-2 border rounded focus:ring focus:ring-blue-200">
