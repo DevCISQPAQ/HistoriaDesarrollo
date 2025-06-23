@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('empresa_padre');
             $table->string('puesto_padre');
             $table->string('ocupacion_padre');
+            $table->string('telefono_padre');
             $table->string('correo_padre');
             $table->string('redessoc_padre')->nullable();
             $table->string('padre_lateralidad');
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('empresa_madre');
             $table->string('puesto_madre');
             $table->string('ocupacion_madre');
+            $table->string('telefono_madre');
             $table->string('correo_madre');
             $table->string('redessoc_madre')->nullable();
             $table->string('madre_lateralidad');
@@ -40,6 +42,7 @@ return new class extends Migration
             $table->string('empresa_conyuge')->nullable();
             $table->string('puesto_conyuge')->nullable();
             $table->string('ocupacion_conyuge')->nullable();
+            $table->string('telefono_conyuge')->nullable();
             $table->string('correo_conyuge')->nullable();
             $table->string('redessoc_conyuge')->nullable();
             $table->string('conyuge_lateralidad')->nullable();

@@ -94,6 +94,11 @@
                     <td class="value">{{ $estudiante->seccion2->correo_padre ?? '—'}}</td>
                 </tr>
                 <tr>
+                    <td class="label">Numero de celular:</td>
+                    <td class="value">{{ $estudiante->seccion2->telefono_padre ?? '—' }}</td>
+                    <td class="value" colspan="2"></td>
+                </tr>
+                <tr>
                     <td class="label">Redes Sociales:</td>
                     <td class="value">Facebook: {{ $estudiante->seccion2->redessoc_padre[0] ?? '—' }}</td>
                     <td class="value">Instagram: {{ $estudiante->seccion2->redessoc_padre[1] ?? '—' }}</td>
@@ -132,6 +137,11 @@
                     <td class="value">{{ $estudiante->seccion2->ocupacion_madre ?? '—' }}</td>
                     <td class="label">Correo electrónico personal:</td>
                     <td class="value">{{ $estudiante->seccion2->correo_madre ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Numero de celular:</td>
+                    <td class="value">{{ $estudiante->seccion2->telefono_madre ?? '—' }}</td>
+                    <td class="value" colspan="2"></td>
                 </tr>
                 <tr>
                     <td class="label">Redes Sociales:</td>
@@ -188,6 +198,11 @@
                     <td class="value">{{ $estudiante->seccion2->ocupacion_conyuge ?? '—' }}</td>
                     <td class="label">Correo electrónico personal:</td>
                     <td class="value">{{ $estudiante->seccion2->correo_conyuge ?? '—'}}</td>
+                </tr>
+                <tr>
+                    <td class="label">Numero de celular:</td>
+                    <td class="value">{{ $estudiante->seccion2->telefono_conyuge ?? '—' }}</td>
+                    <td class="value" colspan="2"></td>
                 </tr>
                 <tr>
                     <td class="label">Redes Sociales:</td>

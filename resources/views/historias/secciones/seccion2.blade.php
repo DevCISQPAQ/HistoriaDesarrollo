@@ -115,6 +115,12 @@ $hermanos = session('hermanos');
                 </div>
 
                 <div class="col-span-1">
+                    <label for="telefono_padre" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="telefono_padre" name="telefono_padre" value="{{ old('telefono_padre') }}" required placeholder="10 dígitos">
+                </div>
+
+                <div class="col-span-1">
                     <label for="correo_padre" class="block text-sm font-medium text-gray-700">Correo electrónico personal <span class="text-red-500">*</span></label>
                     <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="correo_padre" name="correo_padre" value="{{ old('correo_padre') }}" required placeholder="correo@correo.com">
@@ -228,6 +234,12 @@ $hermanos = session('hermanos');
                     <label for="ocupacion_madre" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="ocupacion_madre" name="ocupacion_madre" placeholder="Profesión u oficio" value="{{ old('ocupacion_madre') }}" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="telefono_madre" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="telefono_madre" name="telefono_madre" value="{{ old('telefono_madre') }}" required placeholder="10 dígitos">
                 </div>
 
                 <div class="col-span-1">
@@ -391,6 +403,12 @@ $hermanos = session('hermanos');
                                         <label for="ocupacion_conyuge" class="block text-sm font-medium text-gray-700">Ocupación <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
                                             id="ocupacion_conyuge" name="ocupacion_conyuge" placeholder="Profesión u oficio" x-bind:required="estcivil === 'Vuelto a casar'">
+                                    </div>
+
+                                    <div class="col-span-1">
+                                        <label for="telefono_conyuge" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
+                                        <input type="text" class="imput-label"
+                                            id="telefono_conyuge" name="telefono_conyuge" value="{{ old('telefono_conyuge') }}" required placeholder="10 dígitos">
                                     </div>
 
                                     <div class="col-span-1">
