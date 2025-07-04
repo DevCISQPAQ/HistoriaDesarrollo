@@ -408,7 +408,7 @@ $hermanos = session('hermanos');
                                     <div class="col-span-1">
                                         <label for="telefono_conyuge" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
                                         <input type="text" class="imput-label"
-                                            id="telefono_conyuge" name="telefono_conyuge" value="{{ old('telefono_conyuge') }}" required placeholder="10 dígitos">
+                                            id="telefono_conyuge" name="telefono_conyuge" placeholder="10 dígitos" x-bind:required="estcivil === 'Vuelto a casar'">
                                     </div>
 
                                     <div class="col-span-1">

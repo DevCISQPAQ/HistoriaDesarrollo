@@ -51,6 +51,8 @@
  .info-table td.value {
      padding: 10px;
      border: 1px solid #ddd;
+     word-break: break-word;
+     white-space: normal;
      width: 25%;
  }
 
