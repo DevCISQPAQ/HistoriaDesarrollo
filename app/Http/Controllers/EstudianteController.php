@@ -124,6 +124,8 @@ class EstudianteController extends Controller
             $query->whereBetween('created_at', [$periodo['inicio'], $periodo['fin']]);
         }
 
+        $query->orderByDesc('created_at');
+
         $estudiantes = $query->paginate(10)->withQueryString();
 
         foreach ($estudiantes as $estudiante) {
