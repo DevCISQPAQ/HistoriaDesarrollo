@@ -20,6 +20,7 @@ use App\Models\Seccion9;
 use App\Models\Seccion10;
 use App\Models\Seccion11;
 use App\Models\Seccion12;
+use App\Models\Escolaridad;
 use App\Mail\ContactoMailable;
 use Exception;
 
@@ -115,7 +116,7 @@ class BDController extends Controller
                         'empresa_padre' => $request->empresa_padre,
                         'puesto_padre' => $request->puesto_padre,
                         'ocupacion_padre' => $request->ocupacion_padre,
-                         'telefono_padre' => $request->telefono_padre,
+                        'telefono_padre' => $request->telefono_padre,
                         'correo_padre' => $request->correo_padre,
                         'redessoc_padre' =>  $request->redessoc_padre,
                         'padre_lateralidad' =>  $request->padre_lateralidad,
@@ -459,6 +460,8 @@ class BDController extends Controller
     {
         try {
 
+            $escolaridad = $this->guardarEscolaridad($request);
+
             $seccion12 = Seccion12::updateOrCreate(
                 ['estudiante_id' => session('id_alumno')],
                 [
@@ -480,6 +483,8 @@ class BDController extends Controller
                     'porq_desemp' => $request->porq_desemp,
                     'motivoscamb' => $request->motivoscamb,
                     'razoning' => $request->razoning,
+                    'escolaridad_id' => $escolaridad->id,
+
                 ]
             );
 
@@ -679,7 +684,6 @@ class BDController extends Controller
     protected function guardarHermano($request)
     {
 
-
         $hermano = Hermano::updateOrCreate(
             ['estudiante_id' => session('id_alumno')],
             [
@@ -692,6 +696,22 @@ class BDController extends Controller
         );
 
         return $hermano;
+    }
+
+    protected function guardarEscolaridad($request)
+    {
+        $escolaridad = Escolaridad::updateOrCreate(
+            ['estudiante_id' => session('id_alumno')],
+            [
+                'escolaridades_nivel' => $request->escolaridades_nivel,
+                'escolaridades_colegio' => $request->escolaridades_colegio,
+                'escolaridades_anios' => $request->escolaridades_anios,
+                'escolaridades_desempeno' => $request->escolaridades_desempeno,
+                'escolaridades_adaptacion' => $request->escolaridades_adaptacion,
+            ]
+        );
+
+        return $escolaridad;
     }
 
 

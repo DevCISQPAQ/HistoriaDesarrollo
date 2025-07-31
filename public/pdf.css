@@ -79,7 +79,6 @@
      font-size: .7rem;
  }
 
-
  .trhermano {
      background-color: #e8e8e8;
      color: #333;
@@ -91,6 +90,28 @@
  }
 
  .tablehermano td {
+     border: .08 solid #ccc;
+     padding: .5rem;
+     font-size: .7rem;
+ }
+
+  .tableescolaridad {
+     width: 100%;
+     border-collapse: collapse;
+     font-size: .7rem;
+ }
+
+  .trescolaridad {
+     background-color: #e8e8e8;
+     color: #333;
+ }
+
+ .tableescolaridad  th {
+     border: .08rem solid #ccc;
+     padding: .1rem;
+ }
+
+ .tableescolaridad  td {
      border: .08 solid #ccc;
      padding: .5rem;
      font-size: .7rem;

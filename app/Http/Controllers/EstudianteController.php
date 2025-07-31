@@ -58,6 +58,7 @@ class EstudianteController extends Controller
                 'seccion10',
                 'seccion11',
                 'seccion12',
+                'escolaridad',
                 'historiadesarrollo'
             ])->findOrFail($id);
 

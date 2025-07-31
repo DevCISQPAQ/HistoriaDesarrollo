@@ -94,4 +94,9 @@ class Estudiante extends Model
         return $this->hasOne(Hermano::class);
     }
 
+      public function escolaridad()
+    {
+        return $this->hasOne(Escolaridad::class);
+    }
+
 }

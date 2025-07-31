@@ -19,9 +19,145 @@ $nombre = session('nombre');
         </div>
         <p class="text-blue-100 ml-11 mt-1">Complete la información sobre el estudiante {{$nombre}}</p>
     </div>
- 
+
     <form action="{{ route('seccion12.guardar') }}" method="POST" class="p-1">
         @csrf
+
+
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
+            <div>
+                <label for="reaccprimer" class="block text-sm font-medium text-gray-700 ">Desempeño e integración <span class="text-red-500">*</span></label>
+
+                <div x-data="{ nivelSeleccionado: '{{ session('grado') }}' }">
+                    <table class="min-w-full text-sm text-left text-gray-700 mt-4">
+                        <thead class="text-xs text-white uppercase bg-[#667c87]">
+                            <tr>
+                                <th class="border border-gray-300 px-3 py-2">Nivel</th>
+                                <th class="border border-gray-300 px-3 py-2">Colegio</th>
+                                <th class="border border-gray-300 px-3 py-2">Años cursados</th>
+                                <th class="border border-gray-300 px-3 py-2">Desempeño</th>
+                                <th class="border border-gray-300 px-3 py-2">Adaptación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Mostrar solo Preescolar si grado es 'preescolar' -->
+                            @if(session('grado')==='preescolar')
+                            <tr>
+                                <input type="hidden" name="escolaridades_nivel[]" value="Preescolar">
+                                <td class="border border-gray-300 px-2 py-1">Preescolar</td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="text" name="escolaridades_colegio[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="number" name="escolaridades_anios[]" min="0" value="0" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_desempeno[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_adaptacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            @else
+                            <!-- Mostrar Primaria y Secundaria si grado es 'primaria_secundaria' -->
+                            <!-- preescolar -->
+                            <tr>
+                                <input type="hidden" name="escolaridades_nivel[]" value="Preescolar">
+                                <td class="border border-gray-300 px-2 py-1">Preescolar</td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="text" name="escolaridades_colegio[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="number" name="escolaridades_anios[]" min="0" value="0" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_desempeno[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_adaptacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <!-- Primaria -->
+                            <tr>
+                                <input type="hidden" name="escolaridades_nivel[]" value="Primaria">
+                                <td class="border border-gray-300 px-2 py-1">Primaria</td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="text" name="escolaridades_colegio[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="number" name="escolaridades_anios[]" min="0" value="0" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_desempeno[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_adaptacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <!-- Secundaria -->
+                            <tr>
+                                <input type="hidden" name="escolaridades_nivel[]" value="Secundaria">
+                                <td class="border border-gray-300 px-2 py-1">Secundaria</td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="text" name="escolaridades_colegio[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <input type="number" name="escolaridades_anios[]" min="0" value="0" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none" required>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_desempeno[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                                <td class="border border-gray-300 px-2 py-1">
+                                    <select name="escolaridades_adaptacion[]" class="w-full px-2 py-1 border border-gray-300 rounded-lg focus:ring-[#1f355e] focus:outline-none">
+                                        <option value="" selected disabled>Seleccione</option>
+                                        <option value="Bueno">Bueno</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Con dificultades">Con dificultades</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
             <div x-data="{ mensaje: '' }">
@@ -47,8 +183,6 @@ $nombre = session('nombre');
                         x-text="mensaje.length + ' / 200 caracteres'"></span>
                 </div>
             </div>
-
-
         </div>
 
         <div class="mb-8 border border-gray-200 rounded-lg p-6 relative overflow-x-auto m-4">
@@ -230,7 +364,7 @@ $nombre = session('nombre');
                 <div>
                     <label for="porq_desemp" class="block text-sm font-medium text-gray-700">¿Por qué?</label>
                     <input class="md:w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
-                        id="porq_desemp" name="porq_desemp" placeholder="Escriba aquí la razón o motivo" required ></textarea>
+                        id="porq_desemp" name="porq_desemp" placeholder="Escriba aquí la razón o motivo" required></textarea>
                 </div>
             </div>
         </div>

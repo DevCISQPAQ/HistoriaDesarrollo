@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('porq_desemp');
             $table->string('motivoscamb');
             $table->string('razoning');
+            $table->integer('escolaridad_id')->nullable();
             $table->timestamps();
         });
     }

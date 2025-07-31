@@ -27,6 +27,7 @@ class Seccion12 extends Model
         'motivoscamb',
         'razoning',
         'acepto_terminos',
+        'escolaridad_id',
         
     ];
 
@@ -34,5 +35,10 @@ class Seccion12 extends Model
     public function estudiante()
     {
         return$this->belongsTo(Estudiante::class);
+    }
+
+     public function escolaridad()
+    {
+        return $this->hasOne(Escolaridad::class);
     }
 }

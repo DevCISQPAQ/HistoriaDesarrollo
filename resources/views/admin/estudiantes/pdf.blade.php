@@ -670,6 +670,37 @@
             <div class="header">
                 <h1 class="title">Historia Escolar</h1>
             </div>
+            <table class="tableescolaridad">
+                <h4 style="margin-top: 0;">Desempeño e integración</h4>
+                <thead>
+                    <tr class="trescolaridad ">
+                        <th>Nivel</th>
+                        <th>Colegio</th>
+                        <th>Años Cursados</th>
+                        <th>Desempeño</th>
+                        <th>Adaptación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if ($estudiante->escolaridad && is_array($estudiante->escolaridad->escolaridades_nivel))
+                    @foreach($estudiante->escolaridad->escolaridades_nivel as $i => $nivel)
+                    <tr>
+                        <td>{{ $nivel }}</td>
+                        <td>{{ $estudiante->escolaridad->escolaridades_colegio[$i] ?? '—' }}</td>
+                        <td>{{ $estudiante->escolaridad->escolaridades_anios[$i] ?? '—' }}</td>
+                        <td>{{ $estudiante->escolaridad->escolaridades_desempeno[$i] ?? '—' }}</td>
+                        <td>{{ $estudiante->escolaridad->escolaridades_adaptacion[$i] ?? '—' }}</td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="5" class="text-center text-gray-500">
+                            No se han registrado datos para este estudiante.
+                        </td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
             <table class="info-table">
                 <tr>
                     <td class="label" colspan="4">¿Cómo reaccionó en su primer ingreso a la escuela? </td>
