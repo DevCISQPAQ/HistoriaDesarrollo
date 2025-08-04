@@ -667,11 +667,11 @@
         <div style="page-break-after: always;"></div> {{-- Salto de página --}}
         <!-- Historia Escolar-->
         <div>
-            <div class="header">
+            <div class="header" style="margin-top: 0;">
                 <h1 class="title">Historia Escolar</h1>
             </div>
             <table class="tableescolaridad">
-                <h4 style="margin-top: 0;">Desempeño e integración</h4>
+                <h4 class="no-wrap">Desempeño e integración</h4>
                 <thead>
                     <tr class="trescolaridad ">
                         <th>Nivel</th>
@@ -809,7 +809,7 @@
             </table>
         </div>
 
-        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
+        <!-- <div style="page-break-after: always;"></div> {{-- Salto de página --}} -->
 
         <!-- Acuerdo de conformidad-->
         <div>

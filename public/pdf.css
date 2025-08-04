@@ -95,23 +95,23 @@
      font-size: .7rem;
  }
 
-  .tableescolaridad {
+ .tableescolaridad {
      width: 100%;
      border-collapse: collapse;
      font-size: .7rem;
  }
 
-  .trescolaridad {
+ .trescolaridad {
      background-color: #e8e8e8;
      color: #333;
  }
 
- .tableescolaridad  th {
+ .tableescolaridad th {
      border: .08rem solid #ccc;
      padding: .1rem;
  }
 
- .tableescolaridad  td {
+ .tableescolaridad td {
      border: .08 solid #ccc;
      padding: .5rem;
      font-size: .7rem;
@@ -166,4 +166,16 @@
      border-bottom: 1px solid #000;
      height: 10px;
      width: 100%;
+ }
+
+ .no-wrap {
+     white-space: nowrap;
+     /* Evita el salto de línea */
+     overflow: hidden;
+     /* Oculta el texto que se desborda */
+     text-overflow: ellipsis;
+     /* Muestra "..." si se desborda */
+     width: 300px;
+     /* Ajusta este ancho a lo que necesites */
+     margin-top: 0;
  }
