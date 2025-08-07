@@ -633,8 +633,8 @@
         </div>
 
         <!-- Caracteristicas Personales -->
-        <div>
-            <div class="header" style="background-color: #54667a;">
+        <div >
+            <div class="header" style="background-color: #54667a; margin-top: 0;">
                 <h1 class="title">Características Personales</h1>
             </div>
             <table class="info-table">
@@ -686,7 +686,7 @@
                     @foreach($estudiante->escolaridad->escolaridades_nivel as $i => $nivel)
                     <tr>
                         <td>{{ $nivel }}</td>
-                        <td>{{ $estudiante->escolaridad->escolaridades_colegio[$i] ?? '—' }}</td>
+                        <td  style="font-size: .5rem;">{{ $estudiante->escolaridad->escolaridades_colegio[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_anios[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_desempeno[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_adaptacion[$i] ?? '—' }}</td>
@@ -809,7 +809,8 @@
             </table>
         </div>
 
-        <!-- <div style="page-break-after: always;"></div> {{-- Salto de página --}} -->
+
+        <div style="page-break-after: always;"></div> {{-- Salto de página --}}
 
         <!-- Acuerdo de conformidad-->
         <div>
