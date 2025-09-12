@@ -94,7 +94,7 @@
                     <td class="value">{{ $estudiante->seccion2->correo_padre ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label">Numero de celular:</td>
+                    <td class="label">Numero de celular personal:</td>
                     <td class="value">{{ $estudiante->seccion2->telefono_padre ?? '—' }}</td>
                     <td class="value" colspan="2"></td>
                 </tr>
@@ -139,7 +139,7 @@
                     <td class="value">{{ $estudiante->seccion2->correo_madre ?? '—'}}</td>
                 </tr>
                 <tr>
-                    <td class="label">Numero de celular:</td>
+                    <td class="label">Numero de celular personal:</td>
                     <td class="value">{{ $estudiante->seccion2->telefono_madre ?? '—' }}</td>
                     <td class="value" colspan="2"></td>
                 </tr>

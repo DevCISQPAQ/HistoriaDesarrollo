@@ -115,7 +115,7 @@ $hermanos = session('hermanos');
                 </div>
 
                 <div class="col-span-1">
-                    <label for="telefono_padre" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
+                    <label for="telefono_padre" class="block text-sm font-medium text-gray-700">Numero de celular personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="telefono_padre" name="telefono_padre" value="{{ old('telefono_padre') }}" required placeholder="10 dígitos">
                 </div>
@@ -237,7 +237,7 @@ $hermanos = session('hermanos');
                 </div>
 
                 <div class="col-span-1">
-                    <label for="telefono_madre" class="block text-sm font-medium text-gray-700">Numero de celular <span class="text-red-500">*</span></label>
+                    <label for="telefono_madre" class="block text-sm font-medium text-gray-700">Numero de celular personal <span class="text-red-500">*</span></label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                         id="telefono_madre" name="telefono_madre" value="{{ old('telefono_madre') }}" required placeholder="10 dígitos">
                 </div>
