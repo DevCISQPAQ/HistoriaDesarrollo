@@ -1,6 +1,7 @@
 import Chart from 'chart.js/auto';
 
-window.renderDashboardCharts = function (nivelesData, etiquetasPorGrado, datosPorGrado, registrosLabels, registrosData) {
+window.renderDashboardCharts = function (nivelesData, etiquetasPorGrado, datosPorGrado, registrosLabels, registrosData, egresadosLabels,
+    egresadosData) {
 
     const ctxNiveles = document.getElementById('nivelesChart').getContext('2d');
 
@@ -194,5 +195,122 @@ window.renderDashboardCharts = function (nivelesData, etiquetasPorGrado, datosPo
     });
 
 
+
+
+    // const ctxEgresados = document.getElementById('egresadosChart').getContext('2d');
+
+    // new Chart(ctxEgresados, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: egresadosLabels,
+    //         datasets: [{
+    //             label: 'Egresados por colegio',
+    //             data: egresadosData,
+    //             backgroundColor: '#8b5cf6',
+    //             borderColor: '#fff',
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: 'Egresados por colegio'
+    //             },
+    //             legend: {
+    //                 display: false
+    //             }
+    //         },
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true,
+    //                 ticks: {
+    //                     stepSize: 1
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
+
+    //const ctxEgresados = document.getElementById('egresadosChart').getContext('2d');
+
+    // new Chart(ctxEgresados, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: egresadosLabels,
+    //         datasets: [{
+    //             label: 'Egresados por colegio',
+    //             data: egresadosData,
+    //             backgroundColor: '#8b5cf6',
+    //             borderColor: '#fff',
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: 'Egresados por colegio'
+    //             },
+    //             legend: {
+    //                 display: false
+    //             }
+    //         },
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true,
+    //                 ticks: { stepSize: 1 }
+    //             }
+    //         }
+    //     }
+    // });
+
+   
+
+    const ctx = document.getElementById('egresadosUnificadosChart').getContext('2d');
+
+    // Generamos colores automáticos
+    const colores = egresadosLabels.map((_, i) => `hsl(${i * 45 % 360}, 70%, 50%)`);
+
+    new Chart(ctx, {
+        type: 'bar', // Cambiar a 'pie' si prefieres circular
+        data: {
+            labels: egresadosLabels,
+            datasets: [{
+                label: 'Número de egresados',
+                data: egresadosData,
+                backgroundColor: colores,
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Egresados por Colegio (Unificados)',
+                    font: { size: 18, weight: 'bold' },
+                    color: '#1f2937'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1, precision: 0 },
+                    title: { display: true, text: 'Cantidad de egresados' }
+                },
+                x: {
+                    title: { display: true, text: 'Colegio' }
+                }
+            }
+        }
+    });
 
 }

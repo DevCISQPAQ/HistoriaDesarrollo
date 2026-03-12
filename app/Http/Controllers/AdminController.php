@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Estudiante;
+use App\Models\Seccion2;
 use App\Models\HistoriaDesarrollo;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -31,6 +32,8 @@ class AdminController extends Controller
             $nivelesData = $this->contarFormulariosPorNivel();
             $conteosPorGrado = $this->obtenerConteosPorGrado();
             $registrosPorMes = $this->obtenerRegistrosPorMes();
+            // $egresados = $this->obtenerEgresadosPorColegio();
+            $egresadosPorColegio = $this->obtenerEgresadosPorColegioUnificado();
 
             $etiquetasPorGrado = collect(array_keys($conteosPorGrado))
                 ->map(fn($key) => ucwords(str_replace('_', ' ', $key)))
@@ -47,6 +50,11 @@ class AdminController extends Controller
                     'graficaLabels' => $registrosPorMes['labels'],
                     'graficaData' => $registrosPorMes['data'],
                     'periodoEtiqueta' => $periodo['etiqueta'],
+                    // 'egresadosLabels' => $egresados['labels'],
+                    // 'egresadosData' => $egresados['data'],
+                    'totalEgresados' => $egresadosPorColegio['total'],
+                    'egresadosLabels' => $egresadosPorColegio['labels'],
+                    'egresadosData' => $egresadosPorColegio['data'],
                 ]
             );
 
@@ -306,6 +314,342 @@ class AdminController extends Controller
             'labels' => $labels,
             'data' => $data,
             'periodo' => $periodo['etiqueta'],
+        ];
+    }
+
+
+    private function obtenerEgresadosPorColegio1()
+    {
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->selectRaw('cualcolegio_padre as colegio, COUNT(*) as total')
+            ->groupBy('cualcolegio_padre')
+            ->pluck('total', 'colegio');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->selectRaw('cualcolegio_madre as colegio, COUNT(*) as total')
+            ->groupBy('cualcolegio_madre')
+            ->pluck('total', 'colegio');
+
+        $resultado = $padres->mergeRecursive($madres)->map(function ($item) {
+            return is_array($item) ? array_sum($item) : $item;
+        });
+
+        return [
+            'labels' => $resultado->keys(),
+            'data' => $resultado->values(),
+            'total' => $resultado->sum()
+        ];
+    }
+
+    private function obtenerEgresadosPorColegio2()
+    {
+        // 1️⃣ Traemos todos los registros de padres y madres egresados con sus colegios
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->pluck('cualcolegio_padre');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->pluck('cualcolegio_madre');
+
+        $todos = $padres->merge($madres)->map(function ($nombre) {
+            // 2️⃣ Normalizamos el texto: minúsculas, quitar palabras genéricas y tildes
+            $nombre = strtolower($nombre);
+            $nombre = str_replace(['instituto', 'colegio', 'escuela', 'academia'], '', $nombre);
+            $nombre = iconv('UTF-8', 'ASCII//TRANSLIT', $nombre); // quita tildes
+            $nombre = preg_replace('/[^a-z0-9 ]/', '', $nombre); // quitar caracteres extra
+            $nombre = trim($nombre);
+            return $nombre;
+        })->toArray();
+
+        // 3️⃣ Agrupamos nombres similares usando similar_text
+        $grupos = [];
+        foreach ($todos as $colegio) {
+            $found = false;
+            foreach ($grupos as $key => $grupo) {
+                similar_text($colegio, $key, $percent);
+                if ($percent > 80) { // si es más del 80% similar
+                    $grupos[$key][] = $colegio;
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                $grupos[$colegio] = [$colegio];
+            }
+        }
+
+        // 4️⃣ Contamos totales por grupo
+        $resultado = [];
+        foreach ($grupos as $key => $valores) {
+            $resultado[$key] = count($valores);
+        }
+
+        return [
+            'labels' => array_map('ucwords', array_keys($resultado)),
+            'data' => array_values($resultado),
+            'total' => array_sum($resultado)
+        ];
+    }
+
+    private function obtenerEgresadosPorColegio3()
+    {
+        // Traemos todos los registros de padres y madres egresados
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->pluck('cualcolegio_padre');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->pluck('cualcolegio_madre');
+
+        $todos = $padres->merge($madres)->map(function ($nombre) {
+            // Normalización básica
+            $nombre = strtolower($nombre);
+            $nombre = str_replace(['instituto', 'colegio', 'escuela', 'academia'], '', $nombre);
+            $nombre = iconv('UTF-8', 'ASCII//TRANSLIT', $nombre); // quita tildes
+            $nombre = preg_replace('/[^a-z0-9 ]/', '', $nombre); // quitar caracteres extra
+            $nombre = trim($nombre);
+            return $nombre;
+        })->toArray();
+
+        // Agrupamos usando Levenshtein
+        $grupos = [];
+        foreach ($todos as $colegio) {
+            $found = false;
+            foreach ($grupos as $key => $valores) {
+                $longitud = max(strlen($colegio), strlen($key));
+                if (levenshtein($colegio, $key) <= max(1, $longitud * 0.2)) {
+                    $grupos[$key][] = $colegio;
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                $grupos[$colegio] = [$colegio];
+            }
+        }
+
+        // Contamos totales por grupo
+        $resultado = [];
+        foreach ($grupos as $key => $valores) {
+            $resultado[$key] = count($valores);
+        }
+
+        return [
+            'labels' => array_map('ucwords', array_keys($resultado)),
+            'data' => array_values($resultado),
+            'total' => array_sum($resultado)
+        ];
+    }
+
+    private function obtenerEgresadosPorColegio4()
+    {
+        // 1️⃣ Traemos todos los colegios de padres y madres egresados
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->pluck('cualcolegio_padre');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->pluck('cualcolegio_madre');
+
+        $todos = $padres->merge($madres)->map(function ($nombre) {
+            // Normalización básica
+            $nombre = trim(strtolower($nombre));
+            $nombre = str_replace(['instituto', 'colegio', 'escuela', 'academia'], '', $nombre);
+            $nombre = iconv('UTF-8', 'ASCII//TRANSLIT', $nombre); // quita tildes
+            $nombre = preg_replace('/[^a-z0-9 ]/', '', $nombre); // quitar caracteres extra
+            $nombre = trim($nombre);
+            return $nombre;
+        })->toArray();
+
+        // 2️⃣ Agrupamos nombres similares usando Levenshtein
+        $grupos = [];
+        foreach ($todos as $colegio) {
+            $found = false;
+
+            foreach ($grupos as $key => $valores) {
+                $longitud = max(strlen($colegio), strlen($key));
+
+                if (levenshtein($colegio, $key) <= max(1, $longitud * 0.2)) {
+                    $grupos[$key][] = $colegio;
+
+                    // Elegimos la etiqueta más larga como “correcta”
+                    if (strlen($colegio) > strlen($key)) {
+                        $grupos[$colegio] = $grupos[$key];
+                        unset($grupos[$key]);
+                    }
+
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $grupos[$colegio] = [$colegio];
+            }
+        }
+
+        // 3️⃣ Contamos totales por grupo
+        $resultado = [];
+        foreach ($grupos as $key => $valores) {
+            $resultado[$key] = count($valores);
+        }
+
+        // 4️⃣ Convertimos a formato amigable para Chart.js
+        return [
+            'labels' => array_map('ucwords', array_keys($resultado)), // nombres correctos
+            'data' => array_values($resultado), // totales
+            'total' => array_sum($resultado)
+        ];
+    }
+
+    private function obtenerEgresadosPorColegio5()
+    {
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->pluck('cualcolegio_padre');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->pluck('cualcolegio_madre');
+
+        // Guardamos array de [original, normalizado]
+        $todos = $padres->merge($madres)->map(function ($nombre) {
+            $nombreOriginal = trim($nombre);
+            $normalizado = strtolower($nombreOriginal);
+            $normalizado = str_replace(['instituto', 'colegio', 'escuela', 'academia'], '', $normalizado);
+            $normalizado = iconv('UTF-8', 'ASCII//TRANSLIT', $normalizado);
+            $normalizado = preg_replace('/[^a-z0-9 ]/', '', $normalizado);
+            $normalizado = trim($normalizado);
+            return ['original' => $nombreOriginal, 'normalizado' => $normalizado];
+        })->toArray();
+
+        // Agrupar por similitud usando versión normalizada
+        $grupos = [];
+        foreach ($todos as $item) {
+            $colegio = $item['normalizado'];
+            $original = $item['original'];
+            $found = false;
+
+            foreach ($grupos as $key => $valores) {
+                $longitud = max(strlen($colegio), strlen($key));
+                if (levenshtein($colegio, $key) <= max(1, $longitud * 0.2)) {
+                    $grupos[$key][] = $original; // guardamos el nombre original
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $grupos[$colegio] = [$original]; // iniciamos grupo con el original
+            }
+        }
+
+        // Etiqueta final: usamos el nombre más frecuente original en cada grupo
+        $resultado = [];
+        foreach ($grupos as $valores) {
+            $conteo = array_count_values($valores);
+            $etiquetaCorrecta = array_search(max($conteo), $conteo);
+            $resultado[$etiquetaCorrecta] = count($valores);
+        }
+
+        return [
+            'labels' => array_keys($resultado), // nombres correctos con acentos
+            'data' => array_values($resultado),
+            'total' => array_sum($resultado)
+        ];
+    }
+
+    private function obtenerEgresadosPorColegioUnificado()
+    {
+        $padres = Seccion2::where('egresadored_padre', 'si')
+            ->whereNotNull('cualcolegio_padre')
+            ->pluck('cualcolegio_padre');
+
+        $madres = Seccion2::where('egresadored_madre', 'si')
+            ->whereNotNull('cualcolegio_madre')
+            ->pluck('cualcolegio_madre');
+
+        $todos = $padres->merge($madres)->map(function ($nombre) {
+
+            $original = trim($nombre);
+
+            $texto = strtolower($original);
+            $texto = iconv('UTF-8', 'ASCII//TRANSLIT', $texto);
+            $texto = preg_replace('/[^a-z0-9 ]/', '', $texto);
+
+            return [
+                'original' => $original,
+                'texto' => $texto
+            ];
+        });
+
+        $grupos = [];
+
+        foreach ($todos as $item) {
+
+            $texto = $item['texto'];
+            $original = $item['original'];
+
+            $label = null;
+
+            // 🔹 ANAHUAC
+            if (str_contains($texto, 'anahuac')) {
+
+                if (str_contains($texto, 'qro') || str_contains($texto, 'queretaro')) {
+                    $label = 'Anáhuac Querétaro';
+                } elseif (str_contains($texto, 'cdmx') || str_contains($texto, 'mx') || str_contains($texto, 'mexico')) {
+                    $label = 'Anáhuac CDMX';
+                } else {
+                    $label = 'Anáhuac';
+                }
+            }
+
+            // 🔹 CUMBRES o ALPES
+            elseif (str_contains($texto, 'cumbres') || str_contains($texto, 'alpes')) {
+
+                if (str_contains($texto, 'qro') || str_contains($texto, 'queretaro')) {
+                    // 👉 ambos se unifican
+                    $label = 'Cumbres / Alpes Querétaro';
+                } elseif (str_contains($texto, 'cdmx') || str_contains($texto, 'mx') || str_contains($texto, 'mexico')) {
+
+                    if (str_contains($texto, 'cumbres')) {
+                        $label = 'Cumbres CDMX';
+                    } else {
+                        $label = 'Alpes CDMX';
+                    }
+                } else {
+
+                    if (str_contains($texto, 'cumbres')) {
+                        $label = 'Cumbres';
+                    } else {
+                        $label = 'Alpes';
+                    }
+                }
+            }
+
+            // 🔹 otros colegios
+            else {
+                $label = $original;
+            }
+
+            $grupos[$label][] = $original;
+        }
+
+        $resultado = [];
+
+        foreach ($grupos as $label => $valores) {
+            $resultado[$label] = count($valores);
+        }
+
+        return [
+            'labels' => array_keys($resultado),
+            'data' => array_values($resultado),
+            'total' => array_sum($resultado)
         ];
     }
 }
