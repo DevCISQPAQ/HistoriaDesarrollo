@@ -196,83 +196,8 @@ window.renderDashboardCharts = function (nivelesData, etiquetasPorGrado, datosPo
 
 
 
-
-    // const ctxEgresados = document.getElementById('egresadosChart').getContext('2d');
-
-    // new Chart(ctxEgresados, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: egresadosLabels,
-    //         datasets: [{
-    //             label: 'Egresados por colegio',
-    //             data: egresadosData,
-    //             backgroundColor: '#8b5cf6',
-    //             borderColor: '#fff',
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-    //         plugins: {
-    //             title: {
-    //                 display: true,
-    //                 text: 'Egresados por colegio'
-    //             },
-    //             legend: {
-    //                 display: false
-    //             }
-    //         },
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true,
-    //                 ticks: {
-    //                     stepSize: 1
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
-
-    //const ctxEgresados = document.getElementById('egresadosChart').getContext('2d');
-
-    // new Chart(ctxEgresados, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: egresadosLabels,
-    //         datasets: [{
-    //             label: 'Egresados por colegio',
-    //             data: egresadosData,
-    //             backgroundColor: '#8b5cf6',
-    //             borderColor: '#fff',
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-    //         plugins: {
-    //             title: {
-    //                 display: true,
-    //                 text: 'Egresados por colegio'
-    //             },
-    //             legend: {
-    //                 display: false
-    //             }
-    //         },
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true,
-    //                 ticks: { stepSize: 1 }
-    //             }
-    //         }
-    //     }
-    // });
-
-   
-
+    //egresados
     const ctx = document.getElementById('egresadosUnificadosChart').getContext('2d');
-
     // Generamos colores automáticos
     const colores = egresadosLabels.map((_, i) => `hsl(${i * 45 % 360}, 70%, 50%)`);
 
@@ -295,7 +220,7 @@ window.renderDashboardCharts = function (nivelesData, etiquetasPorGrado, datosPo
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Egresados por Colegio (Unificados)',
+                    text: 'Padres egresados por Colegio',
                     font: { size: 18, weight: 'bold' },
                     color: '#1f2937'
                 }

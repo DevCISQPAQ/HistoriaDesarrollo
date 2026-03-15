@@ -133,6 +133,10 @@ class BDController extends Controller
                         'madre_lateralidad' => $request->madre_lateralidad,
                         'egresadored_madre' => $request->egresadored_madre,
                         'cualcolegio_madre' => $request->cualcolegio_madre,
+
+                        'conocenfamilia_red' => $request->conocenfamilia_red,
+                        'conocenfamilia_nombre' => $request->conocenfamilia_nombre,
+
                         'estado_civil' =>  $request->estado_civil,
                         'nombre_conyuge' => $request->nombre_conyuge,
                         'edad_conyuge' => $request->edad_conyuge,

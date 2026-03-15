@@ -36,6 +36,10 @@ return new class extends Migration
             $table->string('madre_lateralidad');
             $table->string('egresadored_madre');
             $table->string('cualcolegio_madre')->nullable();
+
+            $table->string('conocenfamilia_red');
+            $table->string('conocenfamilia_nombre')->nullable();
+
             $table->string('estado_civil');
             $table->string('nombre_conyuge')->nullable();
             $table->integer('edad_conyuge')->nullable();

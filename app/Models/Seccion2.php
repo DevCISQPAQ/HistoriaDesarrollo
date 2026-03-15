@@ -34,6 +34,10 @@ class Seccion2 extends Model
         'madre_lateralidad',
         'egresadored_madre',
         'cualcolegio_madre',
+
+        'conocenfamilia_red',
+        'conocenfamilia_nombre',
+
         'estado_civil',
         'nombre_conyuge',
         'edad_conyuge',
@@ -54,21 +58,21 @@ class Seccion2 extends Model
         'hermano_id'
     ];
 
-     protected $casts = [
+    protected $casts = [
         'redessoc_padre' => 'array',
         'padre_lateralidad' => 'array',
         'redessoc_madre' => 'array',
         'madre_lateralidad' => 'array',
         'estado_civil' => 'array',
-        'redessoc_conyuge'=> 'array',
-        'conyuge_lateralidad'=> 'array',
+        'redessoc_conyuge' => 'array',
+        'conyuge_lateralidad' => 'array',
     ];
 
 
 
     public function estudiante()
     {
-        return$this->belongsTo(Estudiante::class);
+        return $this->belongsTo(Estudiante::class);
     }
 
     public function hermano()

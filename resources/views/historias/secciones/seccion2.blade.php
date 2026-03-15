@@ -23,7 +23,7 @@ $hermanos = session('hermanos');
 
     <form action="{{ route('seccion2.guardar') }}" method="POST" class="p-1">
         @csrf
-
+        <!-- En caso de agregar a otro hermano-->
         @if(session('old_hijoId'))
         <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
 
@@ -316,6 +316,27 @@ $hermanos = session('hermanos');
                         <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
                             id="cualcolegio_madre" placeholder="Escribe el nombre del colegio" name="cualcolegio_madre" x-bind:required="siegresadored === 'Si'">
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Datos de si conocen a alguien -->
+        <div class="mb-8 border border-gray-200 rounded-lg p-6 m-4">
+            <div class="col-span-1 md:col-span-2" x-data="{conocenfamilia: ''}">
+                <label for="conocenfamilia" class="block text-sm font-medium text-gray-700 mb-3">¿Conocen a alguna familia del colegio? <span class="text-red-500">*</span></label>
+                <label class="radio-box-btn">
+                    <input type="radio" name="conocenfamilia_red" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required
+                        x-model="conocenfamilia">
+                    <span class="ml-2">Sí</span>
+                </label>
+                <label class="radio-box-btn">
+                    <input type="radio" name="conocenfamilia_red" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" x-model="conocenfamilia">
+                    <span class="ml-2">No</span>
+                </label>
+                <div id="Si" x-show="conocenfamilia == $el.id" x-transition>
+                    <label for="conocenfamilia_nombre" class="block text-sm font-medium text-gray-700 pt-3">Nombre de los papás o familia</label>
+                    <input type="text" class="w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition"
+                        id="conocenfamilia_nombre" placeholder="Escribe el nombre de los papás o familia" name="conocenfamilia_nombre" x-bind:required="conocenfamilia === 'Si'">
                 </div>
             </div>
         </div>

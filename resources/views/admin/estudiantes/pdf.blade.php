@@ -50,7 +50,7 @@
                 <tr>
                     <td class="label">Lugar de nacimiento:</td>
                     <td class="value">{{ $estudiante->lugar_nacimiento ?? '—'}}</td>
-                    <td class="label">Grado escolar:</td>
+                    <td class="label">Grado escolar a ingresar:</td>
                     <td class="value">{{ $estudiante->grado_escolar ?? '—'}}</td>
                 </tr>
                 <tr>
@@ -162,6 +162,18 @@
                     <td class="value" colspan="3"> {{$estudiante->seccion2->cualcolegio_madre ?? '_' }}</td>
                 </tr>
                 @endif
+            </table>
+
+            <!-- econocen familia red  -->
+            <table class="info-table" style="padding-top: 1rem;">
+                <tr>
+                    <td class="label">¿Conocen a alguna familia del colegio?</td>
+                    <td class="value" colspan="1"> {{$estudiante->seccion2->conocenfamilia_red ?? '_' }}</td>
+                    @if(in_array(mb_strtolower(optional($estudiante->seccion2)->conocenfamilia_red), ['sí', 'si']))
+                    <td class="label">Nombre de papás o familia</td>
+                    <td class="value" colspan="3"> {{$estudiante->seccion2->conocenfamilia_nombre ?? '_' }}</td>
+                     @endif
+                </tr>
             </table>
             <!-- estado civil  -->
             <table class="info-table" style="padding-top: 1rem;">
@@ -633,7 +645,7 @@
         </div>
 
         <!-- Caracteristicas Personales -->
-        <div >
+        <div>
             <div class="header" style="background-color: #54667a; margin-top: 0;">
                 <h1 class="title">Características Personales</h1>
             </div>
@@ -686,7 +698,7 @@
                     @foreach($estudiante->escolaridad->escolaridades_nivel as $i => $nivel)
                     <tr>
                         <td>{{ $nivel }}</td>
-                        <td  style="font-size: .5rem;">{{ $estudiante->escolaridad->escolaridades_colegio[$i] ?? '—' }}</td>
+                        <td style="font-size: .5rem;">{{ $estudiante->escolaridad->escolaridades_colegio[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_anios[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_desempeno[$i] ?? '—' }}</td>
                         <td>{{ $estudiante->escolaridad->escolaridades_adaptacion[$i] ?? '—' }}</td>

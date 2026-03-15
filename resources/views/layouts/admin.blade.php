@@ -20,7 +20,7 @@
 
     {{-- Sidebar responsivo --}}
     <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        class="fixed inset-y-0 left-0 w-64 bg-white shadow-md z-40 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0">
+        class="fixed inset-y-0 left-0 w-54 bg-white shadow-md z-40 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0">
         <x-admin-sidebar />
     </aside>
 
@@ -28,7 +28,7 @@
     <div class="flex-1 flex flex-col w-full">
 
         {{-- Header superior --}}
-        <header class="bg-white shadow px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <header class="bg-white shadow px-6 py-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div class="flex items-center gap-4">
                 {{-- Botón hamburguesa visible solo en móviles --}}
                 <button @click="toggleSidebar" class="md:hidden text-gray-700">
@@ -39,7 +39,7 @@
                     </svg>
                 </button>
 
-                <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800">
+                <h1 class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-800">
                     Administración
                 </h1>
             </div>

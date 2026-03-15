@@ -13,7 +13,7 @@
                     <th class="px-4 py-2">Nombre</th>
                     <th class="px-4 py-2">Correo</th>
                     <th class="px-4 py-2">Rol</th>
-                    <th class="px-4 py-2 text-left">Notificaciones</th> <!-- Nueva columna -->
+                    <th class="px-4 py-2 text-center">Notificaciones</th> <!-- Nueva columna -->
                     <th class="px-4 py-2">Acciones</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                     <td class="px-4 py-2">{{ $usuario->name }}</td>
                     <td class="px-4 py-2">{{ $usuario->email }}</td>
                     <td class="px-4 py-2">{{ $usuario->is_admin ? 'Admin' : 'Usuario' }}</td>
-                    <td class="px-4 py-2">
+                    <td class="px-4 py-2 text-center">
                         {{ $usuario->yes_notifications ? 'Sí' : 'No' }}
                     </td>
                     <td class="px-4 py-2 space-x-2">

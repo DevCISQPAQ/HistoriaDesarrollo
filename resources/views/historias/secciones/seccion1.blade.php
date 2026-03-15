@@ -99,7 +99,7 @@ $id_alumno = session('id_alumno');
 
             <!-- Grado escolar -->
             <div class="space-y-1">
-                <label for="grado_escolar" class="block text-sm font-medium text-gray-700">Grado escolar <span class="text-red-500">*</span></label>
+                <label for="grado_escolar" class="block text-sm font-medium text-gray-700">Grado escolar a ingresar<span class="text-red-500">*</span></label>
                 <select id="grado_escolar" name="grado_escolar"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" required>
 
