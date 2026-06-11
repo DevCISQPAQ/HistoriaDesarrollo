@@ -65,6 +65,10 @@
                     <td class="label">Escuela de procedencia:</td>
                     <td class="value">{{ $estudiante->escuela_procedencia ?? '—'}}</td>
                 </tr>
+                <tr>
+                    <td class="label" colspan="3">¿Su Hijo/a cursó anteriormente algún grado en Cumbres Internacional School Querétaro o en algún otro colegio de la red?</td>
+                    <td class="value">{{ $estudiante->ex_cumbres ?? '—' }}</td>
+                </tr>
             </table>
         </div>
 
@@ -172,7 +176,7 @@
                     @if(in_array(mb_strtolower(optional($estudiante->seccion2)->conocenfamilia_red), ['sí', 'si']))
                     <td class="label">Nombre de papás o familia</td>
                     <td class="value" colspan="3"> {{$estudiante->seccion2->conocenfamilia_nombre ?? '_' }}</td>
-                     @endif
+                    @endif
                 </tr>
             </table>
             <!-- estado civil  -->

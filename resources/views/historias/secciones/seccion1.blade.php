@@ -155,6 +155,23 @@ $id_alumno = session('id_alumno');
                 <input type="text" id="escuela_procedencia" name="escuela_procedencia"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1f355e] focus:border-[#1f355e] transition" placeholder="Escribe el nombre o pon 'Ninguna'" required>
             </div>
+
+            <!-- pertenecio al colegio antes? -->
+              <div class="space-y-1">
+                <label class="block text-sm font-medium text-gray-700">¿Su Hijo/a cursó anteriormente algún grado en Cumbres Internacional School Querétaro o en algún otro colegio de la red? <span class="text-red-500">*</span></label>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="radio-box-btn">
+                        <input type="radio" name="ex_cumbres" value="Si" class="form-radio text-[#1f355e] focus:ring-[#1f355e]" required>
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="radio-box-btn">
+                        <input type="radio" name="ex_cumbres" value="No" class="form-radio text-[#1f355e] focus:ring-[#1f355e]">
+                        <span class="ml-2">No</span>
+                    </label>
+
+                </div>
+            </div>
+
         </div>
 
         <!-- Botones de acción -->

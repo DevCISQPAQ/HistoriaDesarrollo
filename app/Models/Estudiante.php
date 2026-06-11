@@ -21,7 +21,8 @@ class Estudiante extends Model
         'escuela_procedencia',
         'grado_escolar',
         'edad',
-        'lugar_nacimiento'
+        'lugar_nacimiento',
+        'ex_cumbres'
     ];
 
     // public function historiadesarrollo() {

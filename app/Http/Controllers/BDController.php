@@ -45,6 +45,7 @@ class BDController extends Controller
                     'cp' => $request->cp,
                     'telefono' => $request->telefono,
                     'escuela_procedencia' => $request->escuela_procedencia,
+                    'ex_cumbres' => $request->ex_cumbres,
                 ]
             );
 

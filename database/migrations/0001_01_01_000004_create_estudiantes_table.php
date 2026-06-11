@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('cp', 5);
             $table->string('telefono');
             $table->string('escuela_procedencia')->nullable();
+            $table->string('ex_cumbres', 50);
             $table->timestamps();
         });
     }
